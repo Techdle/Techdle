@@ -9,13 +9,12 @@ import Link from 'next/link';
 import { Bug, LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon } from 'lucide-react';
 import { clearLocalData } from '@/lib/storage';
 import { useSettings } from '@/components/SettingsProvider';
-import { useTheme } from 'next-themes';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { AuthModal } from '@/components/AuthModal';
 
 export default function LoginPage() {
   const { user, error, loading, isDevMode } = useAuth();
   const { highContrast, setHighContrast } = useSettings();
-  const { theme, setTheme } = useTheme();
   
   const [signingOut, setSigningOut] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -66,30 +65,10 @@ export default function LoginPage() {
             <div className="border-t border-slate-800 pt-6 flex items-center justify-between">
               <div>
                 <div className="font-medium">Theme</div>
-                <div className="text-sm text-slate-400">Select application theme</div>
+                <div className="text-sm text-slate-400">Toggle dark/light mode</div>
               </div>
               <div className="flex bg-slate-950 rounded-lg p-1 border border-slate-800">
-                <button
-                  onClick={() => setTheme('light')}
-                  className={`p-1.5 rounded-md transition-colors ${mounted && theme === 'light' ? 'bg-slate-800 text-slate-100' : 'text-slate-500 hover:text-slate-300'}`}
-                  title="Light Theme"
-                >
-                  <Sun className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setTheme('dark')}
-                  className={`p-1.5 rounded-md transition-colors ${mounted && theme === 'dark' ? 'bg-slate-800 text-slate-100' : 'text-slate-500 hover:text-slate-300'}`}
-                  title="Dark Theme"
-                >
-                  <Moon className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => setTheme('system')}
-                  className={`p-1.5 rounded-md transition-colors ${mounted && theme === 'system' ? 'bg-slate-800 text-slate-100' : 'text-slate-500 hover:text-slate-300'}`}
-                  title="System Theme"
-                >
-                  <Monitor className="w-4 h-4" />
-                </button>
+                <ThemeToggle />
               </div>
             </div>
           </div>
