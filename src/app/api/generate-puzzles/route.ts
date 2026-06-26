@@ -25,7 +25,6 @@ interface GeneratedTopic {
 interface GenerateResponse {
   success: boolean;
   puzzles: Array<{
-    date: string;
     id: string;
     category: string;
     difficulty: string;
@@ -33,28 +32,6 @@ interface GenerateResponse {
   errors: string[];
 }
 
-function getTodayDateString(): string {
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = String(now.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(now.getUTCDate()).padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
-
-function getNextDateString(existingDates: Set<string>): string {
-  const today = getTodayDateString();
-  let date = new Date(today + 'T00:00:00Z');
-  date.setUTCDate(date.getUTCDate() + 1);
-
-  let attempts = 0;
-  while (attempts < 365) {
-    const dateStr = date.toISOString().slice(0, 10);
-    if (!existingDates.has(dateStr)) return dateStr;
-    date.setUTCDate(date.getUTCDate() + 1);
-    attempts++;
-  }
-  return date.toISOString().slice(0, 10);
-}
 
 function loadGeneratedTopics(): GeneratedTopic[] {
   try {
@@ -69,15 +46,6 @@ function saveGeneratedTopics(topics: GeneratedTopic[]): void {
   writeFileSync(TOPICS_PATH, JSON.stringify(topics, null, 2) + '\n');
 }
 
-function getExistingDates(): Set<string> {
-  try {
-    const raw = readFileSync(INDEX_PATH, 'utf-8');
-    const puzzles: Puzzle[] = JSON.parse(raw);
-    return new Set(puzzles.filter(p => p.date).map((p) => p.date));
-  } catch {
-    return new Set();
-  }
-}
 
 function loadIndex(): Puzzle[] {
   try {
@@ -89,7 +57,7 @@ function loadIndex(): Puzzle[] {
 }
 
 function saveIndex(index: Puzzle[]): void {
-  index.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+  index.sort((a, b) => a.id.localeCompare(b.id));
   writeFileSync(INDEX_PATH, JSON.stringify(index, null, 2) + '\n');
 }
 
@@ -132,7 +100,6 @@ export async function POST(request: Request) {
 
     const existingTopics = loadGeneratedTopics();
     const existingIds = existingTopics.map((t) => t.id);
-    const existingDates = getExistingDates();
 
     const systemPrompt = `You are a professional IT support technician creating troubleshooting puzzles for a game called Techdle. Each puzzle describes a common IT issue through 5 clues, and the player must identify the root cause.
 
@@ -151,7 +118,6 @@ Rules:
 
 Required JSON schema — an array of objects with these fields:
 {
-  "date": "YYYY-MM-DD", // leave as empty string "", we will assign dates server-side
   "id": "kebab-case-id-001",
   "category": "${validCategories.join(' | ')}",
   "difficulty": "Easy" | "Medium" | "Hard",
@@ -230,7 +196,7 @@ Required JSON schema — an array of objects with these fields:
     }
 
     ensurePuzzlesDir();
-    const results: Array<{ date: string; id: string; category: string; difficulty: string }> = [];
+    const results: Array<{ id: string; category: string; difficulty: string }> = [];
     const errors: string[] = [];
     const newTopics: GeneratedTopic[] = [];
     const puzzlesToAdd: Puzzle[] = [];
@@ -248,11 +214,7 @@ Required JSON schema — an array of objects with these fields:
         continue;
       }
 
-      const date = getNextDateString(existingDates);
-      existingDates.add(date);
-
       const puzzle: Puzzle = {
-        date,
         id: p.id,
         category: p.category,
         difficulty: p.difficulty,
@@ -276,7 +238,7 @@ Required JSON schema — an array of objects with these fields:
         answerHash,
       });
 
-      results.push({ date, id: p.id, category: p.category, difficulty: p.difficulty });
+      results.push({ id: p.id, category: p.category, difficulty: p.difficulty });
     }
 
     const index = loadIndex();

@@ -1,7 +1,7 @@
-import { ClientPuzzle, GameState } from '../types/game';
+import { ClientPuzzle, GameState, Puzzle } from '../types/game';
 
 interface ClueListProps {
-  puzzle: ClientPuzzle;
+  puzzle: ClientPuzzle | Puzzle;
   state: GameState;
   maxGuesses: number;
 }

@@ -6,7 +6,6 @@ import { getAllPuzzles } from '@/lib/puzzles';
 import { Puzzle } from '@/types/game';
 
 interface DictEntry {
-  date: string;
   id: string;
   category: string;
   difficulty: string;
@@ -27,7 +26,6 @@ export function AnswerDictionary() {
     const puzzles = getAllPuzzles();
     setEntries(
       puzzles.map((p: Puzzle) => ({
-        date: p.date || '',
         id: p.id,
         category: p.category,
         difficulty: p.difficulty,
@@ -133,7 +131,7 @@ export function AnswerDictionary() {
               ) : (
                 filtered.map(entry => (
                   <div
-                    key={entry.date || entry.id}
+                    key={entry.id}
                     className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-4 hover:border-slate-600/50 transition-colors"
                   >
                     <div className="flex items-start justify-between gap-3 mb-2">
@@ -158,8 +156,6 @@ export function AnswerDictionary() {
                     </p>
                     <div className="flex items-center gap-2 text-[11px] text-slate-500">
                       <span className="font-mono">#{entry.id}</span>
-                      <span>·</span>
-                      <span>{entry.date}</span>
                       {entry.fixSteps.length > 0 && (
                         <>
                           <span>·</span>
