@@ -47,7 +47,6 @@ const clientPuzzles = sorted.map((p, index) => {
   const puzzleNumber = index + 1;
   return {
     id: p.id,
-    number: puzzleNumber,
     category: p.category,
     difficulty: p.difficulty,
     clues: p.clues,

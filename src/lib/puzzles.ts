@@ -71,11 +71,7 @@ export function getTodayPuzzle(): Puzzle | undefined {
   return getPuzzleByDate(getTodayDateString());
 }
 
-export function getPuzzleNumber(id: string): number {
-  const sorted = getAllPuzzles();
-  const index = sorted.findIndex((p) => p.id === id);
-  return index >= 0 ? index + 1 : 0;
-}
+
 
 export function getAllAliases(): string[] {
   const aliasSet = new Set<string>();

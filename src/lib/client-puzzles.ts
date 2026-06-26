@@ -7,13 +7,14 @@
 import { ClientPuzzle } from '@/types/game';
 import clientPuzzles from '@/data/puzzles/client-puzzles.json';
 import answerHashes from '@/data/puzzles/answer-hashes.json';
-import { getTodayDateString } from './date';
+import { getTodayDateString, getPuzzleNumberByDate } from './date';
 
-const allClientPuzzles: ClientPuzzle[] = (clientPuzzles as Omit<ClientPuzzle, 'answerHash'>[]).map((p, i) => {
-  // We'll attach the answerHash from the precomputed hash map
+const allClientPuzzles: ClientPuzzle[] = (clientPuzzles as Omit<ClientPuzzle, 'answerHash' | 'number'>[]).map((p, i) => {
+  // We'll attach the answerHash and real number later
   return {
     ...p,
     answerHash: '',
+    number: 0,
   };
 });
 
@@ -58,10 +59,12 @@ export function getClientPuzzleForDate(dateStr: string): ClientPuzzle | null {
   // Attach the precomputed answer hash for this date
   const hashes = answerHashes as Record<string, string>;
   const answerHash = hashes[dateStr] || '';
+  const number = getPuzzleNumberByDate(dateStr);
 
   return {
     ...puzzle,
     answerHash,
+    number,
   };
 }
 

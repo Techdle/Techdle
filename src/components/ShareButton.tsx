@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Share2, Check } from 'lucide-react';
 import { GameState } from '../types/game';
-import { getPuzzleNumber } from '../lib/puzzles';
+import { getPuzzleNumberByDate } from '../lib/date';
 
 interface ShareButtonProps {
   state: GameState;
@@ -15,7 +15,7 @@ export function ShareButton({ state, maxGuesses }: ShareButtonProps) {
     const isWin = state.status === 'won';
     const numGuesses = state.guesses.length;
     
-    const puzzleNumber = getPuzzleNumber(state.puzzleId);
+    const puzzleNumber = getPuzzleNumberByDate(state.date);
     const puzzleIdStr = puzzleNumber > 0 ? `#${puzzleNumber}` : state.date;
     
     const scoreStr = isWin ? `${numGuesses}/${maxGuesses}` : `X/${maxGuesses}`;
