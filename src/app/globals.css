@@ -59,6 +59,10 @@ html {
   background: #020617;
 }
 
+html.light {
+  background: #f8fafc;
+}
+
 body {
   background: var(--color-slate-950);
   color: var(--color-slate-100);

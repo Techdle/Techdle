@@ -1,24 +1,22 @@
 "use server";
 
-import { Puzzle, ClientPuzzle, GuessStatus } from '@/types/game';
-import { getTodayPuzzle, getPuzzleById, getAllAliases, getPuzzleNumber } from '@/lib/puzzles';
+import { Puzzle } from '@/types/game';
+import { getPuzzleById, getAllAliases } from '@/lib/puzzles';
 import { isGuessCorrect } from '@/lib/utils';
 
-export async function getClientPuzzleAction(dateStr: string): Promise<ClientPuzzle | null> {
-  // We ignore dateStr for simplicity and just get today's puzzle. 
-  // We can also strictly use dateStr if needed, but getTodayPuzzle works server-side.
-  const puzzle = getTodayPuzzle();
-  if (!puzzle) return null;
-
-  return {
-    id: puzzle.id,
-    number: getPuzzleNumber(puzzle.id),
-    category: puzzle.category,
-    difficulty: puzzle.difficulty,
-    clues: puzzle.clues,
-  };
+/**
+ * Fetch the full puzzle data after a game ends (for ResolutionTicket).
+ * Called once when restoring a completed game from localStorage.
+ */
+export async function getFullPuzzleAction(puzzleId: string): Promise<Puzzle | null> {
+  const puzzle = getPuzzleById(puzzleId);
+  return puzzle || null;
 }
 
+/**
+ * Deprecated: guess validation is now handled client-side via hash comparison.
+ * Kept for backward compatibility with any existing saved states.
+ */
 export async function verifyGuessAction(
   puzzleId: string,
   guessText: string,
@@ -36,8 +34,8 @@ export async function verifyGuessAction(
   }
 
   const correct = isGuessCorrect(guessText, puzzle);
-  const status: GuessStatus = correct ? 'correct' : 'incorrect';
-  
+  const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
+
   const nextGuessesCount = currentGuessesCount + 1;
   const isGameOver = correct || nextGuessesCount >= maxGuesses;
 
@@ -59,7 +57,7 @@ export async function verifyGuessAction(
 
 export async function getAllAliasesAction(): Promise<string[]> {
   const aliases = getAllAliases();
-  // Shuffle to prevent ordering hints (like alphabetical or grouped by topic)
+  // Shuffle to prevent ordering hints
   for (let i = aliases.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [aliases[i], aliases[j]] = [aliases[j], aliases[i]];

@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# Build-time generated puzzle data (regenerated on each build)
+/src/data/puzzles/client-puzzles.json
+/src/data/puzzles/answer-hashes.json
+
 # vercel
 .vercel
 

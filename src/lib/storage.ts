@@ -1,5 +1,5 @@
-import { GameState, UserStats, ArchiveResult } from '../types/game';
-import { doc, getDoc, setDoc, writeBatch } from 'firebase/firestore';
+import { GameState, UserStats, ArchiveResult, UserDocument, HistoryEntry } from '../types/game';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db, isConfigured } from './firebase';
 
 const GAME_STATE_KEY = 'techdle_game_state';
@@ -30,6 +30,8 @@ export const INITIAL_USER_STATS: UserStats = {
   guessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, loss: 0 },
 };
 
+// ── LocalStorage (anonymous play) ──────────────────────────────────
+
 export function loadGameState(): GameState | null {
   if (typeof window === 'undefined') return null;
   const data = localStorage.getItem(GAME_STATE_KEY);
@@ -41,6 +43,14 @@ export function loadGameState(): GameState | null {
 export function saveGameState(state: GameState): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem(GAME_STATE_KEY, encodeData(state));
+}
+
+export function saveGameStateMinimal(state: GameState): void {
+  if (typeof window === 'undefined') return;
+  // Strip fullPuzzle before saving to localStorage (keep localStorage lean).
+  // It's re-attached from the server bundle when the user returns.
+  const { fullPuzzle, ...minimal } = state;
+  localStorage.setItem(GAME_STATE_KEY, encodeData(minimal));
 }
 
 export function loadUserStats(): UserStats {
@@ -76,9 +86,6 @@ export function saveArchiveResult(result: ArchiveResult): void {
   localStorage.setItem(ARCHIVE_RESULTS_KEY, encodeData(results));
 }
 
-/**
- * Clear all locally stored game data (stats, game state, archive results).
- */
 export function clearLocalData(): void {
   if (typeof window === 'undefined') return;
   localStorage.removeItem(GAME_STATE_KEY);
@@ -86,30 +93,21 @@ export function clearLocalData(): void {
   localStorage.removeItem(ARCHIVE_RESULTS_KEY);
 }
 
-/**
- * Validate stored user stats and repair any inconsistencies.
- * Returns cleaned stats.
- */
 export function validateAndRepairStats(stats: UserStats): UserStats {
   const repaired = { ...INITIAL_USER_STATS, ...stats };
 
-  // Clamp to sane ranges
   if (repaired.totalPlayed < 0) repaired.totalPlayed = 0;
   if (repaired.wins < 0) repaired.wins = 0;
   if (repaired.currentStreak < 0) repaired.currentStreak = 0;
   if (repaired.maxStreak < 0) repaired.maxStreak = 0;
 
-  // Wins cannot exceed totalPlayed
   if (repaired.wins > repaired.totalPlayed) repaired.wins = repaired.totalPlayed;
 
-  // Guess distribution totals should match wins + losses
   const guessTotal = Object.values(repaired.guessDistribution).reduce((a, b) => a + b, 0);
   if (guessTotal > repaired.totalPlayed) {
-    // Scale down proportionally or just reset individual entries
     repaired.guessDistribution = { ...INITIAL_USER_STATS.guessDistribution };
   }
 
-  // If there's a lastPlayedDate but totalPlayed is 0, it's inconsistent
   if (repaired.lastPlayedDate && repaired.totalPlayed === 0) {
     repaired.lastPlayedDate = null;
   }
@@ -117,7 +115,32 @@ export function validateAndRepairStats(stats: UserStats): UserStats {
   return repaired;
 }
 
-// Phase 2: Firebase Sync Functions
+// ── ArchiveResult ⇄ HistoryEntry converters ───────────────────────
+
+function archiveToHistoryEntry(result: ArchiveResult): HistoryEntry {
+  return `${result.puzzleId}:${result.date}:${result.status}:${result.guessesCount}`;
+}
+
+function historyEntryToArchive(entry: HistoryEntry): ArchiveResult | null {
+  const parts = entry.split(':');
+  if (parts.length < 4) return null;
+  const [puzzleId, date, status, guessesCountStr] = parts;
+  const guessesCount = parseInt(guessesCountStr, 10);
+  if (isNaN(guessesCount)) return null;
+  if (status !== 'won' && status !== 'lost') return null;
+  return { puzzleId, date, status: status as 'won' | 'lost', guessesCount };
+}
+
+function archiveHistoryToResults(history: HistoryEntry[]): ArchiveResult[] {
+  return history.map(historyEntryToArchive).filter((r): r is ArchiveResult => r !== null);
+}
+
+// ── Optimized Firestore: single doc per user ──────────────────────
+
+/**
+ * Sync local data to Firestore using the optimized single-doc schema.
+ * Called once on auth state change (anonymous sign-in or login).
+ */
 export async function syncLocalDataToFirestore(uid: string): Promise<void> {
   if (!isConfigured || !db) return;
 
@@ -126,60 +149,119 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
     const userDoc = await getDoc(userRef);
 
     const localStats = validateAndRepairStats(loadUserStats());
-    const localGameState = loadGameState();
     const localArchive = loadArchiveResults();
+    const localHistory = localArchive.map(archiveToHistoryEntry);
 
-    const batch = writeBatch(db!);
+    const now = Date.now();
 
     if (!userDoc.exists()) {
-      batch.set(userRef, localStats);
+      // First sync: write everything
+      const data: UserDocument = {
+        stats: localStats,
+        history: localHistory,
+        updatedAt: now,
+      };
+      await setDoc(userRef, data);
     } else {
-      const cloudStats = userDoc.data() as UserStats;
-      if (localStats.totalPlayed > (cloudStats.totalPlayed || 0)) {
-         batch.set(userRef, localStats, { merge: true });
-      } else if (localStats.totalPlayed < (cloudStats.totalPlayed || 0)) {
-         saveUserStats(cloudStats);
+      const cloud = userDoc.data() as UserDocument;
+      const cloudStats = cloud.stats || INITIAL_USER_STATS;
+
+      // Merge stats: take whichever has more totalPlayed
+      const mergedStats = localStats.totalPlayed >= (cloudStats.totalPlayed || 0)
+        ? localStats
+        : cloudStats;
+
+      // Merge history: combine both, deduplicate by puzzleId, keep most recent first
+      const cloudArchive = archiveHistoryToResults(cloud.history || []);
+      const allArchives = [...localArchive];
+      for (const cloudResult of cloudArchive) {
+        const exists = allArchives.some((r) => r.puzzleId === cloudResult.puzzleId);
+        if (!exists) allArchives.push(cloudResult);
+      }
+      // Sort most recent first
+      allArchives.sort((a, b) => b.date.localeCompare(a.date));
+
+      const mergedHistory = allArchives.map(archiveToHistoryEntry);
+
+      const data: UserDocument = {
+        stats: mergedStats,
+        history: mergedHistory,
+        updatedAt: now,
+      };
+      await setDoc(userRef, data);
+
+      // Sync back to local if cloud was ahead
+      if (cloudStats.totalPlayed > localStats.totalPlayed) {
+        saveUserStats(cloudStats);
+        const syncedArchive = archiveHistoryToResults(mergedHistory);
+        localStorage.setItem(ARCHIVE_RESULTS_KEY, encodeData(syncedArchive));
       }
     }
-
-    if (localGameState) {
-      const stateRef = doc(db!, 'users', uid, 'results', localGameState.puzzleId);
-      batch.set(stateRef, localGameState, { merge: true });
-    }
-
-    if (localArchive.length > 0) {
-      localArchive.forEach(res => {
-        const archRef = doc(db!, 'users', uid, 'archiveResults', res.puzzleId);
-        batch.set(archRef, res, { merge: true });
-      });
-    }
-
-    await batch.commit();
   } catch (err: any) {
     if (err?.code === 'unavailable' || err?.message?.includes('offline')) {
-      console.warn("Firestore is unreachable (offline or blocked by extension). Progress is saved locally.");
+      console.warn("Firestore is unreachable. Progress is saved locally.");
     } else {
       console.error("Failed to sync data to Firestore:", err);
     }
   }
 }
 
-export async function syncStateToFirestore(uid: string, state: GameState): Promise<void> {
-  if (!isConfigured || !db) return;
-  try {
-    const stateRef = doc(db!, 'users', uid, 'results', state.puzzleId);
-    await setDoc(stateRef, state, { merge: true });
-  } catch (err: any) {
-    if (err?.code !== 'unavailable') console.error("Failed to sync state:", err);
-  }
-}
-
+/**
+ * Sync stats to Firestore (optimized single-doc update).
+ * Called once per game completion.
+ */
 export async function syncStatsToFirestore(uid: string, stats: UserStats): Promise<void> {
   if (!isConfigured || !db) return;
   try {
     const userRef = doc(db!, 'users', uid);
-    await setDoc(userRef, stats, { merge: true });
+    // Use setDoc with merge so we don't overwrite the history array
+    await setDoc(userRef, { stats, updatedAt: Date.now() }, { merge: true });
   } catch (err: any) {
     if (err?.code !== 'unavailable') console.error("Failed to sync stats:", err);
+  }
+}
+
+/**
+ * Sync archive history to Firestore.
+ * Called after a game completes to persist the result.
+ */
+export async function syncArchiveToFirestore(uid: string, result: ArchiveResult): Promise<void> {
+  if (!isConfigured || !db) return;
+  try {
+    const userRef = doc(db!, 'users', uid);
+    const userDoc = await getDoc(userRef);
+
+    const existingHistory: HistoryEntry[] = userDoc.exists()
+      ? (userDoc.data() as UserDocument).history || []
+      : [];
+
+    const entry = archiveToHistoryEntry(result);
+    const existingIndex = existingHistory.findIndex((h) => h.startsWith(result.puzzleId + ':'));
+    let newHistory: HistoryEntry[];
+    if (existingIndex >= 0) {
+      newHistory = [...existingHistory];
+      newHistory[existingIndex] = entry;
+    } else {
+      newHistory = [entry, ...existingHistory];
+    }
+
+    await setDoc(userRef, { history: newHistory, updatedAt: Date.now() }, { merge: true });
+  } catch (err: any) {
+    if (err?.code !== 'unavailable') console.error("Failed to sync archive:", err);
+  }
+}
+
+/**
+ * Load a user's complete data from Firestore (single doc read = one read).
+ */
+export async function loadUserDocument(uid: string): Promise<UserDocument | null> {
+  if (!isConfigured || !db) return null;
+  try {
+    const userRef = doc(db!, 'users', uid);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) return null;
+    return snap.data() as UserDocument;
+  } catch {
+    return null;
   }
 }
