@@ -1,9 +1,9 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <rect x="0" y="0" width="512" height="512" rx="114" fill="#0d0d0d"/>
-  <rect x="85" y="74" width="341" height="102" rx="23" fill="#787c7e"/>
-  <rect x="85" y="205" width="341" height="102" rx="23" fill="#c9b458"/>
-  <rect x="85" y="336" width="341" height="102" rx="23" fill="#6aaa64"/>
-  <text x="256" y="145" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="57" fill="#ffffff">&gt;_</text>
-  <text x="256" y="276" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="57" fill="#ffffff">&gt;_</text>
-  <text x="256" y="407" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="57" fill="#ffffff">&gt;_</text>
+  <rect x="36" y="36" width="440" height="136" rx="18" fill="#787c7e"/>
+  <rect x="36" y="188" width="440" height="136" rx="18" fill="#c9b458"/>
+  <rect x="36" y="340" width="440" height="136" rx="18" fill="#6aaa64"/>
+  <text x="256" y="129" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="72" fill="#ffffff">&gt;_</text>
+  <text x="256" y="281" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="72" fill="#ffffff">&gt;_</text>
+  <text x="256" y="433" text-anchor="middle" font-family="'SF Mono', 'Courier New', monospace" font-weight="700" font-size="72" fill="#ffffff">&gt;_</text>
 </svg>
