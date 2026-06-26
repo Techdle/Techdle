@@ -36,14 +36,14 @@ export function StyledSelect({ options, value, onChange, className = '' }: Style
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-slate-300 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all w-full min-w-[140px]"
+        className="flex items-center gap-2 px-4 py-2 bg-surface-raised border border-border rounded-lg text-text-muted text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-full min-w-[140px]"
       >
         <span className="flex-1 text-left">{selectedOption.label}</span>
-        <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute z-50 top-full mt-1 left-0 w-full bg-slate-800 border border-slate-700 rounded-lg shadow-lg shadow-black/40 overflow-hidden">
+        <div className="absolute z-50 top-full mt-1 left-0 w-full bg-surface-raised border border-border rounded-lg shadow-lg shadow-black/40 overflow-hidden">
           {options.map(option => (
             <button
               key={option.value}
@@ -54,8 +54,8 @@ export function StyledSelect({ options, value, onChange, className = '' }: Style
               }}
               className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                 option.value === value
-                  ? 'bg-blue-500/20 text-blue-400'
-                  : 'text-slate-300 hover:bg-slate-700'
+                  ? 'bg-primary/20 text-primary'
+                  : 'text-text-muted hover:bg-surface-raised'
               }`}
             >
               {option.label}
