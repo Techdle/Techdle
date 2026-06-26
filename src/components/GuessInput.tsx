@@ -105,7 +105,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
     return (
       <>
         {suggestion.substring(0, index)}
-        <strong className="text-blue-400 font-bold">{suggestion.substring(index, index + query.length)}</strong>
+        <strong className="text-primary font-bold">{suggestion.substring(index, index + query.length)}</strong>
         {suggestion.substring(index + query.length)}
       </>
     );
@@ -122,10 +122,10 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder={disabled ? 'Game Over' : 'Identify the root cause...'}
-          className={`w-full bg-slate-900 border rounded-lg px-4 py-3 text-lg text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 disabled:opacity-50 transition-colors ${
+          className={`w-full bg-surface border rounded-lg px-4 py-3 text-lg text-text-main placeholder:text-text-muted focus:outline-none focus:ring-2 disabled:opacity-50 transition-colors ${
             shake
-              ? 'border-red-500 focus:ring-red-500 animate-shake'
-              : 'border-slate-700 focus:ring-blue-500'
+              ? 'border-error focus:ring-error animate-shake'
+              : 'border-border focus:ring-primary'
           }`}
           autoComplete="off"
           aria-label="Guess input"
@@ -137,14 +137,14 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
         <button
           type="submit"
           disabled={disabled || !input.trim()}
-          className="absolute right-2 top-2 bottom-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded disabled:opacity-50 disabled:hover:bg-blue-600 transition-colors"
+          className="absolute right-2 top-2 bottom-2 px-4 bg-primary-hover hover:bg-primary-hover text-text-main font-medium rounded disabled:opacity-50 disabled:hover:bg-primary-hover transition-colors"
         >
           Submit
         </button>
       </form>
 
       {showSuggestions && suggestions.length > 0 && !disabled && (
-        <ul id="suggestions-list" role="listbox" className="absolute z-10 w-full mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl overflow-y-auto max-h-64 custom-scrollbar">
+        <ul id="suggestions-list" role="listbox" className="absolute z-10 w-full mt-1 bg-surface-raised border border-border rounded-lg shadow-xl overflow-y-auto max-h-64 custom-scrollbar">
           {suggestions.map((s, i) => (
             <li
               key={i}
@@ -152,7 +152,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
               role="option"
               aria-selected={i === selectedIndex}
               onClick={() => selectSuggestion(s)}
-              className={`px-4 py-3 cursor-pointer text-slate-200 border-b border-slate-700/50 last:border-0 transition-colors ${i === selectedIndex ? 'bg-slate-700' : 'hover:bg-slate-700'}`}
+              className={`px-4 py-3 cursor-pointer text-text-main border-b border-border/50 last:border-0 transition-colors ${i === selectedIndex ? 'bg-surface-raised' : 'hover:bg-surface-raised'}`}
             >
               {renderSuggestion(s, input.trim())}
             </li>
