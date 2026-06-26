@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from '@/components/AuthProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -23,6 +24,19 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://playtechdle.com'),
   title: "Techdle - The Daily IT Troubleshooting Game",
   description: "Test your IT skills with Techdle, a daily puzzle where you diagnose and solve tech support tickets from a series of clues. Can you find the root cause?",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icons/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/icon-64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/icons/icon-192-android.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/icons/icon-180-apple-touch.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: "Techdle - The Daily IT Troubleshooting Game",
     description: "Diagnose daily tech support tickets from clues. Are you a true sysadmin?",
@@ -37,6 +51,19 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+(function() {
+  try {
+    var theme = localStorage.getItem('techdle-theme');
+    if (!theme) {
+      theme = 'dark';
+      localStorage.setItem('techdle-theme', 'dark');
+    }
+    document.documentElement.classList.add(theme);
+  } catch(e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,6 +71,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script id="theme-loader" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col transition-colors duration-300`}
       >
