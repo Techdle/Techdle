@@ -27,12 +27,12 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
   }, [isLoaded, state]);
 
   if (!isLoaded) {
-    return <div className="flex justify-center items-center h-64 text-slate-400">Loading game data...</div>;
+    return <div className="flex justify-center items-center h-64 text-text-muted">Loading game data...</div>;
   }
 
   if (!puzzle || !state) {
     return (
-      <div className="flex justify-center items-center h-64 text-slate-400">
+      <div className="flex justify-center items-center h-64 text-text-muted">
         No puzzle found for today. Check back tomorrow!
       </div>
     );
@@ -63,7 +63,7 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
           <div className="flex items-center justify-center gap-2 mb-6">
             <button
               onClick={resetGame}
-              className="flex items-center gap-1.5 text-xs font-medium text-amber-400 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 px-3 py-1.5 rounded-full transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-warning bg-warning/10 hover:bg-warning/20 border border-warning/30 px-3 py-1.5 rounded-full transition-colors"
               title="Restart puzzle (dev mode)"
             >
               <RefreshCw className="w-3 h-3" />
@@ -71,7 +71,7 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
             </button>
             <button
               onClick={revealAnswer}
-              className="flex items-center gap-1.5 text-xs font-medium text-red-400 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 px-3 py-1.5 rounded-full transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-error bg-error/10 hover:bg-error/20 border border-error/30 px-3 py-1.5 rounded-full transition-colors"
               title="Reveal answer (dev mode)"
             >
               <Bug className="w-3 h-3" />
@@ -79,9 +79,9 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
             </button>
           </div>
         )}
-        <p className="text-slate-400 font-mono">Ticket #{puzzle.number.toString().padStart(3, '0')}</p>
-        <h2 className="text-2xl font-bold text-slate-200 mt-2">Identify the Root Cause</h2>
-        <p className="text-sm text-slate-500 mt-2">
+        <p className="text-text-muted font-mono">Ticket #{puzzle.number.toString().padStart(3, '0')}</p>
+        <h2 className="text-2xl font-bold text-text-main mt-2">Identify the Root Cause</h2>
+        <p className="text-sm text-text-muted mt-2">
           Guesses: {state.guesses.length} / {MAX_GUESSES}
         </p>
       </div>
@@ -98,7 +98,7 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
             <div className="flex justify-center">
               <button
                 onClick={resetGame}
-                className="flex items-center gap-2 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition-colors shadow-lg shadow-amber-900/20"
+                className="flex items-center gap-2 px-6 py-3 bg-warning hover:bg-warning text-text-main font-bold rounded-lg transition-colors shadow-lg shadow-warning/20"
               >
                 <RefreshCw className="w-5 h-5" />
                 Play Again (Dev Mode)
