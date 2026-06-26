@@ -1,8 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import Image from 'next/image';
-import { Settings, Bug, BookOpen, HelpCircle } from 'lucide-react';
+import { Settings, Bug, BookOpen, HelpCircle, Terminal } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { useAuth } from './AuthProvider';
 
@@ -13,7 +12,7 @@ export function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
     <header className="w-full border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-slate-100 hover:text-blue-400 transition-colors">
-          <Image src="/icon.svg" alt="Techdle Icon" width={24} height={24} className="w-6 h-6" />
+          <Terminal className="w-6 h-6 text-blue-500" />
           <h1 className="text-xl font-bold tracking-tight">Techdle</h1>
           {isDevMode && (
             <span className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest bg-amber-500/20 text-amber-400 border border-amber-500/30 px-2 py-0.5 rounded-full ml-2">
