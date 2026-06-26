@@ -20,8 +20,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Techdle",
-  description: "A daily IT troubleshooting puzzle game.",
+  metadataBase: new URL('https://playtechdle.com'),
+  title: "Techdle - The Daily IT Troubleshooting Game",
+  description: "Test your IT skills with Techdle, a daily puzzle where you diagnose and solve tech support tickets from a series of clues. Can you find the root cause?",
+  openGraph: {
+    title: "Techdle - The Daily IT Troubleshooting Game",
+    description: "Diagnose daily tech support tickets from clues. Are you a true sysadmin?",
+    url: "https://playtechdle.com",
+    siteName: "Techdle",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Techdle - The Daily IT Troubleshooting Game",
+    description: "Diagnose daily tech support tickets from clues. Are you a true sysadmin?",
+  },
 };
 
 export default function RootLayout({
