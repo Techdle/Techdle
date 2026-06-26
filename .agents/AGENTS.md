@@ -43,3 +43,50 @@ Rules:
 - If graphify-out/wiki/index.md exists, navigate it instead of reading raw files
 - After modifying code files in this session, run `graphify update .` to keep the graph current (AST-only, no API cost)
 
+<!-- BEGIN:techdle-agent-rules -->
+# Techdle Rules
+
+Rules for any AI agent (Antigravity, Claude Code, Cursor, etc.) working in this repo.
+
+## Project Context
+
+- Next.js (App Router) + TypeScript, Tailwind CSS, Firebase Auth + Firestore, deployed on Vercel.
+- Puzzle content lives as JSON files (see `/puzzles`).
+- Package manager: npm. Build: `npm run build`. Typecheck: `npx tsc --noEmit`. Lint: `npm run lint`.
+
+## Definition of Done — apply this after every change, every time
+
+Before reporting that a feature or fix is complete:
+
+1. Run the build (`npm run build`) and confirm it completes with zero errors.
+2. Run typecheck and lint, and fix any new errors or warnings your change introduced.
+3. If a dev server is already running, check for new console errors related to your change.
+4. State the result explicitly in your summary — e.g. "build passes, lint passes" — don't just say "done."
+
+Never skip this because a change "looked too small to break anything."
+
+## Styling boundaries — read carefully
+
+- Do not modify CSS/SCSS files, the Tailwind config, global stylesheets, component `className` values, or inline styles, unless the task explicitly asks for a visual/styling change. Visual design is handled manually by the developer.
+- When a new feature needs UI, build it using existing components and existing theme tokens / Tailwind utility classes already used elsewhere in this codebase. Reuse, don't invent.
+- Never hardcode a raw hex color, an arbitrary pixel value, or a one-off Tailwind bracket value (e.g. `bg-[#1a2b3c]`, `mt-[13px]`, `text-[15px]`). Always reference the project's existing design tokens.
+- If a needed token genuinely doesn't exist yet in the theme, stop and ask instead of adding a new arbitrary value yourself.
+- If a feature truly can't be built without new visual treatment, describe what's needed and ask — don't make styling calls unilaterally.
+
+## Ask before doing any of these
+
+- Adding a new npm dependency
+- Changing the Firestore schema, security rules, or Firebase config
+- Editing anything under `/puzzles` (content is authored separately from code)
+- Renaming or moving existing files/routes
+- Any styling/CSS change (see above)
+
+## Git hygiene (if the agent has git access)
+
+- Small, atomic commits with conventional commit messages (`feat:`, `fix:`, `chore:`, `refactor:`).
+- Don't push directly to `main` — work on a feature branch unless told otherwise.
+
+## When uncertain
+
+For small, low-stakes ambiguity: state your assumption briefly and proceed. For anything touching the data model, security rules, or Firebase read/write cost: stop and ask first.
+<!-- END:techdle-agent-rules -->
