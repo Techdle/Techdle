@@ -10,7 +10,11 @@ import { RefreshCw, Bug } from 'lucide-react';
 import { LandingPage } from './LandingPage';
 import { useState, useEffect } from 'react';
 
-export function Game() {
+interface GameProps {
+  onTutorialTrigger?: () => void;
+}
+
+export function Game({ onTutorialTrigger }: GameProps = {}) {
   const { puzzle, state, isLoaded, submitGuess, resetGame, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useGame();
   const { isDevMode } = useAuth();
   
@@ -34,8 +38,13 @@ export function Game() {
     );
   }
 
+  const handlePlay = () => {
+    setShowLanding(false);
+    onTutorialTrigger?.();
+  };
+
   if (showLanding && state.guesses.length === 0) {
-    return <LandingPage onPlay={() => setShowLanding(false)} puzzleNumber={puzzle.number} />;
+    return <LandingPage onPlay={handlePlay} puzzleNumber={puzzle.number} />;
   }
 
   const isGameOver = state.status !== 'playing';
