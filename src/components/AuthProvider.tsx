@@ -8,7 +8,7 @@ import {
 import { auth, isConfigured } from '../lib/firebase';
 import { syncLocalDataToFirestore } from '../lib/storage';
 
-const ADMIN_EMAIL = 'johnlemargonzales@gmail.com';
+const ADMIN_EMAIL = 'techdle.game@gmail.com';
 
 export function isAdmin(user: User | null): boolean {
   return user?.email === ADMIN_EMAIL && !user.isAnonymous;
