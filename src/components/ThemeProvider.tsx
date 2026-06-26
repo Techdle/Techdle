@@ -1,50 +1,41 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
 
-/**
- * Minimal theme provider that avoids `next-themes` script injection.
- *
- * The library `next-themes` v0.4.x renders a `<script>` tag from inside a React
- * component, which Next.js 16 rejects with:
- *   "Encountered a script tag while rendering React component."
- *
- * This replacement uses the same `class`-based strategy via a plain `<script>`
- * in the HTML `<head>` (in layout.tsx) and manages the toggle via a simple
- * React context + CSS class on `<html>`.
- */
-function getTheme(): string {
-  if (typeof window === "undefined") return "dark";
-  return localStorage.getItem("techdle-theme") || "dark";
+type Theme = 'dark' | 'light' | 'high-contrast' | 'nord' | 'forest';
+
+interface ThemeContextType {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 }
 
-function setThemeClass(theme: string) {
-  document.documentElement.classList.remove("light", "dark");
-  document.documentElement.classList.add(theme);
-}
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  // Sync theme on mount — localStorage is the source of truth
+  const [theme, setThemeState] = useState<Theme>('dark');
+
   useEffect(() => {
-    const theme = getTheme();
-    setThemeClass(theme);
+    const savedTheme = (localStorage.getItem('techdle-theme') as Theme) || 'dark';
+    setThemeState(savedTheme);
   }, []);
 
-  // Expose toggle via a global event so ThemeToggle can call it
-  const toggle = useCallback(() => {
-    const current = getTheme();
-    const next = current === "dark" ? "light" : "dark";
-    localStorage.setItem("techdle-theme", next);
-    setThemeClass(next);
-    // Dispatch a custom event so other components can react
-    window.dispatchEvent(new CustomEvent("themechange", { detail: next }));
+  const setTheme = useCallback((newTheme: Theme) => {
+    localStorage.setItem('techdle-theme', newTheme);
+    setThemeState(newTheme);
+    document.documentElement.dataset.theme = newTheme;
   }, []);
 
-  // Expose toggle on window for the ThemeToggle component
-  useEffect(() => {
-    (window as any).__techdleThemeToggle = toggle;
-    return () => { delete (window as any).__techdleThemeToggle; };
-  }, [toggle]);
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
 
-  return <>{children}</>;
+export function useTheme() {
+  const context = useContext(ThemeContext);
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
 }
