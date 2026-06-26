@@ -58,7 +58,7 @@ const themeScript = `
       theme = 'dark';
       localStorage.setItem('techdle-theme', 'dark');
     }
-    document.documentElement.classList.add(theme);
+    document.documentElement.dataset.theme = theme;
   } catch(e) {}
 })();
 `;
