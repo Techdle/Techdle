@@ -39,7 +39,7 @@ export default function ArchivePage() {
   }, [] as string[]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <div className="min-h-screen bg-background text-text-main font-sans">
       <Header />
       <main className="max-w-4xl mx-auto py-8 px-4">
         <h2 className="text-3xl font-bold mb-8">Archive</h2>
@@ -53,9 +53,9 @@ export default function ArchivePage() {
             });
 
             return (
-              <div key={monthStr} className="bg-slate-900 rounded-xl p-6 border border-slate-800">
+              <div key={monthStr} className="bg-surface rounded-xl p-6 border border-border">
                 <h3 className="text-xl font-semibold mb-4">{format(firstDay, 'MMMM yyyy')}</h3>
-                <div className="grid grid-cols-7 gap-2 text-center text-sm font-medium text-slate-400 mb-2">
+                <div className="grid grid-cols-7 gap-2 text-center text-sm font-medium text-text-muted mb-2">
                   <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
@@ -86,7 +86,7 @@ export default function ArchivePage() {
                       return (
                         <div
                           key={dateStr}
-                          className="aspect-square flex items-center justify-center rounded-lg bg-slate-950/50 text-slate-600"
+                          className="aspect-square flex items-center justify-center rounded-lg bg-background/50 text-text-muted"
                           style={{ gridColumnStart: gridColStart }}
                         >
                           {date.getDate()}
@@ -94,10 +94,10 @@ export default function ArchivePage() {
                       );
                     }
 
-                    let bgClass = 'bg-slate-800 hover:bg-slate-700 text-slate-300';
-                    if (status === 'won') bgClass = 'bg-green-900/60 border border-green-800 text-green-300';
-                    if (status === 'lost') bgClass = 'bg-red-900/60 border border-red-800 text-red-300';
-                    if (status === 'today') bgClass = 'bg-blue-900/60 border border-blue-500 text-blue-200 shadow-[0_0_15px_rgba(59,130,246,0.3)]';
+                    let bgClass = 'bg-surface-raised hover:bg-surface-raised text-text-muted';
+                    if (status === 'won') bgClass = 'bg-success/60 border border-success text-success';
+                    if (status === 'lost') bgClass = 'bg-error/60 border border-error text-error';
+                    if (status === 'today') bgClass = 'bg-primary/60 border border-primary text-primary shadow-lg shadow-primary/30';
 
                     const inner = (
                       <div className={`w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg transition-colors border border-transparent ${bgClass}`}>
@@ -112,7 +112,7 @@ export default function ArchivePage() {
                           <Link href="/">{inner}</Link>
                         ) : isFuture ? (
                           <div className="cursor-not-allowed opacity-40">
-                            <div className="w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg border border-transparent bg-slate-800 text-slate-500">
+                            <div className="w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg border border-transparent bg-surface-raised text-text-muted">
                               <span className="text-lg">{date.getDate()}</span>
                             </div>
                           </div>
