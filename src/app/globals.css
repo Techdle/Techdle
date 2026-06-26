@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --slate-950: #f8fafc;
+  --slate-900: #f1f5f9;
+  --slate-800: #e2e8f0;
+  --slate-700: #cbd5e1;
+  --slate-600: #94a3b8;
+  --slate-500: #64748b;
+  --slate-400: #475569;
+  --slate-300: #334155;
+  --slate-200: #1e293b;
+  --slate-100: #0f172a;
+}
+
+.dark {
+  --slate-950: #020617;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+}
+
+@theme inline {
+  --color-slate-950: var(--slate-950);
+  --color-slate-900: var(--slate-900);
+  --color-slate-800: var(--slate-800);
+  --color-slate-700: var(--slate-700);
+  --color-slate-600: var(--slate-600);
+  --color-slate-500: var(--slate-500);
+  --color-slate-400: var(--slate-400);
+  --color-slate-300: var(--slate-300);
+  --color-slate-200: var(--slate-200);
+  --color-slate-100: var(--slate-100);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.high-contrast {
+  --slate-950: #000000;
+  --slate-900: #050505;
+  --slate-800: #111111;
+  --slate-700: #333333;
+  --slate-600: #555555;
+  --slate-500: #777777;
+  --slate-400: #aaaaaa;
+  --slate-300: #cccccc;
+  --slate-200: #eeeeee;
+  --slate-100: #ffffff;
+}
+
+html {
+  background: #020617;
+}
+
+body {
+  background: var(--color-slate-950);
+  color: var(--color-slate-100);
+}
+
+html.dark body {
+  background: var(--color-slate-950);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 50%, 90% { transform: translateX(-4px); }
+  30%, 70% { transform: translateX(4px); }
+}
+
+@utility animate-shake {
+  animation: shake 0.4s ease-in-out;
+}

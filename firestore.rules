@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users can only read and write their own top-level stats document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Users can only read and write their own puzzle results
+      match /results/{puzzleId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+
+      // Users can only read and write their own archive/practice results
+      match /archiveResults/{puzzleId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}

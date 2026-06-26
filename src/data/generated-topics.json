@@ -1,0 +1,62 @@
+[
+  {
+    "id": "hdd-failure",
+    "category": "Hardware",
+    "difficulty": "Medium",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "failing-ram",
+    "category": "Hardware",
+    "difficulty": "Hard",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "malware-infection",
+    "category": "Security",
+    "difficulty": "Medium",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "dns-misconfig",
+    "category": "Network",
+    "difficulty": "Easy",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "overheating-laptop",
+    "category": "Hardware",
+    "difficulty": "Medium",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "printer-driver",
+    "category": "Software",
+    "difficulty": "Medium",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "expired-ssl",
+    "category": "Security",
+    "difficulty": "Easy",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "full-disk",
+    "category": "Hardware",
+    "difficulty": "Easy",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "router-firmware",
+    "category": "Network",
+    "difficulty": "Hard",
+    "answerHash": "placeholder"
+  },
+  {
+    "id": "phished-account",
+    "category": "Security",
+    "difficulty": "Medium",
+    "answerHash": "placeholder"
+  }
+]
