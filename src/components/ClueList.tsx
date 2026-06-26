@@ -23,12 +23,12 @@ export function ClueList({ puzzle, state, maxGuesses }: ClueListProps) {
             onContextMenu={(e) => e.preventDefault()}
             className={`p-4 rounded-lg border transition-all duration-500 ${
               isRevealed 
-                ? 'bg-slate-800/50 border-slate-700 text-slate-200 shadow-md select-none' 
-                : 'bg-slate-900/30 border-slate-800/50 text-transparent select-none'
+                ? 'bg-surface-raised/50 border-border text-text-main shadow-md select-none' 
+                : 'bg-surface/30 border-border/50 text-transparent select-none'
             }`}
           >
             <div className="flex gap-4">
-              <span className={`font-mono text-sm ${isRevealed ? 'text-blue-400' : 'text-transparent'}`}>
+              <span className={`font-mono text-sm ${isRevealed ? 'text-primary' : 'text-transparent'}`}>
                 #{index + 1}
               </span>
               <p>{isRevealed ? clue : '...'}</p>
