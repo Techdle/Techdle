@@ -4,7 +4,7 @@ import { ArrowLeft, Eye, Keyboard, Monitor, Palette, Ear } from 'lucide-react';
 
 export default function AccessibilityPage() {
   return (
-    <div className="min-h-screen bg-background text-text-main font-sans">
+    <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header />
       <main className="max-w-2xl mx-auto py-8 px-4">
         <Link href="/" className="inline-flex items-center gap-2 text-text-muted hover:text-text-main transition-colors mb-6">
