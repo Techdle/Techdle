@@ -38,7 +38,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-text-main font-sans pb-12">
+    <div className="min-h-[100dvh] bg-background text-text-main font-sans pb-12">
       <Header />
       <main className="max-w-md mx-auto py-12 px-4 space-y-6">
         
