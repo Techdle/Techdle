@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { 
-  User, signInAnonymously, onAuthStateChanged, linkWithPopup, GoogleAuthProvider, 
+  User, onAuthStateChanged, linkWithPopup, GoogleAuthProvider, 
   AuthError, signInWithPopup, signInWithEmailAndPassword, linkWithCredential, EmailAuthProvider 
 } from 'firebase/auth';
 import { auth, isConfigured } from '../lib/firebase';
@@ -42,20 +42,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
+        if (currentUser.isAnonymous) {
+          // Sign out legacy anonymous accounts so they run locally
+          await auth!.signOut();
+          setLoading(false);
+          return;
+        }
         setUser(currentUser);
         setLoading(false);
         await syncLocalDataToFirestore(currentUser.uid);
       } else {
-        try {
-          await signInAnonymously(auth!);
-        } catch (err: any) {
-          if (err?.code === 'auth/admin-restricted-operation') {
-            console.warn("Anonymous sign-in is disabled in Firebase. Playing as local guest.");
-          } else {
-            console.error("Failed to sign in anonymously:", err);
-          }
-          setLoading(false);
-        }
+        setLoading(false);
       }
     });
 
