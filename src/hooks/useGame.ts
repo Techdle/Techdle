@@ -10,7 +10,7 @@ import { isGuessCorrectClient, getTodayDateSeed } from '../lib/utils';
 const MAX_GUESSES = 6;
 
 export function useGame() {
-  const { user, isDevMode } = useAuth();
+  const { user } = useAuth();
   const [puzzle, setPuzzle] = useState<ClientPuzzle | null>(null);
   const [state, setState] = useState<GameState | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,17 +45,7 @@ export function useGame() {
       }
       setAliases(allAliases);
 
-      if (isDevMode) {
-        setState({
-          puzzleId: activePuzzle.id,
-          date: todayDate,
-          guesses: [],
-          status: 'playing',
-          lastPlayedAt: Date.now(),
-        });
-        setIsLoaded(true);
-        return;
-      }
+
 
       // Check if puzzle data has been regenerated (version bump invalidates today's state)
       const versionKey = 'techdle_puzzle_version';
@@ -97,7 +87,7 @@ export function useGame() {
     }
 
     loadInitialData();
-  }, [isDevMode]);
+  }, []);
 
   // Sync state to local storage when it changes (without fullPuzzle to keep localStorage lean)
   useEffect(() => {
@@ -144,8 +134,8 @@ export function useGame() {
 
       setState(newState);
 
-      // Update stats on game completion (non-dev mode)
-      if (newStatus !== 'playing' && !isDevMode) {
+      // Update stats on game completion
+      if (newStatus !== 'playing') {
         const stats = loadUserStats();
         const today = getTodayDateString();
 
@@ -183,7 +173,7 @@ export function useGame() {
     } finally {
       setIsSubmitting(false);
     }
-  }, [state, puzzle, user, isDevMode, isSubmitting]);
+  }, [state, puzzle, user, isSubmitting]);
 
   const resetGame = useCallback(async () => {
     const todayDate = getTodayDateString();

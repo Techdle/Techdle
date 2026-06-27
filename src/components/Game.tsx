@@ -6,7 +6,6 @@ import { ClueList } from './ClueList';
 import { GuessInput } from './GuessInput';
 import { ResolutionTicket } from './ResolutionTicket';
 import { ShareButton } from './ShareButton';
-import { RefreshCw, Bug } from 'lucide-react';
 import { LandingPage } from './LandingPage';
 import { useState, useEffect } from 'react';
 
@@ -16,7 +15,6 @@ interface GameProps {
 
 export function Game({ onTutorialTrigger }: GameProps = {}) {
   const { puzzle, state, isLoaded, submitGuess, resetGame, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useGame();
-  const { isDevMode } = useAuth();
   
   const [showLanding, setShowLanding] = useState(true);
 
@@ -51,35 +49,10 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
   const isGameOver = state.status !== 'playing';
   const isWin = state.status === 'won';
 
-  const revealAnswer = () => {
-    // Reveal answer doesn't work easily via client now without the answer. 
-    // Since it's dev mode only, we could fetch it, but let's just alert for now.
-    alert("Reveal answer disabled in Server-Side Validation mode.");
-  };
-
   return (
     <div className="w-full max-w-4xl mx-auto py-8 px-4 flex flex-col gap-8">
       <div className="text-center mb-4">
-        {isDevMode && !isGameOver && (
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <button
-              onClick={resetGame}
-              className="flex items-center gap-1.5 text-xs font-medium text-warning bg-warning/10 hover:bg-warning/20 border border-warning/30 px-3 py-1.5 rounded-full transition-colors"
-              title="Restart puzzle (dev mode)"
-            >
-              <RefreshCw className="w-3 h-3" />
-              Restart
-            </button>
-            <button
-              onClick={revealAnswer}
-              className="flex items-center gap-1.5 text-xs font-medium text-error bg-error/10 hover:bg-error/20 border border-error/30 px-3 py-1.5 rounded-full transition-colors"
-              title="Reveal answer (dev mode)"
-            >
-              <Bug className="w-3 h-3" />
-              Reveal
-            </button>
-          </div>
-        )}
+
         <p className="text-text-muted font-mono">Ticket #{puzzle.number.toString().padStart(3, '0')}</p>
         <h2 className="text-2xl font-bold text-text-main mt-2">Identify the Root Cause</h2>
         <p className="text-sm text-text-muted mt-2">
@@ -95,17 +68,6 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           {state.fullPuzzle && <ResolutionTicket puzzle={state.fullPuzzle} isWin={isWin} />}
           <ShareButton state={state} maxGuesses={MAX_GUESSES} />
-          {isDevMode && (
-            <div className="flex justify-center">
-              <button
-                onClick={resetGame}
-                className="flex items-center gap-2 px-6 py-3 bg-warning hover:bg-warning text-text-main font-bold rounded-lg transition-colors shadow-lg shadow-warning/20"
-              >
-                <RefreshCw className="w-5 h-5" />
-                Play Again (Dev Mode)
-              </button>
-            </div>
-          )}
         </div>
       )}
     </div>

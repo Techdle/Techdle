@@ -8,11 +8,6 @@ import {
 import { auth, isConfigured } from '../lib/firebase';
 import { syncLocalDataToFirestore } from '../lib/storage';
 
-const ADMIN_EMAIL = 'techdle.game@gmail.com';
-
-export function isAdmin(user: User | null): boolean {
-  return user?.email === ADMIN_EMAIL && !user.isAnonymous;
-}
 
 interface AuthContextType {
   user: User | null;
@@ -22,7 +17,6 @@ interface AuthContextType {
   loginWithEmail: (e: string, p: string) => Promise<void>;
   signUpWithEmail: (e: string, p: string) => Promise<void>;
   error: string | null;
-  isDevMode: boolean;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -33,7 +27,6 @@ const AuthContext = createContext<AuthContextType>({
   loginWithEmail: async () => {},
   signUpWithEmail: async () => {},
   error: null,
-  isDevMode: false,
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -128,11 +121,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const isDevMode = isAdmin(user);
-
   return (
     <AuthContext.Provider value={{ 
-      user, loading, linkAccount, loginWithGoogle, loginWithEmail, signUpWithEmail, error, isDevMode 
+      user, loading, linkAccount, loginWithGoogle, loginWithEmail, signUpWithEmail, error 
     }}>
       {children}
     </AuthContext.Provider>
