@@ -21,21 +21,37 @@ export function ShareButton({ state, maxGuesses }: ShareButtonProps) {
     const scoreStr = isWin ? `${numGuesses}/${maxGuesses}` : `X/${maxGuesses}`;
     
     // Generate grid
-    // 🟥 for wrong, 🟩 for right
+    // 🟥 for wrong, 🟩 for right, ⬜ for unused
     let grid = '';
-    for (let i = 0; i < numGuesses; i++) {
-      grid += state.guesses[i].status === 'correct' ? '🟩' : '🟥';
+    for (let i = 0; i < maxGuesses; i++) {
+      if (i < numGuesses) {
+        grid += state.guesses[i].status === 'correct' ? '🟩' : '🟥';
+      } else {
+        grid += '⬜';
+      }
     }
 
     const verb = isWin ? 'solved in' : 'failed in';
-    const text = `Techdle ${puzzleIdStr} — ${verb} ${scoreStr}\n${grid}\ntechdle.app`;
+    const text = `Techdle ${puzzleIdStr} — ${verb} ${scoreStr}\n${grid}\nplaytechdle.com`;
 
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy', err);
+    if (navigator.share) {
+      try {
+        await navigator.share({ text });
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Failed to share', err);
+        }
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        console.error('Failed to copy', err);
+      }
     }
   };
 
