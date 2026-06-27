@@ -58,6 +58,24 @@ export const metadata: Metadata = {
     title: "Techdle — The Daily IT Diagnosis Game",
     description: "Decode vague user tickets and diagnose the system failure in 6 guesses or less!",
   },
+  alternates: {
+    canonical: '/',
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Techdle",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Any",
+  "url": "https://playtechdle.com",
+  "description": "The daily IT troubleshooting puzzle game. Diagnose and solve tech support tickets.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
 };
 
 const themeScript = `
@@ -82,6 +100,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100dvh] flex flex-col transition-colors duration-300`}

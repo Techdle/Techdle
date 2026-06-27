@@ -1,5 +1,5 @@
 import { Header } from '@/components/Header';
-import { Terminal, AlertTriangle, Lightbulb, Search, BookOpen, UserCheck } from 'lucide-react';
+import { Terminal, AlertTriangle, Lightbulb, Search, BookOpen, UserCheck, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AboutPage() {
@@ -32,6 +32,22 @@ export default function AboutPage() {
             </p>
             <p className="text-lg">
               Every single day, a new "support ticket" is generated. It's up to you to look at the symptoms, figure out what's causing the problem, and save the day!
+            </p>
+          </section>
+
+          {/* Section: Origin Story */}
+          <section className="bg-surface border border-border p-6 sm:p-8 rounded-2xl shadow-sm transition-colors hover:border-border/80">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-primary/10 rounded-lg">
+                <Sparkles className="w-6 h-6 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold text-text-main m-0">The Origin Story</h2>
+            </div>
+            <p className="mb-4 text-lg">
+              Techdle is proud to be the very first <strong>tech Wordle-type game</strong> on the internet! 
+            </p>
+            <p className="text-lg">
+              The idea was born after our creator—an IT professional—was watching Doctor Mike on YouTube play a medical diagnostic game called <a href="https://doctordle.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">Doctordle</a>. It sparked a sudden realization: <em>"Why not make a similar website, but themed entirely around the crazy IT support tickets we deal with every day?"</em> And just like that, Techdle was born.
             </p>
           </section>
 

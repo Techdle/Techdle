@@ -127,7 +127,8 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
               ? 'border-error focus:ring-error animate-shake'
               : 'border-border focus:ring-primary'
           }`}
-          autoComplete="off"
+          autoComplete="new-password"
+          spellCheck="false"
           aria-label="Guess input"
           aria-autocomplete="list"
           aria-controls="suggestions-list"
@@ -144,7 +145,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
       </form>
 
       {showSuggestions && suggestions.length > 0 && !disabled && (
-        <ul id="suggestions-list" role="listbox" className="absolute z-10 w-full mt-1 bg-surface-raised border border-border rounded-lg shadow-xl overflow-y-auto max-h-64 custom-scrollbar">
+        <ul id="suggestions-list" role="listbox" className="absolute z-50 w-full mt-1 bg-surface-raised border border-border rounded-lg shadow-xl overflow-y-auto max-h-64 custom-scrollbar">
           {suggestions.map((s, i) => (
             <li
               key={i}
