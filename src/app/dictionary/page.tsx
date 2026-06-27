@@ -101,10 +101,6 @@ export default function DictionaryPage() {
   useEffect(() => {
     setIsLoading(true);
     try {
-      import('@/lib/puzzles').then(m => m.fetchPuzzleMetadata()).then(data => {
-        setEntries(data);
-      });
-      
       // Load unlocked puzzles
       const results = loadArchiveResults();
       const state = loadGameState();
@@ -114,9 +110,29 @@ export default function DictionaryPage() {
       }
       setUnlockedIds(unlocked);
       
+      // Fetch the full dictionary data from our secure API
+      fetch('/api/dictionary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ unlockedIds: Array.from(unlocked) })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch dictionary');
+          return res.json();
+        })
+        .then(data => {
+          setEntries(data);
+          setIsLoading(false);
+        })
+        .catch(err => {
+          console.error(err);
+          setError('Could not load puzzle dictionary');
+          setIsLoading(false);
+        });
+        
     } catch (err) {
+      console.error(err);
       setError('Could not load puzzle dictionary');
-    } finally {
       setIsLoading(false);
     }
   }, []);
