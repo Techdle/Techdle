@@ -27,7 +27,7 @@ export default function StatsPage() {
 
   if (!stats) {
     return (
-      <div className="min-h-screen font-sans">
+      <div className="min-h-[100dvh] font-sans">
         <Header />
         <main className="max-w-xl mx-auto py-8 px-4 animate-pulse">
           <div className="h-8 w-48 bg-surface-raised rounded mx-auto mb-8"></div>
@@ -58,7 +58,7 @@ export default function StatsPage() {
   );
 
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-[100dvh] font-sans">
       <Header />
       <main className="max-w-xl mx-auto py-8 px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">Your Stats</h2>
