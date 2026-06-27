@@ -53,9 +53,7 @@ async function main() {
     'Hardware', 'Software', 'Network', 'Security', 'Peripheral',
   ]);
 
-  const difficulty = await pickFromList('difficulty', [
-    'Easy', 'Medium', 'Hard',
-  ]);
+  const difficulty = 'Hard';
 
   const answer = await ask('Canonical answer (e.g. "failing power supply"): ');
   if (!answer) {
