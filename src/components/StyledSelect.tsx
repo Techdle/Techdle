@@ -36,7 +36,7 @@ export function StyledSelect({ options, value, onChange, className = '' }: Style
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-surface-raised border border-border rounded-lg text-text-muted text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-full min-w-[140px]"
+        className="flex items-center gap-2 px-4 py-3 bg-surface-raised border border-border rounded-lg text-text-muted text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all w-full min-w-[140px]"
       >
         <span className="flex-1 text-left">{selectedOption.label}</span>
         <ChevronDown className={`w-4 h-4 text-text-muted transition-transform ${isOpen ? 'rotate-180' : ''}`} />
@@ -52,7 +52,7 @@ export function StyledSelect({ options, value, onChange, className = '' }: Style
                 onChange(option.value);
                 setIsOpen(false);
               }}
-              className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+              className={`w-full text-left px-4 py-3 text-sm transition-colors ${
                 option.value === value
                   ? 'bg-primary/20 text-primary'
                   : 'text-text-muted hover:bg-surface-raised'
