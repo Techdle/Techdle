@@ -17,7 +17,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-text-main font-sans">
+    <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header onOpenHelp={() => setIsHelpOpen(true)} />
       <main>
         <Game onTutorialTrigger={handleGameStart} />
