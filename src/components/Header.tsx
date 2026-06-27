@@ -13,7 +13,7 @@ export function Header({ onOpenHelp }: { onOpenHelp?: () => void }) {
       <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-text-main hover:text-primary transition-colors">
           <Terminal className="w-6 h-6 text-primary" />
-          <h1 className="text-xl font-bold tracking-tight">Techdle</h1>
+          <h1 className="text-xl font-bold tracking-tight font-serif">Techdle</h1>
           {isDevMode && (
             <span className="flex items-center gap-1 text-[10px] font-mono uppercase tracking-widest bg-warning/20 text-warning border border-warning/30 px-2 py-0.5 rounded-full ml-2">
               <Bug className="w-3 h-3" />
