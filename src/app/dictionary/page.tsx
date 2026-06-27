@@ -21,9 +21,9 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
   const [showSymptoms, setShowSymptoms] = useState(false);
 
   return (
-    <div className="bg-surface border border-border rounded-xl p-5 hover:border-border transition-colors shadow-sm">
+    <div className="bg-surface border border-border rounded-xl p-4 sm:p-5 hover:border-border transition-colors shadow-sm w-full overflow-hidden">
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
-        <h3 className="text-xl font-bold text-text-main leading-tight">
+        <h3 className="text-xl font-bold text-text-main leading-tight break-words">
           {entry.answer}
         </h3>
         <div className="flex flex-wrap gap-2 shrink-0">
@@ -50,8 +50,8 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
                   <ul className="space-y-1.5">
                     {entry.clues.map((clue, i) => (
                       <li key={i} className="flex gap-2 text-sm text-text-muted">
-                        <span className="text-primary mt-0.5 select-none">•</span>
-                        <span>{clue}</span>
+                        <span className="text-primary mt-0.5 select-none shrink-0">•</span>
+                        <span className="break-words min-w-0 flex-1">{clue}</span>
                       </li>
                     ))}
                   </ul>
@@ -63,7 +63,7 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
       
       <div className="bg-background/50 border border-border/50 rounded-lg p-4 mb-4">
         <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Root Cause Analysis</h4>
-        <p className="text-text-muted leading-relaxed">
+        <p className="text-text-muted leading-relaxed break-words">
           {entry.explanation}
         </p>
       </div>
@@ -74,8 +74,8 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
           <ul className="space-y-1.5">
             {entry.fixSteps.map((step, i) => (
               <li key={i} className="flex gap-2 text-sm text-text-muted">
-                <span className="text-text-muted font-mono mt-0.5 select-none">{i + 1}.</span>
-                <span>{step}</span>
+                <span className="text-text-muted font-mono mt-0.5 select-none shrink-0">{i + 1}.</span>
+                <span className="break-words min-w-0 flex-1">{step}</span>
               </li>
             ))}
           </ul>
@@ -145,10 +145,10 @@ export default function DictionaryPage() {
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="w-8 h-8 text-primary" />
-            <h1 className="text-3xl font-bold text-text-main">Answer Dictionary</h1>
-            <span className="bg-surface-raised text-text-muted text-sm font-medium px-3 py-1 rounded-full">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+            <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary shrink-0" />
+            <h1 className="text-2xl sm:text-3xl font-bold text-text-main break-words">Answer Dictionary</h1>
+            <span className="bg-surface-raised text-text-muted text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
               {entries.length} Entries
             </span>
           </div>
@@ -170,13 +170,14 @@ export default function DictionaryPage() {
               autoFocus
             />
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <StyledSelect
+              className="w-full sm:w-auto min-w-[200px]"
               options={[{ value: 'All', label: 'All Categories' }, ...categories.map(c => ({ value: c, label: c }))]}
               value={selectedCategory}
               onChange={setSelectedCategory}
             />
-            <div className="flex items-center ml-auto text-sm text-text-muted font-medium bg-surface-raised/50 px-3 rounded-lg border border-border/50">
+            <div className="flex items-center justify-center sm:justify-start sm:ml-auto text-sm text-text-muted font-medium bg-surface-raised/50 px-4 py-2 sm:py-0 sm:px-3 rounded-lg border border-border/50">
               {filtered.length} result{filtered.length !== 1 ? 's' : ''}
             </div>
           </div>
@@ -201,7 +202,7 @@ export default function DictionaryPage() {
               {entries.length > 0 && <p className="text-sm mt-2">Try adjusting your filters or search term.</p>}
             </div>
           ) : (
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 gap-4 w-full">
               {filtered.map(entry => (
                 <DictionaryCard key={entry.id} entry={entry} isUnlocked={unlockedIds.has(entry.id)} />
               ))}
