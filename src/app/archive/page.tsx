@@ -25,6 +25,15 @@ export default function ArchivePage() {
     setTodayStr(getTodayDateString());
   }, []);
 
+  // Wait until todayStr is initialized
+  if (!todayStr) {
+    return (
+      <div className="min-h-[100dvh] bg-background text-text-main font-sans">
+        <Header />
+      </div>
+    );
+  }
+
   // Generate dates from epoch through today (not locked to one cycle)
   const epoch = new Date('2026-06-25T00:00:00Z');
   const today = new Date(todayStr + 'T00:00:00Z');

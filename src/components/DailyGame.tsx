@@ -36,10 +36,14 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
   const isGameOver = state.status !== 'playing';
   const isWin = state.status === 'won';
 
+  const epoch = new Date('2026-06-25T00:00:00Z').getTime();
+  const targetDate = new Date(state.date + 'T00:00:00Z').getTime();
+  const puzzleNumber = puzzle.number ?? (!isNaN(targetDate) ? Math.floor((targetDate - epoch) / 86400000) + 1 : 1);
+
   return (
     <div className="w-full max-w-4xl mx-auto py-8 px-4 flex flex-col gap-8">
       <div className="text-center mb-4">
-        <p className="text-text-muted font-mono">Ticket #{puzzle.number.toString().padStart(3, '0')}</p>
+        <p className="text-text-muted font-mono">Ticket #{puzzleNumber.toString().padStart(3, '0')}</p>
         <h2 className="text-2xl font-bold text-text-main mt-2">Identify the Root Cause</h2>
         <p className="text-sm text-text-muted mt-2">
           Guesses: {state.guesses.length} / {MAX_GUESSES}
