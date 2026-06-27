@@ -1,7 +1,6 @@
 export interface Puzzle {
   id: string;
   category: string;
-  difficulty: string;
   clues: string[];
   answer: string;
   aliases: string[];
@@ -14,7 +13,6 @@ export interface ClientPuzzle {
   id: string;
   number: number;
   category: string;
-  difficulty: string;
   clues: string[];
   /** SHA-256 hash of (dateSeed + answer), for client-side validation */
   answerHash: string;
