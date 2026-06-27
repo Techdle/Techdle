@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background text-text-main font-sans">
+    <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header />
       <main className="max-w-2xl mx-auto py-12 px-4">
         <div className="text-center mb-12">
