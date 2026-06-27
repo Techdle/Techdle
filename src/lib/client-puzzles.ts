@@ -5,11 +5,14 @@
  */
 
 import { ClientPuzzle } from '@/types/game';
-import clientPuzzles from '@/data/puzzles/client-puzzles.json';
+import clientPuzzlesRaw from '@/data/puzzles/client-puzzles.json';
 import answerHashes from '@/data/puzzles/answer-hashes.json';
 import { getTodayDateString, getPuzzleNumberByDate } from './date';
 
-const allClientPuzzles: ClientPuzzle[] = (clientPuzzles as Omit<ClientPuzzle, 'answerHash' | 'number'>[]).map((p, i) => {
+// The client-puzzles.json is now wrapped: { __dataVersion, puzzles: [...] }
+const clientPuzzlesBundle = clientPuzzlesRaw as { __dataVersion: number; puzzles: Omit<ClientPuzzle, 'answerHash' | 'number'>[] };
+export const DATA_VERSION = clientPuzzlesBundle.__dataVersion;
+const allClientPuzzles: ClientPuzzle[] = clientPuzzlesBundle.puzzles.map((p, i) => {
   // We'll attach the answerHash and real number later
   return {
     ...p,
@@ -37,6 +40,30 @@ function getShuffledIndices(seed: number, length: number): number[] {
 }
 
 /**
+ * Daily puzzle index — MUST match getDailyPuzzleIndex() in src/lib/puzzles.ts.
+ * Uses cycle-based shuffling with anti-repeat safeguard across cycle boundaries.
+ */
+function getDailyPuzzleIndex(dayIndex: number, totalPuzzles: number): number {
+  if (totalPuzzles === 0) return 0;
+
+  const cycle = Math.floor(dayIndex / totalPuzzles);
+  const pos = dayIndex % totalPuzzles;
+
+  const shuffled = getShuffledIndices(cycle + 12345, totalPuzzles);
+
+  if (cycle > 0) {
+    const prevShuffled = getShuffledIndices(cycle - 1 + 12345, totalPuzzles);
+    if (shuffled[0] === prevShuffled[totalPuzzles - 1]) {
+      if (totalPuzzles > 1) {
+        [shuffled[0], shuffled[1]] = [shuffled[1], shuffled[0]];
+      }
+    }
+  }
+
+  return shuffled[pos];
+}
+
+/**
  * Get today's puzzle from the client-side bundle.
  * No server action needed — all data is pre-generated at build time.
  */
@@ -49,9 +76,7 @@ export function getClientPuzzleForDate(dateStr: string): ClientPuzzle | null {
   if (isNaN(targetDate) || targetDate < epoch) return null;
 
   const dayIndex = Math.floor((targetDate - epoch) / 86400000);
-  const shuffled = getShuffledIndices(dayIndex, total);
-  const pos = dayIndex % total;
-  const puzzleIndex = shuffled[pos];
+  const puzzleIndex = getDailyPuzzleIndex(dayIndex, total);
   const puzzle = allClientPuzzles[puzzleIndex];
 
   if (!puzzle) return null;
