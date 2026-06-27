@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://playtechdle.com'),
   title: "Techdle - The Daily IT Troubleshooting Game",
   description: "Test your IT skills with Techdle, a daily puzzle where you diagnose and solve tech support tickets from a series of clues. Can you find the root cause?",
+  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -74,7 +75,7 @@ export default function RootLayout({
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100dvh] flex flex-col transition-colors duration-300`}
       >
         <SettingsProvider>
           <ThemeProvider>
