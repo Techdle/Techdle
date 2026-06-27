@@ -11,7 +11,6 @@ import { loadArchiveResults, loadGameState } from '@/lib/storage';
 interface DictEntry {
   id: string;
   category: string;
-  difficulty: string;
   clues: string[];
   answer: string;
   explanation: string;
@@ -30,13 +29,6 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
         <div className="flex flex-wrap gap-2 shrink-0">
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
             {entry.category}
-          </span>
-          <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${
-            entry.difficulty === 'Easy' ? 'bg-success/10 text-success border-success/20' :
-            entry.difficulty === 'Hard' ? 'bg-error/10 text-error border-error/20' :
-            'bg-warning/10 text-warning border-warning/20'
-          }`}>
-            {entry.difficulty}
           </span>
         </div>
       </div>
@@ -105,7 +97,6 @@ export default function DictionaryPage() {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All');
   const [unlockedIds, setUnlockedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -144,13 +135,12 @@ export default function DictionaryPage() {
             !e.id.toLowerCase().includes(q)) return false;
       }
       if (selectedCategory !== 'All' && e.category !== selectedCategory) return false;
-      if (selectedDifficulty !== 'All' && e.difficulty !== selectedDifficulty) return false;
       return true;
     });
-  }, [entries, search, selectedCategory, selectedDifficulty]);
+  }, [entries, search, selectedCategory]);
 
   return (
-    <main className="min-h-screen bg-background text-text-main">
+    <main className="min-h-[100dvh] bg-background text-text-main">
       <Header />
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
@@ -176,7 +166,7 @@ export default function DictionaryPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search answers, categories, or keywords..."
-              className="w-full pl-10 pr-4 py-3 bg-surface-raised border border-border rounded-lg text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              className="w-full pl-10 pr-4 py-3 bg-surface-raised border border-border rounded-lg text-text-main text-base placeholder:text-text-muted focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               autoFocus
             />
           </div>
@@ -185,16 +175,6 @@ export default function DictionaryPage() {
               options={[{ value: 'All', label: 'All Categories' }, ...categories.map(c => ({ value: c, label: c }))]}
               value={selectedCategory}
               onChange={setSelectedCategory}
-            />
-            <StyledSelect
-              options={[
-                { value: 'All', label: 'All Difficulties' },
-                { value: 'Easy', label: 'Easy' },
-                { value: 'Medium', label: 'Medium' },
-                { value: 'Hard', label: 'Hard' },
-              ]}
-              value={selectedDifficulty}
-              onChange={setSelectedDifficulty}
             />
             <div className="flex items-center ml-auto text-sm text-text-muted font-medium bg-surface-raised/50 px-3 rounded-lg border border-border/50">
               {filtered.length} result{filtered.length !== 1 ? 's' : ''}
