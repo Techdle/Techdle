@@ -11,7 +11,7 @@ Each puzzle is a JSON object in `src/data/puzzles/` with this structure:
   "id": "kebab-case-id",
   "date": "YYYY-MM-DD",
   "category": "Hardware | Software | Network | Security | Peripheral",
-  "difficulty": "Easy | Medium | Hard",
+  "difficulty": "Hard",
   "clues": [
     "Clue 1 (most vague, the initial symptom)",
     "Clue 2",
