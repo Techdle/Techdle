@@ -41,6 +41,7 @@ export function Game({ onTutorialTrigger }: GameProps = {}) {
   const handlePlay = () => {
     setShowLanding(false);
     onTutorialTrigger?.();
+    setTimeout(() => window.scrollTo(0, 0), 0);
   };
 
   if (showLanding && state.guesses.length === 0) {
