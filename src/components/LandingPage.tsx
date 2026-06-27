@@ -16,8 +16,8 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
   const formattedDate = `${MONTHS[parseInt(m, 10) - 1]} ${parseInt(d, 10)}, ${y}`;
 
   return (
-    <div className="fixed inset-0 min-h-[100dvh] z-[60] bg-background flex flex-col items-center px-6 animate-in fade-in duration-500 overflow-y-auto pt-12 pb-8">
-      <div className="flex-grow w-full max-w-lg flex flex-col items-center justify-center text-center animate-in zoom-in-95 duration-700 delay-150 fill-mode-both mx-auto">
+    <div className="fixed inset-0 min-h-[100dvh] z-[60] bg-background flex flex-col items-center px-6 overflow-y-auto pt-12 pb-8">
+      <div className="flex-grow w-full max-w-lg flex flex-col items-center justify-center text-center mx-auto">
         <div className="bg-surface border border-border p-6 rounded-3xl shadow-2xl mb-6">
           <Terminal className="w-20 h-20 text-primary" />
         </div>
