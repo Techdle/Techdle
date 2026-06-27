@@ -18,8 +18,11 @@ export interface ClientPuzzle {
   number: number;
   category: string;
   clues: string[];
-  /** SHA-256 hash of (dateSeed + answer), for client-side validation */
-  answerHash: string;
+  encodedAnswer: string;
+  encodedAliases: string;
+  encodedExplanation: string;
+  encodedFixSteps: string;
+  rawLogs?: string[];
 }
 
 export type GuessStatus = 'correct' | 'incorrect';
@@ -80,8 +83,10 @@ export type HistoryEntry = string;
 export interface UserDocument {
   /** User statistics (aggregated) */
   stats: UserStats;
-  /** Compact history of completed games, most recent first */
-  history: HistoryEntry[];
+  /** Compact history of completed games, most recent first (legacy) */
+  history?: HistoryEntry[];
+  /** New O(1) write optimized history map. Keyed by puzzleId */
+  historyMap?: Record<string, HistoryEntry>;
   /** Unix timestamp of last update */
   updatedAt: number;
   /** High score for endless mode */

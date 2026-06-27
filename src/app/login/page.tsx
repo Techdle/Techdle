@@ -6,19 +6,21 @@ import { useAuth } from '@/components/AuthProvider';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import Link from 'next/link';
-import { LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon } from 'lucide-react';
+import { LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon, Trash2 } from 'lucide-react';
 import { clearLocalData } from '@/lib/storage';
-import { useSettings } from '@/components/SettingsProvider';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
-import { AuthModal } from '@/components/AuthModal';
+import dynamic from 'next/dynamic';
+
+const AuthModal = dynamic(() => import('@/components/AuthModal').then(mod => mod.AuthModal), { ssr: false });
 
 export default function LoginPage() {
   const { user, error, loading } = useAuth();
-  const { highContrast, setHighContrast } = useSettings();
   
   const [signingOut, setSigningOut] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isClearDataModalOpen, setIsClearDataModalOpen] = useState(false);
+  const [deleteInput, setDeleteInput] = useState('');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -51,19 +53,6 @@ export default function LoginPage() {
           
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div>
-                <div className="font-medium">High Contrast Mode</div>
-                <div className="text-sm text-text-muted">Improve color visibility</div>
-              </div>
-              <button 
-                onClick={() => setHighContrast(!highContrast)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background ${highContrast ? 'bg-primary' : 'bg-surface-raised'}`}
-              >
-                <span className={`inline-block h-4 w-4 transform rounded-full bg-text-main transition-transform ${highContrast ? 'translate-x-6' : 'translate-x-1'}`} />
-              </button>
-            </div>
-
-            <div className="border-t border-border pt-6 flex items-center justify-between">
               <div>
                 <div className="font-medium">Theme</div>
                 <div className="text-sm text-text-muted">Toggle dark/light mode</div>
@@ -123,6 +112,26 @@ export default function LoginPage() {
           )}
         </div>
 
+        {/* Data Management Section */}
+        <div className="bg-surface p-6 rounded-2xl border border-border shadow-xl relative overflow-hidden">
+          <h2 className="text-xl font-bold mb-6 text-error flex items-center gap-2">
+            <Trash2 className="w-5 h-5" />
+            Data Management
+          </h2>
+          <div className="space-y-4">
+            <div className="text-sm text-text-muted">
+              Permanently delete all your local statistics, streaks, and game history on this device.
+            </div>
+            <button
+              onClick={() => setIsClearDataModalOpen(true)}
+              className="w-full flex items-center justify-center gap-2 bg-error/20 hover:bg-error/30 text-error border border-error/30 font-bold py-3 px-4 rounded-lg transition-colors"
+            >
+              <Trash2 className="w-5 h-5" />
+              Clear Local Data
+            </button>
+          </div>
+        </div>
+
         <div className="mt-8 text-center pt-6">
            <Link href="/" className="inline-block text-text-muted hover:text-text-main transition-colors text-sm font-medium">
               Return to Game
@@ -163,6 +172,64 @@ export default function LoginPage() {
               >
                 <LogOut className="w-4 h-4" />
                 Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Clear Data Confirmation Modal */}
+      {isClearDataModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div 
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => {
+              setIsClearDataModalOpen(false);
+              setDeleteInput('');
+            }}
+          />
+          
+          <div className="relative w-full max-w-sm bg-surface border border-border rounded-2xl shadow-2xl p-6 animate-in zoom-in-95 duration-300">
+            <h2 className="text-xl font-bold text-error font-serif mb-2">
+              Clear All Data?
+            </h2>
+            <p className="text-text-muted mb-4 text-sm">
+              This will permanently delete your local game history, streaks, and statistics. This action cannot be undone.
+            </p>
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-text-main mb-2">
+                Type <strong className="text-error">DELETE</strong> to confirm:
+              </label>
+              <input
+                type="text"
+                value={deleteInput}
+                onChange={(e) => setDeleteInput(e.target.value)}
+                placeholder="DELETE"
+                className="w-full bg-background border border-border rounded-lg px-4 py-2 text-text-main focus:outline-none focus:ring-2 focus:ring-error focus:border-error transition-colors"
+              />
+            </div>
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setIsClearDataModalOpen(false);
+                  setDeleteInput('');
+                }}
+                className="flex-1 py-2.5 bg-surface-raised hover:bg-border text-text-main font-bold rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                disabled={deleteInput !== 'DELETE'}
+                onClick={() => {
+                  clearLocalData();
+                  setIsClearDataModalOpen(false);
+                  setDeleteInput('');
+                  window.location.reload();
+                }}
+                className="flex-1 py-2.5 bg-error hover:bg-error/90 text-white font-bold rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Trash2 className="w-4 h-4" />
+                Clear Data
               </button>
             </div>
           </div>

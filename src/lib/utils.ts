@@ -1,4 +1,4 @@
-import { Puzzle } from '../types/game';
+import { Puzzle, ClientPuzzle } from '../types/game';
 
 export const TYPO_TOLERANCE = 2;
 const EPOCH = '2026-06-25';
@@ -38,4 +38,29 @@ export function isGuessCorrect(guess: string, puzzle: Puzzle): boolean {
     if (levenshteinDistance(normGuess, target) <= TYPO_TOLERANCE) return true;
   }
   return false;
+}
+
+function safeBase64Decode(str: string): string {
+  if (typeof window === 'undefined') {
+    return Buffer.from(str, 'base64').toString();
+  }
+  const binString = atob(str);
+  const bytes = new Uint8Array(binString.length);
+  for (let i = 0; i < binString.length; i++) {
+    bytes[i] = binString.charCodeAt(i);
+  }
+  return new TextDecoder().decode(bytes);
+}
+
+export function decodeClientPuzzle(cp: ClientPuzzle): Puzzle {
+  return {
+    id: cp.id,
+    category: cp.category,
+    clues: cp.clues,
+    rawLogs: cp.rawLogs,
+    answer: safeBase64Decode(cp.encodedAnswer),
+    aliases: JSON.parse(safeBase64Decode(cp.encodedAliases)),
+    explanation: safeBase64Decode(cp.encodedExplanation),
+    fixSteps: JSON.parse(safeBase64Decode(cp.encodedFixSteps)),
+  };
 }

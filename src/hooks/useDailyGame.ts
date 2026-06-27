@@ -4,6 +4,7 @@ import { getTodayDateString, getYesterdayDateString } from '../lib/date';
 import { loadGameState, saveGameState, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
 import { fetchDictionary, fetchPuzzleChunk, getTodayPuzzleId } from '../lib/puzzles';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 
@@ -40,17 +41,9 @@ export function useDailyGame() {
         let savedState = loadGameState();
 
         if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
-          // If game is over but we don't have the fullPuzzle in state, fetch it from the API
+          // If game is over but we don't have the fullPuzzle in state, decode it locally
           if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
-            const res = await fetch('/api/guess', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ puzzleId: activePuzzle.id, guess: 'restore', isGameOver: true }),
-            });
-            const data = await res.json();
-            if (data.fullPuzzle) {
-              savedState.fullPuzzle = data.fullPuzzle;
-            }
+            savedState.fullPuzzle = decodeClientPuzzle(activePuzzle);
           }
           setState(savedState);
         } else {
@@ -86,17 +79,9 @@ export function useDailyGame() {
     setIsSubmitting(true);
     try {
       const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
       
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
-      });
-      const data = await res.json();
-      
-      const correct = data.correct === true;
-      const fullPuzzle = data.fullPuzzle;
-
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

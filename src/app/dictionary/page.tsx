@@ -5,6 +5,8 @@ import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp, Lock } 
 import { Header } from '@/components/Header';
 import { StyledSelect } from '@/components/StyledSelect';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
+import { decodeClientPuzzle } from '@/lib/utils';
+import { ClientPuzzle } from '@/types/game';
 
 interface DictEntry {
   id: string;
@@ -120,18 +122,29 @@ export default function DictionaryPage() {
       }
       setUnlockedIds(unlocked);
       
-      // Fetch the full dictionary data from our secure API
-      fetch('/api/dictionary', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ unlockedIds: Array.from(unlocked) })
-      })
+      // Fetch the full dictionary data from static file
+      fetch('/puzzles/full-dictionary.json')
         .then(res => {
           if (!res.ok) throw new Error('Failed to fetch dictionary');
           return res.json();
         })
-        .then(data => {
-          setEntries(data);
+        .then((data: ClientPuzzle[]) => {
+          const decodedEntries: DictEntry[] = data.map(cp => {
+            const decoded = decodeClientPuzzle(cp);
+            const isUnlocked = unlocked.has(decoded.id);
+            return {
+              id: decoded.id,
+              category: decoded.category,
+              answer: decoded.answer,
+              explanation: decoded.explanation,
+              fixSteps: decoded.fixSteps || [],
+              clues: isUnlocked ? decoded.clues : []
+            };
+          });
+          
+          decodedEntries.sort((a, b) => a.answer.localeCompare(b.answer));
+          
+          setEntries(decodedEntries);
           setIsLoading(false);
         })
         .catch(err => {

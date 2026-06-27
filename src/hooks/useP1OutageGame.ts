@@ -3,7 +3,8 @@ import { GameState, Guess, ClientPuzzle } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getRandomP1PuzzleId, fetchPuzzleChunk, fetchDictionary } from '../lib/puzzles';
+import { fetchDictionary, fetchPuzzleChunk, getDailyP1PuzzleId, getRandomP1PuzzleId } from '../lib/puzzles';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 3;
 const MODE = 'p1-outage';
@@ -124,16 +125,9 @@ export function useP1OutageGame() {
     try {
       const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
 
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
-      });
-      const data = await res.json();
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
       
-      const correct = data.correct === true;
-      const fullPuzzle = data.fullPuzzle;
-
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

@@ -3,7 +3,8 @@ import { GameState, Guess, ClientPuzzle } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode, loadEndlessHighScore, saveEndlessHighScore, syncEndlessHighScoreToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getRandomPuzzleId, fetchDictionary, fetchPuzzleChunk } from '../lib/puzzles';
+import { fetchDictionary, fetchPuzzleChunk, getRandomPuzzleId } from '../lib/puzzles';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 const MODE = 'endless';
@@ -56,6 +57,9 @@ export function useEndlessGame() {
 
           if (savedState && savedState.status === 'playing') {
             setState(savedState);
+          } else if (savedState && savedState.status !== 'playing' && !savedState.fullPuzzle) {
+            savedState.fullPuzzle = decodeClientPuzzle(initialPuzzleChunk);
+            setState({ ...savedState });
           } else {
             setState({
               puzzleId: initialPuzzleChunk.id,
@@ -127,16 +131,9 @@ export function useEndlessGame() {
     try {
       const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
 
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
-      });
-      const data = await res.json();
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
       
-      const correct = data.correct === true;
-      const fullPuzzle = data.fullPuzzle;
-
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

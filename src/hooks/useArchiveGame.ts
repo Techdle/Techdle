@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { ClientPuzzle, GameState, Guess, ArchiveResult } from '../types/game';
 import { getDailyPuzzleId, fetchPuzzleChunk } from '../lib/puzzles';
 import { saveArchiveResult } from '../lib/storage';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 
@@ -58,16 +59,9 @@ export function useArchiveGame(date: string) {
     try {
       const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
 
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
-      });
-      const data = await res.json();
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
       
-      const correct = data.correct === true;
-      const fullPuzzle = data.fullPuzzle;
-
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

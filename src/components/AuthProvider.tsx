@@ -1,11 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { 
-  User, onAuthStateChanged, linkWithPopup, GoogleAuthProvider, 
-  AuthError, signInWithPopup, signInWithEmailAndPassword, linkWithCredential, EmailAuthProvider 
-} from 'firebase/auth';
-import { auth, isConfigured } from '../lib/firebase';
+import type { User, AuthError } from 'firebase/auth';
 import { syncLocalDataToFirestore } from '../lib/storage';
 
 
@@ -35,31 +31,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isConfigured || !auth) {
-      setLoading(false);
-      return;
+    let unsubscribe: (() => void) | undefined;
+
+    async function initAuth() {
+      const { auth, isConfigured } = await import('../lib/firebase');
+      const { onAuthStateChanged, signOut } = await import('firebase/auth');
+
+      if (!isConfigured || !auth) {
+        setLoading(false);
+        return;
+      }
+
+      unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        if (currentUser) {
+          if (currentUser.isAnonymous) {
+            // Sign out legacy anonymous accounts so they run locally
+            await signOut(auth);
+            setLoading(false);
+            return;
+          }
+          setUser(currentUser);
+          setLoading(false);
+          await syncLocalDataToFirestore(currentUser.uid);
+        } else {
+          setLoading(false);
+        }
+      });
     }
 
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        if (currentUser.isAnonymous) {
-          // Sign out legacy anonymous accounts so they run locally
-          await auth!.signOut();
-          setLoading(false);
-          return;
-        }
-        setUser(currentUser);
-        setLoading(false);
-        await syncLocalDataToFirestore(currentUser.uid);
-      } else {
-        setLoading(false);
-      }
-    });
-
-    return () => unsubscribe();
+    initAuth();
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
 
   const linkAccount = async () => {
+    const { auth } = await import('../lib/firebase');
+    const { linkWithPopup, GoogleAuthProvider } = await import('firebase/auth');
     if (!auth?.currentUser) return;
 
     setError(null);
@@ -79,6 +87,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const loginWithGoogle = async () => {
+    const { auth } = await import('../lib/firebase');
+    const { signInWithPopup, GoogleAuthProvider } = await import('firebase/auth');
     if (!auth) return;
     setError(null);
     const provider = new GoogleAuthProvider();
@@ -91,6 +101,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const loginWithEmail = async (e: string, p: string) => {
+    const { auth } = await import('../lib/firebase');
+    const { signInWithEmailAndPassword } = await import('firebase/auth');
     if (!auth) return;
     setError(null);
     try {
@@ -102,6 +114,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUpWithEmail = async (e: string, p: string) => {
+    const { auth } = await import('../lib/firebase');
+    const { linkWithCredential, EmailAuthProvider } = await import('firebase/auth');
     if (!auth?.currentUser) return;
     setError(null);
     try {

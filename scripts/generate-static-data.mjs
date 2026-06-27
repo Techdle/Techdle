@@ -58,6 +58,10 @@ puzzles.forEach((p) => {
     category: p.category,
     clues: p.clues,
     rawLogs: p.rawLogs,
+    encodedAnswer: Buffer.from(p.answer || '').toString('base64'),
+    encodedAliases: Buffer.from(JSON.stringify(p.aliases || [])).toString('base64'),
+    encodedExplanation: Buffer.from(p.explanation || '').toString('base64'),
+    encodedFixSteps: Buffer.from(JSON.stringify(p.fixSteps || [])).toString('base64'),
   };
   fs.writeFileSync(
     path.join(publicPuzzlesDir, `${p.id}.json`),
@@ -66,3 +70,20 @@ puzzles.forEach((p) => {
   chunkCount++;
 });
 console.log(`Generated ${chunkCount} static puzzle chunks in public/puzzles/`);
+
+// 4. Generate full-dictionary.json
+const fullDictionary = puzzles.map((p) => ({
+  id: p.id,
+  category: p.category,
+  clues: p.clues,
+  rawLogs: p.rawLogs,
+  encodedAnswer: Buffer.from(p.answer || '').toString('base64'),
+  encodedAliases: Buffer.from(JSON.stringify(p.aliases || [])).toString('base64'),
+  encodedExplanation: Buffer.from(p.explanation || '').toString('base64'),
+  encodedFixSteps: Buffer.from(JSON.stringify(p.fixSteps || [])).toString('base64'),
+}));
+fs.writeFileSync(
+  path.join(publicPuzzlesDir, 'full-dictionary.json'),
+  JSON.stringify(fullDictionary, null, 2)
+);
+console.log(`Generated public/puzzles/full-dictionary.json with ${fullDictionary.length} entries`);

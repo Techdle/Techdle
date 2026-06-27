@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { GameState, Guess, ClientPuzzle, GameMode } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
-import { getRandomPuzzleIdByCategory, fetchDictionary, fetchPuzzleChunk } from '../lib/puzzles';
+import { fetchDictionary, fetchPuzzleChunk, getRandomPuzzleIdByCategory } from '../lib/puzzles';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 const MODE: GameMode = 'category';
@@ -124,16 +125,9 @@ export function useCategoryGame(selectedCategory: string) {
     try {
       const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
 
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
-      });
-      const data = await res.json();
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
       
-      const correct = data.correct === true;
-      const fullPuzzle = data.fullPuzzle;
-
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

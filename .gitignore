@@ -36,6 +36,8 @@ yarn-error.log*
 # Build-time generated puzzle data (regenerated on each build)
 /src/data/puzzles/client-puzzles.json
 /src/data/puzzles/answer-hashes.json
+/public/puzzles/
+/public/dictionary.json
 
 # vercel
 .vercel

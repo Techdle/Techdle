@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AuthProvider } from '@/components/AuthProvider';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { SettingsProvider } from '@/components/SettingsProvider';
 import { Footer } from '@/components/Footer';
 import { SecurityProvider } from '@/components/SecurityProvider';
 import { PWAProvider } from '@/components/PWAProvider';
@@ -108,18 +107,16 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100dvh] flex flex-col transition-colors duration-300`}
       >
         <PWAProvider>
-          <SettingsProvider>
-            <ThemeProvider>
-              <AuthProvider>
-                <SecurityProvider>
-                  <div className="flex-grow flex flex-col">
-                    {children}
-                  </div>
-                  <Footer />
-                </SecurityProvider>
-              </AuthProvider>
-            </ThemeProvider>
-          </SettingsProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <SecurityProvider>
+                <div className="flex-grow flex flex-col">
+                  {children}
+                </div>
+                <Footer />
+              </SecurityProvider>
+            </AuthProvider>
+          </ThemeProvider>
         </PWAProvider>
       </body>
     </html>

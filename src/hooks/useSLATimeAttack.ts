@@ -3,7 +3,8 @@ import { GameState, Guess, ClientPuzzle } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getRandomPuzzleId, fetchDictionary, fetchPuzzleChunk } from '../lib/puzzles';
+import { fetchDictionary, fetchPuzzleChunk, getRandomPuzzleId } from '../lib/puzzles';
+import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 const MODE = 'sla-time-attack';
@@ -114,21 +115,8 @@ export function useSLATimeAttack() {
             ...s, 
             status: 'lost', 
             timeRemaining: 0,
+            fullPuzzle: puzzle ? decodeClientPuzzle(puzzle) : undefined
           } : s);
-          
-          // When time runs out, we need the full puzzle to show the answer!
-          // We fetch it asynchronously so the timer doesn't block
-          if (puzzle) {
-            fetch('/api/guess', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ puzzleId: puzzle.id, guess: 'timeout', isGameOver: true }),
-            }).then(res => res.json()).then(data => {
-              if (data.fullPuzzle) {
-                setState(s => s ? { ...s, fullPuzzle: data.fullPuzzle } : s);
-              }
-            });
-          }
         }
         return nextTime;
       });
@@ -153,14 +141,9 @@ export function useSLATimeAttack() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch('/api/guess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver: false }),
-      });
-      const data = await res.json();
-      const correct = data.correct === true;
-
+      const fullPuzzle = decodeClientPuzzle(puzzle);
+      const correct = isGuessCorrect(guessText, fullPuzzle);
+      
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
       const newGuesses = [...state.guesses, newGuess];

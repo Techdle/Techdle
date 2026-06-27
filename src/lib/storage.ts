@@ -1,6 +1,4 @@
 import { GameState, UserStats, ArchiveResult, UserDocument, HistoryEntry, GameMode } from '../types/game';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db, isConfigured } from './firebase';
 import { getTodayDateString, getYesterdayDateString } from './date';
 
 const GAME_STATE_KEY = 'techdle_game_state';
@@ -201,6 +199,8 @@ function archiveHistoryToResults(history: HistoryEntry[]): ArchiveResult[] {
  * Called once on auth state change (anonymous sign-in or login).
  */
 export async function syncLocalDataToFirestore(uid: string): Promise<void> {
+  const { doc, getDoc, setDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
   if (!isConfigured || !db) return;
 
   try {
@@ -213,6 +213,22 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
     const localHighScore = loadEndlessHighScore();
 
     const now = Date.now();
+    const lastSyncStr = localStorage.getItem('lastCloudSync');
+    const lastSync = lastSyncStr ? parseInt(lastSyncStr, 10) : 0;
+    
+    // Lazy Sync Optimization:
+    // If we've synced within the last 5 minutes AND we don't have new local games played today, skip.
+    // (This avoids doing a getDoc + setDoc on every single page refresh)
+    const isRecentlySynced = (now - lastSync) < 5 * 60 * 1000;
+    const hasPlayedTodayLocally = localStats.lastPlayedDate === getTodayDateString();
+    
+    // We only skip if we are recently synced AND we didn't just play today (which might need cloud sync)
+    // Actually, a simpler robust heuristic: just skip if we synced in the last hour, 
+    // unless local data changed since last sync (we can track a `localDataDirty` flag).
+    // For now, let's just skip if recently synced to save reads on app load.
+    if (isRecentlySynced && !hasPlayedTodayLocally) {
+      return;
+    }
 
     if (!userDoc.exists()) {
       // First sync: write everything
@@ -267,10 +283,11 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
       // Merge high score
       const mergedHighScore = Math.max(localHighScore, cloudHighScore);
 
-      // Merge history: combine both, deduplicate by puzzleId, keep most recent first
       const cloudArchive = archiveHistoryToResults(cloud.history || []);
+      const cloudMapArchive = cloud.historyMap ? archiveHistoryToResults(Object.values(cloud.historyMap)) : [];
+      
       const allArchives = [...localArchive];
-      for (const cloudResult of cloudArchive) {
+      for (const cloudResult of [...cloudArchive, ...cloudMapArchive]) {
         const exists = allArchives.some((r) => r.puzzleId === cloudResult.puzzleId);
         if (!exists) allArchives.push(cloudResult);
       }
@@ -278,10 +295,17 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
       allArchives.sort((a, b) => b.date.localeCompare(a.date));
 
       const mergedHistory = allArchives.map(archiveToHistoryEntry);
+      
+      // Convert merged history back into the optimized historyMap format
+      const newHistoryMap: Record<string, HistoryEntry> = {};
+      allArchives.forEach(result => {
+        newHistoryMap[result.puzzleId] = archiveToHistoryEntry(result);
+      });
 
       const data: UserDocument = {
         stats: mergedStats,
-        history: mergedHistory,
+        history: [], // clear legacy array to save space
+        historyMap: newHistoryMap,
         updatedAt: now,
         endlessHighScore: mergedHighScore,
       };
@@ -296,6 +320,7 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
       if (cloudHighScore > localHighScore) {
         saveEndlessHighScore(cloudHighScore);
       }
+      localStorage.setItem('lastCloudSync', now.toString());
     }
   } catch (err: any) {
     if (err?.code === 'unavailable' || err?.code === 'resource-exhausted' || err?.message?.includes('offline')) {
@@ -311,9 +336,12 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
  * Called once per game completion.
  */
 export async function syncStatsToFirestore(uid: string, stats: UserStats): Promise<void> {
+  const { doc, setDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
   if (!isConfigured || !db) return;
+
   try {
-    const userRef = doc(db!, 'users', uid);
+    const userRef = doc(db, 'users', uid);
     // Use setDoc with merge so we don't overwrite the history array
     await setDoc(userRef, { stats, updatedAt: Date.now() }, { merge: true });
   } catch (err: any) {
@@ -327,9 +355,12 @@ export async function syncStatsToFirestore(uid: string, stats: UserStats): Promi
  * Sync endless high score to Firestore.
  */
 export async function syncEndlessHighScoreToFirestore(uid: string, score: number): Promise<void> {
+  const { doc, setDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
   if (!isConfigured || !db) return;
+
   try {
-    const userRef = doc(db!, 'users', uid);
+    const userRef = doc(db, 'users', uid);
     await setDoc(userRef, { endlessHighScore: score, updatedAt: Date.now() }, { merge: true });
   } catch (err: any) {
     if (err?.code !== 'unavailable' && err?.code !== 'resource-exhausted') {
@@ -343,26 +374,19 @@ export async function syncEndlessHighScoreToFirestore(uid: string, score: number
  * Called after a game completes to persist the result.
  */
 export async function syncArchiveToFirestore(uid: string, result: ArchiveResult): Promise<void> {
+  const { doc, setDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
   if (!isConfigured || !db) return;
+
   try {
-    const userRef = doc(db!, 'users', uid);
-    const userDoc = await getDoc(userRef);
-
-    const existingHistory: HistoryEntry[] = userDoc.exists()
-      ? (userDoc.data() as UserDocument).history || []
-      : [];
-
+    const userRef = doc(db, 'users', uid);
     const entry = archiveToHistoryEntry(result);
-    const existingIndex = existingHistory.findIndex((h) => h.startsWith(result.puzzleId + ':'));
-    let newHistory: HistoryEntry[];
-    if (existingIndex >= 0) {
-      newHistory = [...existingHistory];
-      newHistory[existingIndex] = entry;
-    } else {
-      newHistory = [entry, ...existingHistory];
-    }
 
-    await setDoc(userRef, { history: newHistory, updatedAt: Date.now() }, { merge: true });
+    // O(1) Write: Update exactly the property in the map without reading the whole doc
+    await setDoc(userRef, { 
+      [`historyMap.${result.puzzleId}`]: entry,
+      updatedAt: Date.now() 
+    }, { merge: true });
   } catch (err: any) {
     if (err?.code !== 'unavailable' && err?.code !== 'resource-exhausted') {
       console.error("Failed to sync archive:", err);
@@ -374,12 +398,23 @@ export async function syncArchiveToFirestore(uid: string, result: ArchiveResult)
  * Load a user's complete data from Firestore (single doc read = one read).
  */
 export async function loadUserDocument(uid: string): Promise<UserDocument | null> {
+  const { doc, getDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
   if (!isConfigured || !db) return null;
+
   try {
-    const userRef = doc(db!, 'users', uid);
+    const userRef = doc(db, 'users', uid);
     const snap = await getDoc(userRef);
     if (!snap.exists()) return null;
-    return snap.data() as UserDocument;
+    const data = snap.data() as UserDocument;
+    
+    // Combine legacy history array and new historyMap
+    const mapValues = data.historyMap ? Object.values(data.historyMap) : [];
+    const legacyValues = data.history || [];
+    const combined = [...legacyValues, ...mapValues];
+    
+    data.history = Array.from(new Set(combined)); // deduplicate if necessary
+    return data;
   } catch {
     return null;
   }

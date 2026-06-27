@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { safeGetItem, safeSetItem } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Game } from '@/components/Game';
-import { HowToPlayModal } from '@/components/HowToPlayModal';
 import { GameMode } from '@/types/game';
 import { ArrowLeft } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const HowToPlayModal = dynamic(() => import('@/components/HowToPlayModal').then(mod => mod.HowToPlayModal), { ssr: false });
 
 export default function Home() {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
