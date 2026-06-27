@@ -14,7 +14,7 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
 
   if (!isLoaded) {
     return (
-      <main className="min-h-screen bg-background text-text-main">
+      <main className="min-h-[100dvh] bg-background text-text-main">
         <Header />
         <div className="flex items-center justify-center h-[calc(100vh-64px)]">
           <div className="flex flex-col items-center gap-4 text-text-muted">
@@ -28,7 +28,7 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
 
   if (!puzzle || !state) {
     return (
-      <main className="min-h-screen bg-background text-text-main">
+      <main className="min-h-[100dvh] bg-background text-text-main">
         <Header />
         <div className="flex flex-col items-center justify-center h-[calc(100vh-64px)] px-4">
           <Terminal className="w-16 h-16 text-text-muted mb-6" />
@@ -49,7 +49,7 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
   }
 
   return (
-    <main className="min-h-screen bg-background text-text-main flex flex-col">
+    <main className="min-h-[100dvh] bg-background text-text-main flex flex-col">
       <Header />
       
       <div className="flex-1 w-full max-w-3xl mx-auto p-4 flex flex-col">
@@ -65,8 +65,6 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
             <h1 className="text-2xl font-bold text-text-main">Archive Mode</h1>
             <p className="text-text-muted text-sm flex items-center gap-2 mt-1">
               <span className="font-mono bg-surface-raised px-2 py-0.5 rounded text-xs">{date}</span>
-              <span>·</span>
-              <span className="text-warning">{puzzle.difficulty}</span>
               <span>·</span>
               <span className="text-primary">{puzzle.category}</span>
             </p>
