@@ -4,7 +4,7 @@ import { getTodayDateString, getYesterdayDateString } from '../lib/date';
 import { loadGameState, saveGameState, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
 import { getAllPuzzles } from '../lib/puzzles';
-import { getTodayClientPuzzle } from '../lib/client-puzzles';
+import { getTodayClientPuzzle, DATA_VERSION } from '../lib/client-puzzles';
 import { isGuessCorrectClient, getTodayDateSeed } from '../lib/utils';
 
 const MAX_GUESSES = 6;
@@ -57,7 +57,23 @@ export function useGame() {
         return;
       }
 
-      const savedState = loadGameState();
+      // Check if puzzle data has been regenerated (version bump invalidates today's state)
+      const versionKey = 'techdle_puzzle_version';
+      let savedState = loadGameState();
+      if (savedState && typeof window !== 'undefined') {
+        const knownVersion = localStorage.getItem(versionKey);
+        const currentVersion = DATA_VERSION ?? 1;
+        if (!knownVersion || Number(knownVersion) < currentVersion) {
+          // Puzzle data has been updated — reset today's game and stats
+          savedState = null;
+          localStorage.removeItem('techdle_game_state');
+          localStorage.removeItem('techdle_user_stats');
+        }
+      }
+      // Save the current version so future comparisons work
+      if (typeof window !== 'undefined' && DATA_VERSION !== undefined) {
+        localStorage.setItem(versionKey, String(DATA_VERSION));
+      }
 
       if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
         // Restore fullPuzzle from the server data if game was over
