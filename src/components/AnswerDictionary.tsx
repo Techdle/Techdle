@@ -8,7 +8,6 @@ import { Puzzle } from '@/types/game';
 interface DictEntry {
   id: string;
   category: string;
-  difficulty: string;
   answer: string;
   explanation: string;
   fixSteps: string[];
@@ -19,7 +18,6 @@ export function AnswerDictionary() {
   const [entries, setEntries] = useState<DictEntry[]>([]);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All');
 
   useEffect(() => {
     if (!isOpen) return;
@@ -28,7 +26,6 @@ export function AnswerDictionary() {
       puzzles.map((p: Puzzle) => ({
         id: p.id,
         category: p.category,
-        difficulty: p.difficulty,
         answer: p.answer,
         explanation: p.explanation,
         fixSteps: p.fixSteps,
@@ -51,10 +48,9 @@ export function AnswerDictionary() {
             !e.id.toLowerCase().includes(q)) return false;
       }
       if (selectedCategory !== 'All' && e.category !== selectedCategory) return false;
-      if (selectedDifficulty !== 'All' && e.difficulty !== selectedDifficulty) return false;
       return true;
     });
-  }, [entries, search, selectedCategory, selectedDifficulty]);
+  }, [entries, search, selectedCategory]);
 
   return (
     <>
@@ -77,7 +73,7 @@ export function AnswerDictionary() {
                 <span className="text-xs text-text-muted font-mono">({entries.length})</span>
               </div>
               <button
-                onClick={() => { setIsOpen(false); setSearch(''); setSelectedCategory('All'); setSelectedDifficulty('All'); }}
+                onClick={() => { setIsOpen(false); setSearch(''); setSelectedCategory('All'); }}
                 className="p-1 text-text-muted hover:text-text-muted transition-colors"
               >
                 <X className="w-5 h-5" />
@@ -106,16 +102,6 @@ export function AnswerDictionary() {
                   <option value="All">All Categories</option>
                   {categories.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
-                <select
-                  value={selectedDifficulty}
-                  onChange={e => setSelectedDifficulty(e.target.value)}
-                  className="px-3 py-1.5 text-xs bg-surface-raised border border-border rounded-lg text-text-muted focus:outline-none focus:ring-2 focus:ring-primary"
-                >
-                  <option value="All">All Difficulties</option>
-                  <option value="Easy">Easy</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hard">Hard</option>
-                </select>
                 <span className="text-xs text-text-muted self-center ml-auto">
                   {filtered.length} result{filtered.length !== 1 ? 's' : ''}
                 </span>
@@ -141,13 +127,6 @@ export function AnswerDictionary() {
                       <div className="flex gap-1.5 shrink-0">
                         <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/25">
                           {entry.category}
-                        </span>
-                        <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full border ${
-                          entry.difficulty === 'Easy' ? 'bg-success/15 text-success border-success/25' :
-                          entry.difficulty === 'Hard' ? 'bg-error/15 text-error border-error/25' :
-                          'bg-warning/15 text-warning border-warning/25'
-                        }`}>
-                          {entry.difficulty}
                         </span>
                       </div>
                     </div>
