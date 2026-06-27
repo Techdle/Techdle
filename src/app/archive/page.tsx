@@ -22,13 +22,20 @@ export default function ArchivePage() {
     setTodayStr(getTodayDateString());
   }, []);
 
-  // Generate exactly one cycle of dates from epoch
-  const numPuzzles = getAllPuzzles().length;
+  // Generate dates from epoch through today (not locked to one cycle)
   const epoch = new Date('2026-06-25T00:00:00Z');
+  const today = new Date(todayStr + 'T00:00:00Z');
   const validDates: string[] = [];
-  for (let i = 0; i < numPuzzles; i++) {
-    const d = new Date(epoch.getTime() + i * 86400000);
-    validDates.push(d.toISOString().substring(0, 10)); // yyyy-MM-dd
+  if (today >= epoch) {
+    const msPerDay = 86400000;
+    const totalDays = Math.floor((today.getTime() - epoch.getTime()) / msPerDay) + 1;
+    for (let i = 0; i < totalDays; i++) {
+      const d = new Date(epoch.getTime() + i * msPerDay);
+      validDates.push(d.toISOString().substring(0, 10));
+    }
+  } else {
+    // Before epoch: just show epoch day
+    validDates.push('2026-06-25');
   }
 
   // Get distinct months from the valid dates
@@ -39,7 +46,7 @@ export default function ArchivePage() {
   }, [] as string[]);
 
   return (
-    <div className="min-h-screen bg-background text-text-main font-sans">
+    <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header />
       <main className="max-w-4xl mx-auto py-8 px-4">
         <h2 className="text-3xl font-bold mb-8">Archive</h2>
