@@ -105,3 +105,10 @@ export async function getDailyP1PuzzleId(dateStr: string): Promise<string | unde
 
   return hardPuzzles[selectedIndex].id;
 }
+
+export async function getRandomP1PuzzleId(excludeIds: Set<string>): Promise<string | undefined> {
+  const metadata = await fetchPuzzleMetadata();
+  const pool = metadata.filter(p => p.difficulty === 'Hard' && !excludeIds.has(p.id));
+  if (pool.length === 0) return undefined;
+  return pool[Math.floor(Math.random() * pool.length)].id;
+}

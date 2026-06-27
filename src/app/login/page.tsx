@@ -18,6 +18,7 @@ export default function LoginPage() {
   
   const [signingOut, setSigningOut] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -111,7 +112,7 @@ export default function LoginPage() {
               </div>
 
               <button
-                onClick={handleSignOut}
+                onClick={() => setIsLogoutModalOpen(true)}
                 disabled={signingOut}
                 className="w-full flex items-center justify-center gap-2 bg-error/20 hover:bg-error/30 text-error border border-error/30 font-bold py-3 px-4 rounded-lg transition-colors disabled:opacity-50"
               >
@@ -130,6 +131,43 @@ export default function LoginPage() {
       </main>
 
       <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+
+      {/* Logout Confirmation Modal */}
+      {isLogoutModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+          <div 
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+            onClick={() => setIsLogoutModalOpen(false)}
+          />
+          
+          <div className="relative w-full max-w-sm bg-surface border border-border rounded-2xl shadow-2xl p-6 animate-in zoom-in-95 duration-300">
+            <h2 className="text-xl font-bold text-text-main font-serif mb-2">
+              Confirm Logout
+            </h2>
+            <p className="text-text-muted mb-6 text-sm">
+              Are you sure you want to log out? Your progress will remain securely saved to your cloud account.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setIsLogoutModalOpen(false)}
+                className="flex-1 py-2.5 bg-surface-raised hover:bg-border text-text-main font-bold rounded-lg transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setIsLogoutModalOpen(false);
+                  handleSignOut();
+                }}
+                className="flex-1 py-2.5 bg-error/20 hover:bg-error/30 text-error border border-error/30 font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

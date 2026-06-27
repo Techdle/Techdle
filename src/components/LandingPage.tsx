@@ -36,16 +36,16 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
         </p>
 
         <div className="flex flex-col items-center gap-4 w-full">
-          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full mb-6">
             <Link
               href="/login"
-              className="w-48 py-4 bg-surface hover:bg-surface-raised text-text-main font-bold rounded-full text-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-border"
+              className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-surface hover:bg-surface-raised text-text-main font-bold rounded-full text-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-border"
             >
               Log In
             </Link>
             <button
               onClick={() => onSelectMode('daily')}
-              className="w-48 py-4 bg-primary hover:bg-primary/90 text-background font-bold rounded-full text-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+              className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-primary hover:bg-primary/90 text-background font-bold rounded-full text-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
             >
               <Play className="w-5 h-5 fill-current" />
               Play

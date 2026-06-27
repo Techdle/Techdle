@@ -17,7 +17,7 @@
   {
     "id": "dns-misconfig",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "overheating-laptop",
@@ -42,7 +42,7 @@
   {
     "id": "router-firmware",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "phished-account",
@@ -62,7 +62,7 @@
   {
     "id": "ip-conflict",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "dead-motherboard",
@@ -72,7 +72,7 @@
   {
     "id": "broadcast-storm",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "ransomware-attack",
@@ -92,7 +92,7 @@
   {
     "id": "unplugged-ethernet",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "locked-ad-account",
@@ -107,7 +107,7 @@
   {
     "id": "vpn-auth-failure",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "outdated-video-drivers",
@@ -122,7 +122,7 @@
   {
     "id": "rogue-dhcp",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "mdm-policy-violation",
@@ -157,7 +157,7 @@
   {
     "id": "mac-address-filtering",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "faulty-keyboard",
@@ -342,7 +342,7 @@
   {
     "id": "stale-dns-cache",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "nested-virtualization-fail",
@@ -352,7 +352,7 @@
   {
     "id": "hidden-ssid-connection-fail",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-font-cache",
@@ -362,12 +362,12 @@
   {
     "id": "network-drive-mapped-wrong",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "stale-vpn-route",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "disk-sectors-failing",
@@ -397,7 +397,7 @@
   {
     "id": "network-printer-offline",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "multiple-antivirus-conflict",
@@ -417,7 +417,7 @@
   {
     "id": "authentication-loop-website",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "failed-windows-hello",
@@ -447,7 +447,7 @@
   {
     "id": "premission-denied-share",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "outlook-attachment-blocked",
@@ -497,7 +497,7 @@
   {
     "id": "vpn-dns-leak",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-power-plan",
@@ -507,32 +507,32 @@
   {
     "id": "nps-network-policy-blocking",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "network-bridge-misconfig",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "mapped-drive-reconnect-on-login",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "outlook-autodiscover-failure",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "stale-arp-cache",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "smtp-relay-blocked",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "outlook-rules-not-running",
@@ -557,32 +557,32 @@
   {
     "id": "docker-port-conflict",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "port-channel-misconfig",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "dnssec-validation-failure",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "smb-signing-mismatch",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "dhcp-scope-exhausted",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "stp-topology-change-loop",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "missing-windows-feature",
@@ -612,7 +612,7 @@
   {
     "id": "tenant-restrictions-blocking",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-calendar-permissions",
@@ -622,7 +622,7 @@
   {
     "id": "sip-trunk-authentication-fail",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "vm-license-expired",
@@ -647,7 +647,7 @@
   {
     "id": "docker-image-pull-auth",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "git-merge-conflict-residue",
@@ -672,27 +672,27 @@
   {
     "id": "ssl-certificate-chain-incomplete",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "rogue-dhcp-server",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "cable-modem-frequency-drift",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "wireless-channel-overlap-interference",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "vpn-split-tunnel-misconfig",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupted-group-policy-cache",
@@ -712,17 +712,17 @@
   {
     "id": "dns-stale-records-after-migration",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "load-balancer-sticky-session-failure",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "dns-filter-blocking-legitimate",
     "category": "Security",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupted-ssh-known-hosts",
@@ -742,7 +742,7 @@
   {
     "id": "firewall-blocking-application",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-tcpip-stack",
@@ -752,7 +752,7 @@
   {
     "id": "nlb-port-rule-misconfig",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "service-dependency-failed",
@@ -772,7 +772,7 @@
   {
     "id": "internal-lb-pool-empty",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "terraform-state-lock",
@@ -787,7 +787,7 @@
   {
     "id": "database-connection-pool-exhausted",
     "category": "Software",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-web-config",
@@ -847,7 +847,7 @@
   {
     "id": "remote-desktop-credSSP-error",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "vcenter-certificate-expired",
@@ -857,12 +857,12 @@
   {
     "id": "cluster-quorum-lost",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "ntp-time-sync-fail",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "sms-two-factor-delay",
@@ -882,7 +882,7 @@
   {
     "id": "nlb-port-rules-persistence",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "power-scheme-pcie-link",
@@ -907,7 +907,7 @@
   {
     "id": "nfs-permission-mismatch",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "scheduled-task-time-trigger-wrong",
@@ -922,7 +922,7 @@
   {
     "id": "ipv6-disabled-services",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "gpo-loopback-processing-issue",
@@ -962,12 +962,12 @@
   {
     "id": "smtp-relay-timing-out",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "terminal-server-license-expired",
     "category": "Security",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "onedrive-sync-throttling",
@@ -987,12 +987,12 @@
   {
     "id": "ldap-referral-chase-error",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "mqtt-broker-connection-loss",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "docker-container-time-skew",
@@ -1007,7 +1007,7 @@
   {
     "id": "replication-lag-database",
     "category": "Software",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "github-action-secret-expired",
@@ -1017,7 +1017,7 @@
   {
     "id": "ssl-weak-cipher-rejected",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "corrupt-globalmoniker-com",
@@ -1027,7 +1027,7 @@
   {
     "id": "nlb-port-rules-timeout",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "bitlocker-suspend-failed",
@@ -1042,7 +1042,7 @@
   {
     "id": "dhcp-relay-not-forwarding",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   },
   {
     "id": "azure-vm-disk-cache-wrong",
@@ -1052,6 +1052,6 @@
   {
     "id": "wifi-6e-client-incompatible",
     "category": "Network",
-    "difficulty": "Medium"
+    "difficulty": "Hard"
   }
 ]

@@ -3,7 +3,7 @@ import { GameState, Guess, ClientPuzzle } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getDailyP1PuzzleId, fetchPuzzleChunk } from '../lib/puzzles';
+import { getRandomP1PuzzleId, fetchPuzzleChunk, fetchDictionary } from '../lib/puzzles';
 
 const MAX_GUESSES = 3;
 const MODE = 'p1-outage';
@@ -15,50 +15,58 @@ export function useP1OutageGame() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const aliases: string[] = []; 
+  const [aliases, setAliases] = useState<string[]>([]);
+  const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     let mounted = true;
 
     async function loadInitialData() {
       try {
-        const todayDate = getTodayDateString();
-        const activePuzzleId = await getDailyP1PuzzleId(todayDate);
-
-        if (!activePuzzleId) {
-          if (mounted) setIsLoaded(true);
-          return;
-        }
-
-        const activePuzzle = await fetchPuzzleChunk(activePuzzleId);
+        const dict = await fetchDictionary();
         if (!mounted) return;
-        setPuzzle(activePuzzle);
+        setAliases(dict);
 
         const savedState = loadGameStateByMode(MODE);
+        
+        let initialPuzzleId: string | undefined;
+        let initialSeenIds = new Set<string>();
 
-        if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
-          if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
-            const res = await fetch('/api/guess', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ puzzleId: activePuzzle.id, guess: 'restore', isGameOver: true }),
-            });
-            const data = await res.json();
-            if (data.fullPuzzle) {
-              savedState.fullPuzzle = data.fullPuzzle;
-            }
+        if (savedState && savedState.status === 'playing') {
+          initialPuzzleId = savedState.puzzleId;
+        }
+        
+        if (!initialPuzzleId) {
+          initialPuzzleId = await getRandomP1PuzzleId(initialSeenIds);
+          if (initialPuzzleId) {
+            initialSeenIds.add(initialPuzzleId);
           }
-          setState(savedState);
-          setIncorrectCount(savedState.guesses.filter(g => g.status === 'incorrect').length);
         } else {
-          setState({
-            puzzleId: activePuzzle.id,
-            date: todayDate,
-            guesses: [],
-            status: 'playing',
-            lastPlayedAt: Date.now(),
-            mode: MODE,
-          });
+          initialSeenIds.add(initialPuzzleId);
+        }
+
+        if (!mounted) return;
+        setSeenIds(initialSeenIds);
+
+        if (initialPuzzleId) {
+          const activePuzzle = await fetchPuzzleChunk(initialPuzzleId);
+          if (!mounted) return;
+          setPuzzle(activePuzzle);
+
+          if (savedState && savedState.status === 'playing') {
+            setState(savedState);
+            setIncorrectCount(savedState.guesses.filter(g => g.status === 'incorrect').length);
+          } else {
+            setState({
+              puzzleId: initialPuzzleId,
+              date: getTodayDateString(),
+              guesses: [],
+              status: 'playing',
+              lastPlayedAt: Date.now(),
+              mode: MODE,
+            });
+            setIncorrectCount(0);
+          }
         }
       } catch (err) {
         console.error("Failed to load P1 game:", err);
@@ -76,6 +84,38 @@ export function useP1OutageGame() {
       saveGameStateByMode(MODE, state);
     }
   }, [state]);
+
+  const loadNextPuzzle = useCallback(async () => {
+    try {
+      let nextPuzzleId = await getRandomP1PuzzleId(seenIds);
+      let newSeen = new Set(seenIds);
+
+      if (!nextPuzzleId) {
+        newSeen = new Set<string>();
+        nextPuzzleId = await getRandomP1PuzzleId(newSeen);
+        if (!nextPuzzleId) return;
+      }
+      
+      newSeen.add(nextPuzzleId);
+      setSeenIds(newSeen);
+
+      const nextPuzzleChunk = await fetchPuzzleChunk(nextPuzzleId);
+      setPuzzle(nextPuzzleChunk);
+
+      setState(prev => ({
+        puzzleId: nextPuzzleId!,
+        date: getTodayDateString(),
+        guesses: [],
+        status: 'playing',
+        lastPlayedAt: Date.now(),
+        mode: MODE,
+        fullPuzzle: undefined,
+      }));
+      setIncorrectCount(0);
+    } catch (err) {
+      console.error("Failed to load next puzzle:", err);
+    }
+  }, [seenIds]);
 
   const submitGuess = useCallback(async (guessText: string) => {
     if (!state || !puzzle || state.status !== 'playing' || isSubmitting) return;
@@ -141,8 +181,8 @@ export function useP1OutageGame() {
   }, [state, puzzle, user, isSubmitting]);
 
   const resetGame = useCallback(async () => {
-    // Cannot reset P1, it's deterministic per day.
-  }, []);
+    await loadNextPuzzle();
+  }, [loadNextPuzzle]);
 
-  return { puzzle, state, isLoaded, submitGuess, resetGame, MAX_GUESSES, incorrectCount, isSubmitting, aliases };
+  return { puzzle, state, isLoaded, submitGuess, resetGame, loadNextPuzzle, MAX_GUESSES, incorrectCount, isSubmitting, aliases };
 }

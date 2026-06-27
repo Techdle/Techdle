@@ -41,7 +41,7 @@ console.log(`Generated public/dictionary.json with ${dictionary.length} entries`
 const metadata = puzzles.map((p) => ({
   id: p.id,
   category: p.category,
-  difficulty: p.difficulty || 'Medium',
+  difficulty: p.rawLogs ? 'Hard' : (p.difficulty || 'Medium'),
 }));
 fs.writeFileSync(
   path.join(publicPuzzlesDir, 'metadata.json'),
