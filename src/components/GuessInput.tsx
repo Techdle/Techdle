@@ -152,7 +152,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
               role="option"
               aria-selected={i === selectedIndex}
               onClick={() => selectSuggestion(s)}
-              className={`px-4 py-3 cursor-pointer text-text-main border-b border-border/50 last:border-0 transition-colors ${i === selectedIndex ? 'bg-surface-raised' : 'hover:bg-surface-raised'}`}
+              className={`px-4 py-4 cursor-pointer text-text-main border-b border-border/50 last:border-0 transition-colors ${i === selectedIndex ? 'bg-surface-raised' : 'hover:bg-surface-raised'}`}
             >
               {renderSuggestion(s, input.trim())}
             </li>
