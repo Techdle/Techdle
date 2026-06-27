@@ -1,0 +1,11 @@
+{
+  "id": "deleted-system-dll",
+  "category": "Software",
+  "clues": [
+    "Several applications that were working yesterday now fail to launch with error messages.",
+    "Each failing application shows a different error referencing missing system components.",
+    "The affected applications all require the same Microsoft runtime library.",
+    "A cleanup utility was run yesterday to 'free up disk space' by removing unnecessary files.",
+    "Running System File Checker reports multiple corrupted files and repairs them successfully."
+  ]
+}

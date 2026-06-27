@@ -1,0 +1,17 @@
+{
+  "id": "dns-filter-blocking-legitimate",
+  "category": "Security",
+  "clues": [
+    "Users in the office cannot access a specific website that is required for their work.",
+    "The website is accessible from outside the office network (home, mobile data).",
+    "Other websites hosted on the same platform are accessible without issues.",
+    "Pinging the website's domain returns 'could not find host' from the affected network.",
+    "The company uses a DNS filtering service that blocks categories of websites by domain."
+  ],
+  "rawLogs": [
+    "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
+  ]
+}

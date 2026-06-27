@@ -1,0 +1,11 @@
+{
+  "id": "gpu-artifact-glitch",
+  "category": "Hardware",
+  "clues": [
+    "Random colored shapes and patterns appear on screen when running any visually intensive task.",
+    "The artifacts are still visible in the BIOS screen and Windows boot logo.",
+    "Temperatures for the graphics card remain under 70°C.",
+    "Reinstalling graphics drivers and rolling back to older versions does not help.",
+    "The GPU has been overclocked with a custom voltage curve for the past year."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "corrupted-ssh-known-hosts",
+  "category": "Security",
+  "clues": [
+    "SSH connections to a server that worked yesterday now fail with a host key warning.",
+    "The warning message says 'REMOTE HOST IDENTIFICATION HAS CHANGED'.",
+    "The server being connected to has been running continuously and has not been reinstalled.",
+    "The user's SSH known_hosts file contains multiple entries for the same server IP.",
+    "The duplicate entries have different host key fingerprints suggest a MITM attack or corrupted file."
+  ]
+}

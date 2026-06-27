@@ -1,17 +1,17 @@
-import { Puzzle, GameState } from '../types/game';
+import { ClientPuzzle, GameState, Puzzle } from '../types/game';
 import { ClueList } from './ClueList';
 import { GuessInput } from './GuessInput';
 import { ResolutionTicket } from './ResolutionTicket';
 import { ShareButton } from './ShareButton';
 import { TryOtherModesLink } from './TryOtherModesLink';
-import { getAllAliases } from '../lib/puzzles';
 
 interface GameBoardProps {
-  puzzle: Puzzle;
+  puzzle: ClientPuzzle;
   state: GameState;
   onSubmit: (guess: string) => void;
   maxGuesses: number;
   incorrectCount: number;
+  aliases: string[];
 }
 
 export function GameBoard({ 
@@ -20,6 +20,7 @@ export function GameBoard({
   onSubmit, 
   maxGuesses, 
   incorrectCount,
+  aliases,
 }: GameBoardProps) {
   const isGameOver = state.status !== 'playing';
   const isWin = state.status === 'won';
@@ -37,10 +38,10 @@ export function GameBoard({
       <ClueList puzzle={puzzle} state={state} maxGuesses={maxGuesses} />
 
       {!isGameOver ? (
-        <GuessInput onSubmit={onSubmit} disabled={false} shakeKey={incorrectCount} targets={getAllAliases()} />
+        <GuessInput onSubmit={onSubmit} disabled={false} shakeKey={incorrectCount} targets={aliases} />
       ) : (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <ResolutionTicket puzzle={puzzle} isWin={isWin} />
+          {state.fullPuzzle && <ResolutionTicket puzzle={state.fullPuzzle} isWin={isWin} />}
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <ShareButton state={state} maxGuesses={maxGuesses} />
             <TryOtherModesLink />

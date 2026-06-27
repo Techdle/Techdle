@@ -1,0 +1,17 @@
+{
+  "id": "outlook-autodiscover-failure",
+  "category": "Network",
+  "clues": [
+    "Outlook cannot set up a new email account automatically.",
+    "Manually entering server settings for the email account works and sends/receives fine.",
+    "The autodiscover process times out when trying to connect to autodiscover.company.com.",
+    "Opening 'https://autodiscover.company.com/autodiscover/autodiscover.xml' in a browser shows an error.",
+    "The DNS record for 'autodiscover.company.com' points to an old server that was decommissioned."
+  ],
+  "rawLogs": [
+    "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
+  ]
+}

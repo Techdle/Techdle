@@ -1,7 +1,8 @@
-import { ClientPuzzle, GameState, Puzzle } from '../types/game';
+import { ClientPuzzle, GameState } from '../types/game';
+import { Bot, Terminal } from 'lucide-react';
 
 interface ClueListProps {
-  puzzle: ClientPuzzle | Puzzle;
+  puzzle: ClientPuzzle;
   state: GameState;
   maxGuesses: number;
 }

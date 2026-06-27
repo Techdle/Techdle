@@ -1,0 +1,11 @@
+{
+  "id": "tripped-psu-protection",
+  "category": "Hardware",
+  "clues": [
+    "The computer suddenly stopped working and will not power on at all.",
+    "Nothing happens when the power button is pressed — no fans, no lights, no sound.",
+    "The power supply's fan also does not spin under any condition.",
+    "The computer was in use during an electrical storm when a bright flash occurred nearby.",
+    "Unplugging the power cord, waiting 30 seconds, and plugging it back in restores function."
+  ]
+}

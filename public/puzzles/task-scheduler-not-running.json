@@ -1,0 +1,11 @@
+{
+  "id": "task-scheduler-not-running",
+  "category": "Software",
+  "clues": [
+    "Scheduled maintenance tasks that should run automatically are not executing.",
+    "Backup and disk cleanup operations that happen overnight have not occurred for several days.",
+    "The Task Scheduler console shows tasks with 'Ready' status that never actually start.",
+    "Manually running the tasks from Task Scheduler completes successfully.",
+    "The Task Scheduler service shows as 'Running' in the Services panel."
+  ]
+}

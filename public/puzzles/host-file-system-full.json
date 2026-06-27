@@ -1,0 +1,11 @@
+{
+  "id": "host-file-system-full",
+  "category": "Software",
+  "clues": [
+    "A virtual machine is running very slowly and applications are timing out.",
+    "The virtual machine's administrator reports running out of disk space inside the VM.",
+    "The host server's storage shows very little free space remaining.",
+    "The VM's virtual hard disk (VHDX) file has been growing continuously.",
+    "The VM's log files are not being rotated and have filled the host's storage volume."
+  ]
+}

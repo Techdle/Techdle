@@ -77,6 +77,7 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
           onSubmit={submitGuess}
           maxGuesses={MAX_GUESSES}
           incorrectCount={incorrectCount}
+          aliases={[]}
         />
       </div>
     </main>

@@ -1,0 +1,11 @@
+{
+  "id": "corrupt-user-profile",
+  "category": "Software",
+  "clues": [
+    "After logging in, the desktop looks completely different from how it was yesterday.",
+    "All their desktop shortcuts and pinned taskbar icons are missing.",
+    "A balloon notification says 'You've been signed in with a temporary profile'.",
+    "Any files saved to the desktop during this session disappear after a reboot.",
+    "Checking C:\\Users\\ shows a folder named 'username.000' or 'TEMP'."
+  ]
+}

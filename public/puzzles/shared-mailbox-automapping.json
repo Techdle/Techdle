@@ -1,0 +1,11 @@
+{
+  "id": "shared-mailbox-automapping",
+  "category": "Software",
+  "clues": [
+    "A shared mailbox that should be accessible to the support team is not appearing in Outlook.",
+    "The user has been granted Full Access permissions to the shared mailbox in Exchange Admin Center.",
+    "Adding the shared mailbox manually in Outlook account settings works temporarily.",
+    "The mailbox disappears from Outlook after the user restarts the application.",
+    "The Exchange AutoMapping feature is not populating the shared mailbox for this user."
+  ]
+}

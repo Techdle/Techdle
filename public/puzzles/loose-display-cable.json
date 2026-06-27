@@ -1,0 +1,11 @@
+{
+  "id": "loose-display-cable",
+  "category": "Hardware",
+  "clues": [
+    "The monitor screen is black but the computer is clearly powered on and running.",
+    "The PC tower is clearly powered on and you can hear the Windows login sound.",
+    "The monitor briefly displays a floating 'No Signal' box before going to sleep.",
+    "The user recently moved their desk to clean behind it.",
+    "Pushing the connector firmly into the back of the monitor instantly brings the picture back."
+  ]
+}

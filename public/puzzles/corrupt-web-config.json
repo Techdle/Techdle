@@ -1,0 +1,11 @@
+{
+  "id": "corrupt-web-config",
+  "category": "Software",
+  "clues": [
+    "An ASP.NET web application returns a '500 Internal Server Error' HTTP response.",
+    "The error occurs on every page of the application, not just specific ones.",
+    "Detailed error messages are disabled in the browser but Event Viewer shows configuration errors.",
+    "The application's web.config file was modified during an attempted configuration change.",
+    "The web.config file contains an XML syntax error from the incomplete edit."
+  ]
+}

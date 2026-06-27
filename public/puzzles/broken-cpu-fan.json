@@ -1,0 +1,11 @@
+{
+  "id": "broken-cpu-fan",
+  "category": "Hardware",
+  "clues": [
+    "The computer displays a warning on a black screen and refuses to proceed with booting.",
+    "The computer refuses to boot past the BIOS logo.",
+    "Looking through the side panel, the cooler on top of the processor is completely stationary.",
+    "The fan blades are visibly caked in thick, grey dust.",
+    "Flicking the fan blade with a pen reveals it is completely seized up and won't spin."
+  ]
+}

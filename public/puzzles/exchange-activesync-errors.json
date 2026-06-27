@@ -1,0 +1,11 @@
+{
+  "id": "exchange-activesync-errors",
+  "category": "Software",
+  "clues": [
+    "Mobile devices are no longer synchronizing email, calendar, and contacts with Exchange.",
+    "The mobile email app shows 'Unable to connect to server' or 'Authentication failed'.",
+    "Desktop Outlook and Outlook Web Access continue to work normally.",
+    "Users have not changed their passwords or device settings.",
+    "The Exchange ActiveSync virtual directory settings were recently modified during a security hardening review."
+  ]
+}

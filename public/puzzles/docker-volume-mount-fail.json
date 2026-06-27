@@ -1,0 +1,11 @@
+{
+  "id": "docker-volume-mount-fail",
+  "category": "Software",
+  "clues": [
+    "A Docker container fails to start with an error about a missing volume mount.",
+    "The volume mount path specified in the docker-compose file exists on the host system.",
+    "Other containers on the same host start without any issues.",
+    "The error message mentions 'file system sharing' or 'drive sharing' specifically.",
+    "Docker Desktop's shared drive settings do not include the drive where the mount path is located."
+  ]
+}

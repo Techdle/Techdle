@@ -1,7 +1,7 @@
-import { GameState, Puzzle } from '../types/game';
+import { ClientPuzzle, GameState } from '../types/game';
 
 interface RawLogViewerProps {
-  puzzle: Puzzle & { rawLogs?: string[] };
+  puzzle: ClientPuzzle & { rawLogs?: string[] };
   state: GameState;
   maxGuesses: number;
 }

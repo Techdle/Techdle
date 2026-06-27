@@ -1,0 +1,11 @@
+{
+  "id": "gpu-driver-timeout",
+  "category": "Software",
+  "clues": [
+    "The screen goes black for a few seconds and then recovers with a notification about a driver issue.",
+    "The notification says the display driver has been stopped and successfully recovered.",
+    "This happens most frequently when watching videos or scrolling through image-heavy websites.",
+    "The GPU hardware acceleration feature is enabled in the web browser settings.",
+    "Disabling hardware acceleration in the browser completely stops the black screen episodes."
+  ]
+}

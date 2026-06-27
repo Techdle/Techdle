@@ -1,0 +1,11 @@
+{
+  "id": "failed-motherboard-ethernet",
+  "category": "Hardware",
+  "clues": [
+    "A desktop computer suddenly lost all wired network connectivity during a thunderstorm.",
+    "The network icon shows a red X indicating no connection.",
+    "The Ethernet port's link lights are completely off even with a known-good cable plugged in.",
+    "Device Manager shows the network adapter with a yellow exclamation mark and error 'Code 10'.",
+    "A USB-to-Ethernet adapter immediately restores network functionality."
+  ]
+}

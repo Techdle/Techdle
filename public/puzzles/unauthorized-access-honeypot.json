@@ -1,0 +1,11 @@
+{
+  "id": "unauthorized-access-honeypot",
+  "category": "Security",
+  "clues": [
+    "Security monitoring detected an alert from a system that should have no legitimate users.",
+    "The alert was triggered by an authentication attempt to an intentionally unused service account.",
+    "The attempted login came from an internal IP address in the development network segment.",
+    "The account used in the attempt hasn't been active in over six months.",
+    "The system is a decoy server specifically deployed to detect unauthorized network access."
+  ]
+}

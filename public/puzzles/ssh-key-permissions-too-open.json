@@ -1,0 +1,11 @@
+{
+  "id": "ssh-key-permissions-too-open",
+  "category": "Security",
+  "clues": [
+    "SSH authentication using a key file fails with 'Permissions 0644 for private key are too open'.",
+    "The user copied their SSH key file from a backup to a new computer.",
+    "The SSH client refuses to use the key and falls back to password authentication.",
+    "Other SSH key files in the same directory work without issues.",
+    "The affected private key file has read permissions granted to the Users group."
+  ]
+}

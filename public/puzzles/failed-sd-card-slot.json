@@ -1,0 +1,11 @@
+{
+  "id": "failed-sd-card-slot",
+  "category": "Hardware",
+  "clues": [
+    "The laptop cannot read any memory cards inserted into its built-in slot.",
+    "The card slot was working last week but stopped after a card was inserted with some force.",
+    "Windows makes the 'device connected' sound when a card is inserted but no drive letter appears.",
+    "Disk Management shows the card as 'Unknown' and 'Not Initialized' when inserted.",
+    "The same memory card works perfectly when using a USB card reader instead."
+  ]
+}

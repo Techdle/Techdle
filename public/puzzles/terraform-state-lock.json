@@ -1,0 +1,11 @@
+{
+  "id": "terraform-state-lock",
+  "category": "Software",
+  "clues": [
+    "A Terraform deployment fails with 'Error acquiring the state lock'.",
+    "Another team member was working on the same infrastructure earlier today.",
+    "The error message includes the lock ID and the user holding the lock.",
+    "The other team member confirms they have finished their work and the process exited normally.",
+    "The Terraform state backend is configured to use a remote storage backend with locking."
+  ]
+}

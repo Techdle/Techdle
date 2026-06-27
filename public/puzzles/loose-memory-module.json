@@ -1,0 +1,11 @@
+{
+  "id": "loose-memory-module",
+  "category": "Hardware",
+  "clues": [
+    "The computer emits a series of beeps and shows nothing on the screen when powered on.",
+    "The beep pattern is consistent with a memory initialization failure according to the motherboard manual.",
+    "The computer was recently moved to a new desk location.",
+    "Reseating the RAM sticks by removing and reinserting them does not initially resolve the issue.",
+    "After cleaning the RAM contacts with a pencil eraser and reseating, the computer boots normally."
+  ]
+}

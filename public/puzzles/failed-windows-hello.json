@@ -1,0 +1,11 @@
+{
+  "id": "failed-windows-hello",
+  "category": "Software",
+  "clues": [
+    "The user can no longer log into their computer using facial recognition or fingerprint.",
+    "Windows prompts the user to set up a PIN as an alternative sign-in method.",
+    "The biometric reader's LED lights up when the user touches it but does not authenticate.",
+    "Device Manager shows the biometric device with a warning symbol.",
+    "The issue started after a Windows Update that included security enhancements for biometric authentication."
+  ]
+}

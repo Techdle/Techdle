@@ -1,0 +1,11 @@
+{
+  "id": "no-poste-beeps",
+  "category": "Hardware",
+  "clues": [
+    "A desktop PC powers on with fans spinning and lights on, but no display output.",
+    "There are zero POST beeps from the internal speaker, even though one is connected.",
+    "The keyboard and mouse LEDs do not light up during boot.",
+    "Reseating the RAM and GPU does not change anything.",
+    "The system will only boot if a single RAM stick is installed in the second slot."
+  ]
+}

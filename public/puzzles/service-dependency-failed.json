@@ -1,0 +1,11 @@
+{
+  "id": "service-dependency-failed",
+  "category": "Software",
+  "clues": [
+    "A critical Windows service fails to start with 'Error 1068: The dependency service failed to start'.",
+    "The service was running normally until an application was uninstalled yesterday.",
+    "The uninstalled application removed a shared component that another service depends on.",
+    "The dependent service's executable or DLL files are still present but the service registration is corrupted.",
+    "Reinstalling the dependent component or repairing the service registration resolves the issue."
+  ]
+}

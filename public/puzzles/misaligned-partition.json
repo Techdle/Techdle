@@ -1,0 +1,11 @@
+{
+  "id": "misaligned-partition",
+  "category": "Software",
+  "clues": [
+    "A new SSD is performing far slower than expected in benchmark tests.",
+    "The drive was cloned from an older mechanical hard drive.",
+    "The SSD's advertised speeds are over 500 MB/s but actual transfers are under 100 MB/s.",
+    "The drive is detected correctly and has plenty of free space.",
+    "The partition on the SSD starts at sector 63 instead of the modern alignment standard."
+  ]
+}

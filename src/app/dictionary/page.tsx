@@ -5,7 +5,6 @@ import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp } from '
 import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { StyledSelect } from '@/components/StyledSelect';
-import { getAllPuzzles } from '@/lib/puzzles';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 
 interface DictEntry {
@@ -102,7 +101,9 @@ export default function DictionaryPage() {
   useEffect(() => {
     setIsLoading(true);
     try {
-      setEntries(getAllPuzzles());
+      import('@/lib/puzzles').then(m => m.fetchPuzzleMetadata()).then(data => {
+        setEntries(data);
+      });
       
       // Load unlocked puzzles
       const results = loadArchiveResults();

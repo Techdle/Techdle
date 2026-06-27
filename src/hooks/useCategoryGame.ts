@@ -1,16 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { GameState, Guess, Puzzle, GameMode } from '../types/game';
+import { GameState, Guess, ClientPuzzle, GameMode } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
-import { useAuth } from '../components/AuthProvider';
-import { getAllPuzzles, getRandomPuzzleByCategory, getAllAliases } from '../lib/puzzles';
-import { isGuessCorrect } from '../lib/utils';
+import { getRandomPuzzleIdByCategory, fetchDictionary, fetchPuzzleChunk } from '../lib/puzzles';
 
 const MAX_GUESSES = 6;
 const MODE: GameMode = 'category';
 
 export function useCategoryGame(selectedCategory: string) {
-  const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
+  const [puzzle, setPuzzle] = useState<ClientPuzzle | null>(null);
   const [state, setState] = useState<GameState | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [incorrectCount, setIncorrectCount] = useState(0);
@@ -18,56 +16,66 @@ export function useCategoryGame(selectedCategory: string) {
   const [aliases, setAliases] = useState<string[]>([]);
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
 
-  // Use a specialized storage key for each category so they don't overwrite each other
   const storageKey = `${MODE}-${selectedCategory}` as GameMode;
 
   useEffect(() => {
+    let mounted = true;
+
     async function loadInitialData() {
-      const allAliases = getAllAliases();
-      for (let i = allAliases.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allAliases[i], allAliases[j]] = [allAliases[j], allAliases[i]];
-      }
-      setAliases(allAliases);
+      try {
+        const dict = await fetchDictionary();
+        if (!mounted) return;
+        setAliases(dict);
 
-      const savedState = loadGameStateByMode(storageKey);
-      
-      let initialPuzzle: Puzzle | undefined;
-      const initialSeenIds = new Set<string>();
+        const savedState = loadGameStateByMode(storageKey);
+        
+        let initialPuzzleId: string | undefined;
+        let initialSeenIds = new Set<string>();
 
-      if (savedState && savedState.status === 'playing') {
-        initialPuzzle = getAllPuzzles().find((p) => p.id === savedState.puzzleId);
-      }
-      
-      if (!initialPuzzle) {
-        initialPuzzle = getRandomPuzzleByCategory(selectedCategory, initialSeenIds);
-        if (initialPuzzle) {
-          initialSeenIds.add(initialPuzzle.id);
+        if (savedState && savedState.status === 'playing') {
+          initialPuzzleId = savedState.puzzleId;
         }
-      } else {
-        initialSeenIds.add(initialPuzzle.id);
-      }
+        
+        if (!initialPuzzleId) {
+          initialPuzzleId = await getRandomPuzzleIdByCategory(selectedCategory, initialSeenIds);
+          if (initialPuzzleId) {
+            initialSeenIds.add(initialPuzzleId);
+          }
+        } else {
+          initialSeenIds.add(initialPuzzleId);
+        }
 
-      setSeenIds(initialSeenIds);
-      setPuzzle(initialPuzzle || null);
+        if (!mounted) return;
+        setSeenIds(initialSeenIds);
 
-      if (savedState && savedState.status === 'playing' && initialPuzzle) {
-        setState(savedState);
-      } else if (initialPuzzle) {
-        setState({
-          puzzleId: initialPuzzle.id,
-          date: getTodayDateString(),
-          guesses: [],
-          status: 'playing',
-          lastPlayedAt: Date.now(),
-          mode: MODE,
-          consecutiveCorrect: 0,
-        });
+        if (initialPuzzleId) {
+          const initialPuzzleChunk = await fetchPuzzleChunk(initialPuzzleId);
+          if (!mounted) return;
+          setPuzzle(initialPuzzleChunk);
+
+          if (savedState && savedState.status === 'playing') {
+            setState(savedState);
+          } else {
+            setState({
+              puzzleId: initialPuzzleChunk.id,
+              date: getTodayDateString(),
+              guesses: [],
+              status: 'playing',
+              lastPlayedAt: Date.now(),
+              mode: MODE,
+              consecutiveCorrect: 0,
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load category game:", err);
+      } finally {
+        if (mounted) setIsLoaded(true);
       }
-      setIsLoaded(true);
     }
 
     loadInitialData();
+    return () => { mounted = false; };
   }, [selectedCategory, storageKey]);
 
   useEffect(() => {
@@ -76,29 +84,37 @@ export function useCategoryGame(selectedCategory: string) {
     }
   }, [state, storageKey]);
 
-  const loadNextPuzzle = useCallback(() => {
-    let nextPuzzle = getRandomPuzzleByCategory(selectedCategory, seenIds);
-    if (!nextPuzzle) {
-      const newSeen = new Set<string>();
-      nextPuzzle = getRandomPuzzleByCategory(selectedCategory, newSeen);
-      setSeenIds(newSeen);
-      if (!nextPuzzle) return;
-    } else {
-      setSeenIds(prev => new Set(prev).add(nextPuzzle!.id));
-    }
+  const loadNextPuzzle = useCallback(async () => {
+    try {
+      let nextPuzzleId = await getRandomPuzzleIdByCategory(selectedCategory, seenIds);
+      let newSeen = new Set(seenIds);
 
-    setPuzzle(nextPuzzle);
-    setState(prev => ({
-      puzzleId: nextPuzzle!.id,
-      date: getTodayDateString(),
-      guesses: [],
-      status: 'playing',
-      lastPlayedAt: Date.now(),
-      mode: MODE,
-      consecutiveCorrect: prev?.consecutiveCorrect || 0,
-      fullPuzzle: undefined,
-    }));
-    setIncorrectCount(0);
+      if (!nextPuzzleId) {
+        newSeen = new Set<string>();
+        nextPuzzleId = await getRandomPuzzleIdByCategory(selectedCategory, newSeen);
+        if (!nextPuzzleId) return;
+      }
+
+      newSeen.add(nextPuzzleId);
+      setSeenIds(newSeen);
+
+      const nextPuzzleChunk = await fetchPuzzleChunk(nextPuzzleId);
+      setPuzzle(nextPuzzleChunk);
+
+      setState(prev => ({
+        puzzleId: nextPuzzleId!,
+        date: getTodayDateString(),
+        guesses: [],
+        status: 'playing',
+        lastPlayedAt: Date.now(),
+        mode: MODE,
+        consecutiveCorrect: prev?.consecutiveCorrect || 0,
+        fullPuzzle: undefined,
+      }));
+      setIncorrectCount(0);
+    } catch (err) {
+      console.error("Failed to load next category puzzle:", err);
+    }
   }, [seenIds, selectedCategory]);
 
   const submitGuess = useCallback(async (guessText: string) => {
@@ -106,7 +122,17 @@ export function useCategoryGame(selectedCategory: string) {
 
     setIsSubmitting(true);
     try {
-      const correct = isGuessCorrect(guessText, puzzle);
+      const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
+
+      const res = await fetch('/api/guess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
+      });
+      const data = await res.json();
+      
+      const correct = data.correct === true;
+      const fullPuzzle = data.fullPuzzle;
 
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
@@ -131,12 +157,12 @@ export function useCategoryGame(selectedCategory: string) {
         status: newStatus,
         lastPlayedAt: Date.now(),
         consecutiveCorrect: newStreak,
-        ...(newStatus !== 'playing' ? { fullPuzzle: puzzle } : {}),
+        ...(newStatus !== 'playing' && fullPuzzle ? { fullPuzzle } : {}),
       };
 
       setState(newState);
-      
-      // We don't save overall high scores for category drills yet
+    } catch (err) {
+      console.error("Failed to submit guess:", err);
     } finally {
       setIsSubmitting(false);
     }

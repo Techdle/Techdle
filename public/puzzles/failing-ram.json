@@ -1,0 +1,11 @@
+{
+  "id": "failing-ram",
+  "category": "Hardware",
+  "clues": [
+    "Applications crash randomly and the computer occasionally shows blue screens with memory-related errors.",
+    "The system sometimes fails to POST, emitting a continuous beep code.",
+    "Large file transfers occasionally fail with cyclic redundancy checks (CRC) errors.",
+    "Blue Screen of Death (BSOD) with stop code 'MEMORY_MANAGEMENT'.",
+    "MemTest86 reports thousands of errors within the first pass."
+  ]
+}

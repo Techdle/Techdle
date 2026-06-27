@@ -1,0 +1,11 @@
+{
+  "id": "restore-points-disabled",
+  "category": "Software",
+  "clues": [
+    "System Restore cannot find any restore points to use for recovery.",
+    "The user has never manually disabled System Protection on their drives.",
+    "A recent 'disk cleanup' operation was run to free up space on the system drive.",
+    "The cleanup was configured to include 'System Restore and Shadow Copies' in its scope.",
+    "Checking System Protection shows that all restore points have been cleared."
+  ]
+}

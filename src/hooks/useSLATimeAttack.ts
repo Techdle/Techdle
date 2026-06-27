@@ -1,10 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { GameState, Guess, Puzzle } from '../types/game';
+import { GameState, Guess, ClientPuzzle } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getRandomPuzzle, getAllAliases } from '../lib/puzzles';
-import { isGuessCorrect } from '../lib/utils';
+import { getRandomPuzzleId, fetchDictionary, fetchPuzzleChunk } from '../lib/puzzles';
 
 const MAX_GUESSES = 6;
 const MODE = 'sla-time-attack';
@@ -13,7 +12,8 @@ const TIME_BONUS_MS = 15000;
 const TIME_PENALTY_MS = 5000;
 
 export function useSLATimeAttack() {
-  const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
+  const { user } = useAuth();
+  const [puzzle, setPuzzle] = useState<ClientPuzzle | null>(null);
   const [state, setState] = useState<GameState | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [incorrectCount, setIncorrectCount] = useState(0);
@@ -28,58 +28,64 @@ export function useSLATimeAttack() {
 
   // Initialization
   useEffect(() => {
+    let mounted = true;
     async function loadInitialData() {
-      const allAliases = getAllAliases();
-      for (let i = allAliases.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allAliases[i], allAliases[j]] = [allAliases[j], allAliases[i]];
-      }
-      setAliases(allAliases);
+      try {
+        const dict = await fetchDictionary();
+        if (!mounted) return;
+        setAliases(dict);
 
-      const savedState = loadGameStateByMode(MODE);
-      let initialPuzzle: Puzzle | undefined;
-      const initialSeenIds = new Set<string>();
+        const savedState = loadGameStateByMode(MODE);
+        let initialPuzzleId: string | undefined;
+        let initialSeenIds = new Set<string>();
 
-      if (savedState && savedState.status === 'playing') {
-        // SLA mode shouldn't really resume mid-game due to the timer, 
-        // but we can try if there was time remaining
-        if ((savedState.timeRemaining || 0) > 0) {
-          setTimeRemaining(savedState.timeRemaining!);
-          initialPuzzle = getRandomPuzzle(initialSeenIds); // just get a new one anyway
-        } else {
-          savedState.status = 'lost';
+        if (savedState && savedState.status === 'playing') {
+          if ((savedState.timeRemaining || 0) > 0) {
+            setTimeRemaining(savedState.timeRemaining!);
+            initialPuzzleId = await getRandomPuzzleId(initialSeenIds);
+          } else {
+            savedState.status = 'lost';
+          }
         }
-      }
-      
-      if (!initialPuzzle && (!savedState || savedState.status !== 'playing')) {
-        initialPuzzle = getRandomPuzzle(initialSeenIds);
-      }
-
-      if (initialPuzzle) {
-        initialSeenIds.add(initialPuzzle.id);
-        setSeenIds(initialSeenIds);
-        setPuzzle(initialPuzzle);
         
-        if (!savedState || savedState.status !== 'playing') {
-          setState({
-            puzzleId: initialPuzzle.id,
-            date: getTodayDateString(),
-            guesses: [],
-            status: 'playing',
-            lastPlayedAt: Date.now(),
-            mode: MODE,
-            score: 0,
-            timeRemaining: INITIAL_TIME_MS,
-          });
-          setTimeRemaining(INITIAL_TIME_MS);
-        } else {
-          setState(savedState);
+        if (!initialPuzzleId && (!savedState || savedState.status !== 'playing')) {
+          initialPuzzleId = await getRandomPuzzleId(initialSeenIds);
         }
+
+        if (initialPuzzleId) {
+          initialSeenIds.add(initialPuzzleId);
+          if (!mounted) return;
+          setSeenIds(initialSeenIds);
+          
+          const initialPuzzleChunk = await fetchPuzzleChunk(initialPuzzleId);
+          if (!mounted) return;
+          setPuzzle(initialPuzzleChunk);
+          
+          if (!savedState || savedState.status !== 'playing') {
+            setState({
+              puzzleId: initialPuzzleChunk.id,
+              date: getTodayDateString(),
+              guesses: [],
+              status: 'playing',
+              lastPlayedAt: Date.now(),
+              mode: MODE,
+              score: 0,
+              timeRemaining: INITIAL_TIME_MS,
+            });
+            setTimeRemaining(INITIAL_TIME_MS);
+          } else {
+            setState(savedState);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to load SLA time attack:", err);
+      } finally {
+        if (mounted) setIsLoaded(true);
       }
-      setIsLoaded(true);
     }
 
     loadInitialData();
+    return () => { mounted = false; };
   }, []);
 
   // Timer Logic
@@ -93,7 +99,6 @@ export function useSLATimeAttack() {
 
     const tick = () => {
       if (document.hidden) {
-        // Paused while hidden, just update lastTickRef to prevent massive jump
         lastTickRef.current = Date.now();
         return;
       }
@@ -105,13 +110,25 @@ export function useSLATimeAttack() {
       setTimeRemaining(prev => {
         const nextTime = Math.max(0, prev - delta);
         if (nextTime === 0) {
-          // Time up! Game over.
           setState(s => s ? { 
             ...s, 
             status: 'lost', 
             timeRemaining: 0,
-            fullPuzzle: puzzle || undefined
           } : s);
+          
+          // When time runs out, we need the full puzzle to show the answer!
+          // We fetch it asynchronously so the timer doesn't block
+          if (puzzle) {
+            fetch('/api/guess', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ puzzleId: puzzle.id, guess: 'timeout', isGameOver: true }),
+            }).then(res => res.json()).then(data => {
+              if (data.fullPuzzle) {
+                setState(s => s ? { ...s, fullPuzzle: data.fullPuzzle } : s);
+              }
+            });
+          }
         }
         return nextTime;
       });
@@ -136,7 +153,13 @@ export function useSLATimeAttack() {
 
     setIsSubmitting(true);
     try {
-      const correct = isGuessCorrect(guessText, puzzle);
+      const res = await fetch('/api/guess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver: false }),
+      });
+      const data = await res.json();
+      const correct = data.correct === true;
 
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
@@ -148,47 +171,51 @@ export function useSLATimeAttack() {
       }
 
       if (correct) {
-        // Move to next puzzle immediately
-        let nextPuzzle = getRandomPuzzle(seenIds);
-        if (!nextPuzzle) {
-          const newSeen = new Set<string>();
-          nextPuzzle = getRandomPuzzle(newSeen);
-          setSeenIds(newSeen);
-        } else {
-          setSeenIds(prev => new Set(prev).add(nextPuzzle!.id));
-        }
-
-        setTimeRemaining(prev => Math.min(INITIAL_TIME_MS, prev + TIME_BONUS_MS));
-        setPuzzle(nextPuzzle || null);
+        let nextPuzzleId = await getRandomPuzzleId(seenIds);
+        let newSeen = new Set(seenIds);
         
-        setState({
-          ...state,
-          puzzleId: nextPuzzle?.id || '',
-          guesses: [],
-          score: (state.score || 0) + 1,
-        });
-        setIncorrectCount(0);
+        if (!nextPuzzleId) {
+          newSeen = new Set<string>();
+          nextPuzzleId = await getRandomPuzzleId(newSeen);
+        }
+        if (nextPuzzleId) {
+          newSeen.add(nextPuzzleId);
+          setSeenIds(newSeen);
+          const nextPuzzleChunk = await fetchPuzzleChunk(nextPuzzleId);
+          setPuzzle(nextPuzzleChunk);
+          
+          setTimeRemaining(prev => Math.min(INITIAL_TIME_MS, prev + TIME_BONUS_MS));
+          setState({
+            ...state,
+            puzzleId: nextPuzzleId,
+            guesses: [],
+            score: (state.score || 0) + 1,
+          });
+          setIncorrectCount(0);
+        }
       } else if (newGuesses.length >= MAX_GUESSES) {
-        // Ran out of guesses for this puzzle
-        setTimeRemaining(prev => Math.max(0, prev - TIME_PENALTY_MS)); // extra penalty?
+        setTimeRemaining(prev => Math.max(0, prev - TIME_PENALTY_MS)); 
         
-        // Let's just move them to the next puzzle but not increment score
-        let nextPuzzle = getRandomPuzzle(seenIds);
-        if (!nextPuzzle) {
-          const newSeen = new Set<string>();
-          nextPuzzle = getRandomPuzzle(newSeen);
-          setSeenIds(newSeen);
-        } else {
-          setSeenIds(prev => new Set(prev).add(nextPuzzle!.id));
+        let nextPuzzleId = await getRandomPuzzleId(seenIds);
+        let newSeen = new Set(seenIds);
+        
+        if (!nextPuzzleId) {
+          newSeen = new Set<string>();
+          nextPuzzleId = await getRandomPuzzleId(newSeen);
         }
-
-        setPuzzle(nextPuzzle || null);
-        setState({
-          ...state,
-          puzzleId: nextPuzzle?.id || '',
-          guesses: [],
-        });
-        setIncorrectCount(0);
+        if (nextPuzzleId) {
+          newSeen.add(nextPuzzleId);
+          setSeenIds(newSeen);
+          const nextPuzzleChunk = await fetchPuzzleChunk(nextPuzzleId);
+          setPuzzle(nextPuzzleChunk);
+          
+          setState({
+            ...state,
+            puzzleId: nextPuzzleId,
+            guesses: [],
+          });
+          setIncorrectCount(0);
+        }
       } else {
         setState({
           ...state,
@@ -196,32 +223,39 @@ export function useSLATimeAttack() {
         });
       }
 
+    } catch (err) {
+      console.error("Failed to submit guess SLA:", err);
     } finally {
       setIsSubmitting(false);
     }
   }, [state, puzzle, isSubmitting, timeRemaining, seenIds]);
 
   const resetGame = useCallback(async () => {
-    const newSeen = new Set<string>();
-    const initialPuzzle = getRandomPuzzle(newSeen);
-    if (!initialPuzzle) return;
-    
-    newSeen.add(initialPuzzle.id);
-    setSeenIds(newSeen);
-    setPuzzle(initialPuzzle);
-    
-    setState({
-      puzzleId: initialPuzzle.id,
-      date: getTodayDateString(),
-      guesses: [],
-      status: 'playing',
-      lastPlayedAt: Date.now(),
-      mode: MODE,
-      score: 0,
-      timeRemaining: INITIAL_TIME_MS,
-    });
-    setTimeRemaining(INITIAL_TIME_MS);
-    setIncorrectCount(0);
+    try {
+      const newSeen = new Set<string>();
+      const initialPuzzleId = await getRandomPuzzleId(newSeen);
+      if (!initialPuzzleId) return;
+      
+      newSeen.add(initialPuzzleId);
+      setSeenIds(newSeen);
+      const initialPuzzleChunk = await fetchPuzzleChunk(initialPuzzleId);
+      setPuzzle(initialPuzzleChunk);
+      
+      setState({
+        puzzleId: initialPuzzleId,
+        date: getTodayDateString(),
+        guesses: [],
+        status: 'playing',
+        lastPlayedAt: Date.now(),
+        mode: MODE,
+        score: 0,
+        timeRemaining: INITIAL_TIME_MS,
+      });
+      setTimeRemaining(INITIAL_TIME_MS);
+      setIncorrectCount(0);
+    } catch (err) {
+      console.error("Failed to reset SLA game:", err);
+    }
   }, []);
 
   return { 

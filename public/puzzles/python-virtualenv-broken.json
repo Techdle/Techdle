@@ -1,0 +1,11 @@
+{
+  "id": "python-virtualenv-broken",
+  "category": "Software",
+  "clues": [
+    "A Python application that was running fine yesterday now fails to import a specific module.",
+    "The module is installed and listed in 'pip list' output.",
+    "Running the application from a different terminal also produces the same import error.",
+    "The error mentions the module path pointing to a system Python directory instead of the project's virtual environment.",
+    "The project's virtual environment directory was created on a different drive path that has changed."
+  ]
+}

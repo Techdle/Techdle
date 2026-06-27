@@ -1,0 +1,11 @@
+{
+  "id": "windows-license-expired",
+  "category": "Software",
+  "clues": [
+    "The desktop background has been set to a solid black color and cannot be changed.",
+    "A watermark in the bottom-right corner of the screen says 'Activate Windows'.",
+    "Personalization settings in Windows open only to show a message about activation.",
+    "The watermark appeared after a major hardware change was made to the computer.",
+    "Windows Activation shows 'Error: 0xC004F211' indicating a hardware change has invalidated the license."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "antivirus-quarantined-legitimate-file",
+  "category": "Security",
+  "clues": [
+    "A critical business application fails to launch with 'File not found' error.",
+    "The application's installation directory appears to be incomplete.",
+    "The files were present yesterday when the application was working correctly.",
+    "The Windows Security notification center shows alerts from around the time of the issue.",
+    "The antivirus quarantined an application executable due to a false positive detection."
+  ]
+}

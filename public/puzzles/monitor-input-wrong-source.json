@@ -1,0 +1,11 @@
+{
+  "id": "monitor-input-wrong-source",
+  "category": "Hardware",
+  "clues": [
+    "A user's monitor shows 'No Signal' after pressing a button on the monitor bezel.",
+    "The computer is powered on and the mouse moves on another connected display.",
+    "The monitor's power LED is lit but it cycles through input sources without finding a signal.",
+    "The monitor has multiple input ports (HDMI, DisplayPort, VGA) but only one is connected to the computer.",
+    "The monitor's OSD menu shows it is set to the VGA input even though the cable is connected to HDMI."
+  ]
+}

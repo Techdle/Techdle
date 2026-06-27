@@ -1,0 +1,11 @@
+{
+  "id": "git-merge-conflict-residue",
+  "category": "Software",
+  "clues": [
+    "A developer's code changes on a feature branch cannot be committed or pushed.",
+    "The file list shows merge conflict markers in several files that have already been resolved.",
+    "The developer resolved all merge conflicts a few days ago and continued working.",
+    "The working directory still contains backup files with '.orig' extensions from the merge tool.",
+    "The '.orig' files are being tracked by git and are causing unexpected changes to be staged."
+  ]
+}

@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://playtechdle.com'),
-  title: "Techdle - The Daily IT Diagnosis Game",
+  title: "Techdle | The Daily IT Diagnosis Game",
   description: "A daily puzzle game for IT professionals, sysadmins, and tech enthusiasts. Decode vague user tickets, read the logs, and diagnose the system failure.",
   keywords: ["techdle", "wordle clone", "IT game", "sysadmin puzzle", "pc repair game", "diagnostic game", "tech support game"],
   verification: {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Techdle - The Daily IT Diagnosis Game",
+    title: "Techdle | The Daily IT Diagnosis Game",
     description: "Decode vague user tickets and diagnose the system failure in 6 guesses or less!",
     url: "https://playtechdle.com",
     siteName: "Techdle",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Techdle - The Daily IT Diagnosis Game",
+    title: "Techdle | The Daily IT Diagnosis Game",
     description: "Decode vague user tickets and diagnose the system failure in 6 guesses or less!",
   },
   alternates: {

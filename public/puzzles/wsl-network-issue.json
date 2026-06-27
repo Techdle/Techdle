@@ -1,0 +1,11 @@
+{
+  "id": "wsl-network-issue",
+  "category": "Software",
+  "clues": [
+    "WSL2 (Windows Subsystem for Linux) cannot access the internet from the Linux environment.",
+    "Pinging 8.8.8.8 from WSL returns 'Network is unreachable'.",
+    "Windows host networking works perfectly with full internet access.",
+    "The WSL instance was working fine until the computer was restarted.",
+    "The WSL network adapter in Windows shows an APIPA address (169.254.x.x)."
+  ]
+}

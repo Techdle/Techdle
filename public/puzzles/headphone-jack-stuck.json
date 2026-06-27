@@ -1,0 +1,11 @@
+{
+  "id": "headphone-jack-stuck",
+  "category": "Hardware",
+  "clues": [
+    "The laptop has no sound from its built-in speakers even though volume is turned up.",
+    "The speaker icon shows that audio is being played but no sound is audible.",
+    "The sound settings panel shows the 'Headphones' device as active and connected.",
+    "No headphones are physically plugged into the audio jack.",
+    "The sound card detects a plugged-in device because debris or a broken jack tip is lodged in the port."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "printer-driver",
+  "category": "Software",
+  "clues": [
+    "Printing a complex document causes problems while simple text pages print without issue.",
+    "Attempting to print a specific PDF causes the application to crash.",
+    "The printer outputs pages with garbled wingdings characters randomly.",
+    "The issue persists even after a reboot and clearing the print spooler.",
+    "The installed device software is a generic 'Class Driver' instead of the manufacturer's."
+  ]
+}

@@ -1,0 +1,1057 @@
+[
+  {
+    "id": "hdd-failure",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failing-ram",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "malware-infection",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dns-misconfig",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "overheating-laptop",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "printer-driver",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "expired-ssl",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "full-disk",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "router-firmware",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "phished-account",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bad-windows-update",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-user-profile",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ip-conflict",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dead-motherboard",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "broadcast-storm",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ransomware-attack",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failing-psu",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "loose-display-cable",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "unplugged-ethernet",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "locked-ad-account",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "memory-leak",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "vpn-auth-failure",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outdated-video-drivers",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bad-cmos-battery",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "rogue-dhcp",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "mdm-policy-violation",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-pst",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "broken-cpu-fan",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "password-expiration",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "spilled-liquid",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outdated-bios",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "mac-address-filtering",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "faulty-keyboard",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "blown-speaker",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dusty-gpu-fans",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "missing-standoffs",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bad-power-cable",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dead-usb-port",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ups-backup-failed",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "no-poste-beeps",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bad-sata-cable",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "gpu-artifact-glitch",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failing-wifi-card",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dead-pcie-slot",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bad-nvme-drive",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stuck-fan-bearing",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "faulty-touchpad",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "microphone-not-working",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "faulty-display-backlight",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stuck-power-button",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failing-optane-drive",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "loose-memory-module",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failed-motherboard-ethernet",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failed-sd-card-slot",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "disconnected-internal-drive-cable",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failing-motherboard-audio",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "worn-keyboard-keys",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "laptop-battery-not-charging",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "gpu-power-cable-loose",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "faulty-hdmi-cable",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "overloaded-surge-protector",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "damaged-thunderbolt-port",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "fan-speed-sensor-failure",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "missing-nvme-screw",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bios-settings-lost",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "tripped-psu-protection",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "irql-bsod-driver",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "gpu-driver-timeout",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stale-dns-cache",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nested-virtualization-fail",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "hidden-ssid-connection-fail",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-font-cache",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "network-drive-mapped-wrong",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stale-vpn-route",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "disk-sectors-failing",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "thunderbolt-dock-undetected",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "misaligned-partition",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "missing-startup-file",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "recycle-bin-corruption",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "network-printer-offline",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "multiple-antivirus-conflict",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "deleted-system-dll",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "broken-microsoft-store-app",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "authentication-loop-website",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "failed-windows-hello",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "excel-slow-calculation",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "windows-license-expired",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "webcam-driver-failed",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-group-policy",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "premission-denied-share",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outlook-attachment-blocked",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "onedrive-file-locked",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "unauthorized-access-honeypot",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "monitor-color-profile-wrong",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "expired-self-signed-cert",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "windows-powershell-execution-blocked",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "task-scheduler-not-running",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "restore-points-disabled",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outlook-cached-mode-full",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "vpn-dns-leak",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-power-plan",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nps-network-policy-blocking",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "network-bridge-misconfig",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "mapped-drive-reconnect-on-login",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outlook-autodiscover-failure",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stale-arp-cache",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "smtp-relay-blocked",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "outlook-rules-not-running",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ntfs-compression-fragmentation",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "docker-engine-not-running",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "docker-volume-mount-fail",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "docker-port-conflict",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "port-channel-misconfig",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dnssec-validation-failure",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "smb-signing-mismatch",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dhcp-scope-exhausted",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stp-topology-change-loop",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "missing-windows-feature",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "onedrive-known-folder-move-conflict",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "shared-mailbox-automapping",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "office-activation-failed",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bitlocker-recovery-mode",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "tenant-restrictions-blocking",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-calendar-permissions",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "sip-trunk-authentication-fail",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "vm-license-expired",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "booting-from-wrong-drive",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-search-index",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "wsl-network-issue",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "docker-image-pull-auth",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "git-merge-conflict-residue",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "node-modules-corruption",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "python-virtualenv-broken",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-git-config",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ssl-certificate-chain-incomplete",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "rogue-dhcp-server",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "cable-modem-frequency-drift",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "wireless-channel-overlap-interference",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "vpn-split-tunnel-misconfig",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-group-policy-cache",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "onedrive-credentials-expired",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-user-profile-registry",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dns-stale-records-after-migration",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "load-balancer-sticky-session-failure",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dns-filter-blocking-legitimate",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-ssh-known-hosts",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ssh-key-permissions-too-open",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "antivirus-quarantined-legitimate-file",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "firewall-blocking-application",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-tcpip-stack",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nlb-port-rule-misconfig",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "service-dependency-failed",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "cisco-vpn-client-incompatibility",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "exchange-activesync-errors",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "internal-lb-pool-empty",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "terraform-state-lock",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "kubectl-context-wrong",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "database-connection-pool-exhausted",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-web-config",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "application-pool-crashed",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "monitor-input-wrong-source",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "headphone-jack-stuck",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "clicking-noise-disk",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-browser-extensions",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stale-credential-manager-entry",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "hp-paper-jam-sensor",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "monitor-sleep-not-waking",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "misconfigured-windows-firewall-profile",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "host-file-system-full",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "remote-desktop-credSSP-error",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "vcenter-certificate-expired",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "cluster-quorum-lost",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ntp-time-sync-fail",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "sms-two-factor-delay",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "hibernation-failed-resume",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "touchscreen-unresponsive",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nlb-port-rules-persistence",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "power-scheme-pcie-link",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-user-account-picture",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "azure-ad-connect-sync-fail",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "excel-circular-reference",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nfs-permission-mismatch",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "scheduled-task-time-trigger-wrong",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "partition-table-corrupted",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ipv6-disabled-services",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "gpo-loopback-processing-issue",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "font-installation-failed",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "windows-sandbox-not-working",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-lnk-files",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "disk-write-cache-fail",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "mapped-drive-letter-conflict",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "elevated-powershell-policy",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "smtp-relay-timing-out",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "terminal-server-license-expired",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "onedrive-sync-throttling",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupted-trusted-platform-module",
+    "category": "Hardware",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "debug-mode-enabled-application",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ldap-referral-chase-error",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "mqtt-broker-connection-loss",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "docker-container-time-skew",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "csr-certificate-request-wrong",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "replication-lag-database",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "github-action-secret-expired",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "ssl-weak-cipher-rejected",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "corrupt-globalmoniker-com",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "nlb-port-rules-timeout",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "bitlocker-suspend-failed",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "stale-gpo-not-updating",
+    "category": "Security",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "dhcp-relay-not-forwarding",
+    "category": "Network",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "azure-vm-disk-cache-wrong",
+    "category": "Software",
+    "difficulty": "Medium"
+  },
+  {
+    "id": "wifi-6e-client-incompatible",
+    "category": "Network",
+    "difficulty": "Medium"
+  }
+]

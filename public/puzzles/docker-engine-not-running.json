@@ -1,0 +1,11 @@
+{
+  "id": "docker-engine-not-running",
+  "category": "Software",
+  "clues": [
+    "Docker commands on a development workstation fail with 'Cannot connect to the Docker daemon'.",
+    "The Docker Desktop application shows 'Docker Desktop stopped' in its status bar.",
+    "Restarting Docker Desktop does not resolve the issue.",
+    "The Docker service in Windows Services panel shows 'Stopped' status.",
+    "Starting the Docker service manually results in it immediately stopping again."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "dead-usb-port",
+  "category": "Hardware",
+  "clues": [
+    "The mouse and keyboard plugged into the front of a computer have stopped responding.",
+    "Both devices are plugged into the front USB ports of the PC case.",
+    "The rear USB ports on the motherboard work perfectly with the same devices.",
+    "Windows plays the 'device disconnect' sound repeatedly every few seconds.",
+    "In Device Manager, a yellow triangle appears on 'Unknown USB Device (Port Reset Failed)'."
+  ]
+}

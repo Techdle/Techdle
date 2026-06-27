@@ -1,0 +1,11 @@
+{
+  "id": "bitlocker-recovery-mode",
+  "category": "Security",
+  "clues": [
+    "A BitLocker-encrypted computer boots to a blue screen asking for a recovery key.",
+    "The user does not remember setting up BitLocker on this computer.",
+    "The recovery key prompt appeared after a BIOS/UEFI update was installed.",
+    "The computer is managed by the corporate IT department.",
+    "Entering the 48-digit recovery key from the organization's key management system allows normal boot."
+  ]
+}

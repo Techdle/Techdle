@@ -1,0 +1,11 @@
+{
+  "id": "onedrive-file-locked",
+  "category": "Software",
+  "clues": [
+    "A shared document shows 'This file is locked' and cannot be edited by anyone.",
+    "The file was being edited by a colleague whose computer crashed earlier today.",
+    "The file's status shows 'Checked out by [username]' even though that user is offline.",
+    "The file owner can see the document but cannot modify or save changes.",
+    "The lock persists even after waiting several hours for the session to expire."
+  ]
+}

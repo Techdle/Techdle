@@ -1,0 +1,11 @@
+{
+  "id": "damaged-thunderbolt-port",
+  "category": "Hardware",
+  "clues": [
+    "The laptop does not recognize the external monitor dock when connected via USB-C.",
+    "Other USB-C accessories like flash drives still work in the same port.",
+    "The dock works perfectly on another computer with the same cable.",
+    "Inspecting the port reveals debris or slight damage inside the connector cavity.",
+    "Cleaning the port with compressed air does not resolve the issue."
+  ]
+}

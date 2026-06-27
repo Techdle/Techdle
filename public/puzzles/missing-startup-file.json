@@ -1,0 +1,11 @@
+{
+  "id": "missing-startup-file",
+  "category": "Software",
+  "clues": [
+    "An application that launches automatically at login is showing an error message instead of starting.",
+    "The error says 'Windows cannot find [filename]. Make sure you typed the name correctly.'",
+    "The application was working fine before a recent uninstall of another program.",
+    "The application's main executable still exists in its original install folder.",
+    "The shortcut in the Startup folder points to an executable that was part of the uninstalled program."
+  ]
+}

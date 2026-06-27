@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { format, parseISO, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 import { Header } from '@/components/Header';
-import { getAllPuzzles, getPuzzleByDate } from '@/lib/puzzles';
+import { getDailyPuzzleIndex } from '@/lib/puzzles';
 import { getTodayDateString } from '@/lib/date';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { Puzzle, ArchiveResult, GameState } from '@/types/game';
@@ -17,7 +17,9 @@ export default function ArchivePage() {
   const [todayStr, setTodayStr] = useState('');
 
   useEffect(() => {
-    setPuzzles(getAllPuzzles());
+    import('@/lib/puzzles').then(m => m.fetchPuzzleMetadata()).then(data => {
+      setPuzzles(data);
+    });
     setArchiveResults(loadArchiveResults());
     setTodayState(loadGameState());
     setTodayStr(getTodayDateString());
@@ -71,10 +73,18 @@ export default function ArchivePage() {
                   {daysInMonth.map(date => {
                     const dateStr = format(date, 'yyyy-MM-dd');
                     const hasPuzzle = validDates.includes(dateStr);
-                    const puzzle = hasPuzzle ? getPuzzleByDate(dateStr) : undefined;
                     const isToday = dateStr === todayStr;
-
-                    let status: 'unplayed' | 'won' | 'lost' | 'today' = 'unplayed';
+                    
+                    let puzzle: any = undefined;
+                    if (hasPuzzle && puzzles.length > 0) {
+                      const epochMs = new Date('2026-06-25T00:00:00Z').getTime();
+                      const targetMs = new Date(dateStr + 'T00:00:00Z').getTime();
+                      if (!isNaN(targetMs) && targetMs >= epochMs) {
+                        const dayIndex = Math.floor((targetMs - epochMs) / 86400000);
+                        const selectedIndex = getDailyPuzzleIndex(dayIndex, puzzles.length);
+                        puzzle = puzzles[selectedIndex];
+                      }
+                    }
 
                     if (isToday) {
                       status = 'today';

@@ -1,0 +1,11 @@
+{
+  "id": "corrupt-pst",
+  "category": "Software",
+  "clues": [
+    "Outlook freezes whenever trying to access older archived emails.",
+    "An error pops up saying 'The file archive.pst cannot be opened'.",
+    "The local archive file has ballooned to over 48 GB in size.",
+    "Other mailboxes and incoming emails work perfectly fine.",
+    "The file is stored on a mechanical hard drive that was unexpectedly powered off yesterday."
+  ]
+}

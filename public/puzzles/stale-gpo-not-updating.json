@@ -1,0 +1,11 @@
+{
+  "id": "stale-gpo-not-updating",
+  "category": "Security",
+  "clues": [
+    "A recently configured Group Policy setting is not being applied to client computers.",
+    "Running 'gpupdate /force' on clients reports that policies were updated successfully.",
+    "The new policy setting is not reflected in 'gpresult /r' output on clients.",
+    "The GPO is linked to the correct organizational unit (OU).",
+    "The security filtering on the GPO does not include 'Authenticated Users' or the specific computer group."
+  ]
+}

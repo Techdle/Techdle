@@ -1,0 +1,11 @@
+{
+  "id": "scheduled-task-time-trigger-wrong",
+  "category": "Software",
+  "clues": [
+    "A scheduled backup task is running at the wrong time of day.",
+    "The task was scheduled to run at 2:00 AM but runs at 8:00 AM instead.",
+    "The server's system clock shows the correct local time.",
+    "The task's trigger settings show the scheduled time as 2:00 AM in the wrong time zone.",
+    "The task was created with a trigger set to UTC time instead of the local time zone."
+  ]
+}

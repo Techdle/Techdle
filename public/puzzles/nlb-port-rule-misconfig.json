@@ -1,0 +1,17 @@
+{
+  "id": "nlb-port-rule-misconfig",
+  "category": "Network",
+  "clues": [
+    "A specific web application behind a network load balancer is unreachable from outside the network.",
+    "Other applications on the same load balancer are accessible without issues.",
+    "The web application's backend servers are healthy and responding to requests.",
+    "The load balancer's health checks for this application are succeeding.",
+    "The virtual server configuration for this application has a port rule pointing to a port that was decommissioned."
+  ],
+  "rawLogs": [
+    "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "excel-circular-reference",
+  "category": "Software",
+  "clues": [
+    "An Excel workbook shows a warning about a circular reference in formulas.",
+    "The calculated values in the spreadsheet appear incorrect or inconsistent.",
+    "Excel's status bar displays 'Circular References' next to a cell reference.",
+    "The formula in the referenced cell refers back to its own cell either directly or through other cells.",
+    "Enabling iterative calculation in Excel options resolves the calculation loop."
+  ]
+}

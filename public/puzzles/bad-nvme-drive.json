@@ -1,0 +1,11 @@
+{
+  "id": "bad-nvme-drive",
+  "category": "Hardware",
+  "clues": [
+    "A computer that was working fine suddenly refuses to boot showing only a black screen and cursor.",
+    "The drive is not listed in the BIOS boot priority menu at all.",
+    "When the PC does manage to start, the drive appears as 'RAW' in Disk Management.",
+    "The M.2 drive gets excessively hot to the touch even when idle.",
+    "The error 'A device which does not exist was specified' appears in Event Viewer."
+  ]
+}

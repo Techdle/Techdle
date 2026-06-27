@@ -1,0 +1,11 @@
+{
+  "id": "stuck-power-button",
+  "category": "Hardware",
+  "clues": [
+    "The computer turns off unexpectedly and immediately tries to restart in a loop.",
+    "Holding the power button for 10 seconds does not fully shut down the system.",
+    "The computer eventually boots but then shuts down again after a random interval.",
+    "The behavior started after a minor spill near the power button area.",
+    "Disconnecting the front panel power button header and shorting the pins manually works normally."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "phished-account",
+  "category": "Security",
+  "clues": [
+    "Coworkers are receiving strange messages from a colleague asking for favors.",
+    "The user finds legitimate emails automatically moved to the 'Deleted Items' folder.",
+    "Login history shows successful authentications from overseas IP addresses.",
+    "The user admits to clicking a link in a 'password expiry' email yesterday.",
+    "A new forwarding rule was found in the mailbox settings sending all mail to an external address."
+  ]
+}

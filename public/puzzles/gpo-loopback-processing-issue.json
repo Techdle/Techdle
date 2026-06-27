@@ -1,0 +1,11 @@
+{
+  "id": "gpo-loopback-processing-issue",
+  "category": "Security",
+  "clues": [
+    "User-specific policy settings are being applied when no user is logged into a shared kiosk computer.",
+    "The kiosk computer shows desktop icons and shortcuts that belong to a specific user.",
+    "The kiosk computer is configured with loopback processing mode in Group Policy.",
+    "The loopback processing mode is set to 'Replace' instead of 'Merge'.",
+    "The user-specific policies are overriding the default kiosk configuration."
+  ]
+}

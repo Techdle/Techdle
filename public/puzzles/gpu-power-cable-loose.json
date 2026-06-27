@@ -1,0 +1,11 @@
+{
+  "id": "gpu-power-cable-loose",
+  "category": "Hardware",
+  "clues": [
+    "The dedicated graphics card is not detected by the system at all.",
+    "The computer is using the integrated motherboard graphics instead.",
+    "The GPU fans do not spin when the computer is powered on.",
+    "The computer was recently transported to a LAN event.",
+    "Reseating the power cables to the graphics card makes it immediately detected on the next boot."
+  ]
+}

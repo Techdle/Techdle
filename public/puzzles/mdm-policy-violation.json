@@ -1,0 +1,11 @@
+{
+  "id": "mdm-policy-violation",
+  "category": "Security",
+  "clues": [
+    "An employee's phone has stopped receiving work emails and calendar notifications.",
+    "The Outlook app displays a banner saying 'Your device is non-compliant'.",
+    "The user admits they recently 'jailbroke' their phone to install custom themes.",
+    "The corporate Intune portal shows the device status as 'Quarantined'.",
+    "Security policy mandates that compromised OS kernels lose access to company data."
+  ]
+}

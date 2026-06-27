@@ -1,0 +1,11 @@
+{
+  "id": "bad-cmos-battery",
+  "category": "Hardware",
+  "clues": [
+    "Every time the user turns on the PC, the system clock says it is January 1st, 2012.",
+    "Websites refuse to load, throwing 'SSL Certificate Date Invalid' errors in the browser.",
+    "The computer halts during boot with a 'Press F1 to Run SETUP' message.",
+    "The issue only occurs after the desktop has been unplugged from the wall overnight.",
+    "The PC is a legacy workstation that is over 8 years old."
+  ]
+}

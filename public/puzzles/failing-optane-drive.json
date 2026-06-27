@@ -1,0 +1,11 @@
+{
+  "id": "failing-optane-drive",
+  "category": "Hardware",
+  "clues": [
+    "A computer that previously felt very responsive now feels sluggish during normal operation.",
+    "The user reports that recently accessed files now take noticeably longer to load.",
+    "Disk activity is near 100% in Task Manager even when the computer is idle.",
+    "The system has an Intel Optane memory module configured to accelerate a mechanical hard drive.",
+    "The Optane memory utility reports the module status as 'detected but not in accelerated mode'."
+  ]
+}

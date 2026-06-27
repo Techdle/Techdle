@@ -1,0 +1,11 @@
+{
+  "id": "azure-ad-connect-sync-fail",
+  "category": "Security",
+  "clues": [
+    "New user accounts created in on-premises Active Directory are not appearing in Microsoft 365.",
+    "Password changes made in on-premises AD are not taking effect in cloud services.",
+    "The Azure AD Connect synchronization service shows 'Stopped' or 'Error' status.",
+    "The synchronization errors indicate a duplicate attribute conflict in the connector space.",
+    "Two users in different organizational units have the same email attribute value."
+  ]
+}

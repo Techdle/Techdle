@@ -12,12 +12,14 @@ export function HeatmapGraph({ archiveResults, todayStr }: HeatmapGraphProps) {
   
   useEffect(() => {
     if (scrollRef.current) {
-      // Use a small timeout to ensure layout is fully calculated before scrolling
-      setTimeout(() => {
-        if (scrollRef.current) {
-          scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-        }
-      }, 10);
+      // Use a combination of requestAnimationFrame and timeout to ensure layout is done
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (scrollRef.current) {
+            scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+          }
+        }, 100);
+      });
     }
   }, [archiveResults]);
 

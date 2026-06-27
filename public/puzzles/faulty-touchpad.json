@@ -1,0 +1,11 @@
+{
+  "id": "faulty-touchpad",
+  "category": "Hardware",
+  "clues": [
+    "The laptop's built-in pointing device has become unreliable and jumps around the screen.",
+    "The cursor occasionally moves in the opposite direction from finger movement.",
+    "The touchpad works fine after a reboot but deteriorates after a few hours of use.",
+    "An external mouse connected to the laptop works perfectly without any issues.",
+    "Pressing on the touchpad surface reveals a swollen area underneath the palm rest."
+  ]
+}

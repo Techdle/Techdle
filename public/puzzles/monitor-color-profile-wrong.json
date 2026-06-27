@@ -1,0 +1,11 @@
+{
+  "id": "monitor-color-profile-wrong",
+  "category": "Software",
+  "clues": [
+    "Colors on the monitor appear washed out or have a strange tint compared to before.",
+    "The issue happened after a recent graphics driver update.",
+    "The monitor's on-screen display settings show the correct color temperature configuration.",
+    "Images that looked correct on this monitor yesterday now appear different.",
+    "The graphics driver update installed a new default color profile that overrides the calibrated settings."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "misconfigured-windows-firewall-profile",
+  "category": "Security",
+  "clues": [
+    "A computer connected to the corporate network is treated as a 'Public' network instead of 'Domain'.",
+    "Some network features and file sharing are not working on this computer.",
+    "The computer is domain-joined and shows the correct domain in System properties.",
+    "The Network Location Awareness (NLA) service is running and appears healthy.",
+    "The firewall profile is set to 'Public' which blocks file and printer sharing."
+  ]
+}

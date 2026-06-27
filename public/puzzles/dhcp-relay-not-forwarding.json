@@ -1,0 +1,17 @@
+{
+  "id": "dhcp-relay-not-forwarding",
+  "category": "Network",
+  "clues": [
+    "Clients on a specific network subnet cannot obtain IP addresses via DHCP.",
+    "The DHCP server is located on a different subnet from the clients.",
+    "A DHCP relay agent is configured on the router for that subnet.",
+    "Other subnets on the same network are able to obtain DHCP addresses correctly.",
+    "The DHCP relay agent configuration points to an incorrect DHCP server IP address."
+  ],
+  "rawLogs": [
+    "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
+  ]
+}

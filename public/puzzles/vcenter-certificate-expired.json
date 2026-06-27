@@ -1,0 +1,11 @@
+{
+  "id": "vcenter-certificate-expired",
+  "category": "Security",
+  "clues": [
+    "The vCenter Server management interface cannot be accessed via the web client.",
+    "The error message indicates the SSL certificate for the vCenter Server has expired.",
+    "ESXi hosts managed by the vCenter Server are showing 'Disconnected' status.",
+    "vCenter services are running but the management interface is untrusted.",
+    "The vCenter Server's machine SSL certificate expired after three years of operation."
+  ]
+}

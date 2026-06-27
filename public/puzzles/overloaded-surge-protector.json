@@ -1,0 +1,11 @@
+{
+  "id": "overloaded-surge-protector",
+  "category": "Hardware",
+  "clues": [
+    "Multiple devices on the same power strip stop working or behave erratically.",
+    "The surge protector's circuit breaker has tripped, or its protection light is off.",
+    "The power strip has been used for years and has many devices daisy-chained.",
+    "Plugging the devices directly into a wall outlet restores normal operation.",
+    "The surge protector feels warm to the touch even when powered off."
+  ]
+}

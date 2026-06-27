@@ -1,0 +1,11 @@
+{
+  "id": "partition-table-corrupted",
+  "category": "Software",
+  "clues": [
+    "An external USB drive is detected by the computer but shows as 'Unallocated Space' in Disk Management.",
+    "The drive has been working fine for years and was not formatted or manipulated recently.",
+    "The drive was ejected improperly during a file transfer.",
+    "Disk Management shows the drive as 'Unknown, Not Initialized'.",
+    "Data recovery software can still see the old partition structure and files."
+  ]
+}

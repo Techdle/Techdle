@@ -1,0 +1,11 @@
+{
+  "id": "application-pool-crashed",
+  "category": "Software",
+  "clues": [
+    "A company web application hosted on IIS is returning '503 Service Unavailable' errors.",
+    "The IIS Management Console shows the application pool status as 'Stopped'.",
+    "Starting the application pool results in it running for a few seconds then stopping again.",
+    "The Windows event logs show repeated crashes of the worker process (w3wp.exe).",
+    "The application pool's .NET CLR version setting does not match the application's target framework."
+  ]
+}

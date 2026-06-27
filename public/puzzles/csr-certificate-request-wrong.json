@@ -1,0 +1,11 @@
+{
+  "id": "csr-certificate-request-wrong",
+  "category": "Security",
+  "clues": [
+    "A renewed SSL certificate is not working on the web server after installation.",
+    "The certificate was issued by the same Certificate Authority as the previous one.",
+    "The old certificate worked correctly before expiration.",
+    "The new certificate was generated from a Certificate Signing Request (CSR) that used different information than the original.",
+    "The Subject Alternative Names (SANs) on the new certificate do not include all required domains."
+  ]
+}

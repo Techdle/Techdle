@@ -1,0 +1,11 @@
+{
+  "id": "clicking-noise-disk",
+  "category": "Hardware",
+  "clues": [
+    "The external hard drive is making a distinct clicking sound periodically.",
+    "The drive is detected by the computer but file access is extremely slow.",
+    "Some files fail to open with 'CRC error' or 'Data error (cyclic redundancy check)'.",
+    "The clicking sound occurs every time a file is accessed on the drive.",
+    "The drive's S.M.A.R.T. status reports a high 'Seek Error Rate'."
+  ]
+}

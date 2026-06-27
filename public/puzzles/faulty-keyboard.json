@@ -1,0 +1,11 @@
+{
+  "id": "faulty-keyboard",
+  "category": "Hardware",
+  "clues": [
+    "Several specific keys on the keyboard have stopped producing any characters when pressed.",
+    "All other keys on the keyboard work perfectly fine.",
+    "The user confirms they spilled a small amount of soda on that exact area of the keyboard last week.",
+    "The on-screen keyboard app works fine as a workaround.",
+    "Plugging in a different USB keyboard resolves all issues."
+  ]
+}

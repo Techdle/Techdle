@@ -1,0 +1,11 @@
+{
+  "id": "booting-from-wrong-drive",
+  "category": "Software",
+  "clues": [
+    "A computer that was working normally suddenly boots to a blank desktop with no user files or applications.",
+    "The computer boots up very quickly but looks like a fresh installation.",
+    "Checking File Explorer shows only a few drives and the total storage appears smaller than expected.",
+    "The BIOS boot order may have changed after a recent BIOS update.",
+    "The computer has two drives installed and the secondary empty drive is set as the first boot device."
+  ]
+}

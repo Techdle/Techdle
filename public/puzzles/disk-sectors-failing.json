@@ -1,0 +1,11 @@
+{
+  "id": "disk-sectors-failing",
+  "category": "Hardware",
+  "clues": [
+    "The computer has become sluggish and some files fail to open with read errors.",
+    "Programs occasionally freeze while loading certain files.",
+    "Backing up files to an external drive fails partway through with an 'I/O device error'.",
+    "Running CHKDSK reports 'bad sectors' being found and marked.",
+    "The disk's S.M.A.R.T. status reports 'Reallocated Sector Count' has exceeded the warning threshold."
+  ]
+}

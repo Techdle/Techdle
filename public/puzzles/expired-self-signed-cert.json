@@ -1,0 +1,11 @@
+{
+  "id": "expired-self-signed-cert",
+  "category": "Security",
+  "clues": [
+    "An internal company application shows a security warning when launched.",
+    "The warning message states that the application's publisher could not be verified.",
+    "The application was signed with an internal certificate that was valid until recently.",
+    "Other internally developed applications are showing the same warning.",
+    "The internal certificate authority's root certificate has passed its expiration date."
+  ]
+}

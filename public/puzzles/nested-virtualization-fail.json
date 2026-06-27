@@ -1,0 +1,11 @@
+{
+  "id": "nested-virtualization-fail",
+  "category": "Software",
+  "clues": [
+    "A virtual machine running inside another virtual machine fails to start.",
+    "The error message states that virtualization is not supported or not enabled.",
+    "The host machine and the first-level VM both have hardware virtualization enabled.",
+    "The nested VM was working previously but stopped after a software update.",
+    "The hypervisor software requires an explicit configuration change to allow nested virtualization."
+  ]
+}

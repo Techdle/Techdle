@@ -1,0 +1,11 @@
+{
+  "id": "corrupted-user-profile-registry",
+  "category": "Software",
+  "clues": [
+    "A user logged into their Windows machine and found all desktop icons, taskbar pins, and personal settings missing.",
+    "The user's files are still present in 'C:\\Users\\[username]\\Documents' and other user folders.",
+    "The computer presents the user with a 'default' desktop environment as if they have never logged in before.",
+    "A temporary profile message was displayed during login due to a corrupt user profile.",
+    "The Windows registry hive for the user's profile (NTUSER.DAT) has become corrupted."
+  ]
+}

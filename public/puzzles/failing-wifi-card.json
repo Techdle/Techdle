@@ -1,0 +1,11 @@
+{
+  "id": "failing-wifi-card",
+  "category": "Hardware",
+  "clues": [
+    "The laptop's wireless connection drops every few minutes and requires a reboot to reconnect.",
+    "The Wi-Fi adapter disappears from Device Manager when the issue occurs.",
+    "Reinstalling drivers and resetting network settings does not resolve the problem.",
+    "A USB Wi-Fi dongle works perfectly in the same location without any drops.",
+    "The laptop model is known for having defective Intel 9560 Wi-Fi cards from that production batch."
+  ]
+}

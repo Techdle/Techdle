@@ -1,0 +1,11 @@
+{
+  "id": "excel-slow-calculation",
+  "category": "Software",
+  "clues": [
+    "A large Excel workbook takes several minutes to recalculate after any change.",
+    "The status bar shows 'Calculating: (8 processors): 100%' for an extended period.",
+    "The workbook contains thousands of complex formulas including VLOOKUPs and SUMPRODUCTs.",
+    "Opening the same file on a different computer of similar specification is just as slow.",
+    "The workbook uses many volatile functions like NOW(), TODAY(), and RAND()."
+  ]
+}

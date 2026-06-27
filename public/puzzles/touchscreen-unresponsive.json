@@ -1,0 +1,11 @@
+{
+  "id": "touchscreen-unresponsive",
+  "category": "Hardware",
+  "clues": [
+    "The laptop's touchscreen has stopped responding to touch input.",
+    "The display is working correctly and shows the desktop normally.",
+    "An external mouse and the touchpad both work without issues.",
+    "The tablet mode toggle in Windows Action Center has no effect on touch response.",
+    "Calibrating the touchscreen in Windows Settings produces no response when touching the crosshairs."
+  ]
+}

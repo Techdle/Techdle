@@ -1,0 +1,11 @@
+{
+  "id": "full-disk",
+  "category": "Hardware",
+  "clues": [
+    "A user can't save their current work and receives notifications about low system resources.",
+    "Windows updates fail to install with error code 0x80070070.",
+    "The system tray occasionally pops up a balloon notification about low resources.",
+    "Virtual memory paging is failing, causing extreme system sluggishness.",
+    "Opening File Explorer reveals the C: drive bar is completely red with 0 bytes free."
+  ]
+}

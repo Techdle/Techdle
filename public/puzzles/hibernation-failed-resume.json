@@ -1,0 +1,11 @@
+{
+  "id": "hibernation-failed-resume",
+  "category": "Software",
+  "clues": [
+    "The laptop will not resume from hibernation and shows a blank screen.",
+    "Pressing the power button starts a fresh boot cycle instead of resuming the previous session.",
+    "The user has to force a shutdown and loses all unsaved work.",
+    "The issue occurs most frequently when the laptop's battery drains completely during hibernation.",
+    "The Windows event logs show 'Hibernation file (C:\\hiberfil.sys) is too small to resume the session'."
+  ]
+}

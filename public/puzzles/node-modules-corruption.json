@@ -1,0 +1,11 @@
+{
+  "id": "node-modules-corruption",
+  "category": "Software",
+  "clues": [
+    "A Node.js project fails to build with import errors for packages that are listed as dependencies.",
+    "The 'node_modules' folder exists but some subdirectories appear empty or truncated.",
+    "The error mentions a specific package that cannot be found or has an unexpected export format.",
+    "The project was building successfully yesterday before an unexpected system shutdown.",
+    "Deleting the node_modules folder and reinstalling all dependencies resolves the issue."
+  ]
+}

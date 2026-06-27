@@ -3,9 +3,7 @@ import { ClientPuzzle, GameState, Guess } from '../types/game';
 import { getTodayDateString, getYesterdayDateString } from '../lib/date';
 import { loadGameState, saveGameState, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
-import { getAllPuzzles } from '../lib/puzzles';
-import { getTodayClientPuzzle, DATA_VERSION } from '../lib/client-puzzles';
-import { isGuessCorrectClient, getTodayDateSeed } from '../lib/utils';
+import { fetchDictionary, fetchPuzzleChunk, getTodayPuzzleId } from '../lib/puzzles';
 
 const MAX_GUESSES = 6;
 
@@ -19,76 +17,63 @@ export function useDailyGame() {
   const [aliases, setAliases] = useState<string[]>([]);
 
   useEffect(() => {
+    let mounted = true;
+
     async function loadInitialData() {
-      const todayDate = getTodayDateString();
-      const activePuzzle = getTodayClientPuzzle();
+      try {
+        const todayDate = getTodayDateString();
+        const activePuzzleId = await getTodayPuzzleId();
 
-      if (!activePuzzle) {
-        setIsLoaded(true);
-        return;
-      }
-
-      setPuzzle(activePuzzle);
-
-      // Load aliases from the full puzzle data (still needed for typeahead)
-      const allPuzzles = getAllPuzzles();
-      const aliasSet = new Set<string>();
-      allPuzzles.forEach((p) => {
-        aliasSet.add(p.answer.toLowerCase());
-        (p.aliases || []).forEach((a) => aliasSet.add(a.toLowerCase()));
-      });
-      // Shuffle for UI
-      const allAliases = Array.from(aliasSet);
-      for (let i = allAliases.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [allAliases[i], allAliases[j]] = [allAliases[j], allAliases[i]];
-      }
-      setAliases(allAliases);
-
-      // Check if puzzle data has been regenerated (version bump invalidates today's state)
-      const versionKey = 'techdle_puzzle_version';
-      let savedState = loadGameState();
-      if (savedState && typeof window !== 'undefined') {
-        const knownVersion = localStorage.getItem(versionKey);
-        const currentVersion = DATA_VERSION ?? 1;
-        if (!knownVersion || Number(knownVersion) < currentVersion) {
-          // Puzzle data has been updated — reset today's game and stats
-          savedState = null;
-          localStorage.removeItem('techdle_game_state');
-          localStorage.removeItem('techdle_user_stats');
+        if (!activePuzzleId) {
+          if (mounted) setIsLoaded(true);
+          return;
         }
-      }
-      // Save the current version so future comparisons work
-      if (typeof window !== 'undefined' && DATA_VERSION !== undefined) {
-        localStorage.setItem(versionKey, String(DATA_VERSION));
-      }
 
-      if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
-        // Restore fullPuzzle from the server data if game was over
-        if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
-          const fullPuzzle = allPuzzles.find((p) => p.id === savedState.puzzleId);
-          if (fullPuzzle) {
-            savedState.fullPuzzle = fullPuzzle;
+        const activePuzzle = await fetchPuzzleChunk(activePuzzleId);
+        if (!mounted) return;
+        setPuzzle(activePuzzle);
+
+        const dict = await fetchDictionary();
+        if (!mounted) return;
+        setAliases(dict);
+
+        let savedState = loadGameState();
+
+        if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
+          // If game is over but we don't have the fullPuzzle in state, fetch it from the API
+          if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
+            const res = await fetch('/api/guess', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ puzzleId: activePuzzle.id, guess: 'restore', isGameOver: true }),
+            });
+            const data = await res.json();
+            if (data.fullPuzzle) {
+              savedState.fullPuzzle = data.fullPuzzle;
+            }
           }
+          setState(savedState);
+        } else {
+          setState({
+            puzzleId: activePuzzle.id,
+            date: todayDate,
+            guesses: [],
+            status: 'playing',
+            lastPlayedAt: Date.now(),
+            mode: 'daily',
+          });
         }
-        setState(savedState);
-      } else {
-        setState({
-          puzzleId: activePuzzle.id,
-          date: todayDate,
-          guesses: [],
-          status: 'playing',
-          lastPlayedAt: Date.now(),
-          mode: 'daily',
-        });
+      } catch (err) {
+        console.error("Failed to load daily game:", err);
+      } finally {
+        if (mounted) setIsLoaded(true);
       }
-      setIsLoaded(true);
     }
 
     loadInitialData();
+    return () => { mounted = false; };
   }, []);
 
-  // Sync state to local storage when it changes (without fullPuzzle to keep localStorage lean)
   useEffect(() => {
     if (state) {
       saveGameState(state);
@@ -100,14 +85,17 @@ export function useDailyGame() {
 
     setIsSubmitting(true);
     try {
-      const dateSeed = getTodayDateSeed();
-      const allPuzzles = getAllPuzzles();
-      const fullPuzzle = allPuzzles.find((p) => p.id === state.puzzleId);
-
-      // Client-side validation using hash comparison
-      const correct = fullPuzzle
-        ? await isGuessCorrectClient(guessText, fullPuzzle, dateSeed, puzzle.answerHash)
-        : guessText.toLowerCase().replace(/[^a-z0-9]/g, '') === puzzle.answerHash;
+      const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
+      
+      const res = await fetch('/api/guess', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ puzzleId: state.puzzleId, guess: guessText, isGameOver }),
+      });
+      const data = await res.json();
+      
+      const correct = data.correct === true;
+      const fullPuzzle = data.fullPuzzle;
 
       const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
       const newGuess: Guess = { text: guessText, status };
@@ -127,13 +115,11 @@ export function useDailyGame() {
         guesses: newGuesses,
         status: newStatus,
         lastPlayedAt: Date.now(),
-        // Attach full puzzle on game over so ResolutionTicket can render
         ...(newStatus !== 'playing' && fullPuzzle ? { fullPuzzle } : {}),
       };
 
       setState(newState);
 
-      // Update stats on game completion
       if (newStatus !== 'playing') {
         const stats = loadUserStats();
         const today = getTodayDateString();
@@ -169,9 +155,8 @@ export function useDailyGame() {
           }
         }
 
-        // Always save the ArchiveResult for the calendar (solvedOnTime = true for daily)
         const result: import('../types/game').ArchiveResult = {
-          puzzleId: fullPuzzle!.id,
+          puzzleId: state.puzzleId,
           date: state.date,
           status: newStatus as 'won' | 'lost',
           guessesCount: newGuesses.length,
@@ -184,25 +169,34 @@ export function useDailyGame() {
           }
         });
       }
+    } catch (err) {
+      console.error("Failed to submit guess:", err);
     } finally {
       setIsSubmitting(false);
     }
   }, [state, puzzle, user, isSubmitting]);
 
   const resetGame = useCallback(async () => {
-    const todayDate = getTodayDateString();
-    const activePuzzle = getTodayClientPuzzle();
-    if (!activePuzzle) return;
-    setPuzzle(activePuzzle);
-    setState({
-      puzzleId: activePuzzle.id,
-      date: todayDate,
-      guesses: [],
-      status: 'playing',
-      lastPlayedAt: Date.now(),
-      mode: 'daily',
-    });
-    setIncorrectCount(0);
+    try {
+      const todayDate = getTodayDateString();
+      const activePuzzleId = await getTodayPuzzleId();
+      if (!activePuzzleId) return;
+      
+      const activePuzzle = await fetchPuzzleChunk(activePuzzleId);
+      setPuzzle(activePuzzle);
+      
+      setState({
+        puzzleId: activePuzzle.id,
+        date: todayDate,
+        guesses: [],
+        status: 'playing',
+        lastPlayedAt: Date.now(),
+        mode: 'daily',
+      });
+      setIncorrectCount(0);
+    } catch (err) {
+      console.error("Failed to reset game:", err);
+    }
   }, []);
 
   return { puzzle, state, isLoaded, submitGuess, resetGame, MAX_GUESSES, incorrectCount, isSubmitting, aliases };

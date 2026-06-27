@@ -1,0 +1,17 @@
+{
+  "id": "docker-port-conflict",
+  "category": "Network",
+  "clues": [
+    "A newly started Docker container exits immediately with a port binding error.",
+    "The error message says 'port is already allocated' with a specific port number.",
+    "No other Docker containers are currently running on the host.",
+    "Running 'netstat -ano | findstr :PORT' shows a different process is already listening on that port.",
+    "The process using the port is a local development server that was started earlier."
+  ],
+  "rawLogs": [
+    "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+    "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
+  ]
+}

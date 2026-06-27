@@ -1,0 +1,11 @@
+{
+  "id": "corrupt-browser-extensions",
+  "category": "Software",
+  "clues": [
+    "A web browser crashes or behaves erratically on certain websites but not others.",
+    "The browser has a large number of extensions installed from various sources.",
+    "The issue started after a new extension was added to the browser.",
+    "The problematic website works fine in a different browser on the same computer.",
+    "Starting the browser in safe mode with all extensions disabled resolves all issues."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "faulty-hdmi-cable",
+  "category": "Hardware",
+  "clues": [
+    "The external monitor connected to the laptop flickers or shows no signal intermittently.",
+    "The issue worsens when the desk is bumped or the laptop lid is adjusted.",
+    "The monitor works perfectly when connected to a different computer.",
+    "The laptop works perfectly when connected to a different monitor.",
+    "Replacing the cable between the laptop and monitor resolves the problem entirely."
+  ]
+}

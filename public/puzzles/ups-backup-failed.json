@@ -1,0 +1,11 @@
+{
+  "id": "ups-backup-failed",
+  "category": "Hardware",
+  "clues": [
+    "A computer connected to a backup power supply shut down during a brief power flicker.",
+    "The UPS unit emits a continuous beeping sound and will not power on.",
+    "Pressing the 'Test' button on the UPS produces no audible click or fan spin.",
+    "The UPS is 5 years old and has been through many power outages.",
+    "Opening the battery compartment reveals visible corrosion and swelling around the battery terminals."
+  ]
+}

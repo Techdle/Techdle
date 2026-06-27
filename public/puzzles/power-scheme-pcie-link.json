@@ -1,0 +1,11 @@
+{
+  "id": "power-scheme-pcie-link",
+  "category": "Software",
+  "clues": [
+    "An external GPU connected via Thunderbolt is performing well below expected speeds.",
+    "The eGPU enclosure fans are spinning and the GPU is detected by the system.",
+    "The GPU performance improves temporarily when the laptop is plugged into the power adapter.",
+    "The laptop's power plan has PCIe Link State Power Management set to 'Maximum Power Savings'.",
+    "The aggressive power saving setting limits the Thunderbolt bandwidth to the eGPU."
+  ]
+}

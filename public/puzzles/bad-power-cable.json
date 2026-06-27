@@ -1,0 +1,11 @@
+{
+  "id": "bad-power-cable",
+  "category": "Hardware",
+  "clues": [
+    "An all-in-one computer intermittently loses power and goes dark for no apparent reason.",
+    "Wiggling the power cable near the power brick connection makes the screen flicker.",
+    "The power adapter's LED indicator goes off when the screen goes black.",
+    "The monitor works fine when plugged into a different power outlet in the office.",
+    "A known-good power cable from another monitor does not exhibit this behavior."
+  ]
+}

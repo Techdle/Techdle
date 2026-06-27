@@ -1,0 +1,11 @@
+{
+  "id": "corrupt-globalmoniker-com",
+  "category": "Software",
+  "clues": [
+    "A legacy COM component application fails to launch with 'Class not registered' error.",
+    "The application was working before a system restore was performed.",
+    "The COM component's DLL file is still present in its installation directory.",
+    "The registry entries for the COM component's CLSID are missing.",
+    "Reinstalling the application restores the registry entries and fixes the issue."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "onedrive-known-folder-move-conflict",
+  "category": "Software",
+  "clues": [
+    "The Desktop folder suddenly contains many duplicate shortcuts with 'Conflict' in their names.",
+    "Files saved to the Desktop appear on the local computer but not on other synced devices.",
+    "OneDrive shows an error about 'Known Folder Move' and the backup status is incomplete.",
+    "The user recently renamed their computer which changed the device name in OneDrive settings.",
+    "The Desktop, Documents, and Pictures folders show 'Not backed up' in OneDrive protection settings."
+  ]
+}

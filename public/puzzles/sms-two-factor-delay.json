@@ -1,0 +1,11 @@
+{
+  "id": "sms-two-factor-delay",
+  "category": "Security",
+  "clues": [
+    "A user waiting for a text message with a two-factor authentication code receives it 15 minutes late.",
+    "The SMS code was already expired by the time it arrived.",
+    "The user is able to access the account by requesting a new code multiple times.",
+    "The SMS delivery is delayed only for this specific service provider.",
+    "The company's SMS gateway provider is experiencing high latency across multiple customers."
+  ]
+}

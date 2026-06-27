@@ -1,17 +1,5 @@
-import { Puzzle } from '../types/game';
-import puzzlesData from '../data/puzzles/index.json';
+import { ClientPuzzle } from '../types/game';
 import { getTodayDateString } from './date';
-
-// Static import — O(1) file read, <1MB even for years of puzzles.
-const allPuzzles: Puzzle[] = puzzlesData as Puzzle[];
-
-export function getAllPuzzles(): Puzzle[] {
-  return [...allPuzzles].sort((a, b) => a.id.localeCompare(b.id));
-}
-
-export function getPuzzleById(id: string): Puzzle | undefined {
-  return allPuzzles.find((p) => p.id === id);
-}
 
 // LCG PRNG for shuffling
 function getShuffledIndices(seed: number, length: number): number[] {
@@ -51,8 +39,27 @@ export function getDailyPuzzleIndex(dayIndex: number, totalPuzzles: number): num
   return shuffled[pos];
 }
 
-export function getPuzzleByDate(dateStr: string): Puzzle | undefined {
-  if (allPuzzles.length === 0) return undefined;
+export async function fetchPuzzleMetadata(): Promise<any[]> {
+  const res = await fetch('/puzzles/metadata.json');
+  if (!res.ok) throw new Error('Failed to fetch metadata');
+  return res.json();
+}
+
+export async function fetchPuzzleChunk(id: string): Promise<ClientPuzzle> {
+  const res = await fetch(`/puzzles/${id}.json`);
+  if (!res.ok) throw new Error(`Failed to fetch puzzle chunk ${id}`);
+  return res.json();
+}
+
+export async function fetchDictionary(): Promise<string[]> {
+  const res = await fetch('/dictionary.json');
+  if (!res.ok) throw new Error('Failed to fetch dictionary');
+  return res.json();
+}
+
+export async function getDailyPuzzleId(dateStr: string): Promise<string | undefined> {
+  const metadata = await fetchPuzzleMetadata();
+  if (metadata.length === 0) return undefined;
 
   const epoch = new Date('2026-06-25T00:00:00Z').getTime();
   const targetDate = new Date(dateStr + 'T00:00:00Z').getTime();
@@ -60,42 +67,32 @@ export function getPuzzleByDate(dateStr: string): Puzzle | undefined {
   if (isNaN(targetDate) || targetDate < epoch) return undefined;
 
   const dayIndex = Math.floor((targetDate - epoch) / 86400000);
+  const selectedIndex = getDailyPuzzleIndex(dayIndex, metadata.length);
 
-  const sortedPuzzles = getAllPuzzles();
-  const selectedIndex = getDailyPuzzleIndex(dayIndex, sortedPuzzles.length);
-
-  return sortedPuzzles[selectedIndex];
+  return metadata[selectedIndex].id;
 }
 
-export function getTodayPuzzle(): Puzzle | undefined {
-  return getPuzzleByDate(getTodayDateString());
+export async function getTodayPuzzleId(): Promise<string | undefined> {
+  return getDailyPuzzleId(getTodayDateString());
 }
 
-
-
-export function getAllAliases(): string[] {
-  const aliasSet = new Set<string>();
-  allPuzzles.forEach((p) => {
-    aliasSet.add(p.answer.toLowerCase());
-    (p.aliases || []).forEach((a) => aliasSet.add(a.toLowerCase()));
-  });
-  return Array.from(aliasSet);
+export async function getRandomPuzzleId(excludeIds: Set<string>): Promise<string | undefined> {
+  const metadata = await fetchPuzzleMetadata();
+  const pool = metadata.filter(p => !excludeIds.has(p.id));
+  if (pool.length === 0) return undefined;
+  return pool[Math.floor(Math.random() * pool.length)].id;
 }
 
-export function getRandomPuzzle(excludeIds: Set<string>): Puzzle | undefined {
-  const pool = allPuzzles.filter(p => !excludeIds.has(p.id));
-  if (pool.length === 0) return undefined; // exhausted, caller reshuffles
-  return pool[Math.floor(Math.random() * pool.length)];
+export async function getRandomPuzzleIdByCategory(category: string, excludeIds: Set<string>): Promise<string | undefined> {
+  const metadata = await fetchPuzzleMetadata();
+  const pool = metadata.filter(p => p.category === category && !excludeIds.has(p.id));
+  if (pool.length === 0) return undefined;
+  return pool[Math.floor(Math.random() * pool.length)].id;
 }
 
-export function getRandomPuzzleByCategory(category: string, excludeIds: Set<string>): Puzzle | undefined {
-  const pool = allPuzzles.filter(p => p.category === category && !excludeIds.has(p.id));
-  if (pool.length === 0) return undefined; // exhausted, caller reshuffles
-  return pool[Math.floor(Math.random() * pool.length)];
-}
-
-export function getDailyP1Puzzle(dateStr: string): (Puzzle & { rawLogs: string[] }) | undefined {
-  const hardPuzzles = allPuzzles.filter(p => p.difficulty === 'Hard');
+export async function getDailyP1PuzzleId(dateStr: string): Promise<string | undefined> {
+  const metadata = await fetchPuzzleMetadata();
+  const hardPuzzles = metadata.filter(p => p.difficulty === 'Hard');
   if (hardPuzzles.length === 0) return undefined;
 
   const epoch = new Date('2026-06-25T00:00:00Z').getTime();
@@ -104,7 +101,7 @@ export function getDailyP1Puzzle(dateStr: string): (Puzzle & { rawLogs: string[]
   if (isNaN(targetDate) || targetDate < epoch) return undefined;
 
   const dayIndex = Math.floor((targetDate - epoch) / 86400000);
+  const selectedIndex = getDailyPuzzleIndex(dayIndex, hardPuzzles.length);
 
-  const selected = hardPuzzles[getDailyPuzzleIndex(dayIndex, hardPuzzles.length)];
-  return { ...selected, rawLogs: selected.rawLogs ?? [] };
+  return hardPuzzles[selectedIndex].id;
 }

@@ -1,0 +1,11 @@
+{
+  "id": "disconnected-internal-drive-cable",
+  "category": "Hardware",
+  "clues": [
+    "The computer boots up but the secondary storage drive is not visible anywhere.",
+    "The primary drive with the operating system works perfectly fine.",
+    "The missing drive was present and working yesterday before the computer was moved.",
+    "Disk Management shows no sign of the secondary drive in the list of connected disks.",
+    "Opening the case reveals the drive's data cable is hanging loose inside the chassis."
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "thunderbolt-dock-undetected",
+  "category": "Hardware",
+  "clues": [
+    "An external dock stopped working with the laptop after a system update.",
+    "The laptop charges through the dock's power delivery but no peripherals are detected.",
+    "Monitors, keyboard, and mouse connected to the dock all remain inactive.",
+    "The dock's USB ports work if the dock is plugged into a different computer.",
+    "Device Manager shows 'Unknown USB Device (Link In Reset)' when the dock is connected."
+  ]
+}

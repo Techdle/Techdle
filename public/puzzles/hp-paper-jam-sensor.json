@@ -1,0 +1,11 @@
+{
+  "id": "hp-paper-jam-sensor",
+  "category": "Hardware",
+  "clues": [
+    "The office printer displays 'Paper Jam' error and stops printing even though no paper is stuck.",
+    "Opening all printer access panels and removing any visible paper does not clear the error.",
+    "The error persists after multiple attempts to clear the jam and restart the printer.",
+    "The printer's error log shows the jam sensor location as 'Rear Output Bin'.",
+    "A small piece of paper or a paper clip is lodged in the sensor mechanism."
+  ]
+}

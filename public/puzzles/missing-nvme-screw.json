@@ -1,0 +1,11 @@
+{
+  "id": "missing-nvme-screw",
+  "category": "Hardware",
+  "clues": [
+    "A newly installed M.2 NVMe drive is not detected by the computer.",
+    "The drive was installed correctly by following the motherboard manual.",
+    "The BIOS does not list the drive in any of the storage or boot menus.",
+    "The drive works perfectly when installed in another computer's M.2 slot.",
+    "Upon inspection, the drive is not lying flat in its slot and one end is raised."
+  ]
+}

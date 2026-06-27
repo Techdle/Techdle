@@ -1,0 +1,11 @@
+{
+  "id": "dead-pcie-slot",
+  "category": "Hardware",
+  "clues": [
+    "A newly installed expansion card is not detected by the system despite being properly seated.",
+    "The new GPU's fans spin, but there is no display output.",
+    "Plugging the old GPU back into the same slot also fails to produce display output.",
+    "The new GPU works perfectly in a different computer.",
+    "Inspecting the PCIe slot reveals two bent pins inside the slot."
+  ]
+}
