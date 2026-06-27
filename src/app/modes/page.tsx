@@ -1,16 +1,19 @@
 import { Terminal, Infinity as InfinityIcon, Timer, AlertOctagon, ArrowLeft, FolderGit2 } from 'lucide-react';
 import Link from 'next/link';
+import { Header } from '@/components/Header';
 
 export default function ModesPage() {
   return (
-    <div className="min-h-[100dvh] bg-background flex flex-col items-center px-6 animate-in fade-in duration-500 overflow-y-auto pt-12 pb-8">
-      <div className="w-full max-w-2xl flex flex-col animate-in zoom-in-95 duration-700 delay-150 fill-mode-both mx-auto">
+    <div className="min-h-[100dvh] bg-background flex flex-col">
+      <Header />
+      <main className="flex-1 flex flex-col items-center px-6 animate-in fade-in duration-500 overflow-y-auto pt-8 pb-8">
+        <div className="w-full max-w-2xl flex flex-col animate-in zoom-in-95 duration-700 delay-150 fill-mode-both mx-auto">
         
-        <div className="mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-text-muted hover:text-text-main transition-colors mb-6">
-            <ArrowLeft className="w-4 h-4" /> Back to Daily Game
-          </Link>
-          <div className="flex items-center gap-4">
+          <div className="mb-8">
+            <Link href="/" className="inline-flex items-center gap-2 text-text-muted hover:text-text-main transition-colors mb-6">
+              <ArrowLeft className="w-4 h-4" /> Back to Daily Game
+            </Link>
+            <div className="flex items-center gap-4">
             <div className="bg-surface border border-border p-4 rounded-2xl shadow-xl">
               <Terminal className="w-8 h-8 text-primary" />
             </div>
@@ -82,6 +85,7 @@ export default function ModesPage() {
           </Link>
         </div>
       </div>
+      </main>
     </div>
   );
 }

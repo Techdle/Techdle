@@ -37,8 +37,7 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
       { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/icons/icon-32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icons/icon-64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/icons/icon-48.png', sizes: '48x48', type: 'image/png' },
       { url: '/icons/icon-192-android.png', sizes: '192x192', type: 'image/png' },
       { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],

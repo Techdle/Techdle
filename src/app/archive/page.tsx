@@ -64,6 +64,29 @@ export default function ArchivePage() {
         <h2 className="text-3xl font-bold mb-8">Archive</h2>
         <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
 
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-12 mb-8 p-4 bg-surface/50 backdrop-blur-sm rounded-xl border border-border">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded bg-success/80 ring-2 ring-success/20"></div>
+            <span className="text-sm font-medium text-text-muted">Won</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded bg-error/80 ring-2 ring-error/20"></div>
+            <span className="text-sm font-medium text-text-muted">Lost</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded border-2 border-success/80"></div>
+            <span className="text-sm font-medium text-text-muted">Won (Overtime)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded bg-surface-raised border border-border"></div>
+            <span className="text-sm font-medium text-text-muted">Unplayed</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded ring-2 ring-primary bg-surface-raised"></div>
+            <span className="text-sm font-medium text-text-muted">Today</span>
+          </div>
+        </div>
+
         <div className="space-y-12">
           {months.map(monthStr => {
             const firstDay = parseISO(`${monthStr}-01`);
@@ -71,11 +94,50 @@ export default function ArchivePage() {
               start: startOfMonth(firstDay),
               end: endOfMonth(firstDay),
             });
+            
+            // Calculate monthly stats
+            let monthlyPlayed = 0;
+            let monthlyWins = 0;
+
+            daysInMonth.forEach(date => {
+              const dateStr = format(date, 'yyyy-MM-dd');
+              const hasPuzzle = validDates.includes(dateStr);
+              const isToday = dateStr === todayStr;
+              
+              if (!hasPuzzle) return;
+
+              let pStatus = 'unplayed';
+              if (isToday && todayState && todayState.status !== 'playing') {
+                 pStatus = todayState.status;
+              } else {
+                 const archRes = archiveResults.find(r => r.date === dateStr);
+                 if (archRes) pStatus = archRes.status;
+              }
+
+              if (pStatus === 'won' || pStatus === 'lost') {
+                 monthlyPlayed++;
+                 if (pStatus === 'won') monthlyWins++;
+              }
+            });
+
+            const winRate = monthlyPlayed === 0 ? 0 : Math.round((monthlyWins / monthlyPlayed) * 100);
 
             return (
-              <div key={monthStr} className="bg-surface rounded-xl p-6 border border-border">
-                <h3 className="text-xl font-semibold mb-4">{format(firstDay, 'MMMM yyyy')}</h3>
-                <div className="grid grid-cols-7 gap-2 text-center text-sm font-medium text-text-muted mb-2">
+              <div key={monthStr} className="bg-surface/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-border/50">
+                  <h3 className="text-2xl font-bold text-text-main">{format(firstDay, 'MMMM yyyy')}</h3>
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex flex-col">
+                      <span className="text-text-muted text-[10px] uppercase font-bold tracking-wider">Played</span>
+                      <span className="font-bold text-text-main">{monthlyPlayed}</span>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-text-muted text-[10px] uppercase font-bold tracking-wider">Win Rate</span>
+                      <span className="font-bold text-text-main">{winRate}%</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-7 gap-2 text-center text-sm font-bold text-text-muted mb-3 uppercase tracking-wider">
                   <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
@@ -85,6 +147,7 @@ export default function ArchivePage() {
                     const isToday = dateStr === todayStr;
                     
                     let puzzle: any = undefined;
+                    let status: string = 'unplayed';
                     if (hasPuzzle && puzzles.length > 0) {
                       const epochMs = new Date('2026-06-25T00:00:00Z').getTime();
                       const targetMs = new Date(dateStr + 'T00:00:00Z').getTime();

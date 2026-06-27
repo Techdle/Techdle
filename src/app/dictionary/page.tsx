@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp } from 'lucide-react';
-import Link from 'next/link';
+import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp, Lock } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { StyledSelect } from '@/components/StyledSelect';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
@@ -20,14 +19,26 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
   const [showSymptoms, setShowSymptoms] = useState(false);
 
   return (
-    <div className="bg-surface border border-border rounded-xl p-4 sm:p-5 hover:border-border transition-colors shadow-sm w-full overflow-hidden">
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
+    <div className="relative bg-surface border border-border rounded-xl p-4 sm:p-5 hover:border-border transition-colors shadow-sm w-full overflow-hidden">
+      {!isUnlocked && (
+        <div className="absolute inset-0 z-10 bg-background/40 backdrop-blur-[2px] flex items-center justify-center">
+          <div className="flex flex-col items-center bg-surface/80 p-4 rounded-xl border border-border/50 shadow-lg">
+            <Lock className="w-8 h-8 text-text-muted mb-2" />
+            <span className="text-sm font-bold text-text-muted uppercase tracking-widest">Locked</span>
+          </div>
+        </div>
+      )}
+      
+      <div className={`flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3 ${!isUnlocked ? 'opacity-50 blur-[2px]' : ''}`}>
         <h3 className="text-xl font-bold text-text-main leading-tight break-words">
-          {entry.answer}
+          {isUnlocked ? entry.answer : '[CLASSIFIED TICKET]'}
         </h3>
         <div className="flex flex-wrap gap-2 shrink-0">
+          <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${isUnlocked ? 'bg-success/10 text-success border-success/20' : 'bg-surface-raised text-text-muted border-border'}`}>
+            {isUnlocked ? 'RESOLVED' : 'LOCKED'}
+          </span>
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-            {entry.category}
+            {isUnlocked ? entry.category : '???'}
           </span>
         </div>
       </div>
@@ -60,26 +71,24 @@ function DictionaryCard({ entry, isUnlocked }: { entry: DictEntry, isUnlocked: b
         </div>
       )}
       
-      <div className="bg-background/50 border border-border/50 rounded-lg p-4 mb-4">
+      <div className={`bg-background/50 border border-border/50 rounded-lg p-4 mb-4 ${!isUnlocked ? 'opacity-50 blur-[4px]' : ''}`}>
         <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Root Cause Analysis</h4>
         <p className="text-text-muted leading-relaxed break-words">
           {entry.explanation}
         </p>
       </div>
       
-      {entry.fixSteps && entry.fixSteps.length > 0 && (
-        <div className="mb-4 pl-1">
-          <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Standard Operating Procedure</h4>
-          <ul className="space-y-1.5">
-            {entry.fixSteps.map((step, i) => (
-              <li key={i} className="flex gap-2 text-sm text-text-muted">
-                <span className="text-text-muted font-mono mt-0.5 select-none shrink-0">{i + 1}.</span>
-                <span className="break-words min-w-0 flex-1">{step}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className={`mb-4 pl-1 ${!isUnlocked ? 'opacity-50 blur-[4px]' : ''}`}>
+        <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Standard Operating Procedure</h4>
+        <ul className="space-y-1.5">
+          {(entry.fixSteps || ['Investigate system logs', 'Reboot service', 'Verify resolution']).map((step, i) => (
+            <li key={i} className="flex gap-2 text-sm text-text-muted">
+              <span className="text-text-muted font-mono mt-0.5 select-none shrink-0">{i + 1}.</span>
+              <span className="break-words min-w-0 flex-1">{step}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="flex items-center gap-3 text-xs text-text-muted pt-3 border-t border-border/50 mt-auto">
         <span className="font-mono">
@@ -96,6 +105,7 @@ export default function DictionaryPage() {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [sortBy, setSortBy] = useState<'default' | 'completed'>('default');
   const [unlockedIds, setUnlockedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -143,7 +153,7 @@ export default function DictionaryPage() {
   }, [entries]);
 
   const filtered = useMemo(() => {
-    return entries.filter(e => {
+    let result = entries.filter(e => {
       if (search) {
         const q = search.toLowerCase();
         if (!e.answer.toLowerCase().includes(q) &&
@@ -154,7 +164,18 @@ export default function DictionaryPage() {
       if (selectedCategory !== 'All' && e.category !== selectedCategory) return false;
       return true;
     });
-  }, [entries, search, selectedCategory]);
+
+    if (sortBy === 'completed') {
+      result.sort((a, b) => {
+        const aUnlocked = unlockedIds.has(a.id);
+        const bUnlocked = unlockedIds.has(b.id);
+        if (aUnlocked === bUnlocked) return 0;
+        return aUnlocked ? -1 : 1;
+      });
+    }
+
+    return result;
+  }, [entries, search, selectedCategory, sortBy, unlockedIds]);
 
   return (
     <main className="min-h-[100dvh] bg-background text-text-main">
@@ -170,9 +191,28 @@ export default function DictionaryPage() {
             </span>
           </div>
           <p className="text-text-muted">
-            A complete reference guide to all previously encountered IT tickets and their root causes.
+            A complete reference guide to all previously encountered IT tickets and their root causes. Unlocked by playing.
           </p>
         </div>
+
+        {/* Progress Bar */}
+        {entries.length > 0 && (
+          <div className="bg-surface border border-border rounded-xl p-5 mb-8 shadow-sm">
+            <div className="flex justify-between items-end mb-2">
+              <span className="text-sm font-bold text-text-muted uppercase tracking-widest">Dictionary Completion</span>
+              <span className="text-sm font-bold text-text-main">
+                {unlockedIds.size} / {entries.length} 
+                <span className="text-primary ml-2">({Math.round((unlockedIds.size / entries.length) * 100)}%)</span>
+              </span>
+            </div>
+            <div className="w-full bg-surface-raised rounded-full h-3 overflow-hidden border border-border/50">
+              <div 
+                className="bg-primary h-full transition-all duration-1000 ease-out"
+                style={{ width: `${Math.max((unlockedIds.size / entries.length) * 100, 2)}%` }}
+              />
+            </div>
+          </div>
+        )}
 
         {/* Search + Filters */}
         <div className="bg-surface border border-border rounded-xl p-4 mb-6 space-y-4 shadow-sm">
@@ -193,6 +233,15 @@ export default function DictionaryPage() {
               options={[{ value: 'All', label: 'All Categories' }, ...categories.map(c => ({ value: c, label: c }))]}
               value={selectedCategory}
               onChange={setSelectedCategory}
+            />
+            <StyledSelect
+              className="w-full sm:w-auto min-w-[200px]"
+              options={[
+                { value: 'default', label: 'Sort: Default' },
+                { value: 'completed', label: 'Sort: Resolved First' }
+              ]}
+              value={sortBy}
+              onChange={(val) => setSortBy(val as 'default' | 'completed')}
             />
             <div className="flex items-center justify-center sm:justify-start sm:ml-auto text-sm text-text-muted font-medium bg-surface-raised/50 px-4 py-2 sm:py-0 sm:px-3 rounded-lg border border-border/50">
               {filtered.length} result{filtered.length !== 1 ? 's' : ''}
