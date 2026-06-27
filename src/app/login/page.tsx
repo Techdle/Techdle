@@ -6,14 +6,14 @@ import { useAuth } from '@/components/AuthProvider';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
 import Link from 'next/link';
-import { Bug, LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon } from 'lucide-react';
+import { LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon } from 'lucide-react';
 import { clearLocalData } from '@/lib/storage';
 import { useSettings } from '@/components/SettingsProvider';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { AuthModal } from '@/components/AuthModal';
 
 export default function LoginPage() {
-  const { user, error, loading, isDevMode } = useAuth();
+  const { user, error, loading } = useAuth();
   const { highContrast, setHighContrast } = useSettings();
   
   const [signingOut, setSigningOut] = useState(false);
@@ -80,12 +80,7 @@ export default function LoginPage() {
             Account
           </h2>
 
-          {isDevMode && (
-            <div className="mb-6 flex items-center justify-center gap-2 text-xs font-mono text-warning bg-warning/10 border border-warning/30 rounded-lg px-4 py-2">
-              <Bug className="w-4 h-4" />
-              Dev Mode Active
-            </div>
-          )}
+
 
           {error && (
             <div className="mb-6 p-3 bg-error/30 border border-error/50 rounded-lg text-error text-sm animate-in fade-in">
