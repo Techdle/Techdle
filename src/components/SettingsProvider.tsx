@@ -1,5 +1,6 @@
 "use client";
 
+import { safeGetItem, safeSetItem } from '../lib/storage';
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 interface SettingsContextType {
@@ -16,7 +17,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [highContrast, setHighContrastState] = useState(false);
 
   useEffect(() => {
-    const isHC = localStorage.getItem('techdle_highContrast') === 'true';
+    const isHC = safeGetItem('techdle_highContrast') === 'true';
     if (isHC) {
       setHighContrastState(true);
       document.documentElement.classList.add('high-contrast');
@@ -25,7 +26,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   const setHighContrast = (v: boolean) => {
     setHighContrastState(v);
-    localStorage.setItem('techdle_highContrast', String(v));
+    safeSetItem('techdle_highContrast', String(v));
     if (v) {
       document.documentElement.classList.add('high-contrast');
     } else {

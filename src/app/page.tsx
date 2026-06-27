@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { safeGetItem, safeSetItem } from '@/lib/storage';
 import { Header } from '@/components/Header';
 import { Game } from '@/components/Game';
 import { HowToPlayModal } from '@/components/HowToPlayModal';
@@ -12,10 +13,10 @@ export default function Home() {
   const [mode, setMode] = useState<GameMode | null>(null);
 
   const handleGameStart = () => {
-    const hasSeenTutorial = localStorage.getItem('hasSeenTechdleTutorial');
+    const hasSeenTutorial = safeGetItem('hasSeenTechdleTutorial');
     if (!hasSeenTutorial) {
       setIsHelpOpen(true);
-      localStorage.setItem('hasSeenTechdleTutorial', 'true');
+      safeSetItem('hasSeenTechdleTutorial', 'true');
     }
   };
 

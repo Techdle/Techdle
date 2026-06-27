@@ -1,5 +1,6 @@
 'use client';
 
+import { safeGetItem, safeSetItem } from '../lib/storage';
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
 
 type Theme = 'dark' | 'light' | 'high-contrast' | 'nord' | 'forest';
@@ -15,12 +16,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {
-    const savedTheme = (localStorage.getItem('techdle-theme') as Theme) || 'dark';
+    const savedTheme = (safeGetItem('techdle-theme') as Theme) || 'dark';
     setThemeState(savedTheme);
   }, []);
 
   const setTheme = useCallback((newTheme: Theme) => {
-    localStorage.setItem('techdle-theme', newTheme);
+    safeSetItem('techdle-theme', newTheme);
     setThemeState(newTheme);
     document.documentElement.dataset.theme = newTheme;
   }, []);

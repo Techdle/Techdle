@@ -40,11 +40,26 @@ export const INITIAL_USER_STATS: UserStats = {
   guessDistribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, loss: 0 },
 };
 
+
+export function safeGetItem(key: string): string | null {
+  try { if (typeof window !== 'undefined') return window.localStorage.getItem(key); } catch (e) {}
+  return null;
+}
+
+export function safeSetItem(key: string, value: string): void {
+  try { if (typeof window !== 'undefined') window.localStorage.setItem(key, value); } catch (e) {}
+}
+
+export function safeRemoveItem(key: string): void {
+  try { if (typeof window !== 'undefined') window.localStorage.removeItem(key); } catch (e) {}
+}
+
 // ── LocalStorage (anonymous play) ──────────────────────────────────
+
 
 export function loadGameStateByMode(mode: GameMode): GameState | null {
   if (typeof window === 'undefined') return null;
-  const data = localStorage.getItem(STATE_KEYS[mode]);
+  const data = safeGetItem(STATE_KEYS[mode]);
   if (!data) return null;
   const parsed = decodeData(data);
   return parsed || null;
@@ -52,7 +67,7 @@ export function loadGameStateByMode(mode: GameMode): GameState | null {
 
 export function saveGameStateByMode(mode: GameMode, state: GameState): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(STATE_KEYS[mode], encodeData(state));
+  safeSetItem(STATE_KEYS[mode], encodeData(state));
 }
 
 export function saveGameStateMinimalByMode(mode: GameMode, state: GameState): void {
@@ -60,7 +75,7 @@ export function saveGameStateMinimalByMode(mode: GameMode, state: GameState): vo
   // Strip fullPuzzle before saving to localStorage (keep localStorage lean).
   // It's re-attached from the server bundle when the user returns.
   const { fullPuzzle, ...minimal } = state;
-  localStorage.setItem(STATE_KEYS[mode], encodeData(minimal));
+  safeSetItem(STATE_KEYS[mode], encodeData(minimal));
 }
 
 // Backward compatibility or default usage
@@ -78,7 +93,7 @@ export function saveGameStateMinimal(state: GameState): void {
 
 export function loadUserStats(): UserStats {
   if (typeof window === 'undefined') return INITIAL_USER_STATS;
-  const data = localStorage.getItem(USER_STATS_KEY);
+  const data = safeGetItem(USER_STATS_KEY);
   if (!data) return INITIAL_USER_STATS;
   const parsed = decodeData(data);
   return parsed ? { ...INITIAL_USER_STATS, ...parsed } : INITIAL_USER_STATS;
@@ -86,23 +101,23 @@ export function loadUserStats(): UserStats {
 
 export function saveUserStats(stats: UserStats): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(USER_STATS_KEY, encodeData(stats));
+  safeSetItem(USER_STATS_KEY, encodeData(stats));
 }
 
 export function loadEndlessHighScore(): number {
   if (typeof window === 'undefined') return 0;
-  const data = localStorage.getItem(ENDLESS_HIGH_SCORE_KEY);
+  const data = safeGetItem(ENDLESS_HIGH_SCORE_KEY);
   return data ? parseInt(data, 10) || 0 : 0;
 }
 
 export function saveEndlessHighScore(score: number): void {
   if (typeof window === 'undefined') return;
-  localStorage.setItem(ENDLESS_HIGH_SCORE_KEY, score.toString());
+  safeSetItem(ENDLESS_HIGH_SCORE_KEY, score.toString());
 }
 
 export function loadArchiveResults(): ArchiveResult[] {
   if (typeof window === 'undefined') return [];
-  const data = localStorage.getItem(ARCHIVE_RESULTS_KEY);
+  const data = safeGetItem(ARCHIVE_RESULTS_KEY);
   if (!data) return [];
   const parsed = decodeData(data);
   return parsed || [];
@@ -117,18 +132,18 @@ export function saveArchiveResult(result: ArchiveResult): void {
   } else {
     results.push(result);
   }
-  localStorage.setItem(ARCHIVE_RESULTS_KEY, encodeData(results));
+  safeSetItem(ARCHIVE_RESULTS_KEY, encodeData(results));
 }
 
 export function clearLocalData(): void {
   if (typeof window === 'undefined') return;
-  localStorage.removeItem(GAME_STATE_KEY);
-  localStorage.removeItem(STATE_KEYS['endless']);
-  localStorage.removeItem(STATE_KEYS['sla-time-attack']);
-  localStorage.removeItem(STATE_KEYS['p1-outage']);
-  localStorage.removeItem(USER_STATS_KEY);
-  localStorage.removeItem(ARCHIVE_RESULTS_KEY);
-  localStorage.removeItem(ENDLESS_HIGH_SCORE_KEY);
+  safeRemoveItem(GAME_STATE_KEY);
+  safeRemoveItem(STATE_KEYS['endless']);
+  safeRemoveItem(STATE_KEYS['sla-time-attack']);
+  safeRemoveItem(STATE_KEYS['p1-outage']);
+  safeRemoveItem(USER_STATS_KEY);
+  safeRemoveItem(ARCHIVE_RESULTS_KEY);
+  safeRemoveItem(ENDLESS_HIGH_SCORE_KEY);
 }
 
 export function validateAndRepairStats(stats: UserStats): UserStats {
@@ -276,7 +291,7 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
       if (cloudStats.totalPlayed > localStats.totalPlayed) {
         saveUserStats(cloudStats);
         const syncedArchive = archiveHistoryToResults(mergedHistory);
-        localStorage.setItem(ARCHIVE_RESULTS_KEY, encodeData(syncedArchive));
+        safeSetItem(ARCHIVE_RESULTS_KEY, encodeData(syncedArchive));
       }
       if (cloudHighScore > localHighScore) {
         saveEndlessHighScore(cloudHighScore);
