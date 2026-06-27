@@ -35,7 +35,7 @@ export function GameBoard({
         </p>
       </div>
 
-      <ClueList puzzle={puzzle} state={state} maxGuesses={maxGuesses} />
+      <ClueList puzzle={puzzle} state={state} />
 
       {!isGameOver ? (
         <GuessInput onSubmit={onSubmit} disabled={false} shakeKey={incorrectCount} targets={aliases} />

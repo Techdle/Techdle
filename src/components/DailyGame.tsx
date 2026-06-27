@@ -50,7 +50,7 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
         </p>
       </div>
 
-      <ClueList puzzle={puzzle} state={state} maxGuesses={MAX_GUESSES} />
+      <ClueList puzzle={puzzle} state={state} />
 
       {!isGameOver ? (
         <GuessInput onSubmit={submitGuess} disabled={isSubmitting} shakeKey={incorrectCount} targets={aliases} />
