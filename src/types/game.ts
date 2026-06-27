@@ -1,12 +1,16 @@
+export type GameMode = 'daily' | 'endless' | 'sla-time-attack' | 'p1-outage' | 'category';
+
 export interface Puzzle {
   id: string;
   category: string;
+  difficulty?: string;
   clues: string[];
   answer: string;
   aliases: string[];
   explanation: string;
   fixSteps: string[];
   symptom?: string;
+  rawLogs?: string[];
 }
 
 export interface ClientPuzzle {
@@ -34,6 +38,10 @@ export interface GameState {
   /** The Puzzle object returned after game ends (stored for ResolutionTicket).
    *  Only populated when game is over — answers remain hidden during play. */
   fullPuzzle?: Puzzle;
+  mode?: GameMode; // Optional for backward compatibility with existing saved states
+  score?: number;                  // endless: total correct; SLA: score
+  timeRemaining?: number;          // SLA: ms remaining
+  consecutiveCorrect?: number;     // endless: current streak
 }
 
 export interface UserStats {
@@ -76,6 +84,8 @@ export interface UserDocument {
   history: HistoryEntry[];
   /** Unix timestamp of last update */
   updatedAt: number;
+  /** High score for endless mode */
+  endlessHighScore?: number;
 }
 
 // Keep the original ArchiveResult for backward compatibility
@@ -84,4 +94,5 @@ export interface ArchiveResult {
   date: string;
   status: 'won' | 'lost';
   guessesCount: number;
+  solvedOnTime?: boolean;
 }

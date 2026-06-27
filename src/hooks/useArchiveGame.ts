@@ -69,7 +69,8 @@ export function useArchiveGame(date: string) {
         puzzleId: puzzle.id,
         date: state.date,
         status: newStatus as 'won' | 'lost',
-        guessesCount: newGuesses.length
+        guessesCount: newGuesses.length,
+        solvedOnTime: false
       };
       saveArchiveResult(result);
     }

@@ -81,3 +81,30 @@ export function getAllAliases(): string[] {
   });
   return Array.from(aliasSet);
 }
+
+export function getRandomPuzzle(excludeIds: Set<string>): Puzzle | undefined {
+  const pool = allPuzzles.filter(p => !excludeIds.has(p.id));
+  if (pool.length === 0) return undefined; // exhausted, caller reshuffles
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+export function getRandomPuzzleByCategory(category: string, excludeIds: Set<string>): Puzzle | undefined {
+  const pool = allPuzzles.filter(p => p.category === category && !excludeIds.has(p.id));
+  if (pool.length === 0) return undefined; // exhausted, caller reshuffles
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+export function getDailyP1Puzzle(dateStr: string): (Puzzle & { rawLogs: string[] }) | undefined {
+  const hardPuzzles = allPuzzles.filter(p => p.difficulty === 'Hard');
+  if (hardPuzzles.length === 0) return undefined;
+
+  const epoch = new Date('2026-06-25T00:00:00Z').getTime();
+  const targetDate = new Date(dateStr + 'T00:00:00Z').getTime();
+
+  if (isNaN(targetDate) || targetDate < epoch) return undefined;
+
+  const dayIndex = Math.floor((targetDate - epoch) / 86400000);
+
+  const selected = hardPuzzles[getDailyPuzzleIndex(dayIndex, hardPuzzles.length)];
+  return { ...selected, rawLogs: selected.rawLogs ?? [] };
+}

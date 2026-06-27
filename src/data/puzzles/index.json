@@ -110,6 +110,12 @@
       "Check the adapter settings to ensure DNS is set to automatic (DHCP) or the correct internal server",
       "Run 'ipconfig /flushdns' to clear the local resolver cache",
       "Verify the DHCP scope isn't handing out incorrect DNS settings"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.094Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.094Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.094Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.094Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -244,6 +250,12 @@
       "Check the manufacturer's website for a newer hotfix firmware and apply it",
       "If no fix is available, flash the router back to the previous stable firmware version",
       "Disable automatic firmware updates until the issue is officially resolved"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -346,6 +358,12 @@
       "Change the offending client's IPv4 configuration back to 'Obtain an IP address automatically'",
       "Release and renew the IP lease via command prompt (ipconfig /renew)",
       "Verify the manually assigned IP is excluded from the DHCP scope"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -396,6 +414,12 @@
       "Physically trace and unplug the looped Ethernet cable to break the storm",
       "Power cycle the affected switches to clear the saturated MAC address tables",
       "Replace unmanaged desktop switches with managed switches that enforce Spanning Tree Protocol (STP)"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -497,6 +521,12 @@
       "Check the back of the PC and push the RJ45 connector until it clicks",
       "Trace the cable to the wall jack and ensure it is firmly seated there",
       "Test with a known-good patch cable if physical damage is suspected"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -571,6 +601,12 @@
       "Verify the user's Active Directory password hasn't expired",
       "Reset the user's MFA bindings in the identity provider portal (e.g. Duo, Azure AD)",
       "Walk the user through registering their new mobile device for 2FA"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -644,6 +680,12 @@
       "Locate and immediately disconnect the unauthorized consumer router",
       "Have affected users release and renew their IP addresses to get back on the corporate scope",
       "Enable DHCP Snooping on the enterprise switches to block unauthorized DHCP offers"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -818,6 +860,12 @@
       "Find the physical MAC address (Physical Address) of the guest's wireless adapter",
       "Log into the wireless controller or router dashboard",
       "Add the guest's MAC address to the approved whitelist"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1159,7 +1207,13 @@
       "Tapping the center of the wobbling fan temporarily changes the sound."
     ],
     "answer": "failing case fan bearing",
-    "aliases": ["bad fan bearing", "worn fan bearing", "dying case fan", "broken fan bearing", "fan noise grinding"],
+    "aliases": [
+      "bad fan bearing",
+      "worn fan bearing",
+      "dying case fan",
+      "broken fan bearing",
+      "fan noise grinding"
+    ],
     "explanation": "A grinding noise from a wobbling fan that changes with movement indicates the fan's sleeve or ball bearing has worn out, causing the blade hub to contact the fan housing.",
     "fixSteps": [
       "Identify which fan is failing by stopping each fan momentarily with a non-conductive object",
@@ -1178,7 +1232,12 @@
       "Pressing on the touchpad surface reveals a swollen area underneath the palm rest."
     ],
     "answer": "swollen touchpad battery",
-    "aliases": ["bloated battery touchpad", "battery swelling pressing touchpad", "lithium battery swelling", "swollen laptop battery"],
+    "aliases": [
+      "bloated battery touchpad",
+      "battery swelling pressing touchpad",
+      "lithium battery swelling",
+      "swollen laptop battery"
+    ],
     "explanation": "The laptop's internal battery swelling beneath the touchpad area puts upward pressure on the touchpad controller, causing erratic cursor behavior. The condition is also a fire safety risk.",
     "fixSteps": [
       "Immediately power down the laptop and stop using it to prevent further battery damage",
@@ -1197,7 +1256,12 @@
       "A USB headset microphone works fine when plugged into the same computer."
     ],
     "answer": "failed internal microphone",
-    "aliases": ["dead mic", "internal mic not working", "built-in microphone failure", "laptop mic broken"],
+    "aliases": [
+      "dead mic",
+      "internal mic not working",
+      "built-in microphone failure",
+      "laptop mic broken"
+    ],
     "explanation": "When an external microphone works but the built-in one shows no signal at all, the internal microphone hardware has physically failed or the internal connection has become loose.",
     "fixSteps": [
       "Check if the microphone is disabled in Device Manager or Sound settings",
@@ -1216,7 +1280,13 @@
       "Windows reports the display brightness at 100% in the settings panel."
     ],
     "answer": "failed display backlight",
-    "aliases": ["dead backlight", "lcd backlight failure", "backlight inverter failed", "screen too dim", "laptop screen very dark"],
+    "aliases": [
+      "dead backlight",
+      "lcd backlight failure",
+      "backlight inverter failed",
+      "screen too dim",
+      "laptop screen very dark"
+    ],
     "explanation": "An image visible only under direct light with no brightness adjustment working indicates the LED backlight or its driver circuitry has failed while the LCD panel itself remains functional.",
     "fixSteps": [
       "Use an external monitor as a temporary workaround",
@@ -1235,7 +1305,12 @@
       "Disconnecting the front panel power button header and shorting the pins manually works normally."
     ],
     "answer": "stuck power button switch",
-    "aliases": ["power button stuck", "faulty power switch", "power button shorted", "case button broken"],
+    "aliases": [
+      "power button stuck",
+      "faulty power switch",
+      "power button shorted",
+      "case button broken"
+    ],
     "explanation": "A stuck or shorted power button sends a continuous 'press' signal to the motherboard. The system interprets this as repeated power commands causing unwanted shutdowns and immediate restart attempts.",
     "fixSteps": [
       "Unplug the front panel power switch header from the motherboard",
@@ -1254,7 +1329,12 @@
       "The Optane memory utility reports the module status as 'detected but not in accelerated mode'."
     ],
     "answer": "failed Intel Optane acceleration",
-    "aliases": ["optane module failure", "optane cache dead", "optane not accelerating", "intel optane failed"],
+    "aliases": [
+      "optane module failure",
+      "optane cache dead",
+      "optane not accelerating",
+      "intel optane failed"
+    ],
     "explanation": "When the Optane memory module fails or its driver becomes corrupted, the acceleration layer is lost and the system reverts to full mechanical drive performance, causing dramatic slowdowns.",
     "fixSteps": [
       "Open the Intel Optane Memory application and check the module status",
@@ -1273,7 +1353,12 @@
       "After cleaning the RAM contacts with a pencil eraser and reseating, the computer boots normally."
     ],
     "answer": "loose RAM module",
-    "aliases": ["unseated ram", "ram not fully inserted", "loose memory stick", "memory contact issue"],
+    "aliases": [
+      "unseated ram",
+      "ram not fully inserted",
+      "loose memory stick",
+      "memory contact issue"
+    ],
     "explanation": "Physical shock from moving a computer can partially dislodge RAM modules from their slots. Even a millimeter of gap can break the electrical connection, preventing POST from completing.",
     "fixSteps": [
       "Completely remove and firmly reseat all memory modules until the retention clips click",
@@ -1292,7 +1377,12 @@
       "A USB-to-Ethernet adapter immediately restores network functionality."
     ],
     "answer": "lightning-damaged ethernet port",
-    "aliases": ["fried ethernet port", "surge damaged nic", "motherboard lan dead", "ethernet port killed by surge"],
+    "aliases": [
+      "fried ethernet port",
+      "surge damaged nic",
+      "motherboard lan dead",
+      "ethernet port killed by surge"
+    ],
     "explanation": "A nearby lightning strike can induce a surge through Ethernet cabling that jumps the isolation barrier and destroys the physical layer transceiver on the motherboard's integrated NIC.",
     "fixSteps": [
       "Check the Ethernet cable for damage and verify it works with another device",
@@ -1311,7 +1401,12 @@
       "The same memory card works perfectly when using a USB card reader instead."
     ],
     "answer": "damaged SD card slot",
-    "aliases": ["broken sd slot", "sd card reader broken", "memory card slot failure", "bent sd slot pins"],
+    "aliases": [
+      "broken sd slot",
+      "sd card reader broken",
+      "memory card slot failure",
+      "bent sd slot pins"
+    ],
     "explanation": "Forcing a memory card into a slot with delicate pins can bend or break the contacts, preventing reliable electrical connection even though the card physically fits.",
     "fixSteps": [
       "Inspect the slot with a bright light and magnifier for bent pins",
@@ -1330,7 +1425,12 @@
       "Opening the case reveals the drive's data cable is hanging loose inside the chassis."
     ],
     "answer": "loose internal drive cable",
-    "aliases": ["disconnected sata cable", "drive cable unplugged", "internal hdd not detected", "sata data cable loose"],
+    "aliases": [
+      "disconnected sata cable",
+      "drive cable unplugged",
+      "internal hdd not detected",
+      "sata data cable loose"
+    ],
     "explanation": "Movement during transport can cause internal SATA data or power cables to work loose from their connectors, removing the drive from the system entirely without any component failure.",
     "fixSteps": [
       "Power down the computer and open the case",
@@ -1349,7 +1449,12 @@
       "A USB audio adapter plugged into any USB port produces clear sound immediately."
     ],
     "answer": "failed onboard audio controller",
-    "aliases": ["motherboard sound dead", "integrated audio failure", "onboard sound not working", "audio codec failed"],
+    "aliases": [
+      "motherboard sound dead",
+      "integrated audio failure",
+      "onboard sound not working",
+      "audio codec failed"
+    ],
     "explanation": "When no audio jacks work, driver reinstalls fail, and a USB adapter works, the motherboard's integrated audio codec chip has physically failed or its connection to the chipset is damaged.",
     "fixSteps": [
       "Verify audio is not disabled in the BIOS settings",
@@ -1368,7 +1473,12 @@
       "Plugging in a different keyboard resolves the issue immediately."
     ],
     "answer": "worn mechanical keyboard",
-    "aliases": ["worn out keyboard", "keyboard switch failure", "old keyboard failing", "frequently used keys worn"],
+    "aliases": [
+      "worn out keyboard",
+      "keyboard switch failure",
+      "old keyboard failing",
+      "frequently used keys worn"
+    ],
     "explanation": "Mechanical keyboard switches have a rated lifespan (typically 50-100 million keystrokes). Heavy daily use on common keys can wear out individual switch contacts causing intermittent or failed input.",
     "fixSteps": [
       "Test the keyboard on another computer to confirm the hardware failure",
@@ -1387,7 +1497,12 @@
       "BIOS reports the battery as present but at a fixed charge level that never changes."
     ],
     "answer": "failed laptop battery",
-    "aliases": ["battery not charging", "dead laptop battery", "lithium ion battery failed", "battery 0 percent plugged in"],
+    "aliases": [
+      "battery not charging",
+      "dead laptop battery",
+      "lithium ion battery failed",
+      "battery 0 percent plugged in"
+    ],
     "explanation": "Lithium-ion batteries have a finite number of charge cycles. When a battery reaches end-of-life, the internal battery management system (BMS) prevents charging for safety, showing 'Plugged in, not charging'.",
     "fixSteps": [
       "Run a battery diagnostic report using `powercfg /batteryreport` in Command Prompt",
@@ -1406,7 +1521,11 @@
       "Reseating the power cables to the graphics card makes it immediately detected on the next boot."
     ],
     "answer": "loose GPU power cable",
-    "aliases": ["gpu power connector loose", "graphics card not receiving power", "gpu pcie cable disconnected"],
+    "aliases": [
+      "gpu power connector loose",
+      "graphics card not receiving power",
+      "gpu pcie cable disconnected"
+    ],
     "explanation": "Modern graphics cards require dedicated PCIe power cables. If these become loose during transport, the GPU has no power and will not initialize, causing the system to fall back to integrated graphics.",
     "fixSteps": [
       "Power down completely, unplug the power cord, and open the case",
@@ -1425,7 +1544,12 @@
       "Replacing the cable between the laptop and monitor resolves the problem entirely."
     ],
     "answer": "faulty HDMI cable",
-    "aliases": ["bad hdmi cable", "hdmi connection intermittent", "display cable failing", "hdmi cable intermittent signal"],
+    "aliases": [
+      "bad hdmi cable",
+      "hdmi connection intermittent",
+      "display cable failing",
+      "hdmi cable intermittent signal"
+    ],
     "explanation": "HDMI cables contain multiple tiny conductors that can fracture from repeated bending at the connector stress point. A broken conductor causes intermittent or failed signal transmission.",
     "fixSteps": [
       "Try a known-good HDMI cable to confirm the original cable is faulty",
@@ -1444,7 +1568,12 @@
       "The surge protector feels warm to the touch even when powered off."
     ],
     "answer": "failed surge protector",
-    "aliases": ["surge protector dead", "power strip worn out", "overloaded power strip", "surge suppressor failed"],
+    "aliases": [
+      "surge protector dead",
+      "power strip worn out",
+      "overloaded power strip",
+      "surge suppressor failed"
+    ],
     "explanation": "Surge protectors wear out over time as they absorb minor surges. An overloaded strip with daisy-chained devices can also exceed its rated capacity, causing the internal components to degrade or fail.",
     "fixSteps": [
       "Unplug everything from the suspect power strip and test it with a simple desk lamp",
@@ -1463,7 +1592,12 @@
       "Cleaning the port with compressed air does not resolve the issue."
     ],
     "answer": "damaged Thunderbolt port",
-    "aliases": ["broken usb c port", "thunderbolt port not working", "usb c port damaged", "dock not detected"],
+    "aliases": [
+      "broken usb c port",
+      "thunderbolt port not working",
+      "usb c port damaged",
+      "dock not detected"
+    ],
     "explanation": "Thunderbolt ports use additional high-speed signal lines beyond standard USB-C. Physical damage or contamination to the port can break the Thunderbolt alt-mode connection even while basic USB functionality remains.",
     "fixSteps": [
       "Inspect the port carefully with a flashlight for bent pins or debris",
@@ -1482,7 +1616,12 @@
       "Software fan monitoring shows the CPU fan speed fluctuating wildly between 0 and 6000 RPM."
     ],
     "answer": "failing CPU fan bearing",
-    "aliases": ["cpu fan whining", "bad fan bearing", "cpu cooler noise", "fan making high pitched noise"],
+    "aliases": [
+      "cpu fan whining",
+      "bad fan bearing",
+      "cpu cooler noise",
+      "fan making high pitched noise"
+    ],
     "explanation": "When a fan bearing wears out, the rotor can wobble at certain RPMs causing the blades to contact the housing or the bearing itself to produce audible vibration that changes with speed.",
     "fixSteps": [
       "Stop the CPU fan momentarily with a non-conductive object to isolate the noise source",
@@ -1501,7 +1640,12 @@
       "Upon inspection, the drive is not lying flat in its slot and one end is raised."
     ],
     "answer": "unsecured M.2 drive",
-    "aliases": ["m2 drive not screwed down", "loose nvme drive", "m2 standoff missing", "nvme screw missing"],
+    "aliases": [
+      "m2 drive not screwed down",
+      "loose nvme drive",
+      "m2 standoff missing",
+      "nvme screw missing"
+    ],
     "explanation": "M.2 drives must be secured at the mounting end with a screw. If missing, the drive can lift slightly from the connector, breaking electrical contact and preventing detection even though it appears inserted.",
     "fixSteps": [
       "Power down and locate the M.2 mounting screw and standoff on the motherboard",
@@ -1520,7 +1664,12 @@
       "This computer is over five years old and this is the first time it lost settings."
     ],
     "answer": "dying CMOS battery",
-    "aliases": ["cmos battery dead", "bios resetting", "motherboard battery dying", "rtc battery failed"],
+    "aliases": [
+      "cmos battery dead",
+      "bios resetting",
+      "motherboard battery dying",
+      "rtc battery failed"
+    ],
     "explanation": "The CR2032 coin cell that powers BIOS settings and the real-time clock has a 3-5 year lifespan. When it depletes, every full power loss wipes all customized BIOS configurations.",
     "fixSteps": [
       "Replace the CR2032 coin cell battery on the motherboard",
@@ -1539,7 +1688,11 @@
       "Unplugging the power cord, waiting 30 seconds, and plugging it back in restores function."
     ],
     "answer": "tripped power supply protection",
-    "aliases": ["psu surge protection tripped", "power supply overvoltage protection", "psu safety shutdown"],
+    "aliases": [
+      "psu surge protection tripped",
+      "power supply overvoltage protection",
+      "psu safety shutdown"
+    ],
     "explanation": "Quality power supplies have surge protection circuitry that disconnects internal components when a dangerous voltage spike is detected. A full power drain resets the protection mechanism.",
     "fixSteps": [
       "Perform a full power drain by unplugging and holding the power button for 30 seconds",
@@ -1558,7 +1711,12 @@
       "The manufacturer of the USB device released a driver update specifically addressing BSOD issues."
     ],
     "answer": "faulty USB device driver",
-    "aliases": ["driver irql bsod", "bad usb driver", "usb peripheral crash", "driver conflict bsod"],
+    "aliases": [
+      "driver irql bsod",
+      "bad usb driver",
+      "usb peripheral crash",
+      "driver conflict bsod"
+    ],
     "explanation": "The IRQL_NOT_LESS_OR_EQUAL stop code indicates a driver attempted to access a memory page at an inappropriate interrupt request level. A buggy USB driver accessing shared memory improperly is a common trigger.",
     "fixSteps": [
       "Update the USB device driver from the manufacturer's official website",
@@ -1577,7 +1735,12 @@
       "Disabling hardware acceleration in the browser completely stops the black screen episodes."
     ],
     "answer": "GPU driver timeout recovery",
-    "aliases": ["display driver stopped responding", "tdr error", "gpu driver crash", "video driver timeout"],
+    "aliases": [
+      "display driver stopped responding",
+      "tdr error",
+      "gpu driver crash",
+      "video driver timeout"
+    ],
     "explanation": "Windows' Timeout Detection and Recovery (TDR) mechanism restarts the GPU driver when it detects the graphics card hasn't responded within a few seconds. Hardware acceleration in browsers is a common trigger.",
     "fixSteps": [
       "Update the graphics driver to the latest version from the GPU manufacturer",
@@ -1596,12 +1759,23 @@
       "Running a specific command from the command prompt resolves the issue instantly."
     ],
     "answer": "stale DNS resolver cache",
-    "aliases": ["dns cache stale", "old dns records cached", "dns resolution outdated", "ipconfig flushdns needed"],
+    "aliases": [
+      "dns cache stale",
+      "old dns records cached",
+      "dns resolution outdated",
+      "ipconfig flushdns needed"
+    ],
     "explanation": "Windows caches DNS lookup results locally. When a website moves to a new server IP, the cached old IP persists until the TTL expires, causing the computer to resolve to the old location.",
     "fixSteps": [
       "Open Command Prompt as Administrator and run 'ipconfig /flushdns'",
       "Verify the correct IP resolves by running 'nslookup websitename.com'",
       "If records are still stale, temporarily use a public DNS server like 8.8.8.8"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1615,7 +1789,12 @@
       "The hypervisor software requires an explicit configuration change to allow nested virtualization."
     ],
     "answer": "nested virtualization disabled",
-    "aliases": ["nested vm not working", "hyper-v nested virtualization", "vm inside vm fails", "nested virtualization not enabled"],
+    "aliases": [
+      "nested vm not working",
+      "hyper-v nested virtualization",
+      "vm inside vm fails",
+      "nested virtualization not enabled"
+    ],
     "explanation": "Nested virtualization (running a VM inside a VM) requires explicit opt-in on the hypervisor because it adds complexity. A software update can reset this configuration to the disabled default.",
     "fixSteps": [
       "Verify that hardware virtualization is enabled in the host computer's BIOS",
@@ -1634,12 +1813,23 @@
       "The network name contains a special character like a space or symbol."
     ],
     "answer": "hidden SSID connection issue",
-    "aliases": ["hidden wifi not connecting", "ssid broadcast disabled", "can't find wifi network", "hidden network connection problem"],
+    "aliases": [
+      "hidden wifi not connecting",
+      "ssid broadcast disabled",
+      "can't find wifi network",
+      "hidden network connection problem"
+    ],
     "explanation": "Hidden networks (SSID broadcast disabled) require the exact network name including spaces and special characters. Newer Windows versions have stricter matching criteria that reject common typos or encoding differences.",
     "fixSteps": [
       "Confirm the exact network name including capitalization and any special characters",
       "Manually create a Wi-Fi profile with the precise SSID and security settings",
       "Enable SSID broadcast on the access point if security concerns allow it"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1653,7 +1843,12 @@
       "Deleting a specific system file in the font cache directory and restarting resolves the issue."
     ],
     "answer": "corrupted Windows font cache",
-    "aliases": ["font cache corruption", "text showing as squares", "windows font cache corrupt", "missing glyphs"],
+    "aliases": [
+      "font cache corruption",
+      "text showing as squares",
+      "windows font cache corrupt",
+      "missing glyphs"
+    ],
     "explanation": "Windows caches font data to speed up rendering. When this cache file becomes corrupted, certain font glyphs cannot be rendered and appear as placeholder blank squares in affected applications.",
     "fixSteps": [
       "Stop the Windows Font Cache service in Services.msc",
@@ -1672,12 +1867,23 @@
       "The user's mapped drive points to the server address with an old share name that was repurposed."
     ],
     "answer": "incorrect network share mapping",
-    "aliases": ["wrong mapped drive", "network drive wrong folder", "file share pointing to wrong location", "mapped drive path incorrect"],
+    "aliases": [
+      "wrong mapped drive",
+      "network drive wrong folder",
+      "file share pointing to wrong location",
+      "mapped drive path incorrect"
+    ],
     "explanation": "When file server shares are reorganized, old mapped drive letters may still reference share paths that now point to a different directory or have been reassigned to a different department's data.",
     "fixSteps": [
       "Disconnect the existing mapped network drive from File Explorer",
       "Determine the correct UNC path to the intended shared folder",
       "Remap the drive letter to the correct share path"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1691,12 +1897,23 @@
       "Running 'route print' shows the VPN routes pointing to an incorrect gateway address."
     ],
     "answer": "stale VPN routing table",
-    "aliases": ["vpn connected but no access", "vpn routes not updating", "vpn routing table stale", "vpn tunnel up no traffic"],
+    "aliases": [
+      "vpn connected but no access",
+      "vpn routes not updating",
+      "vpn routing table stale",
+      "vpn tunnel up no traffic"
+    ],
     "explanation": "When a VPN client connects, it adds routes to push traffic through the tunnel. If these routes are stale or incorrect from a previous session, packets may be sent to the wrong gateway and dropped.",
     "fixSteps": [
       "Fully disconnect the VPN client and restart the VPN service",
       "Open an administrative command prompt and run 'route -f' to clear the routing table",
       "Reconnect the VPN and verify correct routes with 'route print'"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1710,7 +1927,13 @@
       "The disk's S.M.A.R.T. status reports 'Reallocated Sector Count' has exceeded the warning threshold."
     ],
     "answer": "failing hard drive sectors",
-    "aliases": ["bad hard drive sectors", "hard drive failing", "disk read errors", "hdd bad sectors", "mechanical drive dying"],
+    "aliases": [
+      "bad hard drive sectors",
+      "hard drive failing",
+      "disk read errors",
+      "hdd bad sectors",
+      "mechanical drive dying"
+    ],
     "explanation": "Hard drives develop bad sectors as the magnetic platters degrade. The drive firmware reallocates data from failing sectors to reserve space, but once the reserve is exhausted, read/write operations fail.",
     "fixSteps": [
       "Immediately back up all critical data from the failing drive",
@@ -1729,7 +1952,11 @@
       "Device Manager shows 'Unknown USB Device (Link In Reset)' when the dock is connected."
     ],
     "answer": "Thunderbolt driver update issue",
-    "aliases": ["thunderbolt dock not recognized", "dock stopped working after update", "thunderbolt firmware incompatibility"],
+    "aliases": [
+      "thunderbolt dock not recognized",
+      "dock stopped working after update",
+      "thunderbolt firmware incompatibility"
+    ],
     "explanation": "Windows updates can install generic Thunderbolt drivers that are incompatible with specific docking station firmware, breaking peripheral connectivity while power delivery still functions through the same cable.",
     "fixSteps": [
       "Check Windows Update history for any Thunderbolt or chipset driver updates and roll them back",
@@ -1748,7 +1975,12 @@
       "The partition on the SSD starts at sector 63 instead of the modern alignment standard."
     ],
     "answer": "misaligned SSD partition",
-    "aliases": ["ssd partition alignment wrong", "ssd slow after clone", "partition misalignment", "4k alignment issue"],
+    "aliases": [
+      "ssd partition alignment wrong",
+      "ssd slow after clone",
+      "partition misalignment",
+      "4k alignment issue"
+    ],
     "explanation": "When cloning an old drive, the partition can be copied with legacy alignment (sector 63). Modern SSDs require 4K alignment for optimal performance, and misalignment causes partial write operations that drastically reduce speed.",
     "fixSteps": [
       "Check partition alignment using 'msinfo32' or 'wmic partition get StartingOffset'",
@@ -1767,7 +1999,12 @@
       "The shortcut in the Startup folder points to an executable that was part of the uninstalled program."
     ],
     "answer": "broken startup shortcut",
-    "aliases": ["startup entry broken", "startup program not found", "shortcut target missing", "startup item error"],
+    "aliases": [
+      "startup entry broken",
+      "startup program not found",
+      "shortcut target missing",
+      "startup item error"
+    ],
     "explanation": "Uninstalling one application can remove a shared executable that another startup shortcut depends on. The shortcut still exists but its target path no longer points to a valid file.",
     "fixSteps": [
       "Open Task Manager > Startup tab and identify the failing entry",
@@ -1786,7 +2023,12 @@
       "The Recycle Bin's underlying system directory on the drive appears to have a corrupted index."
     ],
     "answer": "corrupted Recycle Bin",
-    "aliases": ["recycle bin broken", "recycle bin not showing deleted files", "recycle bin corrupt", "cannot empty recycle bin"],
+    "aliases": [
+      "recycle bin broken",
+      "recycle bin not showing deleted files",
+      "recycle bin corrupt",
+      "cannot empty recycle bin"
+    ],
     "explanation": "The Recycle Bin stores its index in a hidden system directory ($Recycle.Bin). If this index becomes corrupted, the files are still deleted but the bin cannot display or manage them properly.",
     "fixSteps": [
       "Open an administrative Command Prompt and run 'rd /s C:\\$Recycle.bin' to reset the Recycle Bin",
@@ -1805,12 +2047,23 @@
       "The link light on the network switch port where the printer is connected is off."
     ],
     "answer": "disconnected network printer",
-    "aliases": ["printer offline", "network printer not reachable", "printer not on network", "ethernet cable unplugged printer"],
+    "aliases": [
+      "printer offline",
+      "network printer not reachable",
+      "printer not on network",
+      "ethernet cable unplugged printer"
+    ],
     "explanation": "A printer showing 'Offline' status with an unreachable IP address and no switch link light indicates the physical network connection between the printer and the switch has been disrupted.",
     "fixSteps": [
       "Physically inspect the Ethernet cable at the back of the printer to ensure it is connected",
       "Check the connection at the network switch end and verify the port's link light is active",
       "Replace the Ethernet patch cable if necessary and verify connectivity by pinging the printer"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1824,7 +2077,12 @@
       "Uninstalling one of the security programs immediately restores system performance."
     ],
     "answer": "antivirus software conflict",
-    "aliases": ["two antivirus programs", "multiple security suites", "antivirus conflict slow", "competing av software"],
+    "aliases": [
+      "two antivirus programs",
+      "multiple security suites",
+      "antivirus conflict slow",
+      "competing av software"
+    ],
     "explanation": "Running two real-time antivirus scanners simultaneously causes them to compete for file access, scan each other's processes, and attempt to disable each other, resulting in severe performance degradation and ineffective protection.",
     "fixSteps": [
       "Uninstall one of the two security programs using the official removal tool",
@@ -1843,7 +2101,12 @@
       "Running System File Checker reports multiple corrupted files and repairs them successfully."
     ],
     "answer": "system file corruption from cleanup",
-    "aliases": ["sfc scannow needed", "system files deleted by cleaner", "corrupted system files", "dll files missing"],
+    "aliases": [
+      "sfc scannow needed",
+      "system files deleted by cleaner",
+      "corrupted system files",
+      "dll files missing"
+    ],
     "explanation": "Aggressive disk cleanup tools sometimes misidentify shared system DLLs and runtime components as unnecessary files and delete them, breaking every application that depends on those shared libraries.",
     "fixSteps": [
       "Run 'sfc /scannow' from an elevated Command Prompt to restore missing system files",
@@ -1862,7 +2125,12 @@
       "Re-registering the application package using a PowerShell command fixes it temporarily."
     ],
     "answer": "corrupted Windows app package",
-    "aliases": ["broken store app", "windows app won't open", "app package corrupted", "uwp app failing"],
+    "aliases": [
+      "broken store app",
+      "windows app won't open",
+      "app package corrupted",
+      "uwp app failing"
+    ],
     "explanation": "Windows Store (UWP) applications can have their package installation become corrupted without affecting other system components. The app's internal state becomes unrecoverable even through standard reset options.",
     "fixSteps": [
       "Open PowerShell as Administrator and run 'Get-AppxPackage *appname* | Remove-AppxPackage'",
@@ -1881,12 +2149,23 @@
       "The user's account is configured to require re-authentication due to a recent security policy change."
     ],
     "answer": "session cookie conflict",
-    "aliases": ["login loop", "authentication redirect loop", "keeps being redirected to login", "cannot stay logged in"],
+    "aliases": [
+      "login loop",
+      "authentication redirect loop",
+      "keeps being redirected to login",
+      "cannot stay logged in"
+    ],
     "explanation": "When a web application's session cookie is incompatible with new authentication policies, the server repeatedly requests authentication even after a successful login, because the session cannot be properly established.",
     "fixSteps": [
       "Clear all browser cookies, cache, and site data for the affected domain",
       "Try accessing the portal in a private/incognito browser window",
       "If resolved in private mode, disable browser extensions that may interfere with authentication cookies"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -1900,7 +2179,12 @@
       "The issue started after a Windows Update that included security enhancements for biometric authentication."
     ],
     "answer": "Windows Hello configuration corruption",
-    "aliases": ["windows hello not working", "fingerprint login failed", "facial recognition broken", "biometric sign-in issue"],
+    "aliases": [
+      "windows hello not working",
+      "fingerprint login failed",
+      "facial recognition broken",
+      "biometric sign-in issue"
+    ],
     "explanation": "Windows updates can reset or corrupt the biometric enrollment database, requiring users to re-register their biometric data. The hardware is functional but the stored authentication templates are no longer valid.",
     "fixSteps": [
       "Go to Settings > Accounts > Sign-in options and select 'Remove' for the current biometric setup",
@@ -1919,7 +2203,12 @@
       "The workbook uses many volatile functions like NOW(), TODAY(), and RAND()."
     ],
     "answer": "excessive volatile functions",
-    "aliases": ["excel slow recalculating", "volatile formula performance", "excel spreadsheet too slow", "volatile functions performance"],
+    "aliases": [
+      "excel slow recalculating",
+      "volatile formula performance",
+      "excel spreadsheet too slow",
+      "volatile functions performance"
+    ],
     "explanation": "Volatile functions in Excel recalculate every time any change is made anywhere in the workbook, even if their dependencies haven't changed. Hundreds of volatile formulas can multiply calculation time dramatically.",
     "fixSteps": [
       "Replace volatile functions (NOW, TODAY, INDIRECT, OFFSET, RAND) with non-volatile alternatives where possible",
@@ -1938,7 +2227,12 @@
       "Windows Activation shows 'Error: 0xC004F211' indicating a hardware change has invalidated the license."
     ],
     "answer": "Windows activation invalidated",
-    "aliases": ["windows not activated", "activate windows watermark", "windows license invalid after hardware change", "digital license broken"],
+    "aliases": [
+      "windows not activated",
+      "activate windows watermark",
+      "windows license invalid after hardware change",
+      "digital license broken"
+    ],
     "explanation": "Windows licenses are tied to the motherboard's hardware ID. Replacing the motherboard or other major components creates a new hardware profile that the existing activation key no longer recognizes as the original device.",
     "fixSteps": [
       "Go to Settings > System > Activation and run the Activation Troubleshooter",
@@ -1957,7 +2251,12 @@
       "Uninstalling the camera driver and restarting Windows to auto-reinstall fixes the issue."
     ],
     "answer": "webcam driver corruption",
-    "aliases": ["camera not working", "webcam black screen", "camera driver failed", "integrated webcam not detected"],
+    "aliases": [
+      "camera not working",
+      "webcam black screen",
+      "camera driver failed",
+      "integrated webcam not detected"
+    ],
     "explanation": "A Windows Update can deliver an incompatible or buggy webcam driver that conflicts with the specific camera hardware in the laptop, preventing initialization even though the power indicator shows the camera is on.",
     "fixSteps": [
       "Open Device Manager, right-click the camera, and select 'Uninstall device' (check 'Delete driver software')",
@@ -1976,7 +2275,12 @@
       "The SYSVOL share on the domain controller contains corrupted policy files from a recent sync failure."
     ],
     "answer": "corrupted Group Policy files",
-    "aliases": ["group policy not applying", "gpo failure", "sysvol corruption", "policy not applied domain"],
+    "aliases": [
+      "group policy not applying",
+      "gpo failure",
+      "sysvol corruption",
+      "policy not applied domain"
+    ],
     "explanation": "Group Policy settings are stored in files on the SYSVOL share replicated between domain controllers. When replication conflicts corrupt these files, policy changes fail to apply to client computers.",
     "fixSteps": [
       "Run 'dcdiag' and 'repadmin /replsummary' on the domain controllers to identify replication issues",
@@ -1995,12 +2299,23 @@
       "The user's Active Directory group membership changed due to an automated HR system update."
     ],
     "answer": "revoked network share permissions",
-    "aliases": ["access denied file share", "folder permission changed", "cannot access network drive", "ntfs permission issue"],
+    "aliases": [
+      "access denied file share",
+      "folder permission changed",
+      "cannot access network drive",
+      "ntfs permission issue"
+    ],
     "explanation": "Automated HR-to-AD synchronization can change a user's group memberships when their role or department status changes. If the share permissions rely on group membership, access is immediately lost.",
     "fixSteps": [
       "Verify the user's current Active Directory group memberships using Active Directory Users and Computers",
       "Check the NTFS and share permissions on the affected folder to identify which group has access",
       "Add the user or their correct group to the folder's access control list"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2014,7 +2329,12 @@
       "The Exchange admin console shows that specific file types are restricted by a transport rule."
     ],
     "answer": "blocked file type in Exchange",
-    "aliases": ["outlook attachment blocked by policy", "exe attachment blocked", "email attachment not opening", "exchange transport rule blocking"],
+    "aliases": [
+      "outlook attachment blocked by policy",
+      "exe attachment blocked",
+      "email attachment not opening",
+      "exchange transport rule blocking"
+    ],
     "explanation": "Exchange Online and on-premises servers use transport rules to block potentially dangerous file extensions. Legitimate files with these extensions are blocked even when sent internally by trusted senders.",
     "fixSteps": [
       "Verify the blocked file type in the Exchange Admin Center > Mail Flow > Rules",
@@ -2033,7 +2353,12 @@
       "The lock persists even after waiting several hours for the session to expire."
     ],
     "answer": "stale file checkout lock",
-    "aliases": ["file locked by unavailable user", "onedrive file in use", "broken file lock", "stale office document lock"],
+    "aliases": [
+      "file locked by unavailable user",
+      "onedrive file in use",
+      "broken file lock",
+      "stale office document lock"
+    ],
     "explanation": "When Office applications crash while editing a file stored in OneDrive, the lock file that prevents conflicts may not be released properly. The file remains in a checked-out state associated with the crashed session.",
     "fixSteps": [
       "Navigate to the OneDrive folder and look for hidden '~$' temporary lock files",
@@ -2052,7 +2377,12 @@
       "The system is a decoy server specifically deployed to detect unauthorized network access."
     ],
     "answer": "honeypot alert triggered",
-    "aliases": ["decoy server access", "honeypot detection", "unauthorized internal scan", "intrusion detection alert"],
+    "aliases": [
+      "decoy server access",
+      "honeypot detection",
+      "unauthorized internal scan",
+      "intrusion detection alert"
+    ],
     "explanation": "A honeypot is a deliberately vulnerable decoy system placed on the network to attract attackers. Any access to it is by definition unauthorized and indicates active reconnaissance or lateral movement.",
     "fixSteps": [
       "Isolate the development network segment where the alert originated",
@@ -2071,7 +2401,12 @@
       "The graphics driver update installed a new default color profile that overrides the calibrated settings."
     ],
     "answer": "incorrect monitor color profile",
-    "aliases": ["washed out colors", "monitor color wrong after driver update", "icc profile reset", "display calibration lost"],
+    "aliases": [
+      "washed out colors",
+      "monitor color wrong after driver update",
+      "icc profile reset",
+      "display calibration lost"
+    ],
     "explanation": "Graphics driver updates can replace the current ICC color profile with a generic default profile, changing how colors are rendered across all applications and the desktop.",
     "fixSteps": [
       "Open Color Management in Windows Settings and navigate to the Advanced tab",
@@ -2090,7 +2425,12 @@
       "The internal certificate authority's root certificate has passed its expiration date."
     ],
     "answer": "expired internal code signing certificate",
-    "aliases": ["self-signed certificate expired", "internal cert expired", "code signing cert expired", "unknown publisher internal app"],
+    "aliases": [
+      "self-signed certificate expired",
+      "internal cert expired",
+      "code signing cert expired",
+      "unknown publisher internal app"
+    ],
     "explanation": "Internal code signing certificates and CA root certificates have expiration dates. When they expire, all applications signed with them appear untrusted, triggering SmartScreen warnings on every launch.",
     "fixSteps": [
       "Renew the internal CA's root certificate on the certificate authority server",
@@ -2109,7 +2449,12 @@
       "The system's execution policy has been reset to 'Restricted' by the security update."
     ],
     "answer": "PowerShell execution policy reset",
-    "aliases": ["powershell scripts cannot run", "execution policy restricted", "cannot run ps1 files", "powershell script execution disabled"],
+    "aliases": [
+      "powershell scripts cannot run",
+      "execution policy restricted",
+      "cannot run ps1 files",
+      "powershell script execution disabled"
+    ],
     "explanation": "Security updates can reset the PowerShell execution policy to the most restrictive setting for safety. This blocks all script execution unless the policy is explicitly changed by an administrator.",
     "fixSteps": [
       "Open PowerShell as Administrator and check the execution policy with 'Get-ExecutionPolicy'",
@@ -2128,7 +2473,12 @@
       "The Task Scheduler service shows as 'Running' in the Services panel."
     ],
     "answer": "corrupted Task Scheduler state",
-    "aliases": ["scheduled tasks not running", "task scheduler broken", "tasks not triggering", "windows scheduled tasks failing"],
+    "aliases": [
+      "scheduled tasks not running",
+      "task scheduler broken",
+      "tasks not triggering",
+      "windows scheduled tasks failing"
+    ],
     "explanation": "The Task Scheduler service can enter a state where it accepts task registrations and shows them as ready, but its internal trigger engine stops firing. This is often a corrupted job queue or a deadlocked worker thread.",
     "fixSteps": [
       "Restart the Task Scheduler service from Services.msc (right-click > Restart)",
@@ -2147,7 +2497,12 @@
       "Checking System Protection shows that all restore points have been cleared."
     ],
     "answer": "restore points deleted by cleanup",
-    "aliases": ["system restore points missing", "no restore points available", "shadow copies deleted", "disk cleanup removed restore points"],
+    "aliases": [
+      "system restore points missing",
+      "no restore points available",
+      "shadow copies deleted",
+      "disk cleanup removed restore points"
+    ],
     "explanation": "The Disk Cleanup utility includes an option to delete System Restore points. When selected, all restore points are immediately deleted, leaving System Restore with no recovery snapshots to revert to.",
     "fixSteps": [
       "Check System Protection status by navigating to System Properties > System Protection",
@@ -2166,7 +2521,13 @@
       "Outlook's cached Exchange mode .ost file has reached the maximum configured size limit."
     ],
     "answer": "Outlook offline data file full",
-    "aliases": ["outlook ost file full", "outlook full mailbox", "cached mode ost limit", "mailbox quota reached", "outlook disconnected ost"],
+    "aliases": [
+      "outlook ost file full",
+      "outlook full mailbox",
+      "cached mode ost limit",
+      "mailbox quota reached",
+      "outlook disconnected ost"
+    ],
     "explanation": "Outlook's cached mode stores a local copy (.ost file) of the Exchange mailbox. When this file reaches its size limit or the server-side mailbox quota is exceeded, synchronization stops to prevent data corruption.",
     "fixSteps": [
       "Empty the Deleted Items folder and run 'Tools > Mailbox Cleanup' in Outlook",
@@ -2185,12 +2546,23 @@
       "The DNS server assigned by the VPN is not being used because the user's home router DHCP settings take priority."
     ],
     "answer": "VPN DNS suffix configuration issue",
-    "aliases": ["vpn dns not resolving", "internal sites not accessible vpn", "vpn dns leak", "dns suffix missing on vpn"],
+    "aliases": [
+      "vpn dns not resolving",
+      "internal sites not accessible vpn",
+      "vpn dns leak",
+      "dns suffix missing on vpn"
+    ],
     "explanation": "When a VPN connection fails to push the correct DNS suffix or connection-specific DNS suffix settings, the client cannot resolve internal hostnames even though network connectivity to internal IPs is established.",
     "fixSteps": [
       "Open the network adapter properties for the VPN connection and check DNS suffix settings",
       "Add the corporate DNS suffix to the TCP/IP settings of the VPN adapter",
       "Run 'ipconfig /flushdns' and test resolution with 'nslookup internal-server.corp.com'"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2204,7 +2576,12 @@
       "The Windows Power Scheme settings in the registry show corrupted or missing values."
     ],
     "answer": "corrupted Windows power plan",
-    "aliases": ["power plan not working", "battery life terrible", "power settings broken", "performance slider not working"],
+    "aliases": [
+      "power plan not working",
+      "battery life terrible",
+      "power settings broken",
+      "performance slider not working"
+    ],
     "explanation": "Windows power plans store CPU throttling, display brightness, and sleep settings in the registry. Corruption to these power scheme values can lock the system into a single performance state regardless of user-selected mode.",
     "fixSteps": [
       "Restore the default power plans by running 'powercfg -restoredefaultschemes' in Command Prompt as Administrator",
@@ -2223,12 +2600,23 @@
       "The Network Policy Server (NPS) has a policy that restricts VPN access based on IP address range."
     ],
     "answer": "restrictive NPS network policy",
-    "aliases": ["vpn policy blocking branch", "nps restriction", "remote access policy block", "radius policy rejecting connection"],
+    "aliases": [
+      "vpn policy blocking branch",
+      "nps restriction",
+      "remote access policy block",
+      "radius policy rejecting connection"
+    ],
     "explanation": "Network Policy Server (NPS) RADIUS policies can restrict VPN access based on client IP ranges, connection time, or group membership. A policy that doesn't include the new branch office's IP range causes immediate disconnection.",
     "fixSteps": [
       "Log into the NPS management console and review the connection request policies",
       "Identify the restrictive policy and add the new branch office's public IP range to the allowed list",
       "Test the connection from the new branch office after the policy update"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2242,12 +2630,23 @@
       "The user admits they were trying to 'share internet' with a game console."
     ],
     "answer": "improper network bridge configuration",
-    "aliases": ["network bridge broke internet", "bridge mode no internet", "windows bridge causing network issues", "network bridge misconfigured"],
+    "aliases": [
+      "network bridge broke internet",
+      "bridge mode no internet",
+      "windows bridge causing network issues",
+      "network bridge misconfigured"
+    ],
     "explanation": "Creating a network bridge in Windows merges two network interfaces into one logical segment, but can cause DHCP conflicts and broadcast storms if not configured correctly. The bridge's IP configuration may conflict with the corporate network.",
     "fixSteps": [
       "Open Network Connections (ncpa.cpl) and locate the Network Bridge adapter",
       "Right-click the bridge and select 'Delete' to remove the bridge configuration",
       "Re-enable both network adapters individually and verify connectivity on each"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2261,12 +2660,23 @@
       "Running the 'net use' command shows the drives with 'Unavailable' status."
     ],
     "answer": "mapped drive disconnected on login",
-    "aliases": ["network drives not reconnecting", "mapped drives red x", "net use disconnected", "persistent drive not connecting"],
+    "aliases": [
+      "network drives not reconnecting",
+      "mapped drives red x",
+      "net use disconnected",
+      "persistent drive not connecting"
+    ],
     "explanation": "Windows maps network drives with persistent settings, but if the drive was mapped using credentials different from the current session, it cannot automatically reconnect until the user explicitly provides the stored credentials again.",
     "fixSteps": [
       "Open an elevated Command Prompt and run 'net use' to list all mapped drives",
       "Disconnect the failed drive mapping with 'net use Z: /delete'",
       "Remap the drive using 'net use Z: \\\\server\\share /persistent:yes'"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2280,12 +2690,23 @@
       "The DNS record for 'autodiscover.company.com' points to an old server that was decommissioned."
     ],
     "answer": "stale Autodiscover DNS record",
-    "aliases": ["outlook autodiscover not working", "autodiscover dns wrong", "outlook can't find email server", "exchange autodiscover dns stale"],
+    "aliases": [
+      "outlook autodiscover not working",
+      "autodiscover dns wrong",
+      "outlook can't find email server",
+      "exchange autodiscover dns stale"
+    ],
     "explanation": "Outlook's Autodiscover service uses DNS to find the correct Exchange server. When the DNS CNAME or SRV record points to a decommissioned server, the autodiscover handshake fails and automatic account configuration is impossible.",
     "fixSteps": [
       "Check the Autodiscover CNAME record for the domain using 'nslookup autodiscover.domain.com'",
       "Update the DNS record to point to the current Exchange or Exchange Online server endpoint",
       "Test the fix by running the Microsoft Remote Connectivity Analyzer's Autodiscover test"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2299,12 +2720,23 @@
       "The affected computer's MAC address table has an old entry for the server's IP address."
     ],
     "answer": "stale ARP cache entry",
-    "aliases": ["arp cache corrupted", "can't reach server on same subnet", "ip conflict arp", "wrong mac address cached"],
+    "aliases": [
+      "arp cache corrupted",
+      "can't reach server on same subnet",
+      "ip conflict arp",
+      "wrong mac address cached"
+    ],
     "explanation": "The Address Resolution Protocol (ARP) cache maps IP addresses to MAC addresses. If a stale or incorrect ARP entry persists, packets are sent to the wrong hardware address and the target server never receives them.",
     "fixSteps": [
       "Open an administrative Command Prompt and run 'arp -d' to clear the entire ARP cache",
       "After clearing the cache, ping the server to trigger a fresh ARP resolution",
       "Add a static ARP entry with 'arp -s [IP] [MAC]' if the device has a known persistent issue"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2318,12 +2750,23 @@
       "The recipient's mail server uses an IP-based allowlist for accepting email from this organization."
     ],
     "answer": "SMTP relay IP not allowlisted",
-    "aliases": ["email relay denied", "smtp 550 relay access denied", "email bouncing relay", "outgoing mail rejected"],
+    "aliases": [
+      "email relay denied",
+      "smtp 550 relay access denied",
+      "email bouncing relay",
+      "outgoing mail rejected"
+    ],
     "explanation": "Many email servers and anti-spam services use IP allowlists to accept mail from known senders. After changing the outgoing mail server's public IP, the new IP must be added to all allowlists on partner email servers.",
     "fixSteps": [
       "Identify the new public IP address of the email relay server",
       "Contact the recipient organizations' IT teams or use their email security portal to update the allowlist",
       "Consider implementing SPF, DKIM, and DMARC records to authenticate email more reliably than IP-based allowlists"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2337,7 +2780,12 @@
       "Outlook is running in cached mode and the rules are stored on both the client and server."
     ],
     "answer": "Outlook rules conflict from mailbox migration",
-    "aliases": ["outlook rules not applying", "email rules broken", "inbox rules stopped working", "mail rules not triggering"],
+    "aliases": [
+      "outlook rules not applying",
+      "email rules broken",
+      "inbox rules stopped working",
+      "mail rules not triggering"
+    ],
     "explanation": "When a mailbox is migrated to a new Exchange server, server-side rules can become out of sync with client-only rules. Rules created before the migration may have their conditions stored against the old server configuration.",
     "fixSteps": [
       "In Outlook, go to File > Manage Rules & Alerts and export all rules to a .rwz backup file",
@@ -2356,7 +2804,12 @@
       "The drive's fragmentation level is reported as very high by defragmentation tools."
     ],
     "answer": "NTFS compression-induced fragmentation",
-    "aliases": ["compressed drive slow", "ntfs compression fragmentation", "external drive slow after compression", "fragmented compressed files"],
+    "aliases": [
+      "compressed drive slow",
+      "ntfs compression fragmentation",
+      "external drive slow after compression",
+      "fragmented compressed files"
+    ],
     "explanation": "NTFS compression splits files into multiple fragments as they are modified and recompressed. Over time, heavily compressed drives can become extremely fragmented, significantly increasing read latency for all files.",
     "fixSteps": [
       "Defragment the drive using Optimize Drives in Windows or a third-party tool that handles compressed files",
@@ -2375,7 +2828,12 @@
       "Starting the Docker service manually results in it immediately stopping again."
     ],
     "answer": "Docker engine service crash loop",
-    "aliases": ["docker daemon not running", "docker desktop stopped", "docker service failing to start", "docker engine broken"],
+    "aliases": [
+      "docker daemon not running",
+      "docker desktop stopped",
+      "docker service failing to start",
+      "docker engine broken"
+    ],
     "explanation": "Docker Desktop relies on the Windows Docker service and a backend WSL2 or Hyper-V VM. If the backend VM fails to initialize or WSL2 encounters issues, the Docker engine crashes immediately on startup.",
     "fixSteps": [
       "Open PowerShell as Administrator and run 'wsl --shutdown' to reset the WSL2 backend",
@@ -2394,7 +2852,12 @@
       "Docker Desktop's shared drive settings do not include the drive where the mount path is located."
     ],
     "answer": "Docker drive sharing not configured",
-    "aliases": ["docker volume mount denied", "docker cannot mount drive", "shared drive not enabled docker", "docker-compose volume error"],
+    "aliases": [
+      "docker volume mount denied",
+      "docker cannot mount drive",
+      "shared drive not enabled docker",
+      "docker-compose volume error"
+    ],
     "explanation": "Docker Desktop on Windows requires each drive to be explicitly shared in its settings before containers can mount volumes from that drive. A missing drive share causes all volume mounts from that drive to fail.",
     "fixSteps": [
       "Open Docker Desktop settings and navigate to Resources > File Sharing",
@@ -2413,12 +2876,23 @@
       "The process using the port is a local development server that was started earlier."
     ],
     "answer": "port conflict with host application",
-    "aliases": ["docker port already in use", "port binding failed docker", "address already in use docker", "docker port conflict host"],
+    "aliases": [
+      "docker port already in use",
+      "port binding failed docker",
+      "address already in use docker",
+      "docker port conflict host"
+    ],
     "explanation": "Docker containers share the host's network namespace for port mappings. If the host machine already has an application listening on the container's mapped port, Docker cannot bind to it and the container fails to start.",
     "fixSteps": [
       "Identify the conflicting process with 'netstat -ano | findstr :PORT' and note the PID",
       "Stop the application using that port or change its listening port",
       "Alternatively, map the container port to a different host port in the docker-compose or run command"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2432,12 +2906,23 @@
       "The switch logs show 'LACP: Partner does not support the same aggregation parameters'."
     ],
     "answer": "LACP port channel mismatch",
-    "aliases": ["etherchannel misconfiguration", "lag not working", "port channel negotiation fail", "link aggregation issue"],
+    "aliases": [
+      "etherchannel misconfiguration",
+      "lag not working",
+      "port channel negotiation fail",
+      "link aggregation issue"
+    ],
     "explanation": "LACP (Link Aggregation Control Protocol) requires both ends of the aggregated link to agree on speed, duplex, VLAN membership, and port membership. Different cable lengths can cause timing differences that prevent proper negotiation.",
     "fixSteps": [
       "Verify that all aggregated ports are configured with identical speed, duplex, and VLAN settings",
       "Use cables of the same type and length for all ports in the aggregation",
       "Reconfigure the port channel with identical parameters on both switches"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2451,12 +2936,23 @@
       "The DNS server logs show validation errors for domains where the DNSSEC chain is incomplete."
     ],
     "answer": "DNSSEC validation failure",
-    "aliases": ["dnssec servfail", "dns validation errors", "secure dns failing", "dnssec enabled sites not loading"],
+    "aliases": [
+      "dnssec servfail",
+      "dns validation errors",
+      "secure dns failing",
+      "dnssec enabled sites not loading"
+    ],
     "explanation": "When a DNS resolver has DNSSEC validation enabled, it requires a complete chain of trust from the root zone to the domain. If any part of the chain is missing or expired, the resolver returns SERVFAIL to prevent potential spoofing.",
     "fixSteps": [
       "Check the DNS server logs for specific DNSSEC validation failures",
       "Verify that the DNS root trust anchor is up to date on the DNS server",
       "If specific domains repeatedly fail due to misconfigured DNSSEC, add them to a validation exclusion list temporarily"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2470,12 +2966,23 @@
       "The affected workstations are running Windows 7 or other older operating systems."
     ],
     "answer": "SMB signing requirement incompatibility",
-    "aliases": ["smb signing required", "file server rejecting old clients", "smb security hardening issue", "legacy smb connection rejected"],
+    "aliases": [
+      "smb signing required",
+      "file server rejecting old clients",
+      "smb security hardening issue",
+      "legacy smb connection rejected"
+    ],
     "explanation": "SMB signing is a security feature that digitally signs SMB packets. When a file server requires signing but the client OS or configuration doesn't support it, the SMB connection is rejected to prevent relay attacks.",
     "fixSteps": [
       "Identify legacy workstations that don't support SMB signing in the security logs",
       "Update or replace legacy Windows systems to a supported version that supports SMB signing",
       "If immediate replacement is not possible, create a separate organizational unit with signing disabled for legacy systems only"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2489,12 +2996,23 @@
       "The DHCP server shows that 100% of the IP address scope for the wireless subnet is currently leased."
     ],
     "answer": "exhausted DHCP scope",
-    "aliases": ["dhcp pool full", "no ip addresses available", "dhcp scope exhausted", "dhcp lease max reached"],
+    "aliases": [
+      "dhcp pool full",
+      "no ip addresses available",
+      "dhcp scope exhausted",
+      "dhcp lease max reached"
+    ],
     "explanation": "When all IP addresses in a DHCP scope are leased, new devices cannot obtain an IP address and either receive no connection or fall back to APIPA (169.254.x.x) addresses that do not route on the corporate network.",
     "fixSteps": [
       "Check the DHCP server's scope statistics to confirm the pool is fully utilized",
       "Expand the subnet scope by increasing the subnet mask or adding a new scope",
       "Consider releasing stale leases or reducing the lease duration for more efficient reuse"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2508,12 +3026,23 @@
       "That access switch has PortFast enabled on both of its uplink ports to the core."
     ],
     "answer": "STP topology change storm",
-    "aliases": ["stp flapping", "spanning tree changes too often", "network interruptions every few minutes", "stp topology change every 30 seconds"],
+    "aliases": [
+      "stp flapping",
+      "spanning tree changes too often",
+      "network interruptions every few minutes",
+      "stp topology change every 30 seconds"
+    ],
     "explanation": "PortFast should only be enabled on access ports connected to end devices. When mistakenly enabled on uplink ports, any connected device transition triggers an STP topology change, flooding the network with unnecessary MAC table updates.",
     "fixSteps": [
       "Disable PortFast on the uplink ports of the problematic access switch",
       "Configure BPDU Guard on access ports to prevent rogue switches from causing topology changes",
       "Verify STP stability by monitoring the topology change counter on the root bridge"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2527,7 +3056,12 @@
       "Installing the Media Feature Pack from Microsoft's website resolves all issues."
     ],
     "answer": "missing Windows N media features",
-    "aliases": ["windows n edition missing features", "media feature pack needed", "windows feature not installed", "application requires windows media functionality"],
+    "aliases": [
+      "windows n edition missing features",
+      "media feature pack needed",
+      "windows feature not installed",
+      "application requires windows media functionality"
+    ],
     "explanation": "Windows N editions (common in Europe) exclude media-related technologies for regulatory compliance. Applications that depend on Windows Media Player, DirectShow, or certain codecs will fail on N editions without the Media Feature Pack.",
     "fixSteps": [
       "Download and install the Media Feature Pack for the specific Windows N edition version from Microsoft's website",
@@ -2546,7 +3080,12 @@
       "The Desktop, Documents, and Pictures folders show 'Not backed up' in OneDrive protection settings."
     ],
     "answer": "OneDrive Known Folder Move disruption",
-    "aliases": ["known folder move broken", "desktop not syncing onedrive", "onedrive folder backup stopped", "documents not protected onedrive"],
+    "aliases": [
+      "known folder move broken",
+      "desktop not syncing onedrive",
+      "onedrive folder backup stopped",
+      "documents not protected onedrive"
+    ],
     "explanation": "OneDrive's Known Folder Move backs up Desktop, Documents, and Pictures. A computer rename can break the link between local folders and the cloud backup, creating sync conflicts as the service tries to reconcile the old and new device identities.",
     "fixSteps": [
       "Open OneDrive settings and navigate to the Backup tab (Manage backup)",
@@ -2565,7 +3104,12 @@
       "The Exchange AutoMapping feature is not populating the shared mailbox for this user."
     ],
     "answer": "shared mailbox AutoMapping failure",
-    "aliases": ["shared mailbox not showing up", "automapping not working", "exchange shared mailbox not visible", "shared mailbox outlook"],
+    "aliases": [
+      "shared mailbox not showing up",
+      "automapping not working",
+      "exchange shared mailbox not visible",
+      "shared mailbox outlook"
+    ],
     "explanation": "Exchange's AutoMapping feature should automatically add shared mailboxes to Outlook when the user has Full Access permissions. This can fail due to cached permissions, mailbox size limits, or throttling policies on the Exchange server.",
     "fixSteps": [
       "Verify the user has Full Access permission to the shared mailbox in Exchange Admin Center",
@@ -2584,7 +3128,12 @@
       "Office activation relies on cached credentials that were invalidated by the password change."
     ],
     "answer": "Office activation token expired",
-    "aliases": ["unlicensed product office", "microsoft office not activated", "office activation broken after password change", "microsoft 365 subscription not recognized"],
+    "aliases": [
+      "unlicensed product office",
+      "microsoft office not activated",
+      "office activation broken after password change",
+      "microsoft 365 subscription not recognized"
+    ],
     "explanation": "Office 365 activation uses cached tokens that are tied to the user's credentials. When the password changes, the cached tokens are invalidated and Office must re-authenticate with the Microsoft 365 activation servers.",
     "fixSteps": [
       "Open any Office application and click 'File > Account > Update License' or 'Reactivate'",
@@ -2603,7 +3152,12 @@
       "Entering the 48-digit recovery key from the organization's key management system allows normal boot."
     ],
     "answer": "BitLocker triggered by firmware update",
-    "aliases": ["bitlocker recovery key needed", "bitlocker asking for key after update", "bios update triggered bitlocker", "device encrypted not booting"],
+    "aliases": [
+      "bitlocker recovery key needed",
+      "bitlocker asking for key after update",
+      "bios update triggered bitlocker",
+      "device encrypted not booting"
+    ],
     "explanation": "BitLocker measures boot components to detect tampering. A BIOS/UEFI update changes the measured boot metrics, causing BitLocker to believe the system integrity has been compromised and require the recovery key to unlock.",
     "fixSteps": [
       "Obtain the BitLocker Recovery Key from Azure AD, Active Directory, or Microsoft account associated with the device",
@@ -2622,12 +3176,23 @@
       "The computer is not domain-joined and does not meet the device compliance policy requirements."
     ],
     "answer": "device compliance policy violation",
-    "aliases": ["conditional access block", "microsoft 365 access denied", "device not compliant teams", "azure ad device compliance failed"],
+    "aliases": [
+      "conditional access block",
+      "microsoft 365 access denied",
+      "device not compliant teams",
+      "azure ad device compliance failed"
+    ],
     "explanation": "Azure AD Conditional Access policies can require devices to be domain-joined or marked as compliant. A non-compliant device is blocked from accessing corporate Microsoft 365 resources, while personal phones may be allowed with app protection policies.",
     "fixSteps": [
       "Check the Azure AD sign-in logs for the specific Conditional Access policy that blocked the user",
       "Enroll the device in Intune or join it to the domain if required by the policy",
       "If the device cannot be enrolled, access resources through a browser with appropriate app protection policies"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2641,7 +3206,12 @@
       "The affected user's calendar permissions in Exchange show an 'orphaned' security principal."
     ],
     "answer": "orphaned calendar permission entry",
-    "aliases": ["calendar sharing broken", "exchange calendar permissions corrupt", "free busy not visible", "outlook calendar sharing not working"],
+    "aliases": [
+      "calendar sharing broken",
+      "exchange calendar permissions corrupt",
+      "free busy not visible",
+      "outlook calendar sharing not working"
+    ],
     "explanation": "Exchange mailbox permissions can become orphaned when the granting security principal (user or group) is deleted or modified while the calendar ACL still references it, causing permission lookups to fail and default to no access.",
     "fixSteps": [
       "Open the affected mailbox in Exchange Management Console or PowerShell",
@@ -2660,12 +3230,23 @@
       "The SIP trunk provider sent a notice that they updated their authentication protocol requirements last week."
     ],
     "answer": "SIP trunk authentication protocol mismatch",
-    "aliases": ["sip trunk not registering", "voip external calls not working", "sip authentication failed", "phone system cannot make calls"],
+    "aliases": [
+      "sip trunk not registering",
+      "voip external calls not working",
+      "sip authentication failed",
+      "phone system cannot make calls"
+    ],
     "explanation": "SIP trunk providers may update their authentication requirements (e.g., from MD5 to digest authentication, or require TLS instead of TCP). If the on-premises VoIP gateway is not updated to match, registration fails and external calling is disabled.",
     "fixSteps": [
       "Contact the SIP trunk provider to confirm the current authentication requirements and protocol version",
       "Update the VoIP gateway's SIP configuration to match the provider's current authentication method",
       "Test the SIP trunk registration after the configuration update"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2679,7 +3260,12 @@
       "The evaluation license for the server operating system has a 180-day activation window."
     ],
     "answer": "expired evaluation license",
-    "aliases": ["vm evaluation period expired", "windows server evaluation expired", "proof of concept vm expired", "eval license expired vm"],
+    "aliases": [
+      "vm evaluation period expired",
+      "windows server evaluation expired",
+      "proof of concept vm expired",
+      "eval license expired vm"
+    ],
     "explanation": "Windows Server evaluation editions have a 180-day activation grace period. When this expires without conversion to a licensed version, the OS enters a reduced functionality mode that blocks remote connections and shows activation warnings.",
     "fixSteps": [
       "Log into the VM console locally to check the activation status and remaining grace period",
@@ -2698,7 +3284,12 @@
       "The computer has two drives installed and the secondary empty drive is set as the first boot device."
     ],
     "answer": "incorrect boot drive order",
-    "aliases": ["booting to wrong drive", "computer booted to empty drive", "secondary drive selected as boot", "boot order changed after update"],
+    "aliases": [
+      "booting to wrong drive",
+      "computer booted to empty drive",
+      "secondary drive selected as boot",
+      "boot order changed after update"
+    ],
     "explanation": "A BIOS update can reset the boot order to defaults, potentially selecting a secondary or recovery drive instead of the primary OS drive. The computer appears to boot to a new or empty system because the correct drive is not being used.",
     "fixSteps": [
       "Enter the BIOS/UEFI setup during startup and navigate to the Boot menu",
@@ -2717,7 +3308,12 @@
       "Rebuilding the search index from Indexing Options resolves all search issues."
     ],
     "answer": "corrupted Windows Search index",
-    "aliases": ["files not showing in search", "windows search not returning results", "search index corrupted", "file explorer search broken"],
+    "aliases": [
+      "files not showing in search",
+      "windows search not returning results",
+      "search index corrupted",
+      "file explorer search broken"
+    ],
     "explanation": "Windows Search maintains an index of file names, contents, and metadata for fast searching. When this index becomes corrupted, search results may be incomplete or incorrect, requiring a full rebuild of the index database.",
     "fixSteps": [
       "Open Indexing Options from the Control Panel and click 'Advanced'",
@@ -2736,7 +3332,12 @@
       "The WSL network adapter in Windows shows an APIPA address (169.254.x.x)."
     ],
     "answer": "WSL2 network adapter misconfiguration",
-    "aliases": ["wsl no internet", "wsl2 network unreachable", "wsl not connecting to network", "wsl network broken after restart"],
+    "aliases": [
+      "wsl no internet",
+      "wsl2 network unreachable",
+      "wsl not connecting to network",
+      "wsl network broken after restart"
+    ],
     "explanation": "WSL2 uses a virtual network adapter with NAT to provide network access. A system restart can leave this adapter in an unconfigured state without a proper IP address, blocking all network access from within the Linux environment.",
     "fixSteps": [
       "Open PowerShell as Administrator and run 'wsl --shutdown' to stop all WSL instances",
@@ -2755,12 +3356,23 @@
       "The affected developer's Docker authentication token has expired."
     ],
     "answer": "expired Docker registry token",
-    "aliases": ["docker login expired", "docker pull unauthorized", "private registry auth failure", "docker hub token expired"],
+    "aliases": [
+      "docker login expired",
+      "docker pull unauthorized",
+      "private registry auth failure",
+      "docker hub token expired"
+    ],
     "explanation": "Docker registries issue authentication tokens with a limited validity period. When a token expires, the Docker client cannot authenticate to pull images from private repositories until the user re-authenticates.",
     "fixSteps": [
       "Run 'docker logout' followed by 'docker login' to refresh the authentication token for the registry",
       "Verify the token refresh by attempting to pull the failing image again",
       "For CI/CD pipelines, ensure the registry credentials or service principal tokens are rotated before expiration"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2774,7 +3386,12 @@
       "The '.orig' files are being tracked by git and are causing unexpected changes to be staged."
     ],
     "answer": "stale merge conflict backup files",
-    "aliases": ["git orig files conflict", "merge tool backup files tracked", "git dirty working directory orig", "merge conflict residue"],
+    "aliases": [
+      "git orig files conflict",
+      "merge tool backup files tracked",
+      "git dirty working directory orig",
+      "merge conflict residue"
+    ],
     "explanation": "Merge tools can create .orig backup files during conflict resolution. If these files are in a directory tracked by git, they appear as untracked or modified files that prevent clean commits until removed or added to .gitignore.",
     "fixSteps": [
       "Run 'git clean -n' to preview untracked files, then 'git clean -fd' to remove them",
@@ -2793,7 +3410,12 @@
       "Deleting the node_modules folder and reinstalling all dependencies resolves the issue."
     ],
     "answer": "corrupted node_modules directory",
-    "aliases": ["node_modules corrupt", "npm install dependencies missing", "node packages broken after restart", "node_modules corrupted after shutdown"],
+    "aliases": [
+      "node_modules corrupt",
+      "npm install dependencies missing",
+      "node packages broken after restart",
+      "node_modules corrupted after shutdown"
+    ],
     "explanation": "An unexpected shutdown during npm install or update operations can leave the node_modules directory in an inconsistent state, with partially extracted or missing package files that break the dependency resolution chain.",
     "fixSteps": [
       "Delete the node_modules folder and package-lock.json file",
@@ -2812,7 +3434,13 @@
       "The project's virtual environment directory was created on a different drive path that has changed."
     ],
     "answer": "broken Python virtual environment path",
-    "aliases": ["virtualenv broken", "pip install not found", "python import error venv", "venv symlink broken", "python environment path issue"],
+    "aliases": [
+      "virtualenv broken",
+      "pip install not found",
+      "python import error venv",
+      "venv symlink broken",
+      "python environment path issue"
+    ],
     "explanation": "Python virtual environments store absolute paths to the Python interpreter and library locations. If the project folder is moved or the drive letter changes, these paths become invalid and imports from the virtual environment fail.",
     "fixSteps": [
       "Delete the existing virtual environment directory (typically 'venv' or '.venv')",
@@ -2831,7 +3459,12 @@
       "The 'git config --list' command shows a malformed or unexpectedly empty user.name field."
     ],
     "answer": "corrupted git global configuration",
-    "aliases": ["git config broken", "git push permission denied config", "git user.name missing", "git configuration issue"],
+    "aliases": [
+      "git config broken",
+      "git push permission denied config",
+      "git user.name missing",
+      "git configuration issue"
+    ],
     "explanation": "The git global configuration file (.gitconfig) can become corrupted by unexpected writes or manual edits. A missing or malformed user.name or user.email setting can cause authentication failures during push operations.",
     "fixSteps": [
       "Check the current git configuration with 'git config --list --show-origin'",
@@ -2850,12 +3483,23 @@
       "The website's SSL certificate is valid but the intermediate certificate was not installed on the server."
     ],
     "answer": "incomplete SSL certificate chain",
-    "aliases": ["ssl chain incomplete", "missing intermediate certificate", "certificate not trusted mobile", "ssl handshake failed intermediate"],
+    "aliases": [
+      "ssl chain incomplete",
+      "missing intermediate certificate",
+      "certificate not trusted mobile",
+      "ssl handshake failed intermediate"
+    ],
     "explanation": "SSL certificates are issued by intermediate Certificate Authorities, not directly by root CAs. If the server doesn't send the intermediate certificates, clients that don't have them cached (especially mobile devices) cannot build a trust chain to the root CA.",
     "fixSteps": [
       "Use an SSL checker tool (e.g., SSL Labs) to verify the certificate chain from the server",
       "Download the missing intermediate certificate(s) from the certificate authority's website",
       "Install the intermediate certificates on the web server and configure it to send the full chain"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2869,12 +3513,23 @@
       "The new VoIP phones have built-in DHCP servers that are conflicting with the corporate DHCP server."
     ],
     "answer": "rogue DHCP server on VoIP phone",
-    "aliases": ["unauthorized dhcp server", "voip phone dhcp conflict", "dhcp server on network switch", "phone handing out ip addresses"],
+    "aliases": [
+      "unauthorized dhcp server",
+      "voip phone dhcp conflict",
+      "dhcp server on network switch",
+      "phone handing out ip addresses"
+    ],
     "explanation": "VoIP phones with integrated network switches often include a DHCP server feature that can be accidentally enabled. When multiple devices on the same network segment respond to DHCP requests, some devices receive wrong IP addresses and lose connectivity.",
     "fixSteps": [
       "Identify the rogue DHCP server by checking the DHCP logs for the MAC address of the offending device",
       "Disable the DHCP server feature in the VoIP phone's configuration interface",
       "Restart affected devices or force them to release and renew their DHCP leases"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2888,12 +3543,23 @@
       "The coaxial cable running to the modem passes through an unconditioned attic space that gets very hot in the afternoon."
     ],
     "answer": "cable modem frequency drift from heat",
-    "aliases": ["coax cable heat sensitivity", "modem upstream power fluctuation", "internet slow in heat", "cable modem snr degradation heat"],
+    "aliases": [
+      "coax cable heat sensitivity",
+      "modem upstream power fluctuation",
+      "internet slow in heat",
+      "cable modem snr degradation heat"
+    ],
     "explanation": "Coaxial cables and connectors can be affected by thermal expansion and contraction. Extreme heat in unconditioned spaces can cause the cable's impedance characteristics to change, leading to signal-to-noise degradation, increased error rates, and upstream power fluctuations.",
     "fixSteps": [
       "Check the cable modem's signal levels and error counts during the affected time period",
       "Inspect the coaxial cable routing and identify areas exposed to extreme temperatures",
       "Re-route the coaxial cable away from the hot attic space or add heat shielding/insulation to stabilize the signal path"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2907,12 +3573,23 @@
       "The 2.4 GHz band is most affected because neighboring access points are selecting channels 1, 6, and 11, but also channels 3, 4, and 9."
     ],
     "answer": "wireless channel overlap interference",
-    "aliases": ["wi-fi channel overlap", "2.4 ghz interference office", "wifi slow from overlapping channels", "ap channel co-channel interference"],
+    "aliases": [
+      "wi-fi channel overlap",
+      "2.4 ghz interference office",
+      "wifi slow from overlapping channels",
+      "ap channel co-channel interference"
+    ],
     "explanation": "In dense Wi-Fi environments, access points that use overlapping channels (e.g., channels 3, 4, 9 on 2.4 GHz) cause co-channel and adjacent-channel interference as they compete for airtime, drastically reducing throughput for all clients.",
     "fixSteps": [
       "Conduct a site survey using a Wi-Fi analyzer tool to map channel utilization across the office",
       "Manually assign non-overlapping channels (1, 6, 11 for 2.4 GHz) to all access points to minimize co-channel interference",
       "For high-density areas, consider enabling band steering to move clients to the less congested 5 GHz band"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2926,12 +3603,23 @@
       "The VPN configuration is set to 'full tunnel' mode instead of 'split tunnel'."
     ],
     "answer": "VPN full tunnel blocking local network access",
-    "aliases": ["vpn blocking local printer", "split tunnel configuration", "vpn routing local traffic", "vpn full tunnel vs split tunnel"],
+    "aliases": [
+      "vpn blocking local printer",
+      "split tunnel configuration",
+      "vpn routing local traffic",
+      "vpn full tunnel vs split tunnel"
+    ],
     "explanation": "A full-tunnel VPN routes ALL traffic through the corporate network, including traffic destined for the user's local home network. Split tunneling allows local traffic to bypass the VPN, enabling local printers and file shares to remain accessible.",
     "fixSteps": [
       "Access the VPN configuration settings on the corporate VPN server or policy management console",
       "Enable split tunneling and add the user's local subnet (e.g., 192.168.1.0/24) as an excluded route",
       "Have the remote user disconnect and reconnect to the VPN to apply the new routing configuration"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -2945,7 +3633,12 @@
       "The local Group Policy cache in the 'C:\\Windows\\System32\\GroupPolicy' directory has inconsistent timestamps."
     ],
     "answer": "corrupted local Group Policy cache",
-    "aliases": ["gpupdate not applying", "group policy cache corruption", "event id 1058 group policy", "local gpo cache broken"],
+    "aliases": [
+      "gpupdate not applying",
+      "group policy cache corruption",
+      "event id 1058 group policy",
+      "local gpo cache broken"
+    ],
     "explanation": "Windows maintains a local cache of Group Policy settings to apply during boot and periodic refresh. If this cache becomes corrupted through disk errors or improper shutdowns, new or modified policies may not be applied even when gpupdate runs successfully.",
     "fixSteps": [
       "Stop the 'Group Policy Client' service temporarily and navigate to C:\\Windows\\System32\\GroupPolicy",
@@ -2964,7 +3657,12 @@
       "The cached OneDrive credentials on the laptop have not been updated to reflect the new password."
     ],
     "answer": "expired OneDrive cached credentials",
-    "aliases": ["onedrive sign in needed", "onedrive password changed not updating", "windows credential manager onedrive", "onedrive not syncing after password change"],
+    "aliases": [
+      "onedrive sign in needed",
+      "onedrive password changed not updating",
+      "windows credential manager onedrive",
+      "onedrive not syncing after password change"
+    ],
     "explanation": "OneDrive caches the user's Microsoft 365 credentials to maintain continuous syncing. When the user changes their account password (or it expires), the cached credentials become invalid and must be updated before OneDrive can resume syncing.",
     "fixSteps": [
       "Click the OneDrive icon in the system tray and select 'Sign in' to re-authenticate",
@@ -2983,7 +3681,13 @@
       "The Windows registry hive for the user's profile (NTUSER.DAT) has become corrupted."
     ],
     "answer": "corrupted user profile registry hive",
-    "aliases": ["ntuser.dat corruption", "windows loaded temporary profile", "desktop settings reset", "user profile corrupted after reboot", "windows created temp profile"],
+    "aliases": [
+      "ntuser.dat corruption",
+      "windows loaded temporary profile",
+      "desktop settings reset",
+      "user profile corrupted after reboot",
+      "windows created temp profile"
+    ],
     "explanation": "Each Windows user profile has a registry hive (NTUSER.DAT) that stores personalization settings, application configurations, and desktop preferences. If this file becomes corrupted due to disk errors or improper shutdowns, Windows loads a temporary default profile, losing all the user's custom settings.",
     "fixSteps": [
       "Back up the user's personal files from C:\\Users\\[username] to a safe location",
@@ -3002,12 +3706,23 @@
       "The DNS records for the migrated servers have a very long TTL of 24 hours."
     ],
     "answer": "stale DNS cache with long TTL",
-    "aliases": ["dns migration old server redirecting", "long ttl dns cache", "dns not updated after server migration", "dns cache showing old ip"],
+    "aliases": [
+      "dns migration old server redirecting",
+      "long ttl dns cache",
+      "dns not updated after server migration",
+      "dns cache showing old ip"
+    ],
     "explanation": "DNS records have a Time-To-Live (TTL) value that determines how long resolvers cache the record. If the original DNS records had a long TTL, client machines and intermediate DNS resolvers may cache the old IP address for up to 24 hours after the migration, directing traffic to the old servers.",
     "fixSteps": [
       "Reduce the TTL on the affected DNS records to 300 seconds (5 minutes) before future migrations to minimize cache impact",
       "On affected client machines, run 'ipconfig /flushdns' from an administrator command prompt to clear the local DNS cache",
       "If the issue persists, instruct users in the office to wait for the TTL to expire or restart their machines to clear the resolver cache"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3021,12 +3736,23 @@
       "Users with persistent login issues are being routed to a different server on each request."
     ],
     "answer": "load balancer sticky session misconfiguration",
-    "aliases": ["session affinity disabled", "load balancer not preserving sessions", "round robin breaking sessions", "sticky sessions not working load balancer"],
+    "aliases": [
+      "session affinity disabled",
+      "load balancer not preserving sessions",
+      "round robin breaking sessions",
+      "sticky sessions not working load balancer"
+    ],
     "explanation": "Applications that store session data in server-local memory require session affinity (sticky sessions) so that all requests from a user go to the same backend server. When the load balancer distributes requests without this affinity, each request may land on a different server that doesn't have the user's session data.",
     "fixSteps": [
       "Access the load balancer management interface and locate the virtual server configuration for the web application",
       "Enable session persistence (sticky sessions) using cookies or source IP affinity in the load balancer settings",
       "For long-term reliability, reconfigure the application to use a shared session store (e.g., Redis or database) rather than server-local memory"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3040,12 +3766,23 @@
       "The company uses a DNS filtering service that blocks categories of websites by domain."
     ],
     "answer": "DNS filter blocklist false positive",
-    "aliases": ["dns filtering blocking legitimate site", "nxdomain error dns filter", "website blocked by dns filter", "dns blocklist false positive"],
+    "aliases": [
+      "dns filtering blocking legitimate site",
+      "nxdomain error dns filter",
+      "website blocked by dns filter",
+      "dns blocklist false positive"
+    ],
     "explanation": "DNS-based content filtering services maintain blocklists of domains. Legitimate websites can be incorrectly categorized and blocked by these filters, returning an NXDOMAIN response that prevents any device on the network from accessing them.",
     "fixSteps": [
       "Check the DNS filtering service's dashboard or logs for the blocked domain",
       "Submit the domain for reclassification as a false positive through the provider's review process",
       "Add the domain to the allowlist in the DNS filtering service for immediate access"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3059,7 +3796,12 @@
       "The duplicate entries have different host key fingerprints suggest a MITM attack or corrupted file."
     ],
     "answer": "corrupted SSH known_hosts file",
-    "aliases": ["ssh host key changed", "known_hosts mismatch", "ssh remote host identification changed", "ssh fingerprint mismatch"],
+    "aliases": [
+      "ssh host key changed",
+      "known_hosts mismatch",
+      "ssh remote host identification changed",
+      "ssh fingerprint mismatch"
+    ],
     "explanation": "The SSH known_hosts file stores server host keys for verification. Corruption to this file (from partial writes, duplicate entries, or manual edits) can cause false 'host key changed' warnings even when the server is legitimate and unchanged.",
     "fixSteps": [
       "Verify the server's host key fingerprint through an out-of-band method (console access, documentation)",
@@ -3078,7 +3820,12 @@
       "The affected private key file has read permissions granted to the Users group."
     ],
     "answer": "SSH private key incorrect permissions",
-    "aliases": ["ssh key permissions too open", "private key file permissions", "ssh key 0644 error", "ssh key ignored permission"],
+    "aliases": [
+      "ssh key permissions too open",
+      "private key file permissions",
+      "ssh key 0644 error",
+      "ssh key ignored permission"
+    ],
     "explanation": "OpenSSH security requires private key files to be readable only by the file owner. If group or other users have any access, SSH refuses to use the key to prevent potential credential theft by other processes or users.",
     "fixSteps": [
       "Navigate to the .ssh directory containing the key file",
@@ -3097,7 +3844,12 @@
       "The antivirus quarantined an application executable due to a false positive detection."
     ],
     "answer": "antivirus false positive quarantine",
-    "aliases": ["av false positive", "antivirus deleted legitimate file", "security software false positive", "windows defender quarantine legitimate"],
+    "aliases": [
+      "av false positive",
+      "antivirus deleted legitimate file",
+      "security software false positive",
+      "windows defender quarantine legitimate"
+    ],
     "explanation": "Antivirus engines sometimes flag legitimate application executables as malicious due to heuristic detection rules being too broad or signature matches with actual malware. The file is moved to quarantine, breaking the application.",
     "fixSteps": [
       "Open Windows Security > Virus & Threat Protection > Protection History",
@@ -3116,12 +3868,23 @@
       "The application is not listed in the Windows Firewall allowed applications list."
     ],
     "answer": "Windows Firewall blocking application",
-    "aliases": ["app blocked by firewall", "windows firewall preventing connection", "outbound block application", "firewall rule missing"],
+    "aliases": [
+      "app blocked by firewall",
+      "windows firewall preventing connection",
+      "outbound block application",
+      "firewall rule missing"
+    ],
     "explanation": "Windows Firewall can block outbound connections from applications that don't have an allow rule. A security update or policy change can remove or prevent the creation of these rules, silently blocking the application's network access.",
     "fixSteps": [
       "Open Windows Firewall with Advanced Security and check the outbound rules",
       "Create a new outbound rule to allow the application's executable to connect to any network",
       "If the application uses specific ports, restrict the rule to those ports for better security"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3135,7 +3898,12 @@
       "Resetting the TCP/IP stack using 'netsh int ip reset' resolves the issue."
     ],
     "answer": "corrupted TCP/IP stack",
-    "aliases": ["tcpip stack corrupt", "netsh int ip reset fix", "no network connectivity all adapters", "ip stack corruption windows"],
+    "aliases": [
+      "tcpip stack corrupt",
+      "netsh int ip reset fix",
+      "no network connectivity all adapters",
+      "ip stack corruption windows"
+    ],
     "explanation": "The Windows TCP/IP stack can become corrupted by malware, failed software installations, or registry errors. When corrupted, no network adapter can properly negotiate an IP connection, resulting in complete network loss across all interfaces.",
     "fixSteps": [
       "Open Command Prompt as Administrator and run 'netsh int ip reset' to reset the TCP/IP stack",
@@ -3154,12 +3922,23 @@
       "The virtual server configuration for this application has a port rule pointing to a port that was decommissioned."
     ],
     "answer": "misconfigured load balancer port rule",
-    "aliases": ["load balancer wrong port", "nlb port rule outdated", "application behind lb unreachable", "vip port wrong"],
+    "aliases": [
+      "load balancer wrong port",
+      "nlb port rule outdated",
+      "application behind lb unreachable",
+      "vip port wrong"
+    ],
     "explanation": "Network load balancers route traffic based on virtual server port rules. If the backend port was changed during an application migration but the load balancer's port rule was not updated, traffic reaches the virtual server but is forwarded to the wrong backend port.",
     "fixSteps": [
       "Review the load balancer's virtual server configuration and port rule settings",
       "Update the port rule to match the current backend service port",
       "Verify the configuration by testing connectivity to the application through the load balancer VIP"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3173,7 +3952,12 @@
       "Reinstalling the dependent component or repairing the service registration resolves the issue."
     ],
     "answer": "broken service dependency chain",
-    "aliases": ["error 1068 dependency service", "windows service dependency failed", "service not starting dependency", "service dependency missing"],
+    "aliases": [
+      "error 1068 dependency service",
+      "windows service dependency failed",
+      "service not starting dependency",
+      "service dependency missing"
+    ],
     "explanation": "Windows services can depend on other services to function. When an uninstaller removes a shared service or component that other services depend on, those dependent services fail to start with dependency-related errors.",
     "fixSteps": [
       "Check the System event log for error messages identifying the specific dependency that failed",
@@ -3192,7 +3976,12 @@
       "Installing the latest version of AnyConnect from Cisco's website restores VPN functionality."
     ],
     "answer": "VPN client driver incompatible with Windows update",
-    "aliases": ["anyconnect driver not installed", "vpn client broken after update", "cisco vpn not connecting after windows update", "vpn adapter driver missing"],
+    "aliases": [
+      "anyconnect driver not installed",
+      "vpn client broken after update",
+      "cisco vpn not connecting after windows update",
+      "vpn adapter driver missing"
+    ],
     "explanation": "Major Windows feature updates can remove or replace third-party virtual network adapter drivers that VPN clients require. The VPN client must be reinstalled or updated to a version compatible with the new Windows build.",
     "fixSteps": [
       "Uninstall the existing VPN client completely using the vendor's removal tool",
@@ -3211,7 +4000,12 @@
       "The Exchange ActiveSync virtual directory settings were recently modified during a security hardening review."
     ],
     "answer": "Exchange ActiveSync misconfiguration",
-    "aliases": ["activesync not working", "mobile email not syncing", "exchange mobile device connection", "phone email stopped syncing"],
+    "aliases": [
+      "activesync not working",
+      "mobile email not syncing",
+      "exchange mobile device connection",
+      "phone email stopped syncing"
+    ],
     "explanation": "Exchange ActiveSync allows mobile devices to synchronize with Exchange. After security hardening changes to the ActiveSync virtual directory (authentication, SSL settings, or throttling policies), mobile devices can no longer establish the synchronization connection.",
     "fixSteps": [
       "In Exchange Admin Center, navigate to Servers > Virtual Directories and select the ActiveSync virtual directory",
@@ -3230,12 +4024,23 @@
       "The health check URL path was changed during a recent application update."
     ],
     "answer": "load balancer health check path mismatch",
-    "aliases": ["health check url changed", "lb pool empty", "load balancer all servers down", "health check failing after update"],
+    "aliases": [
+      "health check url changed",
+      "lb pool empty",
+      "load balancer all servers down",
+      "health check failing after update"
+    ],
     "explanation": "Load balancers use health checks to determine backend server availability. If the application's health check endpoint was changed during an update but the load balancer's health check URL was not updated, all servers appear unhealthy and traffic is not forwarded.",
     "fixSteps": [
       "Check the load balancer's health check configuration and compare it to the application's current health endpoint",
       "Update the health check URL, port, or method to match the application's current configuration",
       "Verify that backend servers return the pool as healthy and the application becomes accessible"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3249,7 +4054,12 @@
       "The Terraform state backend is configured to use a remote storage backend with locking."
     ],
     "answer": "stale Terraform state lock",
-    "aliases": ["terraform state lock held", "terraform lock not released", "terraform state locked", "cannot acquire terraform lock"],
+    "aliases": [
+      "terraform state lock held",
+      "terraform lock not released",
+      "terraform state locked",
+      "cannot acquire terraform lock"
+    ],
     "explanation": "Terraform uses remote state locking to prevent concurrent modifications. If a previous operation was interrupted (network failure, terminal closed) before releasing the lock, the lock remains held and blocks all future operations.",
     "fixSteps": [
       "Verify no other team member is actively running Terraform by checking with the team",
@@ -3268,7 +4078,12 @@
       "The 'kubectl config current-context' command confirms the default namespace is the production cluster."
     ],
     "answer": "incorrect kubectl context",
-    "aliases": ["kubectl wrong cluster", "kubernetes context misconfigured", "kubectl pointing to production", "wrong k8s context"],
+    "aliases": [
+      "kubectl wrong cluster",
+      "kubernetes context misconfigured",
+      "kubectl pointing to production",
+      "wrong k8s context"
+    ],
     "explanation": "Kubectl's context determines which Kubernetes cluster is targeted by commands. When the current context is not verified before running commands, operations can be applied to the wrong environment, potentially causing production incidents.",
     "fixSteps": [
       "Check the current context with 'kubectl config current-context'",
@@ -3287,12 +4102,23 @@
       "The application's connection pool is configured with a maximum size that is too low for the current user load."
     ],
     "answer": "exhausted database connection pool",
-    "aliases": ["too many database connections", "connection pool full", "mysql too many connections", "sql server connection limit reached"],
+    "aliases": [
+      "too many database connections",
+      "connection pool full",
+      "mysql too many connections",
+      "sql server connection limit reached"
+    ],
     "explanation": "Application database connection pools have a maximum number of concurrent connections. When the pool limit is reached (due to increased traffic or connections not being returned to the pool), new requests are queued or fail until existing connections are released.",
     "fixSteps": [
       "Restart the application to release all current database connections from the pool",
       "Increase the connection pool maximum size in the application's configuration",
       "Review the application code for connection leaks where database connections are not properly closed after use"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3306,7 +4132,12 @@
       "The web.config file contains an XML syntax error from the incomplete edit."
     ],
     "answer": "corrupted web.config file",
-    "aliases": ["web.config xml error", "asp.net configuration file corrupt", "500 error web.config", "broken web.config syntax"],
+    "aliases": [
+      "web.config xml error",
+      "asp.net configuration file corrupt",
+      "500 error web.config",
+      "broken web.config syntax"
+    ],
     "explanation": "ASP.NET applications read configuration from web.config at every request. An XML syntax error in this file prevents the entire application from loading, resulting in a 500 Internal Server Error for all requests.",
     "fixSteps": [
       "Open the web.config file and look for XML syntax errors (unclosed tags, missing quotes, invalid characters)",
@@ -3325,7 +4156,12 @@
       "The application pool's .NET CLR version setting does not match the application's target framework."
     ],
     "answer": "IIS application pool configuration mismatch",
-    "aliases": ["iis app pool crashing", "w3wp.exe crash loop", "503 service unavailable iis", "application pool stopped immediately"],
+    "aliases": [
+      "iis app pool crashing",
+      "w3wp.exe crash loop",
+      "503 service unavailable iis",
+      "application pool stopped immediately"
+    ],
     "explanation": "IIS application pools host web application worker processes. A mismatch between the application pool's configured .NET CLR version and the application's target framework causes the worker process to crash immediately on startup.",
     "fixSteps": [
       "Open IIS Manager and select the Application Pools node",
@@ -3344,7 +4180,12 @@
       "The monitor's OSD menu shows it is set to the VGA input even though the cable is connected to HDMI."
     ],
     "answer": "incorrect monitor input source",
-    "aliases": ["monitor wrong input", "display no signal wrong source", "monitor input selection wrong", "hdmi source not selected"],
+    "aliases": [
+      "monitor wrong input",
+      "display no signal wrong source",
+      "monitor input selection wrong",
+      "hdmi source not selected"
+    ],
     "explanation": "Monitors can automatically or manually switch input sources. If the input source is switched (by a button press or power cycle) to a different port than the one connected to the computer, the monitor receives no signal and shows a 'No Signal' message.",
     "fixSteps": [
       "Press the monitor's 'Input' or 'Source' button to cycle through available input sources",
@@ -3363,7 +4204,12 @@
       "The sound card detects a plugged-in device because debris or a broken jack tip is lodged in the port."
     ],
     "answer": "stuck headphone jack detection",
-    "aliases": ["audio jack stuck", "speakers not working headphones detected", "headphone jack broken debris", "audio port stuck headphone mode"],
+    "aliases": [
+      "audio jack stuck",
+      "speakers not working headphones detected",
+      "headphone jack broken debris",
+      "audio port stuck headphone mode"
+    ],
     "explanation": "Audio jacks have a mechanical switch that detects when a plug is inserted. If the switch becomes stuck (due to debris, a broken plug tip, or corrosion), the computer thinks headphones are plugged in and disables the built-in speakers.",
     "fixSteps": [
       "Inspect the headphone jack with a flashlight for debris or a broken plug inside",
@@ -3382,7 +4228,12 @@
       "The drive's S.M.A.R.T. status reports a high 'Seek Error Rate'."
     ],
     "answer": "failing external hard drive",
-    "aliases": ["clicking hard drive", "external hdd clicking", "disk clicking noise", "hard drive head failure clicking"],
+    "aliases": [
+      "clicking hard drive",
+      "external hdd clicking",
+      "disk clicking noise",
+      "hard drive head failure clicking"
+    ],
     "explanation": "A clicking sound from an external hard drive (often called the 'click of death') indicates that the drive's read/write head is repeatedly failing to locate the correct position on the platter and is resetting to try again.",
     "fixSteps": [
       "Immediately stop using the drive to prevent further data loss",
@@ -3401,7 +4252,12 @@
       "Starting the browser in safe mode with all extensions disabled resolves all issues."
     ],
     "answer": "conflicting browser extension",
-    "aliases": ["browser crashing due to extension", "extension conflict", "browser addon problem", "chrome extension causing issues"],
+    "aliases": [
+      "browser crashing due to extension",
+      "extension conflict",
+      "browser addon problem",
+      "chrome extension causing issues"
+    ],
     "explanation": "Browser extensions can conflict with each other or with specific websites' scripts. Extensions that modify page content, block elements, or inject scripts are most likely to cause compatibility issues with complex web applications.",
     "fixSteps": [
       "Launch the browser in safe/incognito mode or disable all extensions",
@@ -3420,7 +4276,12 @@
       "One of the credential entries is outdated and uses a previous password."
     ],
     "answer": "stored incorrect Windows credentials",
-    "aliases": ["credential manager stale password", "windows credentials wrong", "saved credentials not updating", "credential manager old password"],
+    "aliases": [
+      "credential manager stale password",
+      "windows credentials wrong",
+      "saved credentials not updating",
+      "credential manager old password"
+    ],
     "explanation": "Windows Credential Manager stores passwords for applications, servers, and websites. If a stored credential entry contains an outdated password, the application uses it for authentication, which fails, and the application may not prompt for an update.",
     "fixSteps": [
       "Open Credential Manager from the Control Panel",
@@ -3439,7 +4300,12 @@
       "A small piece of paper or a paper clip is lodged in the sensor mechanism."
     ],
     "answer": "false paper jam sensor trigger",
-    "aliases": ["false paper jam", "printer jam error but no paper", "paper jam sensor stuck", "printer shows jam when no paper"],
+    "aliases": [
+      "false paper jam",
+      "printer jam error but no paper",
+      "paper jam sensor stuck",
+      "printer shows jam when no paper"
+    ],
     "explanation": "Printer paper jam sensors can be triggered by debris, a piece of torn paper, or a foreign object resting on the sensor flag. The printer cannot differentiate between paper and other objects obstructing the sensor path.",
     "fixSteps": [
       "Open all printer access panels and carefully inspect the sensor area indicated in the error log",
@@ -3458,7 +4324,12 @@
       "The computer is set to 'Turn off display' after inactivity but 'Put computer to sleep' is set to 'Never'."
     ],
     "answer": "monitor sleep signal detection issue",
-    "aliases": ["monitor not waking from sleep", "display won't wake up", "monitor stays in sleep mode", "signal not detected after sleep"],
+    "aliases": [
+      "monitor not waking from sleep",
+      "display won't wake up",
+      "monitor stays in sleep mode",
+      "signal not detected after sleep"
+    ],
     "explanation": "Some monitors have difficulty detecting the video signal after the computer sends the display into sleep mode. The monitor stays in a low-power state because it doesn't recognize the signal restoration from the graphics card.",
     "fixSteps": [
       "Try pressing the monitor's power button or input source button to force it to search for a signal",
@@ -3477,7 +4348,12 @@
       "The firewall profile is set to 'Public' which blocks file and printer sharing."
     ],
     "answer": "incorrect network location profile",
-    "aliases": ["domain network shown as public", "nla network profile wrong", "firewall profile domain issue", "computer network type public instead of domain"],
+    "aliases": [
+      "domain network shown as public",
+      "nla network profile wrong",
+      "firewall profile domain issue",
+      "computer network type public instead of domain"
+    ],
     "explanation": "Windows determines the network profile (Domain, Private, or Public) based on the Network Location Awareness service detecting a domain controller. If NLA fails to detect the domain, the network defaults to 'Public', applying restrictive firewall rules.",
     "fixSteps": [
       "Run 'gpupdate /force' to refresh Group Policy settings and domain network detection",
@@ -3496,7 +4372,12 @@
       "The VM's log files are not being rotated and have filled the host's storage volume."
     ],
     "answer": "host storage exhausted by VM growth",
-    "aliases": ["vm filling host disk", "hyper-v host out of space", "vhdx file too large", "vm disk growth host storage"],
+    "aliases": [
+      "vm filling host disk",
+      "hyper-v host out of space",
+      "vhdx file too large",
+      "vm disk growth host storage"
+    ],
     "explanation": "Virtual machine disk files can grow to fill available host storage, especially if log files inside the VM are not managed. When the host runs out of space, all VMs on that host may slow down, freeze, or crash due to storage I/O failures.",
     "fixSteps": [
       "Connect to the VM and clean up unnecessary files, especially large log files",
@@ -3515,12 +4396,23 @@
       "The RDP connection works if the server's CredSSP policy is temporarily relaxed."
     ],
     "answer": "CredSSP encryption oracle remediation mismatch",
-    "aliases": ["rdp credssp error", "remote desktop authentication error", "credssp encryption oracle", "rdp failed credssp mismatch"],
+    "aliases": [
+      "rdp credssp error",
+      "remote desktop authentication error",
+      "credssp encryption oracle",
+      "rdp failed credssp mismatch"
+    ],
     "explanation": "A security update (CVE-2018-0886) changed how CredSSP handles RDP authentication. Updated servers require the client to support the new protocol version. Older RDP clients that haven't received the update cannot connect to fully patched servers.",
     "fixSteps": [
       "Install the latest Windows updates on the client computer to update its RDP client",
       "If the client cannot be updated, modify the server's Group Policy to allow unencrypted traffic temporarily",
       "For the most secure solution, ensure all RDP clients are fully updated to the latest Windows version"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3534,7 +4426,12 @@
       "The vCenter Server's machine SSL certificate expired after three years of operation."
     ],
     "answer": "expired vCenter Server SSL certificate",
-    "aliases": ["vcenter certificate expired", "vmware vcenter ssl expired", "vsphere certificate invalid", "vcenter web client certificate error"],
+    "aliases": [
+      "vcenter certificate expired",
+      "vmware vcenter ssl expired",
+      "vsphere certificate invalid",
+      "vcenter web client certificate error"
+    ],
     "explanation": "vCenter Server uses SSL certificates for all management communication. When the certificate expires, web clients and connected ESXi hosts reject the SSL handshake, making the vCenter management interface inaccessible and potentially disconnecting managed hosts.",
     "fixSteps": [
       "Log into the vCenter Server Appliance console via SSH or direct console access",
@@ -3553,12 +4450,23 @@
       "The cluster is configured with a node majority quorum model."
     ],
     "answer": "lost cluster quorum",
-    "aliases": ["failover cluster quorum lost", "cluster nodes offline", "windows cluster quorum failure", "cluster service stopped quorum"],
+    "aliases": [
+      "failover cluster quorum lost",
+      "cluster nodes offline",
+      "windows cluster quorum failure",
+      "cluster service stopped quorum"
+    ],
     "explanation": "Windows Failover Clusters use a quorum mechanism to prevent split-brain scenarios. When a network disruption isolates nodes such that no group has a majority, the cluster loses quorum and all cluster services are taken offline to prevent data corruption.",
     "fixSteps": [
       "Verify all cluster nodes have network connectivity between each other",
       "Check the cluster event logs for the exact reason the quorum was lost",
       "Once connectivity is restored, the cluster should automatically regain quorum; if not, force quorum from the node with the most current data"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3572,12 +4480,24 @@
       "The domain controller's NTP source has become unreachable due to a firewall change."
     ],
     "answer": "NTP time synchronization failure",
-    "aliases": ["time sync broken", "ntp not syncing", "domain time skew", "kerberos time error", "clock skew authentication failure"],
+    "aliases": [
+      "time sync broken",
+      "ntp not syncing",
+      "domain time skew",
+      "kerberos time error",
+      "clock skew authentication failure"
+    ],
     "explanation": "Active Directory requires time synchronization within 5 minutes between domain members. When the domain controller loses its NTP source, all domain members drift, causing Kerberos authentication failures because the ticket timestamps are outside the acceptable skew window.",
     "fixSteps": [
       "On the domain controller, run 'w32tm /query /source' to check the current time source",
       "Reconfigure the NTP source with 'w32tm /config /syncfromflags:manual /manualpeerlist:pool.ntp.org'",
       "Force a resync with 'w32tm /resync' and verify all domain clients update their time"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3591,7 +4511,12 @@
       "The company's SMS gateway provider is experiencing high latency across multiple customers."
     ],
     "answer": "SMS delivery latency from provider",
-    "aliases": ["sms 2fa code delayed", "two factor authentication sms late", "mfa code arrives expired", "text message authentication delayed"],
+    "aliases": [
+      "sms 2fa code delayed",
+      "two factor authentication sms late",
+      "mfa code arrives expired",
+      "text message authentication delayed"
+    ],
     "explanation": "Two-factor authentication codes sent via SMS rely on the telecommunications provider's network for delivery. Network congestion or routing delays can cause SMS messages to arrive long after the code's short validity window has expired.",
     "fixSteps": [
       "Check the SMS gateway provider's status page for known latency issues",
@@ -3610,7 +4535,12 @@
       "The Windows event logs show 'Hibernation file (C:\\hiberfil.sys) is too small to resume the session'."
     ],
     "answer": "corrupted hibernation file",
-    "aliases": ["hibernation not working", "laptop won't wake from hibernate", "hibernate resume failed", "hiberfil.sys corrupted"],
+    "aliases": [
+      "hibernation not working",
+      "laptop won't wake from hibernate",
+      "hibernate resume failed",
+      "hiberfil.sys corrupted"
+    ],
     "explanation": "Windows saves the system state to the hibernation file (hiberfil.sys) when entering hibernation. If this file becomes corrupted or too small to store the session (especially when RAM-intensive applications are running), the system cannot resume and must reboot.",
     "fixSteps": [
       "Force a shutdown by holding the power button, then boot normally",
@@ -3629,7 +4559,12 @@
       "Calibrating the touchscreen in Windows Settings produces no response when touching the crosshairs."
     ],
     "answer": "failed touchscreen digitizer",
-    "aliases": ["touchscreen not working", "laptop touch stopped responding", "touch input not detected", "digitizer failure"],
+    "aliases": [
+      "touchscreen not working",
+      "laptop touch stopped responding",
+      "touch input not detected",
+      "digitizer failure"
+    ],
     "explanation": "The touchscreen digitizer is a separate layer over the display panel. When the digitizer controller fails or the connection ribbon becomes loose, the touch surface stops sending input signals while the display continues to function normally.",
     "fixSteps": [
       "Check if the touchscreen is disabled in Device Manager under 'Human Interface Devices'",
@@ -3648,12 +4583,23 @@
       "The load balancer's persistence settings are configured for source IP but the user's IP changes due to a mobile VPN."
     ],
     "answer": "load balancer session persistence failure",
-    "aliases": ["sticky sessions not working", "load balancer persistence broken", "session affinity lost", "nlb persistence misconfiguration"],
+    "aliases": [
+      "sticky sessions not working",
+      "load balancer persistence broken",
+      "session affinity lost",
+      "nlb persistence misconfiguration"
+    ],
     "explanation": "Load balancers use persistence (sticky sessions) to send a user's requests to the same backend server. If persistence is based on source IP and the user's IP changes (common with VPNs or mobile clients), requests are distributed to different servers that don't share the session state.",
     "fixSteps": [
       "Check the load balancer's persistence configuration method (source IP, cookie, SSL session ID)",
       "Configure cookie-based persistence for web applications to maintain sessions regardless of client IP changes",
       "Ensure backend servers are configured for session replication if session failover is needed"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3667,7 +4613,12 @@
       "The aggressive power saving setting limits the Thunderbolt bandwidth to the eGPU."
     ],
     "answer": "PCIe link state power saving limiting eGPU",
-    "aliases": ["egpu slow performance", "pcie power saving thunderbolt", "external gpu throttled by power plan", "thunderbolt bandwidth limited power saving"],
+    "aliases": [
+      "egpu slow performance",
+      "pcie power saving thunderbolt",
+      "external gpu throttled by power plan",
+      "thunderbolt bandwidth limited power saving"
+    ],
     "explanation": "Windows power plans can configure PCIe Link State Power Management to reduce power consumption. 'Maximum Power Savings' puts the PCIe bus (including Thunderbolt) into a low-power state that significantly reduces available bandwidth to external devices like eGPUs.",
     "fixSteps": [
       "Open Power Options in Control Panel and click 'Change plan settings' for the active plan",
@@ -3686,7 +4637,12 @@
       "The user profile picture cache in the AppData folder contains a corrupted image file."
     ],
     "answer": "corrupted user account picture cache",
-    "aliases": ["cannot change user picture", "account picture not updating", "user profile image broken", "windows account picture error"],
+    "aliases": [
+      "cannot change user picture",
+      "account picture not updating",
+      "user profile image broken",
+      "windows account picture error"
+    ],
     "explanation": "Windows stores user account pictures in a cache within the user profile. When this cache file becomes corrupted, the system fails to read or write account images, defaulting to the generic silhouette and rejecting any change attempts.",
     "fixSteps": [
       "Navigate to C:\\Users\\[username]\\AppData\\Roaming\\Microsoft\\Windows\\AccountPictures",
@@ -3705,7 +4661,12 @@
       "Two users in different organizational units have the same email attribute value."
     ],
     "answer": "Azure AD Connect synchronization conflict",
-    "aliases": ["aad connect sync stopped", "azure ad not syncing", "on-prem ad to cloud sync failure", "hybrid identity sync error"],
+    "aliases": [
+      "aad connect sync stopped",
+      "azure ad not syncing",
+      "on-prem ad to cloud sync failure",
+      "hybrid identity sync error"
+    ],
     "explanation": "Azure AD Connect synchronizes on-premises Active Directory objects to Azure AD. When duplicate attributes (most commonly userPrincipalName or proxyAddresses) exist across multiple on-premises objects, synchronization stops and reports an error until the conflict is resolved.",
     "fixSteps": [
       "Open the Azure AD Connect synchronization service manager and review the synchronization errors",
@@ -3724,7 +4685,12 @@
       "Enabling iterative calculation in Excel options resolves the calculation loop."
     ],
     "answer": "circular formula reference",
-    "aliases": ["excel circular reference", "formula loop excel", "circular dependency spreadsheet", "excel iterative calculation needed"],
+    "aliases": [
+      "excel circular reference",
+      "formula loop excel",
+      "circular dependency spreadsheet",
+      "excel iterative calculation needed"
+    ],
     "explanation": "A circular reference occurs when a formula refers to its own cell, either directly or through a chain of other formulas. Excel cannot calculate such interdependent formulas by default because they would loop infinitely.",
     "fixSteps": [
       "Check the status bar for 'Circular References' and click to navigate to the problematic cell",
@@ -3743,12 +4709,23 @@
       "The Linux user attempting to write is mapped to an unprivileged user on the NAS."
     ],
     "answer": "NFS root squash permission issue",
-    "aliases": ["nfs write permission denied", "nfs root squash blocking write", "linux cannot write to nfs share", "nfs mount read only"],
+    "aliases": [
+      "nfs write permission denied",
+      "nfs root squash blocking write",
+      "linux cannot write to nfs share",
+      "nfs mount read only"
+    ],
     "explanation": "NFS exports can use 'root_squash' which maps root user requests to the anonymous 'nobody' user. If the remote directory doesn't have write permissions for 'nobody', write operations fail even though the mount succeeded and reads are working.",
     "fixSteps": [
       "Check the NFS export options on the server for 'root_squash' or 'all_squash' settings",
       "If root needs write access, disable squash with 'no_root_squash' in the export options",
       "Alternatively, change the ownership or permissions of the shared directory to allow the mapped anonymous user to write"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3762,7 +4739,12 @@
       "The task was created with a trigger set to UTC time instead of the local time zone."
     ],
     "answer": "Task Scheduler time zone mismatch",
-    "aliases": ["task running at wrong time", "scheduled task timezone incorrect", "windows task scheduler utc vs local", "backup running at wrong hour"],
+    "aliases": [
+      "task running at wrong time",
+      "scheduled task timezone incorrect",
+      "windows task scheduler utc vs local",
+      "backup running at wrong hour"
+    ],
     "explanation": "Windows Task Scheduler triggers can be configured to use either local time or UTC. If the trigger time is set in UTC but the server is in a different time zone, the task runs at the UTC equivalent of the configured time.",
     "fixSteps": [
       "Open Task Scheduler and locate the affected task",
@@ -3781,7 +4763,13 @@
       "Data recovery software can still see the old partition structure and files."
     ],
     "answer": "corrupted partition table",
-    "aliases": ["drive shows as unallocated", "partition table corrupt", "external drive not initialized", "mbr corruption", "gpt corrupted"],
+    "aliases": [
+      "drive shows as unallocated",
+      "partition table corrupt",
+      "external drive not initialized",
+      "mbr corruption",
+      "gpt corrupted"
+    ],
     "explanation": "The partition table (MBR or GPT) stores the layout of partitions on a drive. Improper ejection during a write operation can corrupt this table, causing the OS to see the drive as unallocated space even though the data is still physically present on the disk.",
     "fixSteps": [
       "Do not initialize or format the drive as this will overwrite the existing data",
@@ -3800,12 +4788,23 @@
       "Disabling IPv6 on Windows can cause several network-dependent services to fail."
     ],
     "answer": "IPv6 disabled causing service failures",
-    "aliases": ["ipv6 disabled network issues", "ipv6 unchecked causing problems", "windows ipv6 dependency", "network discovery not working ipv6"],
+    "aliases": [
+      "ipv6 disabled network issues",
+      "ipv6 unchecked causing problems",
+      "windows ipv6 dependency",
+      "network discovery not working ipv6"
+    ],
     "explanation": "Contrary to common belief, Windows core networking features like Network Discovery, DirectAccess, and certain Group Policy functions depend on IPv6. Disabling IPv6 can break these services even when IPv4 connectivity works perfectly.",
     "fixSteps": [
       "Open Network Connections (ncpa.cpl) and select the active network adapter",
       "Right-click and select Properties, then check 'Internet Protocol Version 6 (TCP/IPv6)'",
       "Restart the network adapter or reboot to re-enable IPv6-dependent services"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3819,7 +4818,12 @@
       "The user-specific policies are overriding the default kiosk configuration."
     ],
     "answer": "Group Policy loopback processing conflict",
-    "aliases": ["gpo loopback processing", "kiosk policy applied wrong", "group policy loopback mode", "user policy overriding computer"],
+    "aliases": [
+      "gpo loopback processing",
+      "kiosk policy applied wrong",
+      "group policy loopback mode",
+      "user policy overriding computer"
+    ],
     "explanation": "Group Policy loopback processing allows computer-based policies to replace user policies. With 'Replace' mode, user-specific GPOs completely override the user's policies, which can apply unwanted user settings to shared or kiosk computers.",
     "fixSteps": [
       "Open Group Policy Management Console and locate the GPO applied to the kiosk computer's OU",
@@ -3838,7 +4842,12 @@
       "The font files are damaged or the installation method bypassed Windows font registration."
     ],
     "answer": "improper font installation method",
-    "aliases": ["fonts not showing in applications", "installed fonts not available", "windows fonts not recognized", "font installation not working"],
+    "aliases": [
+      "fonts not showing in applications",
+      "installed fonts not available",
+      "windows fonts not recognized",
+      "font installation not working"
+    ],
     "explanation": "Simply copying font files to the Windows Fonts folder does not properly register them with the system's font registry. Fonts must be installed through the right-click 'Install' option or the Settings app to be registered and available to applications.",
     "fixSteps": [
       "Delete the manually copied font files from the Windows Fonts folder",
@@ -3857,7 +4866,12 @@
       "Another virtualization platform (like VMware or VirtualBox) is installed and may be using the virtualization technology exclusively."
     ],
     "answer": "hypervisor conflict with other virtualization",
-    "aliases": ["windows sandbox not working", "hypervisor conflict virtualbox", "windows sandbox virtualization error", "vmware block windows sandbox"],
+    "aliases": [
+      "windows sandbox not working",
+      "hypervisor conflict virtualbox",
+      "windows sandbox virtualization error",
+      "vmware block windows sandbox"
+    ],
     "explanation": "Windows Sandbox requires the Windows Hypervisor Platform. Some third-party virtualization software (older versions of VMware, VirtualBox) can take exclusive control of hardware virtualization features, preventing Windows Hyper-V and related features from starting.",
     "fixSteps": [
       "Check if third-party virtualization software is using hardware virtualization exclusively",
@@ -3876,7 +4890,12 @@
       "A file system scan revealed corruption in the shortcut cache database."
     ],
     "answer": "corrupted shortcut link files",
-    "aliases": ["shortcuts broken", "desktop shortcuts not working", "lnk files corrupted", "shortcuts show generic icon"],
+    "aliases": [
+      "shortcuts broken",
+      "desktop shortcuts not working",
+      "lnk files corrupted",
+      "shortcuts show generic icon"
+    ],
     "explanation": "Windows shortcut (.lnk) files contain the target application path and icon location. File system corruption or malware can damage these files, causing them to lose their target association and display generic icons.",
     "fixSteps": [
       "Rebuild the icon cache by deleting the IconCache.db file in C:\\Users\\[username]\\AppData\\Local",
@@ -3895,7 +4914,12 @@
       "The USB hub may not be providing sufficient power for the drive to operate the write cache reliably."
     ],
     "answer": "USB power insufficient for disk write cache",
-    "aliases": ["delayed write failed external drive", "usb power too low for hard drive", "external hdd write errors", "disk write cache failure usb hub"],
+    "aliases": [
+      "delayed write failed external drive",
+      "usb power too low for hard drive",
+      "external hdd write errors",
+      "disk write cache failure usb hub"
+    ],
     "explanation": "External hard drives require stable power for the write cache to function. When connected through an unpowered USB hub that is sharing power among multiple devices, voltage drops can cause write cache failures and data corruption.",
     "fixSteps": [
       "Connect the external drive directly to a USB port on the computer, not through a hub",
@@ -3914,7 +4938,12 @@
       "Windows reassigned the drive letter from the network share to the local USB drive."
     ],
     "answer": "drive letter conflict with local device",
-    "aliases": ["mapped drive showing wrong content", "drive letter already in use", "network drive conflict local drive", "usb drive same letter as mapped drive"],
+    "aliases": [
+      "mapped drive showing wrong content",
+      "drive letter already in use",
+      "network drive conflict local drive",
+      "usb drive same letter as mapped drive"
+    ],
     "explanation": "When a USB drive or other removable media is assigned the same drive letter as a network mapped drive, Windows prioritizes the local device, making the network share inaccessible through that drive letter until the local device is removed.",
     "fixSteps": [
       "Open Disk Management and locate the USB drive that has the conflicting letter",
@@ -3933,7 +4962,12 @@
       "User Account Control (UAC) is filtering the administrator token and removing elevated privileges."
     ],
     "answer": "User Account Control token filtering",
-    "aliases": ["uac blocking administrator", "powershell not elevated despite admin", "access denied running as admin", "uac token filter"],
+    "aliases": [
+      "uac blocking administrator",
+      "powershell not elevated despite admin",
+      "access denied running as admin",
+      "uac token filter"
+    ],
     "explanation": "Windows UAC filters administrator tokens even when 'Run as Administrator' is used, unless the process is launched with the highest available elevation. Some PowerShell scripts require bypassing this token filtering to access all administrator-level resources.",
     "fixSteps": [
       "Ensure PowerShell was launched with 'Run as Administrator' by checking the title bar for 'Administrator'",
@@ -3952,12 +4986,23 @@
       "Pinging the recipient's mail server from the email server shows high packet loss."
     ],
     "answer": "network connectivity issue to recipient mail server",
-    "aliases": ["email to specific domain failing", "smtp connection timeout", "mail to one domain bouncing", "timeout sending email to domain"],
+    "aliases": [
+      "email to specific domain failing",
+      "smtp connection timeout",
+      "mail to one domain bouncing",
+      "timeout sending email to domain"
+    ],
     "explanation": "When email delivery fails only to a specific domain with connection timeouts, the issue is a network path problem between the sending and receiving mail servers, not a configuration issue with the sending email system.",
     "fixSteps": [
       "Run a traceroute to the recipient's mail server to identify where the connection is failing",
       "Check if the intermediate network has an outage or routing issue affecting the connection",
       "Contact the recipient organization's IT team to verify their mail server is reachable from your network"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3971,12 +5016,23 @@
       "The grace period for the Remote Desktop Services has expired."
     ],
     "answer": "expired Remote Desktop Services licensing",
-    "aliases": ["rds license expired", "remote desktop license grace period ended", "terminal services licensing expired", "cannot connect to rds server"],
+    "aliases": [
+      "rds license expired",
+      "remote desktop license grace period ended",
+      "terminal services licensing expired",
+      "cannot connect to rds server"
+    ],
     "explanation": "Windows Remote Desktop Services provides a 120-day licensing grace period. When this expires without installing and activating appropriate RDS CALs, the server stops accepting new remote desktop connections.",
     "fixSteps": [
       "Open Remote Desktop Licensing Manager and verify the license status",
       "Install and activate the appropriate RDS CALs based on the licensing mode (Per User or Per Device)",
       "Configure the RDS server to use the correct licensing server and verify the licensing mode in Group Policy"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -3990,7 +5046,12 @@
       "Microsoft 365 service health dashboard shows no issues with OneDrive."
     ],
     "answer": "OneDrive sync backlog from large data migration",
-    "aliases": ["onedrive sync very slow", "onedrive processing changes forever", "large migration onedrive slow", "onedrive throttling migration"],
+    "aliases": [
+      "onedrive sync very slow",
+      "onedrive processing changes forever",
+      "large migration onedrive slow",
+      "onedrive throttling migration"
+    ],
     "explanation": "When a large amount of data is added to OneDrive, the sync client must process, hash, and upload each file. The initial sync backlog can be substantial, and OneDrive applies rate limiting to prevent network saturation during bulk operations.",
     "fixSteps": [
       "Pause and resume OneDrive sync to reset the sync queue and check if it resumes processing",
@@ -4009,7 +5070,12 @@
       "The TPM appears in Device Manager but has a yellow exclamation mark with 'Code 45'."
     ],
     "answer": "TPM firmware or driver corruption",
-    "aliases": ["tpm not detected", "tpm device code 45", "bitlocker key prompt tpm failure", "tpm management console cannot find tpm"],
+    "aliases": [
+      "tpm not detected",
+      "tpm device code 45",
+      "bitlocker key prompt tpm failure",
+      "tpm management console cannot find tpm"
+    ],
     "explanation": "The Trusted Platform Module (TPM) can become unresponsive due to firmware corruption, driver issues, or low-level state errors. A BIOS update or electrical event can corrupt the TPM firmware, making it undetectable by the operating system.",
     "fixSteps": [
       "Enter the BIOS/UEFI setup and verify the TPM is enabled and visible",
@@ -4028,7 +5094,12 @@
       "The application was recently deployed from a development environment without changing the configuration."
     ],
     "answer": "debug mode enabled in production",
-    "aliases": ["debug mode production", "detailed error messages exposed", "stack trace shown to users", "development configuration deployed to production"],
+    "aliases": [
+      "debug mode production",
+      "detailed error messages exposed",
+      "stack trace shown to users",
+      "development configuration deployed to production"
+    ],
     "explanation": "Web application frameworks show detailed error pages in debug/development mode that include stack traces, source code, and environment variables. Deploying with debug mode enabled exposes sensitive internal information to end users and potential attackers.",
     "fixSteps": [
       "Locate the application configuration file and set 'debug' or 'development' mode to 'false'",
@@ -4047,12 +5118,23 @@
       "The application's LDAP query does not have referral chasing enabled."
     ],
     "answer": "LDAP referral chasing disabled",
-    "aliases": ["ldap referral error", "referral chase failed ad", "ad authentication cross domain", "ldap query failed referral"],
+    "aliases": [
+      "ldap referral error",
+      "referral chase failed ad",
+      "ad authentication cross domain",
+      "ldap query failed referral"
+    ],
     "explanation": "When an LDAP query targets a domain controller that does not host the requested object, the DC can return a referral to the correct domain. If the LDAP client does not chase referrals, the query fails even though the object exists in the trusted domain.",
     "fixSteps": [
       "Check the application's LDAP configuration for a 'referral chasing' or 'chase referrals' setting",
       "Enable LDAP referral chasing in the application or the system's LDAP configuration",
       "Alternatively, configure the application to connect directly to the global catalog server on port 3268 for queries across domains"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4066,12 +5148,23 @@
       "The MQTT broker's keep-alive timeout setting is too short for the network latency."
     ],
     "answer": "MQTT keep-alive timeout mismatch",
-    "aliases": ["mqtt broker disconnecting", "iot sensors reconnecting", "mqtt keep alive timeout", "sensor data gaps mqtt"],
+    "aliases": [
+      "mqtt broker disconnecting",
+      "iot sensors reconnecting",
+      "mqtt keep alive timeout",
+      "sensor data gaps mqtt"
+    ],
     "explanation": "MQTT protocol uses a keep-alive mechanism to detect disconnected clients. If the broker's keep-alive timeout is shorter than the network latency or the sensor's reporting interval, the broker disconnects the client and the sensor must reconnect, causing data gaps.",
     "fixSteps": [
       "Check the MQTT broker configuration for the keep-alive timeout value",
       "Configure the sensors to send a keep-alive ping within the broker's timeout interval",
       "Increase the broker's keep-alive timeout to accommodate worst-case network latency"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4085,7 +5178,12 @@
       "Docker containers do not automatically synchronize time with the host."
     ],
     "answer": "container clock drift",
-    "aliases": ["docker container time wrong", "container clock behind host", "time sync container", "container authentication time skew"],
+    "aliases": [
+      "docker container time wrong",
+      "container clock behind host",
+      "time sync container",
+      "container authentication time skew"
+    ],
     "explanation": "Docker containers share the host's kernel but not the system clock directly. Over time, the container's clock can drift from the host's clock, causing time-sensitive operations like token validation to fail if the time difference exceeds the allowed skew.",
     "fixSteps": [
       "Restart the container to reset its time or run 'docker exec -it [container] date -s \"$(date -u '+%Y-%m-%d %H:%M:%S')\"'",
@@ -4104,7 +5202,12 @@
       "The Subject Alternative Names (SANs) on the new certificate do not include all required domains."
     ],
     "answer": "incomplete Subject Alternative Names on certificate",
-    "aliases": ["ssl certificate missing san", "new certificate not covering all domains", "csr generated with wrong names", "ssl certificate missing subject alternative name"],
+    "aliases": [
+      "ssl certificate missing san",
+      "new certificate not covering all domains",
+      "csr generated with wrong names",
+      "ssl certificate missing subject alternative name"
+    ],
     "explanation": "SSL/TLS certificates cover specific domain names listed in the Subject Alternative Names (SANs) field. If the CSR was generated with an incomplete list of SANs, the issued certificate will not be trusted for the missing domains.",
     "fixSteps": [
       "Generate a new CSR with the complete list of all domain names that need to be covered by the certificate",
@@ -4123,12 +5226,23 @@
       "A large batch operation on the primary server is generating a high volume of replication transactions."
     ],
     "answer": "database replication lag from large transaction load",
-    "aliases": ["replication lag", "database sync delay", "secondary database behind primary", "reporting server data old"],
+    "aliases": [
+      "replication lag",
+      "database sync delay",
+      "secondary database behind primary",
+      "reporting server data old"
+    ],
     "explanation": "Database replication applies changes from the primary to the secondary server. A massive batch job or heavy transaction load on the primary creates a backlog of changes waiting to be replicated, causing the reporting server to show increasingly stale data.",
     "fixSteps": [
       "Check the replication monitoring dashboard for the current latency in seconds or transactions",
       "If the batch job is still running, the replication will catch up once it completes",
       "If replication is persistently behind, consider tuning the replication batch size or increasing bandwidth between servers"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4142,7 +5256,12 @@
       "The personal access token has expired after reaching its maximum validity period."
     ],
     "answer": "expired GitHub personal access token",
-    "aliases": ["github actions authentication failed", "github token expired", "ci/cd pipeline token invalid", "github secret expired"],
+    "aliases": [
+      "github actions authentication failed",
+      "github token expired",
+      "ci/cd pipeline token invalid",
+      "github secret expired"
+    ],
     "explanation": "GitHub personal access tokens (PATs) have configurable expiration dates. If a token used in GitHub Actions secrets reaches its expiration, any pipeline that authenticates using that token will fail with authentication errors.",
     "fixSteps": [
       "Generate a new personal access token with the required permissions in GitHub Settings",
@@ -4161,12 +5280,23 @@
       "The older browsers do not support the TLS 1.2 or 1.3 protocols that the server now requires."
     ],
     "answer": "TLS version incompatibility with older browsers",
-    "aliases": ["old browser cannot connect https", "tls version mismatch", "weak cipher removed blocking older clients", "ssl protocol outdated"],
+    "aliases": [
+      "old browser cannot connect https",
+      "tls version mismatch",
+      "weak cipher removed blocking older clients",
+      "ssl protocol outdated"
+    ],
     "explanation": "Security hardening that removes weak ciphers and older TLS versions can inadvertently block users with outdated browsers that only support TLS 1.0 or 1.1. The server encrypts the connection with a protocol the client does not support, causing the handshake to fail.",
     "fixSteps": [
       "Check the web server's TLS configuration to see which protocols and ciphers are enabled",
       "If supported, enable TLS 1.2 backward compatibility for legacy browser support",
       "Advise users with older browsers to update to a modern version that supports TLS 1.2 or 1.3"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4180,7 +5310,12 @@
       "Reinstalling the application restores the registry entries and fixes the issue."
     ],
     "answer": "missing COM component registration",
-    "aliases": ["com class not registered", "com dll registration lost", "application com error", "class not registered after restore"],
+    "aliases": [
+      "com class not registered",
+      "com dll registration lost",
+      "application com error",
+      "class not registered after restore"
+    ],
     "explanation": "COM components require registry entries (CLSID, ProgID) to be discoverable by applications. A system restore can revert these registry entries to a state before the component was installed, making it appear as 'not registered' even though the files exist.",
     "fixSteps": [
       "Open an elevated Command Prompt and navigate to the COM DLL's directory",
@@ -4199,12 +5334,23 @@
       "The load balancer terminates the connection when no data is exchanged within the timeout period."
     ],
     "answer": "load balancer idle timeout too short",
-    "aliases": ["rdp disconnecting through load balancer", "nlb idle timeout", "connection dropped by load balancer", "load balancer timeout"],
+    "aliases": [
+      "rdp disconnecting through load balancer",
+      "nlb idle timeout",
+      "connection dropped by load balancer",
+      "load balancer timeout"
+    ],
     "explanation": "Network load balancers have idle timeout settings that terminate connections with no traffic within the configured period. Remote Desktop sessions can have idle moments longer than the load balancer's timeout, causing unexpected disconnections.",
     "fixSteps": [
       "Check the load balancer's configuration for the idle timeout setting",
       "Increase the idle timeout to accommodate the longest expected period of inactivity",
       "Configure keep-alive settings on the RDP client to prevent idle timeout from triggering"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4218,7 +5364,12 @@
       "The BitLocker suspension process did not clear the TPM validation profile."
     ],
     "answer": "improper BitLocker suspension for firmware update",
-    "aliases": ["bitlocker not suspended properly", "bios update triggered bitlocker recovery", "bitlocker recovery after firmware update", "suspend bitlocker bios update"],
+    "aliases": [
+      "bitlocker not suspended properly",
+      "bios update triggered bitlocker recovery",
+      "bitlocker recovery after firmware update",
+      "suspend bitlocker bios update"
+    ],
     "explanation": "BitLocker suspension must be explicitly performed using 'manage-bde -protectors -disable C:' or through the Control Panel. Simply logging in and shutting down does not create the TPM measurement change window needed for the BIOS update to proceed.",
     "fixSteps": [
       "Boot the computer and enter the 48-digit BitLocker recovery key to access Windows",
@@ -4237,7 +5388,12 @@
       "The security filtering on the GPO does not include 'Authenticated Users' or the specific computer group."
     ],
     "answer": "restrictive Group Policy security filtering",
-    "aliases": ["gpo not applying to computers", "group policy security filtering blocking", "gpupdate not applying policy", "gpo authenticated users missing"],
+    "aliases": [
+      "gpo not applying to computers",
+      "group policy security filtering blocking",
+      "gpupdate not applying policy",
+      "gpo authenticated users missing"
+    ],
     "explanation": "Group Policy Objects have security filtering that determines which users and computers the policy applies to. If the 'Authenticated Users' group or the target computer group is removed from the security filter, the GPO will not apply to those clients even though it is linked correctly.",
     "fixSteps": [
       "Open Group Policy Management Console and select the GPO that is not applying",
@@ -4256,12 +5412,23 @@
       "The DHCP relay agent configuration points to an incorrect DHCP server IP address."
     ],
     "answer": "DHCP relay agent misconfiguration",
-    "aliases": ["dhcp relay not working", "dhcp requests not crossing subnet", "ip helper-address wrong", "dhcp forwarding broken"],
+    "aliases": [
+      "dhcp relay not working",
+      "dhcp requests not crossing subnet",
+      "ip helper-address wrong",
+      "dhcp forwarding broken"
+    ],
     "explanation": "DHCP relay agents (ip helper-address) forward DHCP broadcast requests from clients to the DHCP server on a different subnet. If the relay is configured with the wrong DHCP server IP address, the requests are forwarded to a server that cannot respond.",
     "fixSteps": [
       "Check the DHCP relay agent configuration on the router serving the affected subnet",
       "Verify the IP helper-address or DHCP relay target points to the correct DHCP server IP",
       "If the configuration is correct, verify network connectivity between the router and the DHCP server"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   },
   {
@@ -4275,7 +5442,12 @@
       "Database write operations are being slowed by incorrect caching behavior."
     ],
     "answer": "incorrect Azure disk caching setting",
-    "aliases": ["azure disk cache wrong type", "vm disk performance slow", "premium ssd caching misconfigured", "azure data disk cache read only"],
+    "aliases": [
+      "azure disk cache wrong type",
+      "vm disk performance slow",
+      "premium ssd caching misconfigured",
+      "azure data disk cache read only"
+    ],
     "explanation": "Azure managed disks support different caching options. Database data files (especially with transactional workloads) should use 'None' caching because 'Read-only' caching on data drives can cause write operations to flush the cache unnecessarily, degrading performance.",
     "fixSteps": [
       "Go to the VM's disk settings in Azure Portal and select the affected data disk",
@@ -4294,12 +5466,23 @@
       "The laptop's Wi-Fi driver or firmware does not support the 6 GHz band despite the hardware being capable."
     ],
     "answer": "Wi-Fi 6E driver missing 6 GHz support",
-    "aliases": ["wifi 6e not connecting 6ghz", "new laptop no 6ghz wifi", "6ghz band not supported driver", "wifi driver missing 6e support"],
+    "aliases": [
+      "wifi 6e not connecting 6ghz",
+      "new laptop no 6ghz wifi",
+      "6ghz band not supported driver",
+      "wifi driver missing 6e support"
+    ],
     "explanation": "Wi-Fi 6E adapters require both hardware support and driver/firmware support for the 6 GHz band. If the driver is not updated to support 6 GHz, the adapter will only see 2.4 GHz and 5 GHz networks even though the hardware is capable.",
     "fixSteps": [
       "Check the Wi-Fi adapter model and the installed driver version in Device Manager",
       "Download and install the latest Wi-Fi driver that includes 6 GHz band support from the laptop manufacturer's support site",
       "If no 6 GHz driver is available, configure the laptop to connect to the 5 GHz network instead"
+    ],
+    "rawLogs": [
+      "2026-06-27T11:58:54.110Z server-prod-01 kernel: Out of memory: Killed process 1523 (java) total-vm:15320144kB, anon-rss:9241020kB, file-rss:0kB, shmem-rss:0kB",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Main process exited, code=killed, status=9/KILL",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Failed with result 'signal'.",
+      "2026-06-27T11:58:54.110Z server-prod-01 systemd[1]: java.service: Consumed 14h 23min 12s CPU time."
     ]
   }
 ]

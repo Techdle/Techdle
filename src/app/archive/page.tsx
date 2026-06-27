@@ -8,6 +8,7 @@ import { getAllPuzzles, getPuzzleByDate } from '@/lib/puzzles';
 import { getTodayDateString } from '@/lib/date';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { Puzzle, ArchiveResult, GameState } from '@/types/game';
+import { HeatmapGraph } from '@/components/HeatmapGraph';
 
 export default function ArchivePage() {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
@@ -50,6 +51,7 @@ export default function ArchivePage() {
       <Header />
       <main className="max-w-4xl mx-auto py-8 px-4">
         <h2 className="text-3xl font-bold mb-8">Archive</h2>
+        <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
 
         <div className="space-y-12">
           {months.map(monthStr => {
@@ -101,13 +103,41 @@ export default function ArchivePage() {
                       );
                     }
 
-                    let bgClass = 'bg-surface-raised hover:bg-surface-raised text-text-muted';
-                    if (status === 'won') bgClass = 'bg-success/60 border border-success text-success';
-                    if (status === 'lost') bgClass = 'bg-error/60 border border-error text-error';
-                    if (status === 'today') bgClass = 'bg-primary/60 border border-primary text-primary shadow-lg shadow-primary/30';
+                    let bgClass = 'bg-surface-raised hover:bg-surface-raised text-text-muted border-2 border-transparent';
+                    const isWin = status === 'won' || (status === 'today' && todayState?.status === 'won');
+                    const isLoss = status === 'lost' || (status === 'today' && todayState?.status === 'lost');
+
+                    if (isLoss) {
+                       bgClass = 'bg-error/80 text-white border-2 border-transparent';
+                    } else if (isWin) {
+                       let guesses = 6;
+                       let solvedOnTime = true;
+                       if (status === 'today' && todayState && todayState.status === 'won') {
+                          guesses = todayState.guesses.length;
+                       } else {
+                          const archRes = archiveResults.find(r => r.date === dateStr || (puzzle && r.puzzleId === puzzle.id));
+                          if (archRes) {
+                            guesses = archRes.guessesCount;
+                            solvedOnTime = archRes.solvedOnTime ?? false;
+                          }
+                       }
+
+                       if (!solvedOnTime) {
+                          bgClass = 'bg-transparent border-2 border-success/80 text-success';
+                       } else {
+                          if (guesses === 1) bgClass = 'bg-success text-white border-2 border-transparent';
+                          else if (guesses <= 3) bgClass = 'bg-success/80 text-white border-2 border-transparent';
+                          else if (guesses <= 5) bgClass = 'bg-success/60 text-white border-2 border-transparent';
+                          else bgClass = 'bg-success/40 text-white border-2 border-transparent';
+                       }
+                    }
+
+                    if (isToday) {
+                      bgClass += ' ring-2 ring-primary shadow-lg shadow-primary/30';
+                    }
 
                     const inner = (
-                      <div className={`w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg transition-colors border border-transparent ${bgClass}`}>
+                      <div className={`w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg transition-colors ${bgClass}`}>
                         <span className="text-lg">{date.getDate()}</span>
                       </div>
                     );
