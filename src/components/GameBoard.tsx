@@ -3,6 +3,7 @@ import { ClueList } from './ClueList';
 import { GuessInput } from './GuessInput';
 import { ResolutionTicket } from './ResolutionTicket';
 import { ShareButton } from './ShareButton';
+import { TryOtherModesLink } from './TryOtherModesLink';
 import { getAllAliases } from '../lib/puzzles';
 
 interface GameBoardProps {
@@ -40,7 +41,10 @@ export function GameBoard({
       ) : (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <ResolutionTicket puzzle={puzzle} isWin={isWin} />
-          <ShareButton state={state} maxGuesses={maxGuesses} />
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <ShareButton state={state} maxGuesses={maxGuesses} />
+            <TryOtherModesLink />
+          </div>
         </div>
       )}
     </div>
