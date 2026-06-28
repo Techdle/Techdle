@@ -10,7 +10,6 @@ import { LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon, Trash2 } fr
 import { clearLocalData } from '@/lib/storage';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import dynamic from 'next/dynamic';
-import { AdBanner } from '@/components/AdBanner';
 
 const SignupPromptModal = dynamic(() => import('@/components/SignupPromptModal').then(mod => mod.SignupPromptModal), { ssr: false });
 
@@ -44,11 +43,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-[100dvh] bg-background text-text-main font-sans pb-12">
       <Header />
-      <main className="max-w-md mx-auto py-12 px-4 space-y-6">
+      <main className="w-full mx-auto flex flex-col items-center gap-8 px-4 py-12">
         
-        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_SETTINGS" />
-
-        {/* Settings Section */}
+        {/* Main Content */}
+        <div className="w-full max-w-md flex flex-col gap-6">
+          
+          {/* Settings Section */}
         <div className="bg-surface p-6 rounded-2xl border border-border shadow-xl">
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
             Settings
@@ -135,10 +135,11 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="mt-8 text-center pt-6">
-           <Link href="/" className="inline-block text-text-muted hover:text-text-main transition-colors text-sm font-medium">
-              Return to Game
-           </Link>
+          <div className="mt-8 text-center pt-6">
+             <Link href="/" className="inline-block text-text-muted hover:text-text-main transition-colors text-sm font-medium">
+                Return to Game
+             </Link>
+          </div>
         </div>
       </main>
 

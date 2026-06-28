@@ -5,6 +5,7 @@ import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp, Lock } 
 import { Header } from '@/components/Header';
 import { StyledSelect } from '@/components/StyledSelect';
 import { AdBanner } from '@/components/AdBanner';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { decodeClientPuzzle } from '@/lib/utils';
 import { ClientPuzzle } from '@/types/game';
@@ -109,6 +110,7 @@ export default function DictionaryPage() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [sortBy, setSortBy] = useState<'default' | 'completed'>('default');
+  const isXlScreen = useMediaQuery('(min-width: 1280px)');
   const [unlockedIds, setUnlockedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -194,24 +196,32 @@ export default function DictionaryPage() {
   return (
     <main className="min-h-[100dvh] bg-background text-text-main">
       <Header />
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
-            <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary shrink-0" />
-            <h1 className="text-2xl sm:text-3xl font-bold text-text-main break-words">Answer Dictionary</h1>
-            <span className="bg-surface-raised text-text-muted text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
-              {entries.length} Entries
-            </span>
+      <div className="w-full mx-auto flex justify-between items-stretch gap-8 px-4 xl:px-12 2xl:px-24 py-8">
+        
+        {/* Left Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />}
           </div>
-          <p className="text-text-muted">
-            A complete reference guide to all previously encountered IT tickets and their root causes. Unlocked by playing.
-          </p>
         </div>
 
-        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_DICTIONARY" />
+        {/* Main Content */}
+        <div className="w-full max-w-4xl flex flex-col">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+              <BookOpen className="w-6 h-6 sm:w-8 sm:h-8 text-primary shrink-0" />
+              <h1 className="text-2xl sm:text-3xl font-bold text-text-main break-words">Answer Dictionary</h1>
+              <span className="bg-surface-raised text-text-muted text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap">
+                {entries.length} Entries
+              </span>
+            </div>
+            <p className="text-text-muted">
+              A complete reference guide to all previously encountered IT tickets and their root causes. Unlocked by playing.
+            </p>
+          </div>
 
-        {/* Progress Bar */}
+          {/* Progress Bar */}
         {entries.length > 0 && (
           <div className="bg-surface border border-border rounded-xl p-5 mb-8 shadow-sm">
             <div className="flex justify-between items-end mb-2">
@@ -290,6 +300,14 @@ export default function DictionaryPage() {
               ))}
             </div>
           )}
+        </div>
+        </div>
+        
+        {/* Right Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />}
+          </div>
         </div>
       </div>
     </main>

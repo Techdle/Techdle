@@ -11,6 +11,7 @@ import { Puzzle, ArchiveResult, GameState } from '@/types/game';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
 import { CountUp } from '@/components/CountUp';
 import { AdBanner } from '@/components/AdBanner';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 export default function ArchivePage() {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
@@ -18,6 +19,7 @@ export default function ArchivePage() {
   const [todayState, setTodayState] = useState<GameState | null>(null);
   const [todayStr, setTodayStr] = useState('');
   const [mounted, setMounted] = useState(false);
+  const isXlScreen = useMediaQuery('(min-width: 1280px)');
 
   useEffect(() => {
     setMounted(true);
@@ -88,12 +90,21 @@ export default function ArchivePage() {
   return (
     <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header />
-      <main key="archive-content" className="max-w-4xl mx-auto py-8 px-4">
-        <h2 className="text-3xl font-bold mb-8 text-text-main">Archive</h2>
-        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_ARCHIVE" />
-        <div>
-          <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
+      <main key="archive-content" className="w-full mx-auto flex justify-between items-stretch gap-8 px-4 xl:px-12 2xl:px-24 py-8">
+        
+        {/* Left Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />}
+          </div>
         </div>
+
+        {/* Main Content */}
+        <div className="w-full max-w-4xl flex flex-col">
+          <h2 className="text-3xl font-bold mb-8 text-text-main">Archive</h2>
+          <div>
+            <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
+          </div>
 
 
 
@@ -262,6 +273,14 @@ export default function ArchivePage() {
               </div>
             );
           })}
+        </div>
+        </div>
+        
+        {/* Right Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />}
+          </div>
         </div>
       </main>
     </div>

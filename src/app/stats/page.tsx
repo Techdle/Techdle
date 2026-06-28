@@ -10,6 +10,7 @@ import { CountUp } from '@/components/CountUp';
 import Link from 'next/link';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
 import { AdBanner } from '@/components/AdBanner';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 export default function StatsPage() {
   const [stats, setStats] = useState<UserStats | null>(null);
@@ -18,6 +19,7 @@ export default function StatsPage() {
   const [endlessHighScore, setEndlessHighScore] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
+  const isXlScreen = useMediaQuery('(min-width: 1280px)');
 
   useEffect(() => {
     setMounted(true);
@@ -114,17 +116,23 @@ export default function StatsPage() {
   return (
     <div className="min-h-[100dvh] font-sans flex flex-col">
       <Header />
-      <main className="flex-1 w-full max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-in fade-in duration-500 slide-in-from-bottom-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-text-main">Your Stats</h2>
-          <p className="text-text-muted mt-2">All-time performance</p>
-        </div>
+      <main className="w-full mx-auto flex justify-between items-stretch gap-8 px-4 xl:px-12 2xl:px-24 py-8 animate-in fade-in duration-500 slide-in-from-bottom-4">
         
-        <div className="mb-12 max-w-4xl mx-auto">
-          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_STATS" />
+        {/* Left Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />}
+          </div>
         </div>
-        
-        <div className="flex flex-col lg:flex-row gap-12 mb-12">
+
+        {/* Main Content */}
+        <div className="w-full max-w-5xl flex flex-col">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-text-main">Your Stats</h2>
+            <p className="text-text-muted mt-2">All-time performance</p>
+          </div>
+          
+          <div className="flex flex-col lg:flex-row gap-12 mb-12">
           {/* Left Column: Top level stats */}
           <div className="lg:w-1/2 flex flex-col justify-center">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -226,6 +234,14 @@ export default function StatsPage() {
             <Share2 className="w-5 h-5" />
             {copied ? 'Copied to clipboard!' : 'Share Stats'}
           </button>
+        </div>
+        </div>
+
+        {/* Right Ad Gutter */}
+        <div className="hidden xl:block w-[160px] flex-shrink-0">
+          <div className="sticky top-8 h-[600px]">
+            {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />}
+          </div>
         </div>
       </main>
     </div>

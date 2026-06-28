@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface AdBannerProps {
   dataAdSlot: string;
@@ -8,10 +8,15 @@ interface AdBannerProps {
 }
 
 export function AdBanner({ dataAdSlot, orientation = 'horizontal' }: AdBannerProps) {
+  const isLoaded = useRef(false);
+
   useEffect(() => {
+    if (isLoaded.current) return;
+    
     try {
       // @ts-expect-error - adsbygoogle is injected by the AdSense script
       (window.adsbygoogle = window.adsbygoogle || []).push({});
+      isLoaded.current = true;
     } catch (err) {
       console.error('AdSense error:', err);
     }

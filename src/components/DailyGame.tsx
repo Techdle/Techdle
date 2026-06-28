@@ -11,6 +11,7 @@ import { useAuth } from './AuthProvider';
 import { useEffect, useState } from 'react';
 import { safeGetItem } from '../lib/storage';
 import { AdBanner } from './AdBanner';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface DailyGameProps {
   onTutorialTrigger?: () => void;
@@ -20,6 +21,7 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
   const { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useDailyGame();
   const { user, loading: authLoading } = useAuth();
   const [showSignupPrompt, setShowSignupPrompt] = useState(false);
+  const isXlScreen = useMediaQuery('(min-width: 1280px)');
 
   useEffect(() => {
     if (isLoaded && state && state.guesses.length === 0) {
@@ -63,7 +65,7 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
       {/* Left Ad Gutter */}
       <div className="hidden xl:block w-[160px] flex-shrink-0 py-8">
         <div className="sticky top-8 h-[600px]">
-          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />
+          {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />}
         </div>
       </div>
 
@@ -100,7 +102,7 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
       {/* Right Ad Gutter */}
       <div className="hidden xl:block w-[160px] flex-shrink-0 py-8">
         <div className="sticky top-8 h-[600px]">
-          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />
+          {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />}
         </div>
       </div>
     </div>
