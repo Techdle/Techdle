@@ -60,7 +60,7 @@ export function ShareButton({ state, maxGuesses }: ShareButtonProps) {
   return (
     <button
       onClick={handleShare}
-      className="flex items-center gap-2 px-6 py-3 bg-primary-hover hover:bg-primary-hover text-text-main font-bold rounded-lg transition-colors shadow-lg shadow-primary/20 w-full sm:w-auto justify-center"
+      className="flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-background font-bold rounded-lg transition-all shadow-md shadow-primary/10 hover:shadow-lg hover:shadow-primary/20 w-full sm:w-auto justify-center"
     >
       {copied ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
       {copied ? 'Copied to clipboard!' : 'Share Result'}

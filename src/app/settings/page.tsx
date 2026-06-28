@@ -178,7 +178,7 @@ export default function SettingsPage() {
               <button
                 onClick={() => setIsLogoutModalOpen(true)}
                 disabled={signingOut}
-                className="w-full flex items-center justify-center gap-2 bg-error/10 hover:bg-error/20 text-error border border-error/30 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 bg-orange-500/10 hover:bg-orange-500/20 text-orange-500 border border-orange-500/30 font-bold py-3 px-4 rounded-xl transition-colors disabled:opacity-50"
               >
                 <LogOut className="w-5 h-5" />
                 {signingOut ? 'Signing out...' : 'Sign Out'}

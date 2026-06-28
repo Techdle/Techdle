@@ -2,13 +2,14 @@ import { useState, useRef, useEffect, useMemo } from 'react';
 
 interface GuessInputProps {
   onSubmit: (guess: string) => void;
+  onType?: () => void;
   disabled: boolean;
   shakeKey?: number;
   /** Answer + aliases for the current puzzle, used for autocomplete suggestions */
   targets?: string[];
 }
 
-export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: GuessInputProps) {
+export function GuessInput({ onSubmit, onType, disabled, shakeKey, targets = [] }: GuessInputProps) {
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -118,7 +119,10 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
           ref={inputRef}
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            onType?.();
+          }}
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder={disabled ? 'Game Over' : 'Identify the root cause...'}

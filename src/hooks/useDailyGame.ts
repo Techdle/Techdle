@@ -45,7 +45,7 @@ export function useDailyGame() {
           if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
             savedState.fullPuzzle = decodeClientPuzzle(activePuzzle);
           }
-          if (savedState.status === 'playing' && !savedState.startedAt) {
+          if (savedState.status === 'playing' && !savedState.startedAt && savedState.guesses.length > 0) {
             savedState.startedAt = Date.now();
           }
           setState(savedState);
@@ -57,7 +57,6 @@ export function useDailyGame() {
             guesses: [],
             status: 'playing',
             lastPlayedAt: now,
-            startedAt: now,
             mode: 'daily',
           });
         }
@@ -83,7 +82,12 @@ export function useDailyGame() {
 
     setIsSubmitting(true);
     try {
-      const { newState, isCorrect } = processGuessLogic(state, puzzle, guessText, MAX_GUESSES);
+      let currentState = state;
+      if (!currentState.startedAt) {
+        currentState = { ...currentState, startedAt: Date.now() };
+      }
+
+      const { newState, isCorrect } = processGuessLogic(currentState, puzzle, guessText, MAX_GUESSES);
 
       if (!isCorrect) {
         setIncorrectCount((c) => c + 1);
@@ -117,8 +121,8 @@ export function useDailyGame() {
             stats.guessDistribution[guessCount] += 1;
             
             // Dispatch leaderboard entry
-            if (user && state.startedAt) {
-              const timeMs = Date.now() - state.startedAt;
+            if (user && newState.startedAt) {
+              const timeMs = Date.now() - newState.startedAt;
               import('../lib/storage').then(mod => {
                 mod.syncDailyLeaderboardEntry(user.uid, today, timeMs, stats.currentStreak);
               });
@@ -168,7 +172,6 @@ export function useDailyGame() {
         guesses: [],
         status: 'playing',
         lastPlayedAt: now,
-        startedAt: now,
         mode: 'daily',
       });
       setIncorrectCount(0);
@@ -177,5 +180,12 @@ export function useDailyGame() {
     }
   }, []);
 
-  return { puzzle, state, isLoaded, submitGuess, resetGame, MAX_GUESSES, incorrectCount, isSubmitting, aliases };
+  const startTimer = useCallback(() => {
+    setState(prev => {
+      if (!prev || prev.status !== 'playing' || prev.startedAt) return prev;
+      return { ...prev, startedAt: Date.now() };
+    });
+  }, []);
+
+  return { puzzle, state, isLoaded, submitGuess, resetGame, startTimer, MAX_GUESSES, incorrectCount, isSubmitting, aliases };
 }

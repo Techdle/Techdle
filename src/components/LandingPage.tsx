@@ -1,20 +1,15 @@
 import { Terminal, Calendar, Play, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { getTodayDateString } from '../lib/date';
-import { GameMode } from '../types/game';
+import { getTodayDateString, getPuzzleNumberByDate } from '../lib/date';
 import { SignupPromptModal } from './SignupPromptModal';
 import { useAuth } from './AuthProvider';
 
-interface LandingPageProps {
-  onSelectMode: (mode: GameMode) => void;
-  puzzleNumber: number;
-}
-
-export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
+export function LandingPage() {
   const { user } = useAuth();
   const [isSignupPromptOpen, setIsSignupPromptOpen] = useState(false);
   const dateString = getTodayDateString(); // YYYY-MM-DD
+  const puzzleNumber = getPuzzleNumberByDate(dateString);
   const [y, m, d] = dateString.split('-');
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const formattedDate = `${MONTHS[parseInt(m, 10) - 1]} ${parseInt(d, 10)}, ${y}`;
@@ -49,13 +44,13 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
                 Log In
               </button>
             )}
-            <button
-              onClick={() => onSelectMode('daily')}
+            <Link
+              href="/modes/daily"
               className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-primary hover:bg-primary/90 text-background font-bold rounded-full text-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
             >
               <Play className="w-5 h-5 fill-current" />
               Play
-            </button>
+            </Link>
           </div>
           
           <Link

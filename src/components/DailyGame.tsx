@@ -18,7 +18,7 @@ interface DailyGameProps {
 }
 
 export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
-  const { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useDailyGame();
+  const { puzzle, state, isLoaded, submitGuess, startTimer, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useDailyGame();
   const { user, loading: authLoading } = useAuth();
   const [showSignupPrompt, setShowSignupPrompt] = useState(false);
   const isXlScreen = useMediaQuery('(min-width: 1280px)');
@@ -82,7 +82,7 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
       <ClueList puzzle={puzzle} state={state} />
 
       {!isGameOver ? (
-        <GuessInput onSubmit={submitGuess} disabled={isSubmitting} shakeKey={incorrectCount} targets={aliases} />
+        <GuessInput onSubmit={submitGuess} onType={startTimer} disabled={isSubmitting} shakeKey={incorrectCount} targets={aliases} />
       ) : (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           {state.fullPuzzle && <ResolutionTicket puzzle={state.fullPuzzle} isWin={isWin} />}

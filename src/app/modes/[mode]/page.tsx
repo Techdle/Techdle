@@ -1,17 +1,23 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { safeGetItem, safeSetItem } from '@/lib/storage';
+import dynamic from 'next/dynamic';
 import { Game } from '@/components/Game';
 import { Header } from '@/components/Header';
 import { GameMode } from '@/types/game';
 import { ArrowLeft } from 'lucide-react';
 
+const HowToPlayModal = dynamic(() => import('@/components/HowToPlayModal').then(mod => mod.HowToPlayModal), { ssr: false });
+
 export default function ModePage() {
   const params = useParams();
   const router = useRouter();
   const mode = params.mode as GameMode;
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
 
-  const validModes: GameMode[] = ['endless', 'sla-time-attack', 'p1-outage', 'category'];
+  const validModes: GameMode[] = ['daily', 'endless', 'sla-time-attack', 'p1-outage', 'category'];
   
   if (!validModes.includes(mode)) {
     // If invalid mode, push back to modes index
@@ -20,6 +26,14 @@ export default function ModePage() {
     }
     return null;
   }
+
+  const handleGameStart = () => {
+    const hasSeenTutorial = safeGetItem('hasSeenTechdleTutorial');
+    if (!hasSeenTutorial) {
+      setIsHelpOpen(true);
+      safeSetItem('hasSeenTechdleTutorial', 'true');
+    }
+  };
 
   return (
     <div className="min-h-[100dvh] bg-background text-text-main font-sans flex flex-col">
@@ -32,8 +46,9 @@ export default function ModePage() {
         >
           <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-0.5 transition-transform" />
         </button>
-        <Game mode={mode} onSelectMode={() => {}} />
+        <Game mode={mode} onSelectMode={() => {}} onTutorialTrigger={handleGameStart} />
       </main>
+      <HowToPlayModal isOpen={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
     </div>
   );
 }

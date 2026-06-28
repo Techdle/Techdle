@@ -6,19 +6,14 @@ import { EndlessGame } from './EndlessGame';
 import { SLAGame } from './SLAGame';
 import { P1Game } from './P1Game';
 import { CategoryGame } from './CategoryGame';
-import { LandingPage } from './LandingPage';
-import { getTodayDateString, getPuzzleNumberByDate } from '../lib/date';
 
 interface GameProps {
-  mode: GameMode | null;
+  mode: GameMode;
   onSelectMode: (mode: GameMode) => void;
   onTutorialTrigger?: () => void;
 }
 
 export function Game({ mode, onSelectMode, onTutorialTrigger }: GameProps) {
-  if (!mode) {
-    return <LandingPage onSelectMode={onSelectMode} puzzleNumber={getPuzzleNumberByDate(getTodayDateString())} />;
-  }
 
   switch (mode) {
     case 'endless': return <EndlessGame />;
