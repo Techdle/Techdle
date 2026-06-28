@@ -143,36 +143,64 @@ export default function LoginPage() {
 
       {/* Logout Confirmation Modal */}
       {isLogoutModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-300 opacity-100">
           <div 
-            className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200"
+            className="absolute inset-0 bg-background/95 backdrop-blur-sm"
             onClick={() => setIsLogoutModalOpen(false)}
           />
           
-          <div className="relative w-full max-w-sm bg-surface border border-border rounded-2xl shadow-2xl p-6 animate-in zoom-in-95 duration-300">
-            <h2 className="text-xl font-bold text-text-main font-serif mb-2">
-              Confirm Logout
-            </h2>
-            <p className="text-text-muted mb-6 text-sm">
-              Are you sure you want to log out? Your progress will remain securely saved to your cloud account.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setIsLogoutModalOpen(false)}
-                className="flex-1 py-2.5 bg-surface-raised hover:bg-border text-text-main font-bold rounded-lg transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  setIsLogoutModalOpen(false);
-                  handleSignOut();
-                }}
-                className="flex-1 py-2.5 bg-error/20 hover:bg-error/30 text-error border border-error/30 font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out
-              </button>
+          <div className="relative w-full max-w-4xl h-full sm:h-auto sm:max-h-[90vh] overflow-y-auto sm:rounded-2xl border border-border shadow-2xl flex flex-col md:flex-row transition-all duration-300 scale-100 translate-y-0 animate-in zoom-in-95">
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsLogoutModalOpen(false)}
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full text-text-muted hover:text-text-main hover:bg-surface-raised transition-colors md:bg-transparent bg-background/80 backdrop-blur-sm"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Left Side: Graphic and Text */}
+            <div className="bg-surface w-full md:w-5/12 p-8 sm:p-10 flex flex-col justify-center items-center text-center relative border-b md:border-b-0 md:border-r border-border shrink-0">
+              <div className="w-16 h-16 bg-surface-raised border border-border rounded-2xl flex items-center justify-center mb-8 shadow-sm relative">
+                <LogOut className="w-8 h-8 text-primary relative z-10 ml-1" />
+                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
+              </div>
+              
+              <h2 className="text-2xl sm:text-3xl font-serif text-text-main mb-4 leading-tight">
+                Ready to log out?
+              </h2>
+              <p className="text-text-muted text-sm sm:text-base max-w-[280px]">
+                Don't worry, your stats are safely backed up to the cloud. You can return and log back in anytime to continue your streak.
+              </p>
+            </div>
+
+            {/* Right Side: Action Area */}
+            <div className="bg-background w-full md:w-7/12 p-8 sm:p-12 flex flex-col justify-center items-center">
+              <div className="w-full max-w-sm">
+                
+                <button
+                  onClick={() => {
+                    setIsLogoutModalOpen(false);
+                    handleSignOut();
+                  }}
+                  disabled={signingOut}
+                  className="w-full flex items-center justify-center gap-3 bg-error hover:bg-error/90 text-white font-bold py-4 px-4 rounded-xl transition-all disabled:opacity-50 shadow-sm mb-4"
+                >
+                  <LogOut className="w-5 h-5" />
+                  {signingOut ? 'Logging out...' : 'Log Out'}
+                </button>
+
+                <button
+                  onClick={() => setIsLogoutModalOpen(false)}
+                  disabled={signingOut}
+                  className="w-full flex items-center justify-center gap-3 bg-surface border border-border hover:bg-surface-raised text-text-main font-bold py-4 px-4 rounded-xl transition-all disabled:opacity-50 shadow-sm"
+                >
+                  Cancel
+                </button>
+
+              </div>
             </div>
           </div>
         </div>

@@ -23,6 +23,11 @@ export function ResolutionTicket({ puzzle, isWin }: ResolutionTicketProps) {
           <p className="text-sm text-text-muted">
             Root Cause: <span className="text-text-main font-semibold capitalize">{puzzle.answer}</span>
           </p>
+          {puzzle.aliases && puzzle.aliases.length > 0 && (
+            <p className="text-xs text-text-muted/70 mt-1">
+              Also accepted: {puzzle.aliases.join(', ')}
+            </p>
+          )}
         </div>
       </div>
 

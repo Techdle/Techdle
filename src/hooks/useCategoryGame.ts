@@ -3,7 +3,7 @@ import { GameState, Guess, ClientPuzzle, GameMode } from '../types/game';
 import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
 import { fetchDictionary, fetchPuzzleChunk, getRandomPuzzleIdByCategory } from '../lib/puzzles';
-import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
+import { decodeClientPuzzle, isGuessCorrect, processGuessLogic } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 const MODE: GameMode = 'category';
@@ -123,36 +123,15 @@ export function useCategoryGame(selectedCategory: string) {
 
     setIsSubmitting(true);
     try {
-      const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
+      const { newState, isCorrect } = processGuessLogic(state, puzzle, guessText, MAX_GUESSES);
 
-      const fullPuzzle = decodeClientPuzzle(puzzle);
-      const correct = isGuessCorrect(guessText, fullPuzzle);
-      
-      const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
-      const newGuess: Guess = { text: guessText, status };
-      const newGuesses = [...state.guesses, newGuess];
-
-      if (!correct) {
+      if (!isCorrect) {
         setIncorrectCount((c) => c + 1);
       }
 
-      let newStatus: 'playing' | 'won' | 'lost' = state.status;
-      if (correct || newGuesses.length >= MAX_GUESSES) {
-        newStatus = correct ? 'won' : 'lost';
-      }
-
-      const newStreak = correct 
+      newState.consecutiveCorrect = isCorrect 
         ? (state.consecutiveCorrect || 0) + 1 
         : (state.consecutiveCorrect || 0);
-
-      const newState: GameState = {
-        ...state,
-        guesses: newGuesses,
-        status: newStatus,
-        lastPlayedAt: Date.now(),
-        consecutiveCorrect: newStreak,
-        ...(newStatus !== 'playing' && fullPuzzle ? { fullPuzzle } : {}),
-      };
 
       setState(newState);
     } catch (err) {

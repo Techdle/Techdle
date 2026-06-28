@@ -55,7 +55,11 @@ export function useEasterEggs() {
           konamiIndex = 0;
         }
       } else {
-        konamiIndex = 0;
+        if (e.key.toLowerCase() === konamiCode[0].toLowerCase()) {
+          konamiIndex = 1;
+        } else {
+          konamiIndex = 0;
+        }
       }
     };
 

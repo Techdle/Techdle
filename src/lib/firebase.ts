@@ -1,6 +1,7 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -18,4 +19,13 @@ const app = isConfigured ? (!getApps().length ? initializeApp(firebaseConfig) : 
 const auth = app ? getAuth(app) : null;
 const db = app ? getFirestore(app) : null;
 
-export { app, auth, db, isConfigured };
+// Initialize App Check (Only runs on the client/browser)
+let appCheck = null;
+if (app && typeof window !== 'undefined' && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
+  appCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY),
+    isTokenAutoRefreshEnabled: true
+  });
+}
+
+export { app, auth, db, appCheck, isConfigured };

@@ -1,8 +1,11 @@
 import { Terminal, Calendar, Play, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
 import { Footer } from './Footer';
 import { getTodayDateString } from '../lib/date';
 import { GameMode } from '../types/game';
+import { SignupPromptModal } from './SignupPromptModal';
+import { useAuth } from './AuthProvider';
 
 interface LandingPageProps {
   onSelectMode: (mode: GameMode) => void;
@@ -10,6 +13,8 @@ interface LandingPageProps {
 }
 
 export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
+  const { user } = useAuth();
+  const [isSignupPromptOpen, setIsSignupPromptOpen] = useState(false);
   const dateString = getTodayDateString(); // YYYY-MM-DD
   const [y, m, d] = dateString.split('-');
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -37,12 +42,14 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
 
         <div className="flex flex-col items-center gap-4 w-full">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full mb-6">
-            <Link
-              href="/login"
-              className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-surface hover:bg-surface-raised text-text-main font-bold rounded-full text-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-border"
-            >
-              Log In
-            </Link>
+            {(!user || user.isAnonymous) && (
+              <button
+                onClick={() => setIsSignupPromptOpen(true)}
+                className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-surface hover:bg-surface-raised text-text-main font-bold rounded-full text-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 border border-border"
+              >
+                Log In
+              </button>
+            )}
             <button
               onClick={() => onSelectMode('daily')}
               className="w-full max-w-[280px] sm:w-48 sm:max-w-none py-4 bg-primary hover:bg-primary/90 text-background font-bold rounded-full text-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
@@ -65,6 +72,11 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
       <div className="w-full mt-auto pt-8">
         <Footer />
       </div>
+
+      <SignupPromptModal 
+        isOpen={isSignupPromptOpen} 
+        onClose={() => setIsSignupPromptOpen(false)} 
+      />
     </div>
   );
 }

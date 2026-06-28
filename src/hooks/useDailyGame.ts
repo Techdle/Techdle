@@ -4,7 +4,7 @@ import { getTodayDateString, getYesterdayDateString } from '../lib/date';
 import { loadGameState, saveGameState, loadUserStats, saveUserStats, syncStatsToFirestore } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
 import { fetchDictionary, fetchPuzzleChunk, getTodayPuzzleId } from '../lib/puzzles';
-import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
+import { decodeClientPuzzle, isGuessCorrect, processGuessLogic } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 
@@ -78,34 +78,15 @@ export function useDailyGame() {
 
     setIsSubmitting(true);
     try {
-      const isGameOver = state.guesses.length + 1 >= MAX_GUESSES;
-      const fullPuzzle = decodeClientPuzzle(puzzle);
-      const correct = isGuessCorrect(guessText, fullPuzzle);
-      
-      const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
-      const newGuess: Guess = { text: guessText, status };
-      const newGuesses = [...state.guesses, newGuess];
+      const { newState, isCorrect } = processGuessLogic(state, puzzle, guessText, MAX_GUESSES);
 
-      if (!correct) {
+      if (!isCorrect) {
         setIncorrectCount((c) => c + 1);
       }
 
-      let newStatus: 'playing' | 'won' | 'lost' = state.status;
-      if (correct || newGuesses.length >= MAX_GUESSES) {
-        newStatus = correct ? 'won' : 'lost';
-      }
-
-      const newState: GameState = {
-        ...state,
-        guesses: newGuesses,
-        status: newStatus,
-        lastPlayedAt: Date.now(),
-        ...(newStatus !== 'playing' && fullPuzzle ? { fullPuzzle } : {}),
-      };
-
       setState(newState);
 
-      if (newStatus !== 'playing') {
+      if (newState.status !== 'playing') {
         const stats = loadUserStats();
         const today = getTodayDateString();
 
@@ -114,7 +95,7 @@ export function useDailyGame() {
           stats.totalPlayed += 1;
           stats.lastPlayedDate = today;
 
-          if (newStatus === 'won') {
+          if (newState.status === 'won') {
             stats.wins += 1;
             const yesterdayStr = getYesterdayDateString();
 
@@ -127,7 +108,7 @@ export function useDailyGame() {
             if (stats.currentStreak > stats.maxStreak) {
               stats.maxStreak = stats.currentStreak;
             }
-            const guessCount = newGuesses.length as 1 | 2 | 3 | 4 | 5 | 6;
+            const guessCount = newState.guesses.length as 1 | 2 | 3 | 4 | 5 | 6;
             stats.guessDistribution[guessCount] += 1;
           } else {
             stats.currentStreak = 0;
@@ -143,8 +124,8 @@ export function useDailyGame() {
         const result: import('../types/game').ArchiveResult = {
           puzzleId: state.puzzleId,
           date: state.date,
-          status: newStatus as 'won' | 'lost',
-          guessesCount: newGuesses.length,
+          status: newState.status as 'won' | 'lost',
+          guessesCount: newState.guesses.length,
           solvedOnTime: true
         };
         import('../lib/storage').then(mod => {

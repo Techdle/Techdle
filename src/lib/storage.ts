@@ -94,6 +94,30 @@ export function loadUserStats(): UserStats {
   const data = safeGetItem(USER_STATS_KEY);
   if (!data) return INITIAL_USER_STATS;
   const parsed = decodeData(data);
+  
+  if (parsed) {
+    // Auto-repair for P1 Outage bug that artificially inflated stats
+    const archive = loadArchiveResults();
+    if (parsed.totalPlayed > archive.length) {
+      const rebuiltDistribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, loss: 0 };
+      let rebuiltWins = 0;
+      
+      archive.forEach(result => {
+        if (result.status === 'won') {
+          rebuiltWins++;
+          rebuiltDistribution[result.guessesCount as 1|2|3|4|5|6] = (rebuiltDistribution[result.guessesCount as 1|2|3|4|5|6] || 0) + 1;
+        } else if (result.status === 'lost') {
+          rebuiltDistribution.loss++;
+        }
+      });
+      
+      parsed.totalPlayed = archive.length;
+      parsed.wins = rebuiltWins;
+      parsed.guessDistribution = rebuiltDistribution;
+      saveUserStats(parsed);
+    }
+  }
+
   return parsed ? { ...INITIAL_USER_STATS, ...parsed } : INITIAL_USER_STATS;
 }
 

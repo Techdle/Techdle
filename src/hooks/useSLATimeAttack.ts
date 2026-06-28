@@ -4,7 +4,7 @@ import { getTodayDateString } from '../lib/date';
 import { loadGameStateByMode, saveGameStateByMode } from '../lib/storage';
 import { useAuth } from '../components/AuthProvider';
 import { fetchDictionary, fetchPuzzleChunk, getRandomPuzzleId } from '../lib/puzzles';
-import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
+import { decodeClientPuzzle, isGuessCorrect, processGuessLogic } from '../lib/utils';
 
 const MAX_GUESSES = 6;
 const MODE = 'sla-time-attack';
@@ -141,19 +141,14 @@ export function useSLATimeAttack() {
 
     setIsSubmitting(true);
     try {
-      const fullPuzzle = decodeClientPuzzle(puzzle);
-      const correct = isGuessCorrect(guessText, fullPuzzle);
-      
-      const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
-      const newGuess: Guess = { text: guessText, status };
-      const newGuesses = [...state.guesses, newGuess];
+      const { newState, isCorrect } = processGuessLogic(state, puzzle, guessText, MAX_GUESSES);
 
-      if (!correct) {
+      if (!isCorrect) {
         setIncorrectCount((c) => c + 1);
         setTimeRemaining(prev => Math.max(0, prev - TIME_PENALTY_MS));
       }
 
-      if (correct) {
+      if (isCorrect) {
         let nextPuzzleId = await getRandomPuzzleId(seenIds);
         let newSeen = new Set(seenIds);
         
@@ -169,14 +164,14 @@ export function useSLATimeAttack() {
           
           setTimeRemaining(prev => Math.min(INITIAL_TIME_MS, prev + TIME_BONUS_MS));
           setState({
-            ...state,
+            ...newState,
             puzzleId: nextPuzzleId,
             guesses: [],
-            score: (state.score || 0) + 1,
+            score: (newState.score || 0) + 1,
           });
           setIncorrectCount(0);
         }
-      } else if (newGuesses.length >= MAX_GUESSES) {
+      } else if (newState.guesses.length >= MAX_GUESSES) {
         setTimeRemaining(prev => Math.max(0, prev - TIME_PENALTY_MS)); 
         
         let nextPuzzleId = await getRandomPuzzleId(seenIds);
@@ -193,17 +188,14 @@ export function useSLATimeAttack() {
           setPuzzle(nextPuzzleChunk);
           
           setState({
-            ...state,
+            ...newState,
             puzzleId: nextPuzzleId,
             guesses: [],
           });
           setIncorrectCount(0);
         }
       } else {
-        setState({
-          ...state,
-          guesses: newGuesses,
-        });
+        setState(newState);
       }
 
     } catch (err) {

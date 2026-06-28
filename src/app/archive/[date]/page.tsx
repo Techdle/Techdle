@@ -10,7 +10,7 @@ import { Terminal, ArrowLeft } from 'lucide-react';
 
 export default function ArchiveGamePage({ params }: { params: Promise<{ date: string }> }) {
   const { date } = use(params);
-  const { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount } = useArchiveGame(date);
+  const { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, aliases } = useArchiveGame(date);
 
   if (!isLoaded) {
     return (
@@ -77,7 +77,7 @@ export default function ArchiveGamePage({ params }: { params: Promise<{ date: st
           onSubmit={submitGuess}
           maxGuesses={MAX_GUESSES}
           incorrectCount={incorrectCount}
-          aliases={[]}
+          aliases={aliases}
         />
       </div>
     </main>

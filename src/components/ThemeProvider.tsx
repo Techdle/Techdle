@@ -14,6 +14,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
+  useEasterEggs();
   const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import { Header } from '@/components/Header';
 import { loadUserStats, loadGameState, validateAndRepairStats, saveUserStats, loadArchiveResults, loadEndlessHighScore } from '@/lib/storage';
 import { UserStats, GameState, ArchiveResult } from '@/types/game';
 import { getTodayDateString } from '@/lib/date';
-import { Gamepad2, Trophy, Flame, Zap, Share2, ArrowRight, Target, Infinity } from 'lucide-react';
+import { Gamepad2, Trophy, Flame, Zap, Share2, ArrowRight, Target, Award } from 'lucide-react';
 import { CountUp } from '@/components/CountUp';
 import Link from 'next/link';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
@@ -43,9 +43,7 @@ export default function StatsPage() {
       .reduce((sum, [k, v]) => sum + (parseInt(k) * v), 0);
     const averageGuesses = stats.wins === 0 ? 0 : Number((totalGuessesInWins / stats.wins).toFixed(2));
     const avgText = averageGuesses > 0 ? `\n🎯 Avg Guesses: ${averageGuesses}` : '';
-    const endlessText = endlessHighScore > 0 ? `\n♾️ Endless Best: ${endlessHighScore}` : '';
-
-    const text = `Techdle Stats\n🎮 Played: ${stats.totalPlayed}\n🏆 Win Rate: ${winRate}%\n🔥 Current Streak: ${stats.currentStreak}\n⚡ Max Streak: ${stats.maxStreak}${avgText}${endlessText}\n\nCan you beat my streak? https://techdle.app`;
+    const text = `Techdle Stats\n🎮 Played: ${stats.totalPlayed}\n🏆 Win Rate: ${winRate}%\n⭐ Total Wins: ${stats.wins}\n🔥 Current Streak: ${stats.currentStreak}\n⚡ Max Streak: ${stats.maxStreak}${avgText}\n\nCan you beat my streak? https://techdle.app`;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -151,9 +149,9 @@ export default function StatsPage() {
                 <div className="text-[10px] text-text-muted mt-2 uppercase tracking-widest font-bold text-center">Avg Guesses</div>
               </div>
               <div className="flex flex-col items-center justify-center p-6 bg-surface/50 backdrop-blur-sm rounded-2xl border border-border/50 shadow-sm transition-transform hover:scale-105">
-                <Infinity className="w-6 h-6 text-pink-500 mb-3 opacity-80" />
-                <div className="text-3xl font-black text-text-main"><CountUp end={endlessHighScore} duration={1000} delay={600} /></div>
-                <div className="text-[10px] text-text-muted mt-2 uppercase tracking-widest font-bold text-center">Endless Best</div>
+                <Award className="w-6 h-6 text-pink-500 mb-3 opacity-80" />
+                <div className="text-3xl font-black text-text-main"><CountUp end={stats.wins} duration={1000} delay={600} /></div>
+                <div className="text-[10px] text-text-muted mt-2 uppercase tracking-widest font-bold text-center">Total Wins</div>
               </div>
             </div>
           </div>

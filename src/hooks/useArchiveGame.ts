@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { ClientPuzzle, GameState, Guess, ArchiveResult } from '../types/game';
-import { getDailyPuzzleId, fetchPuzzleChunk } from '../lib/puzzles';
+import { getDailyPuzzleId, fetchPuzzleChunk, fetchDictionary } from '../lib/puzzles';
 import { saveArchiveResult } from '../lib/storage';
 import { decodeClientPuzzle, isGuessCorrect } from '../lib/utils';
 
@@ -12,6 +12,7 @@ export function useArchiveGame(date: string) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [aliases, setAliases] = useState<string[]>([]);
 
   useEffect(() => {
     let mounted = true;
@@ -23,6 +24,9 @@ export function useArchiveGame(date: string) {
       setIncorrectCount(0);
 
       try {
+        const dict = await fetchDictionary();
+        if (!mounted) return;
+        setAliases(dict);
         const activePuzzleId = await getDailyPuzzleId(date);
 
         if (!activePuzzleId) {
@@ -104,5 +108,5 @@ export function useArchiveGame(date: string) {
     }
   }, [state, puzzle, isSubmitting]);
 
-  return { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, isSubmitting };
+  return { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, isSubmitting, aliases };
 }

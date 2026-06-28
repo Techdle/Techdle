@@ -39,22 +39,47 @@ export function getDailyPuzzleIndex(dayIndex: number, totalPuzzles: number): num
   return shuffled[pos];
 }
 
+let metadataPromise: Promise<any[]> | null = null;
 export async function fetchPuzzleMetadata(): Promise<any[]> {
-  const res = await fetch('/puzzles/metadata.json');
-  if (!res.ok) throw new Error('Failed to fetch metadata');
-  return res.json();
+  if (!metadataPromise) {
+    metadataPromise = fetch('/puzzles/metadata.json').then(res => {
+      if (!res.ok) throw new Error('Failed to fetch metadata');
+      return res.json();
+    }).catch(err => {
+      metadataPromise = null;
+      throw err;
+    });
+  }
+  return metadataPromise;
 }
 
+const chunkCache = new Map<string, Promise<ClientPuzzle>>();
 export async function fetchPuzzleChunk(id: string): Promise<ClientPuzzle> {
-  const res = await fetch(`/puzzles/${id}.json`);
-  if (!res.ok) throw new Error(`Failed to fetch puzzle chunk ${id}`);
-  return res.json();
+  if (!chunkCache.has(id)) {
+    const promise = fetch(`/puzzles/${id}.json`).then(res => {
+      if (!res.ok) throw new Error(`Failed to fetch puzzle chunk ${id}`);
+      return res.json();
+    }).catch(err => {
+      chunkCache.delete(id);
+      throw err;
+    });
+    chunkCache.set(id, promise);
+  }
+  return chunkCache.get(id)!;
 }
 
+let dictionaryPromise: Promise<string[]> | null = null;
 export async function fetchDictionary(): Promise<string[]> {
-  const res = await fetch('/dictionary.json');
-  if (!res.ok) throw new Error('Failed to fetch dictionary');
-  return res.json();
+  if (!dictionaryPromise) {
+    dictionaryPromise = fetch('/dictionary.json').then(res => {
+      if (!res.ok) throw new Error('Failed to fetch dictionary');
+      return res.json();
+    }).catch(err => {
+      dictionaryPromise = null;
+      throw err;
+    });
+  }
+  return dictionaryPromise;
 }
 
 export async function getDailyPuzzleId(dateStr: string): Promise<string | undefined> {

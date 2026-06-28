@@ -64,3 +64,32 @@ export function decodeClientPuzzle(cp: ClientPuzzle): Puzzle {
     fixSteps: JSON.parse(safeBase64Decode(cp.encodedFixSteps)),
   };
 }
+
+export function processGuessLogic(
+  currentState: import('../types/game').GameState,
+  currentPuzzle: ClientPuzzle,
+  guessText: string,
+  maxGuesses: number = 6
+): { newState: import('../types/game').GameState, isCorrect: boolean } {
+  const fullPuzzle = decodeClientPuzzle(currentPuzzle);
+  const correct = isGuessCorrect(guessText, fullPuzzle);
+  
+  const status: 'correct' | 'incorrect' = correct ? 'correct' : 'incorrect';
+  const newGuess: import('../types/game').Guess = { text: guessText, status };
+  const newGuesses = [...currentState.guesses, newGuess];
+
+  let newStatus: 'playing' | 'won' | 'lost' = currentState.status;
+  if (correct || newGuesses.length >= maxGuesses) {
+    newStatus = correct ? 'won' : 'lost';
+  }
+
+  const newState: import('../types/game').GameState = {
+    ...currentState,
+    guesses: newGuesses,
+    status: newStatus,
+    lastPlayedAt: Date.now(),
+    ...(newStatus !== 'playing' && fullPuzzle ? { fullPuzzle } : {}),
+  };
+
+  return { newState, isCorrect: correct };
+}
