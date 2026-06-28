@@ -9,6 +9,7 @@ import { Gamepad2, Trophy, Flame, Zap, Share2, ArrowRight, Target, Award } from 
 import { CountUp } from '@/components/CountUp';
 import Link from 'next/link';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function StatsPage() {
   const [stats, setStats] = useState<UserStats | null>(null);
@@ -117,6 +118,10 @@ export default function StatsPage() {
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-text-main">Your Stats</h2>
           <p className="text-text-muted mt-2">All-time performance</p>
+        </div>
+        
+        <div className="mb-12 max-w-4xl mx-auto">
+          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_STATS" />
         </div>
         
         <div className="flex flex-col lg:flex-row gap-12 mb-12">

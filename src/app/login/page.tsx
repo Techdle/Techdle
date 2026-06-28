@@ -10,6 +10,7 @@ import { LogOut, ExternalLink, Moon, Sun, Monitor, User as UserIcon, Trash2 } fr
 import { clearLocalData } from '@/lib/storage';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import dynamic from 'next/dynamic';
+import { AdBanner } from '@/components/AdBanner';
 
 const SignupPromptModal = dynamic(() => import('@/components/SignupPromptModal').then(mod => mod.SignupPromptModal), { ssr: false });
 
@@ -45,6 +46,8 @@ export default function LoginPage() {
       <Header />
       <main className="max-w-md mx-auto py-12 px-4 space-y-6">
         
+        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_SETTINGS" />
+
         {/* Settings Section */}
         <div className="bg-surface p-6 rounded-2xl border border-border shadow-xl">
           <h2 className="text-xl font-bold mb-6 flex items-center gap-2">

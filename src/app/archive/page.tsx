@@ -10,6 +10,7 @@ import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { Puzzle, ArchiveResult, GameState } from '@/types/game';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
 import { CountUp } from '@/components/CountUp';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function ArchivePage() {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
@@ -89,6 +90,7 @@ export default function ArchivePage() {
       <Header />
       <main key="archive-content" className="max-w-4xl mx-auto py-8 px-4">
         <h2 className="text-3xl font-bold mb-8 text-text-main">Archive</h2>
+        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_ARCHIVE" />
         <div>
           <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
         </div>

@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { BookOpen, Search, Loader2, AlertCircle, ChevronDown, ChevronUp, Lock } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { StyledSelect } from '@/components/StyledSelect';
+import { AdBanner } from '@/components/AdBanner';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { decodeClientPuzzle } from '@/lib/utils';
 import { ClientPuzzle } from '@/types/game';
@@ -207,6 +208,8 @@ export default function DictionaryPage() {
             A complete reference guide to all previously encountered IT tickets and their root causes. Unlocked by playing.
           </p>
         </div>
+
+        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_DICTIONARY" />
 
         {/* Progress Bar */}
         {entries.length > 0 && (

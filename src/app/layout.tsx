@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Footer } from '@/components/Footer';
 import { SecurityProvider } from '@/components/SecurityProvider';
 import { PWAProvider } from '@/components/PWAProvider';
+import Script from 'next/script';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -101,6 +102,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
         />
       </head>
       <body

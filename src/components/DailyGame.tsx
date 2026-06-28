@@ -10,6 +10,7 @@ import { SignupPromptModal } from './SignupPromptModal';
 import { useAuth } from './AuthProvider';
 import { useEffect, useState } from 'react';
 import { safeGetItem } from '../lib/storage';
+import { AdBanner } from './AdBanner';
 
 interface DailyGameProps {
   onTutorialTrigger?: () => void;
@@ -58,7 +59,16 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
   const puzzleNumber = puzzle.number ?? (!isNaN(targetDate) ? Math.floor((targetDate - epoch) / 86400000) + 1 : 1);
 
   return (
-    <div className="w-full max-w-4xl mx-auto py-8 px-4 flex flex-col gap-8">
+    <div className="w-full mx-auto flex justify-between items-stretch gap-8 px-4 xl:px-12 2xl:px-24">
+      {/* Left Ad Gutter */}
+      <div className="hidden xl:block w-[160px] flex-shrink-0 py-8">
+        <div className="sticky top-8 h-[600px]">
+          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_LEFT" orientation="vertical" />
+        </div>
+      </div>
+
+      {/* Main Game Container */}
+      <div className="w-full max-w-3xl py-8 flex flex-col gap-8">
       <div className="text-center mb-4">
         <p className="text-text-muted font-mono">Ticket #{puzzleNumber.toString().padStart(3, '0')}</p>
         <h2 className="text-2xl font-bold text-text-main mt-2">Identify the Root Cause</h2>
@@ -85,6 +95,14 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
         isOpen={showSignupPrompt} 
         onClose={() => setShowSignupPrompt(false)} 
       />
+      </div>
+
+      {/* Right Ad Gutter */}
+      <div className="hidden xl:block w-[160px] flex-shrink-0 py-8">
+        <div className="sticky top-8 h-[600px]">
+          <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />
+        </div>
+      </div>
     </div>
   );
 }

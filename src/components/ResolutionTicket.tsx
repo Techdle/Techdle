@@ -1,5 +1,6 @@
 import { Puzzle } from '../types/game';
 import { AlertCircle, CheckCircle2 } from 'lucide-react';
+import { AdBanner } from './AdBanner';
 
 interface ResolutionTicketProps {
   puzzle: Puzzle;
@@ -39,6 +40,8 @@ export function ResolutionTicket({ puzzle, isWin }: ResolutionTicketProps) {
             {puzzle.explanation}
           </p>
         </div>
+
+        <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_1" />
 
         <div>
           <h3 className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-2">Standard Operating Procedure (Fix Steps)</h3>
