@@ -5,7 +5,6 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Footer } from '@/components/Footer';
 import { SecurityProvider } from '@/components/SecurityProvider';
 import { PWAProvider } from '@/components/PWAProvider';
-import Script from 'next/script';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,14 +34,9 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
       { url: '/icons/icon-48.png', sizes: '48x48', type: 'image/png' },
       { url: '/icons/icon-192-android.png', sizes: '192x192', type: 'image/png' },
       { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/icons/icon-180-apple-touch.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   openGraph: {
@@ -104,11 +98,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <meta name="google-adsense-account" content="ca-pub-4116593263812421" />
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4116593263812421"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </head>
       <body

@@ -48,3 +48,7 @@ next-env.d.ts
  
 # Graphify Analysis 
 graphify-out/ 
+
+# Serwist Service Worker
+public/sw.js
+public/sw.js.map

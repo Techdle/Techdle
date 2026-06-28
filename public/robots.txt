@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://playtechdle.com/sitemap.xml

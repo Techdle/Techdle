@@ -63,24 +63,39 @@ export default function SettingsPage() {
             
             <div className="flex flex-col md:flex-row gap-6">
               {/* Current Look */}
-              <div className="flex-1 bg-surface-raised border border-border rounded-2xl p-6">
-                <div className="text-xs font-bold text-text-muted mb-4 uppercase tracking-wider">Current Look</div>
-                <div className="flex items-center gap-4 mb-6">
-                  <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg relative overflow-hidden border border-border/50"
-                    style={{ background: activeTheme.colors.surface }}
-                  >
-                    <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(135deg, ${activeTheme.colors.primary}, transparent)` }} />
-                    <ActiveIcon className="w-8 h-8 relative z-10" style={{ color: activeTheme.colors.primary }} />
+              <div className="flex-1 bg-surface-raised border border-border rounded-2xl p-6 flex flex-col">
+                <div className="flex-1">
+                  <div className="text-xs font-bold text-text-muted mb-4 uppercase tracking-wider flex items-center justify-between">
+                    <span>Current Look</span>
+                    <span className="bg-surface border border-border px-2 py-1 rounded text-[10px]">{activeTheme.mode}</span>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-text-main">{activeTheme.name}</h3>
-                    <p className="text-text-muted">{activeTheme.description}</p>
+                  <div className="flex items-center gap-4 mb-6">
+                    <div 
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg relative overflow-hidden border border-border/50"
+                      style={{ background: activeTheme.colors.surface }}
+                    >
+                      <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(135deg, ${activeTheme.colors.primary}, transparent)` }} />
+                      <ActiveIcon className="w-8 h-8 relative z-10" style={{ color: activeTheme.colors.primary }} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-text-main">{activeTheme.name}</h3>
+                      <p className="text-text-muted">{activeTheme.description}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-wider mb-2">Palette</div>
+                    <div className="flex gap-2">
+                      <div className="w-8 h-8 rounded-full border border-border/50 shadow-sm" style={{ backgroundColor: activeTheme.colors.background }} title="Background Color" />
+                      <div className="w-8 h-8 rounded-full border border-border/50 shadow-sm" style={{ backgroundColor: activeTheme.colors.surface }} title="Surface Color" />
+                      <div className="w-8 h-8 rounded-full border border-border/50 shadow-sm" style={{ backgroundColor: activeTheme.colors.primary }} title="Primary Color" />
+                    </div>
                   </div>
                 </div>
+
                 <Link 
                   href="/settings/themes" 
-                  className="w-full flex items-center justify-center gap-2 bg-surface border border-border hover:bg-border text-text-main font-bold py-3 px-4 rounded-xl transition-all"
+                  className="w-full flex items-center justify-center gap-2 bg-surface border border-border hover:bg-border text-text-main font-bold py-3 px-4 rounded-xl transition-all mt-auto"
                 >
                   <Store className="w-5 h-5" />
                   Browse Theme Store

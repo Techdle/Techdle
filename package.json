@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/generate-static-data.mjs && next dev",
+    "dev": "node scripts/generate-static-data.mjs && next dev --webpack",
     "generate-puzzles": "node scripts/generate-static-data.mjs",
     "prebuild": "node scripts/generate-static-data.mjs",
-    "build": "node scripts/generate-static-data.mjs && next build",
+    "build": "node scripts/generate-static-data.mjs && next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "new-puzzle": "node scripts/new-puzzle.mjs",
@@ -14,6 +14,7 @@
     "decrypt-puzzles": "node scripts/decrypt-puzzles.mjs"
   },
   "dependencies": {
+    "@serwist/next": "^9.5.11",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
     "firebase": "^12.15.0",
@@ -21,6 +22,7 @@
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "serwist": "^9.5.11",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
