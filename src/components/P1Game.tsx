@@ -48,7 +48,7 @@ export function P1Game() {
             <div className="text-center p-6 bg-red-500/10 border border-red-500/30 rounded-xl w-full">
               <h3 className="text-xl font-bold text-red-500 mb-2">Systems Down</h3>
               <p className="text-text-main">You failed to resolve the P1 outage in time. The SLA has been breached.</p>
-              <p className="text-text-muted text-sm mt-4">Hint: The category was "{puzzle.category}".</p>
+              <p className="text-text-muted text-sm mt-4">Hint: The category was &quot;{puzzle.category}&quot;.</p>
             </div>
           )}
           <button

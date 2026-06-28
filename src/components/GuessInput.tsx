@@ -49,7 +49,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
         const bStarts = b.toLowerCase().startsWith(match) ? -1 : 1;
         return aStarts - bStarts;
       });
-      setSuggestions(filtered.slice(0, 20));
+      setSuggestions(filtered.slice(0, 20)); // eslint-disable-line react-hooks/set-state-in-effect
       setShowSuggestions(true);
       setSelectedIndex(-1);
     } else {
@@ -62,7 +62,7 @@ export function GuessInput({ onSubmit, disabled, shakeKey, targets = [] }: Guess
   // Trigger shake animation when shakeKey changes (parent signals a wrong guess)
   useEffect(() => {
     if (shakeKey && shakeKey > 0) {
-      setShake(true);
+      setShake(true); // eslint-disable-line react-hooks/set-state-in-effect
       const timer = setTimeout(() => setShake(false), 500);
       return () => clearTimeout(timer);
     }

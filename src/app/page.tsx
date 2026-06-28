@@ -23,9 +23,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background text-text-main font-sans">
+    <div className="flex-grow flex flex-col bg-background text-text-main font-sans">
       <Header mode={mode} />
-      <main className="relative">
+      <main className="relative flex-grow flex flex-col">
         {mode && (
           <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
             <button

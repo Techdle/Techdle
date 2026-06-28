@@ -31,7 +31,7 @@ export function useP1OutageGame() {
         const savedState = loadGameStateByMode(MODE);
         
         let initialPuzzleId: string | undefined;
-        let initialSeenIds = new Set<string>();
+        const initialSeenIds = new Set<string>();
 
         if (savedState && savedState.status === 'playing') {
           initialPuzzleId = savedState.puzzleId;

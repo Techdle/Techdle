@@ -10,10 +10,38 @@ import { ArrowRight, Cpu, ShieldAlert, Network, Code2, FolderGit2 } from 'lucide
 import { useState } from 'react';
 
 const CATEGORIES = [
-  { id: 'Hardware', icon: Cpu, color: 'text-blue-500', bg: 'group-hover:bg-blue-500/10' },
-  { id: 'Security', icon: ShieldAlert, color: 'text-red-500', bg: 'group-hover:bg-red-500/10' },
-  { id: 'Network', icon: Network, color: 'text-purple-500', bg: 'group-hover:bg-purple-500/10' },
-  { id: 'Software', icon: Code2, color: 'text-green-500', bg: 'group-hover:bg-green-500/10' },
+  { 
+    id: 'Hardware', 
+    icon: Cpu, 
+    color: 'text-primary', 
+    bg: 'group-hover:bg-primary/10',
+    border: 'group-hover:border-primary/50',
+    description: 'Diagnose physical components, broken drives, and power issues.' 
+  },
+  { 
+    id: 'Security', 
+    icon: ShieldAlert, 
+    color: 'text-error', 
+    bg: 'group-hover:bg-error/10',
+    border: 'group-hover:border-error/50',
+    description: 'Investigate breaches, malware, and unauthorized access.' 
+  },
+  { 
+    id: 'Network', 
+    icon: Network, 
+    color: 'text-warning', 
+    bg: 'group-hover:bg-warning/10',
+    border: 'group-hover:border-warning/50',
+    description: 'Fix connectivity drops, DNS routing, and firewall blocks.' 
+  },
+  { 
+    id: 'Software', 
+    icon: Code2, 
+    color: 'text-success', 
+    bg: 'group-hover:bg-success/10',
+    border: 'group-hover:border-success/50',
+    description: 'Debug application crashes, bugs, and OS-level failures.' 
+  },
 ];
 
 export function CategoryGame() {
@@ -22,9 +50,14 @@ export function CategoryGame() {
   if (!selectedCategory) {
     return (
       <div className="w-full max-w-4xl mx-auto py-12 px-4 flex flex-col items-center animate-in fade-in duration-500">
-        <FolderGit2 className="w-16 h-16 text-primary mb-6" />
-        <h2 className="text-3xl font-bold text-text-main mb-2">Category Drill</h2>
-        <p className="text-text-muted mb-10 text-center max-w-md">
+        <div className="relative mb-6">
+          <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
+          <div className="relative p-4 bg-surface border border-border rounded-2xl shadow-sm">
+            <FolderGit2 className="w-10 h-10 text-primary" />
+          </div>
+        </div>
+        <h2 className="text-3xl font-bold text-text-main mb-3">Category Drill</h2>
+        <p className="text-text-muted mb-12 text-center max-w-md leading-relaxed">
           Select a category to practice specific types of tickets. Solve as many consecutive tickets as you can!
         </p>
         
@@ -35,14 +68,14 @@ export function CategoryGame() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className="flex items-center p-6 bg-surface hover:bg-surface-raised border border-border rounded-2xl transition-all hover:scale-[1.02] active:scale-[0.98] group"
+                className={`flex flex-col items-start p-6 sm:p-8 bg-surface hover:bg-surface border border-border rounded-2xl transition-all hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] cursor-pointer group ${cat.border}`}
               >
-                <div className={`p-4 bg-surface-raised rounded-xl mr-6 transition-colors ${cat.bg}`}>
+                <div className={`p-4 bg-surface-raised rounded-xl mb-5 transition-colors ${cat.bg}`}>
                   <Icon className={`w-8 h-8 ${cat.color} transition-colors`} />
                 </div>
                 <div className="text-left">
-                  <span className="block font-bold text-text-main text-xl mb-1">{cat.id}</span>
-                  <span className="block text-sm text-text-muted">Start Drilling</span>
+                  <span className="block font-bold text-text-main text-xl mb-2 group-hover:text-primary transition-colors">{cat.id}</span>
+                  <span className="block text-sm text-text-muted leading-relaxed">{cat.description}</span>
                 </div>
               </button>
             );

@@ -24,6 +24,10 @@ export function AdBanner({ dataAdSlot, orientation = 'horizontal' }: AdBannerPro
 
   const isVertical = orientation === 'vertical';
 
+  if (dataAdSlot.includes('REPLACE_WITH')) {
+    return null;
+  }
+
   return (
     <div className={`w-full flex justify-center overflow-hidden ${isVertical ? 'my-0' : 'my-6'}`}>
       <ins

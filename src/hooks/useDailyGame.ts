@@ -38,21 +38,26 @@ export function useDailyGame() {
         if (!mounted) return;
         setAliases(dict);
 
-        let savedState = loadGameState();
+        const savedState = loadGameState();
 
         if (savedState && savedState.puzzleId === activePuzzle.id && savedState.date === todayDate) {
           // If game is over but we don't have the fullPuzzle in state, decode it locally
           if (savedState.status !== 'playing' && !savedState.fullPuzzle) {
             savedState.fullPuzzle = decodeClientPuzzle(activePuzzle);
           }
+          if (savedState.status === 'playing' && !savedState.startedAt) {
+            savedState.startedAt = Date.now();
+          }
           setState(savedState);
         } else {
+          const now = Date.now();
           setState({
             puzzleId: activePuzzle.id,
             date: todayDate,
             guesses: [],
             status: 'playing',
-            lastPlayedAt: Date.now(),
+            lastPlayedAt: now,
+            startedAt: now,
             mode: 'daily',
           });
         }
@@ -110,6 +115,14 @@ export function useDailyGame() {
             }
             const guessCount = newState.guesses.length as 1 | 2 | 3 | 4 | 5 | 6;
             stats.guessDistribution[guessCount] += 1;
+            
+            // Dispatch leaderboard entry
+            if (user && state.startedAt) {
+              const timeMs = Date.now() - state.startedAt;
+              import('../lib/storage').then(mod => {
+                mod.syncDailyLeaderboardEntry(user.uid, today, timeMs, stats.currentStreak);
+              });
+            }
           } else {
             stats.currentStreak = 0;
             stats.guessDistribution.loss += 1;
@@ -130,9 +143,6 @@ export function useDailyGame() {
         };
         import('../lib/storage').then(mod => {
           mod.saveArchiveResult(result);
-          if (user) {
-            mod.syncArchiveToFirestore(user.uid, result);
-          }
         });
       }
     } catch (err) {
@@ -151,12 +161,14 @@ export function useDailyGame() {
       const activePuzzle = await fetchPuzzleChunk(activePuzzleId);
       setPuzzle(activePuzzle);
       
+      const now = Date.now();
       setState({
         puzzleId: activePuzzle.id,
         date: todayDate,
         guesses: [],
         status: 'playing',
-        lastPlayedAt: Date.now(),
+        lastPlayedAt: now,
+        startedAt: now,
         mode: 'daily',
       });
       setIncorrectCount(0);

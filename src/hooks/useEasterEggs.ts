@@ -40,6 +40,8 @@ export function useEasterEggs() {
     let konamiIndex = 0;
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (!e || !e.key) return;
+      
       if (e.key === konamiCode[konamiIndex] || e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {

@@ -114,7 +114,7 @@ export default function DictionaryPage() {
   const [unlockedIds, setUnlockedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoading(true); // eslint-disable-line react-hooks/set-state-in-effect
     try {
       // Load unlocked puzzles
       const results = loadArchiveResults();
@@ -169,7 +169,7 @@ export default function DictionaryPage() {
   }, [entries]);
 
   const filtered = useMemo(() => {
-    let result = entries.filter(e => {
+    const result = entries.filter(e => {
       if (search) {
         const q = search.toLowerCase();
         if (!e.answer.toLowerCase().includes(q) &&

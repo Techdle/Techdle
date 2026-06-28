@@ -1,8 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Settings, BookOpen, Terminal, Menu, X } from 'lucide-react';
-import { ThemeSwitcher } from './ThemeSwitcher';
+import { Settings, BookOpen, Terminal, Menu, X, Trophy, UserCircle } from 'lucide-react';
 import { GameMode } from '../types/game';
 import { useState } from 'react';
 
@@ -42,24 +41,19 @@ export function Header({ mode }: HeaderProps) {
           <Link href="/dictionary" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Answer Dictionary">
             <BookOpen className="w-5 h-5" />
           </Link>
-          <Link href="/archive" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Archive">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <Link href="/leaderboard" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Leaderboard">
+            <Trophy className="w-5 h-5" />
           </Link>
-          <Link href="/stats" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Stats">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="18" y="3" width="4" height="18"></rect><rect x="10" y="8" width="4" height="13"></rect><rect x="2" y="13" width="4" height="8"></rect></svg>
+          <Link href="/profile" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Profile">
+            <UserCircle className="w-5 h-5" />
           </Link>
-          <Link href="/login" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Account">
+          <Link href="/settings" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Settings">
             <Settings className="w-5 h-5" />
           </Link>
-          <div className="w-px h-6 bg-border mx-2" />
-          <ThemeSwitcher />
         </nav>
 
         {/* Mobile Nav Toggle */}
         <div className="flex md:hidden items-center gap-2">
-          {/* Keep ThemeSwitcher visible on mobile header for quick access, or put it in menu? Let's put it in menu and only keep hamburger icon here, or maybe keep ThemeSwitcher here so it's always accessible. Let's keep ThemeSwitcher and Hamburger. */}
-          <ThemeSwitcher />
-          <div className="w-px h-6 bg-border mx-1" />
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-1.5 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all"
@@ -77,17 +71,17 @@ export function Header({ mode }: HeaderProps) {
             <BookOpen className="w-5 h-5" />
             <span className="font-medium">Answer Dictionary</span>
           </Link>
-          <Link href="/archive" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <span className="font-medium">Archive</span>
+          <Link href="/leaderboard" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
+            <Trophy className="w-5 h-5" />
+            <span className="font-medium">Leaderboard</span>
           </Link>
-          <Link href="/stats" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="18" y="3" width="4" height="18"></rect><rect x="10" y="8" width="4" height="13"></rect><rect x="2" y="13" width="4" height="8"></rect></svg>
-            <span className="font-medium">Stats</span>
+          <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
+            <UserCircle className="w-5 h-5" />
+            <span className="font-medium">Profile</span>
           </Link>
-          <Link href="/login" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
+          <Link href="/settings" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
             <Settings className="w-5 h-5" />
-            <span className="font-medium">Account Settings</span>
+            <span className="font-medium">Settings</span>
           </Link>
         </div>
       )}

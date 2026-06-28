@@ -31,7 +31,7 @@ export function useCategoryGame(selectedCategory: string) {
         const savedState = loadGameStateByMode(storageKey);
         
         let initialPuzzleId: string | undefined;
-        let initialSeenIds = new Set<string>();
+        const initialSeenIds = new Set<string>();
 
         if (savedState && savedState.status === 'playing') {
           initialPuzzleId = savedState.puzzleId;

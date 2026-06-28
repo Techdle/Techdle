@@ -1,7 +1,6 @@
 import { Terminal, Calendar, Play, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Footer } from './Footer';
 import { getTodayDateString } from '../lib/date';
 import { GameMode } from '../types/game';
 import { SignupPromptModal } from './SignupPromptModal';
@@ -21,7 +20,7 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
   const formattedDate = `${MONTHS[parseInt(m, 10) - 1]} ${parseInt(d, 10)}, ${y}`;
 
   return (
-    <div className="fixed inset-0 min-h-[100dvh] z-[60] bg-background flex flex-col items-center px-6 overflow-y-auto pt-12 pb-8">
+    <div className="w-full flex-grow flex flex-col items-center px-6 pt-12 pb-8">
       <div className="flex-grow w-full max-w-lg flex flex-col items-center justify-center text-center mx-auto">
         <div className="bg-surface border border-border p-6 rounded-3xl shadow-2xl mb-6">
           <Terminal className="w-20 h-20 text-primary" />
@@ -37,7 +36,7 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
         </div>
         
         <p className="text-xl text-text-muted mb-8 max-w-sm leading-relaxed font-medium">
-          Get 6 chances to guess the root cause of today's IT ticket.
+          Get 6 chances to guess the root cause of today&apos;s IT ticket.
         </p>
 
         <div className="flex flex-col items-center gap-4 w-full">
@@ -69,9 +68,7 @@ export function LandingPage({ onSelectMode, puzzleNumber }: LandingPageProps) {
         </div>
       </div>
       
-      <div className="w-full mt-auto pt-8">
-        <Footer />
-      </div>
+      
 
       <SignupPromptModal 
         isOpen={isSignupPromptOpen} 

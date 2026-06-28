@@ -34,7 +34,7 @@ export function EndlessGame() {
   if (!puzzle || !state) {
     return (
       <div className="flex justify-center items-center h-64 text-text-muted flex-col gap-4">
-        <p>No puzzles left! You've cleared the queue.</p>
+        <p>No puzzles left! You&apos;ve cleared the queue.</p>
         <button 
           onClick={resetGame}
           className="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-raised rounded-full border border-border"

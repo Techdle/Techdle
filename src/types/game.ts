@@ -13,6 +13,12 @@ export interface Puzzle {
   rawLogs?: string[];
 }
 
+export interface PuzzleMetadata {
+  id: string;
+  category: string;
+  difficulty?: string;
+}
+
 export interface ClientPuzzle {
   id: string;
   number: number;
@@ -38,6 +44,7 @@ export interface GameState {
   guesses: Guess[];
   status: 'playing' | 'won' | 'lost';
   lastPlayedAt: number;
+  startedAt?: number;
   /** The Puzzle object returned after game ends (stored for ResolutionTicket).
    *  Only populated when game is over — answers remain hidden during play. */
   fullPuzzle?: Puzzle;
@@ -81,6 +88,7 @@ export type HistoryEntry = string;
  * One read = everything. No subcollections.
  */
 export interface UserDocument {
+  displayName?: string;
   /** User statistics (aggregated) */
   stats: UserStats;
   /** Compact history of completed games, most recent first (legacy) */

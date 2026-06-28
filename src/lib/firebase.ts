@@ -3,6 +3,12 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
 
+declare global {
+  interface Window {
+    _appCheckInitialized?: boolean;
+  }
+}
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -22,10 +28,13 @@ const db = app ? getFirestore(app) : null;
 // Initialize App Check (Only runs on the client/browser)
 let appCheck = null;
 if (app && typeof window !== 'undefined' && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
-  appCheck = initializeAppCheck(app, {
-    provider: new ReCaptchaEnterpriseProvider(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY),
-    isTokenAutoRefreshEnabled: true
-  });
+  if (!window._appCheckInitialized) {
+    appCheck = initializeAppCheck(app, {
+      provider: new ReCaptchaEnterpriseProvider(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY),
+      isTokenAutoRefreshEnabled: true
+    });
+    window._appCheckInitialized = true;
+  }
 }
 
 export { app, auth, db, appCheck, isConfigured };

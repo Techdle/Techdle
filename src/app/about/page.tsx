@@ -28,10 +28,10 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-text-main m-0">What is Techdle?</h2>
             </div>
             <p className="mb-4 text-lg">
-              Have you ever played Wordle? Techdle is similar, but instead of guessing a hidden 5-letter word, you're playing the role of a tech support wizard trying to diagnose a broken computer or a strange networking issue.
+              Have you ever played Wordle? Techdle is similar, but instead of guessing a hidden 5-letter word, you&apos;re playing the role of a tech support wizard trying to diagnose a broken computer or a strange networking issue.
             </p>
             <p className="text-lg">
-              Every single day, a new "support ticket" is generated. It's up to you to look at the symptoms, figure out what's causing the problem, and save the day!
+              Every single day, a new &quot;support ticket&quot; is generated. It&apos;s up to you to look at the symptoms, figure out what&apos;s causing the problem, and save the day!
             </p>
           </section>
 
@@ -47,7 +47,7 @@ export default function AboutPage() {
               Techdle is proud to be the very first <strong>tech Wordle-type game</strong> on the internet! 
             </p>
             <p className="text-lg">
-              The idea was born after our creator—an IT professional—was watching Doctor Mike on YouTube play a medical diagnostic game called <a href="https://doctordle.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">Doctordle</a>. It sparked a sudden realization: <em>"Why not make a similar website, but themed entirely around the crazy IT support tickets we deal with every day?"</em> And just like that, Techdle was born.
+              The idea was born after our creator—an IT professional—was watching Doctor Mike on YouTube play a medical diagnostic game called <a href="https://doctordle.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-bold">Doctordle</a>. It sparked a sudden realization: <em>&quot;Why not make a similar website, but themed entirely around the crazy IT support tickets we deal with every day?&quot;</em> And just like that, Techdle was born.
             </p>
           </section>
 
@@ -63,7 +63,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-surface border border-border flex items-center justify-center text-text-main font-bold shrink-0 shadow-sm text-lg">1</div>
                 <div>
                   <h3 className="text-lg font-bold text-text-main mb-1">Read the initial symptom</h3>
-                  <p className="text-sm sm:text-base">You'll start with a very vague complaint from a user, like <em className="text-text-main font-medium">"My computer is running really slowly."</em></p>
+                  <p className="text-sm sm:text-base">You&apos;ll start with a very vague complaint from a user, like <em className="text-text-main font-medium">&quot;My computer is running really slowly.&quot;</em></p>
                 </div>
               </div>
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-surface border border-border flex items-center justify-center text-text-main font-bold shrink-0 shadow-sm text-lg">2</div>
                 <div>
                   <h3 className="text-lg font-bold text-text-main mb-1">Make a guess</h3>
-                  <p className="text-sm sm:text-base">Type in what you think the root cause is (for example, "Virus" or "Failing Hard Drive"). Don't worry about being perfectly accurate—our system is smart and forgiving! "Broken wifi" and "wifi is down" will both be accepted.</p>
+                  <p className="text-sm sm:text-base">Type in what you think the root cause is (for example, &quot;Virus&quot; or &quot;Failing Hard Drive&quot;). Don&apos;t worry about being perfectly accurate—our system is smart and forgiving! &quot;Broken wifi&quot; and &quot;wifi is down&quot; will both be accepted.</p>
                 </div>
               </div>
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-surface border border-border flex items-center justify-center text-text-main font-bold shrink-0 shadow-sm text-lg">3</div>
                 <div>
                   <h3 className="text-lg font-bold text-text-main mb-1">Get more clues</h3>
-                  <p className="text-sm sm:text-base">If your guess is wrong, you'll be given a brand new clue that provides more detail, like <em className="text-text-main font-medium">"I also hear a weird clicking noise coming from the computer case."</em></p>
+                  <p className="text-sm sm:text-base">If your guess is wrong, you&apos;ll be given a brand new clue that provides more detail, like <em className="text-text-main font-medium">&quot;I also hear a weird clicking noise coming from the computer case.&quot;</em></p>
                 </div>
               </div>
 
@@ -87,7 +87,7 @@ export default function AboutPage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-surface border border-border flex items-center justify-center text-text-main font-bold shrink-0 shadow-sm text-lg">4</div>
                 <div>
                   <h3 className="text-lg font-bold text-text-main mb-1">Solve within 6 tries</h3>
-                  <p className="text-sm sm:text-base">You have a total of 6 attempts to figure out the exact problem. If you succeed, you'll get a detailed breakdown of the root cause and the standard steps to fix it!</p>
+                  <p className="text-sm sm:text-base">You have a total of 6 attempts to figure out the exact problem. If you succeed, you&apos;ll get a detailed breakdown of the root cause and the standard steps to fix it!</p>
                 </div>
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <h2 className="text-xl font-bold text-text-main m-0">Who is this for?</h2>
               </div>
               <p className="text-sm sm:text-base flex-1">
-                <strong className="text-text-main">Everyone!</strong> While it was made with IT professionals in mind, many puzzles cover everyday tech issues that anyone can relate to—like forgetting a password, dealing with a paper jam, or accidentally turning off the Wi-Fi. It's a fantastic way to learn how your daily devices actually work under the hood.
+                <strong className="text-text-main">Everyone!</strong> While it was made with IT professionals in mind, many puzzles cover everyday tech issues that anyone can relate to—like forgetting a password, dealing with a paper jam, or accidentally turning off the Wi-Fi. It&apos;s a fantastic way to learn how your daily devices actually work under the hood.
               </p>
             </section>
 
@@ -115,7 +115,7 @@ export default function AboutPage() {
                 <h2 className="text-xl font-bold text-text-main m-0">The Dictionary</h2>
               </div>
               <p className="text-sm sm:text-base flex-1">
-                Whenever you play a puzzle, the solution is permanently unlocked in your <strong className="text-text-main">Answer Dictionary</strong>. Over time, you'll build up a personal encyclopedia of tech problems and learn the standard operating procedures for fixing them.
+                Whenever you play a puzzle, the solution is permanently unlocked in your <strong className="text-text-main">Answer Dictionary</strong>. Over time, you&apos;ll build up a personal encyclopedia of tech problems and learn the standard operating procedures for fixing them.
               </p>
             </section>
           </div>
@@ -135,7 +135,7 @@ export default function AboutPage() {
 
           <div className="text-center pt-8 pb-12">
             <Link href="/" className="inline-flex items-center gap-2 justify-center px-8 py-4 bg-primary hover:bg-primary-hover text-background font-bold text-lg rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/25">
-              Play Today's Puzzle
+              Play Today&apos;s Puzzle
             </Link>
           </div>
         </div>

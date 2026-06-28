@@ -22,6 +22,8 @@ export function Footer() {
         <span className="text-border shrink-0">&bull;</span>
         <Link href="/about" className="hover:text-text-muted transition-colors whitespace-nowrap">About</Link>
         <span className="text-border shrink-0">&bull;</span>
+        <Link href="/faq" className="hover:text-text-muted transition-colors whitespace-nowrap">FAQ</Link>
+        <span className="text-border shrink-0">&bull;</span>
         <Link href="/contact" className="hover:text-text-muted transition-colors whitespace-nowrap">Contact</Link>
       </div>
       <div className="mt-2 text-[10px] text-text-muted">

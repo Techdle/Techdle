@@ -14,11 +14,11 @@ const STATE_KEYS: Record<GameMode, string> = {
   'category': 'techdle_state_category',
 };
 
-function encodeData(data: any): string {
+function encodeData(data: unknown): string {
   return btoa(encodeURIComponent(JSON.stringify(data)));
 }
 
-function decodeData(dataString: string): any {
+function decodeData(dataString: string): unknown {
   try {
     if (dataString.startsWith('{') || dataString.startsWith('[')) {
       return JSON.parse(dataString);
@@ -40,16 +40,16 @@ export const INITIAL_USER_STATS: UserStats = {
 
 
 export function safeGetItem(key: string): string | null {
-  try { if (typeof window !== 'undefined') return window.localStorage.getItem(key); } catch (e) {}
+  try { if (typeof window !== 'undefined') return window.localStorage.getItem(key); } catch {}
   return null;
 }
 
 export function safeSetItem(key: string, value: string): void {
-  try { if (typeof window !== 'undefined') window.localStorage.setItem(key, value); } catch (e) {}
+  try { if (typeof window !== 'undefined') window.localStorage.setItem(key, value); } catch {}
 }
 
 export function safeRemoveItem(key: string): void {
-  try { if (typeof window !== 'undefined') window.localStorage.removeItem(key); } catch (e) {}
+  try { if (typeof window !== 'undefined') window.localStorage.removeItem(key); } catch {}
 }
 
 // ── LocalStorage (anonymous play) ──────────────────────────────────
@@ -59,7 +59,7 @@ export function loadGameStateByMode(mode: GameMode): GameState | null {
   if (typeof window === 'undefined') return null;
   const data = safeGetItem(STATE_KEYS[mode]);
   if (!data) return null;
-  const parsed = decodeData(data);
+  const parsed = decodeData(data) as GameState | null;
   return parsed || null;
 }
 
@@ -72,7 +72,8 @@ export function saveGameStateMinimalByMode(mode: GameMode, state: GameState): vo
   if (typeof window === 'undefined') return;
   // Strip fullPuzzle before saving to localStorage (keep localStorage lean).
   // It's re-attached from the server bundle when the user returns.
-  const { fullPuzzle, ...minimal } = state;
+  const minimal = { ...state };
+  delete minimal.fullPuzzle;
   safeSetItem(STATE_KEYS[mode], encodeData(minimal));
 }
 
@@ -93,7 +94,7 @@ export function loadUserStats(): UserStats {
   if (typeof window === 'undefined') return INITIAL_USER_STATS;
   const data = safeGetItem(USER_STATS_KEY);
   if (!data) return INITIAL_USER_STATS;
-  const parsed = decodeData(data);
+  const parsed = decodeData(data) as UserStats | null;
   
   if (parsed) {
     // Auto-repair for P1 Outage bug that artificially inflated stats
@@ -141,7 +142,7 @@ export function loadArchiveResults(): ArchiveResult[] {
   if (typeof window === 'undefined') return [];
   const data = safeGetItem(ARCHIVE_RESULTS_KEY);
   if (!data) return [];
-  const parsed = decodeData(data);
+  const parsed = decodeData(data) as ArchiveResult[] | null;
   return parsed || [];
 }
 
@@ -190,31 +191,7 @@ export function validateAndRepairStats(stats: UserStats): UserStats {
   return repaired;
 }
 
-// ── ArchiveResult ⇄ HistoryEntry converters ───────────────────────
-
-function archiveToHistoryEntry(result: ArchiveResult): HistoryEntry {
-  return `${result.puzzleId}:${result.date}:${result.status}:${result.guessesCount}${result.solvedOnTime ? ':1' : ':0'}`;
-}
-
-function historyEntryToArchive(entry: HistoryEntry): ArchiveResult | null {
-  const parts = entry.split(':');
-  if (parts.length < 4) return null;
-  const [puzzleId, date, status, guessesCountStr, solvedOnTimeStr] = parts;
-  const guessesCount = parseInt(guessesCountStr, 10);
-  if (isNaN(guessesCount)) return null;
-  if (status !== 'won' && status !== 'lost') return null;
-  return { 
-    puzzleId, 
-    date, 
-    status: status as 'won' | 'lost', 
-    guessesCount,
-    solvedOnTime: solvedOnTimeStr === '1' 
-  };
-}
-
-function archiveHistoryToResults(history: HistoryEntry[]): ArchiveResult[] {
-  return history.map(historyEntryToArchive).filter((r): r is ArchiveResult => r !== null);
-}
+// ── Removed ArchiveResult ⇄ HistoryEntry converters ───────────────────────
 
 // ── Optimized Firestore: single doc per user ──────────────────────
 
@@ -232,8 +209,6 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
     const userDoc = await getDoc(userRef);
 
     const localStats = validateAndRepairStats(loadUserStats());
-    const localArchive = loadArchiveResults();
-    const localHistory = localArchive.map(archiveToHistoryEntry);
     const localHighScore = loadEndlessHighScore();
 
     const now = Date.now();
@@ -241,24 +216,17 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
     const lastSync = lastSyncStr ? parseInt(lastSyncStr, 10) : 0;
     
     // Lazy Sync Optimization:
-    // If we've synced within the last 5 minutes AND we don't have new local games played today, skip.
-    // (This avoids doing a getDoc + setDoc on every single page refresh)
     const isRecentlySynced = (now - lastSync) < 5 * 60 * 1000;
     const hasPlayedTodayLocally = localStats.lastPlayedDate === getTodayDateString();
     
-    // We only skip if we are recently synced AND we didn't just play today (which might need cloud sync)
-    // Actually, a simpler robust heuristic: just skip if we synced in the last hour, 
-    // unless local data changed since last sync (we can track a `localDataDirty` flag).
-    // For now, let's just skip if recently synced to save reads on app load.
     if (isRecentlySynced && !hasPlayedTodayLocally) {
       return;
     }
 
     if (!userDoc.exists()) {
       // First sync: write everything
-      const data: UserDocument = {
+      const data: Partial<UserDocument> = {
         stats: localStats,
-        history: localHistory,
         updatedAt: now,
         endlessHighScore: localHighScore,
       };
@@ -307,47 +275,25 @@ export async function syncLocalDataToFirestore(uid: string): Promise<void> {
       // Merge high score
       const mergedHighScore = Math.max(localHighScore, cloudHighScore);
 
-      const cloudArchive = archiveHistoryToResults(cloud.history || []);
-      const cloudMapArchive = cloud.historyMap ? archiveHistoryToResults(Object.values(cloud.historyMap)) : [];
-      
-      const allArchives = [...localArchive];
-      for (const cloudResult of [...cloudArchive, ...cloudMapArchive]) {
-        const exists = allArchives.some((r) => r.puzzleId === cloudResult.puzzleId);
-        if (!exists) allArchives.push(cloudResult);
-      }
-      // Sort most recent first
-      allArchives.sort((a, b) => b.date.localeCompare(a.date));
-
-      const mergedHistory = allArchives.map(archiveToHistoryEntry);
-      
-      // Convert merged history back into the optimized historyMap format
-      const newHistoryMap: Record<string, HistoryEntry> = {};
-      allArchives.forEach(result => {
-        newHistoryMap[result.puzzleId] = archiveToHistoryEntry(result);
-      });
-
-      const data: UserDocument = {
+      const data: Partial<UserDocument> = {
         stats: mergedStats,
-        history: [], // clear legacy array to save space
-        historyMap: newHistoryMap,
         updatedAt: now,
         endlessHighScore: mergedHighScore,
       };
-      await setDoc(userRef, data);
+      await setDoc(userRef, data, { merge: true });
 
       // Sync back to local if cloud was ahead
       if (cloudStats.totalPlayed > localStats.totalPlayed) {
         saveUserStats(cloudStats);
-        const syncedArchive = archiveHistoryToResults(mergedHistory);
-        safeSetItem(ARCHIVE_RESULTS_KEY, encodeData(syncedArchive));
       }
       if (cloudHighScore > localHighScore) {
         saveEndlessHighScore(cloudHighScore);
       }
       localStorage.setItem('lastCloudSync', now.toString());
     }
-  } catch (err: any) {
-    if (err?.code === 'unavailable' || err?.code === 'resource-exhausted' || err?.message?.includes('offline')) {
+  } catch (err: unknown) {
+    const error = err as { code?: string; message?: string };
+    if (error?.code === 'unavailable' || error?.code === 'resource-exhausted' || error?.message?.includes('offline')) {
       console.warn("Firestore is unreachable or quota exceeded. Progress is saved locally and will sync later.");
     } else {
       console.error("Failed to sync data to Firestore:", err);
@@ -368,8 +314,9 @@ export async function syncStatsToFirestore(uid: string, stats: UserStats): Promi
     const userRef = doc(db, 'users', uid);
     // Use setDoc with merge so we don't overwrite the history array
     await setDoc(userRef, { stats, updatedAt: Date.now() }, { merge: true });
-  } catch (err: any) {
-    if (err?.code !== 'unavailable' && err?.code !== 'resource-exhausted') {
+  } catch (err: unknown) {
+    const error = err as { code?: string };
+    if (error?.code !== 'unavailable' && error?.code !== 'resource-exhausted') {
       console.error("Failed to sync stats:", err);
     }
   }
@@ -386,37 +333,15 @@ export async function syncEndlessHighScoreToFirestore(uid: string, score: number
   try {
     const userRef = doc(db, 'users', uid);
     await setDoc(userRef, { endlessHighScore: score, updatedAt: Date.now() }, { merge: true });
-  } catch (err: any) {
-    if (err?.code !== 'unavailable' && err?.code !== 'resource-exhausted') {
+  } catch (err: unknown) {
+    const error = err as { code?: string };
+    if (error?.code !== 'unavailable' && error?.code !== 'resource-exhausted') {
       console.error("Failed to sync high score:", err);
     }
   }
 }
 
-/**
- * Sync archive history to Firestore.
- * Called after a game completes to persist the result.
- */
-export async function syncArchiveToFirestore(uid: string, result: ArchiveResult): Promise<void> {
-  const { doc, setDoc } = await import('firebase/firestore');
-  const { db, isConfigured } = await import('./firebase');
-  if (!isConfigured || !db) return;
-
-  try {
-    const userRef = doc(db, 'users', uid);
-    const entry = archiveToHistoryEntry(result);
-
-    // O(1) Write: Update exactly the property in the map without reading the whole doc
-    await setDoc(userRef, { 
-      [`historyMap.${result.puzzleId}`]: entry,
-      updatedAt: Date.now() 
-    }, { merge: true });
-  } catch (err: any) {
-    if (err?.code !== 'unavailable' && err?.code !== 'resource-exhausted') {
-      console.error("Failed to sync archive:", err);
-    }
-  }
-}
+// syncArchiveToFirestore removed to keep history local only
 
 /**
  * Load a user's complete data from Firestore (single doc read = one read).
@@ -432,14 +357,62 @@ export async function loadUserDocument(uid: string): Promise<UserDocument | null
     if (!snap.exists()) return null;
     const data = snap.data() as UserDocument;
     
-    // Combine legacy history array and new historyMap
-    const mapValues = data.historyMap ? Object.values(data.historyMap) : [];
-    const legacyValues = data.history || [];
-    const combined = [...legacyValues, ...mapValues];
-    
-    data.history = Array.from(new Set(combined)); // deduplicate if necessary
-    return data;
+    return snap.data() as UserDocument;
   } catch {
     return null;
+  }
+}
+
+/**
+ * Update the user's Display Name.
+ */
+export async function updateDisplayName(uid: string, displayName: string): Promise<void> {
+  const { doc, setDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
+  if (!isConfigured || !db) return;
+
+  try {
+    const userRef = doc(db, 'users', uid);
+    await setDoc(userRef, { displayName, updatedAt: Date.now() }, { merge: true });
+  } catch (err) {
+    console.error("Failed to update display name:", err);
+    throw err;
+  }
+}
+
+/**
+ * Sync the daily leaderboard entry.
+ */
+export async function syncDailyLeaderboardEntry(uid: string, dateStr: string, timeMs: number, streak: number): Promise<void> {
+  const { doc, setDoc, getDoc } = await import('firebase/firestore');
+  const { db, isConfigured } = await import('./firebase');
+  if (!isConfigured || !db) return;
+
+  // Basic anti-cheat: reject sub 3-second times (unless it's during dev testing, but let's enforce it)
+  if (timeMs < 3000) return;
+
+  try {
+    const userRef = doc(db, 'users', uid);
+    const userSnap = await getDoc(userRef);
+    if (!userSnap.exists()) return;
+    
+    const userData = userSnap.data() as import('../types/game').UserDocument;
+    if (!userData.displayName) return; // Only users with display names can be on the leaderboard
+
+    const entryRef = doc(db, 'dailyLeaderboards', dateStr, 'entries', uid);
+    const entrySnap = await getDoc(entryRef);
+    
+    // Prevent multiple submissions per day (anti-spam)
+    if (entrySnap.exists()) return;
+
+    await setDoc(entryRef, {
+      uid,
+      displayName: userData.displayName,
+      timeMs,
+      streak,
+      submittedAt: Date.now()
+    });
+  } catch (err) {
+    console.error("Failed to sync leaderboard entry:", err);
   }
 }

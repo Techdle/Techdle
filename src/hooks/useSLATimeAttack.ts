@@ -38,7 +38,7 @@ export function useSLATimeAttack() {
 
         const savedState = loadGameStateByMode(MODE);
         let initialPuzzleId: string | undefined;
-        let initialSeenIds = new Set<string>();
+        const initialSeenIds = new Set<string>();
 
         if (savedState && savedState.status === 'playing') {
           if ((savedState.timeRemaining || 0) > 0) {
@@ -127,7 +127,7 @@ export function useSLATimeAttack() {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [state?.status, puzzle]);
+  }, [state, puzzle]);
 
   // Sync state
   useEffect(() => {

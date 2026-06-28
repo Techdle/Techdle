@@ -10,6 +10,11 @@ const themes = [
   { id: 'nord', label: 'Nord' },
   { id: 'forest', label: 'Forest' },
   { id: 'high-contrast', label: 'High Contrast' },
+  { id: 'cyberpunk', label: 'Cyberpunk' },
+  { id: 'synthwave', label: 'Synthwave' },
+  { id: 'ocean', label: 'Ocean' },
+  { id: 'sunset', label: 'Sunset' },
+  { id: 'dracula', label: 'Dracula' },
 ];
 
 export function ThemeSwitcher() {
@@ -44,7 +49,7 @@ export function ThemeSwitcher() {
             <button
               key={t.id}
               onClick={() => {
-                setTheme(t.id as any);
+                setTheme(t.id as 'dark' | 'light' | 'high-contrast' | 'nord' | 'forest' | 'cyberpunk' | 'synthwave' | 'ocean' | 'sunset' | 'dracula');
                 setIsOpen(false);
               }}
               className={`w-full text-left px-4 py-2 text-sm transition-colors ${

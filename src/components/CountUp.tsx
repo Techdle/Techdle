@@ -15,7 +15,6 @@ export function CountUp({
 
   useEffect(() => {
     let startTime: number | null = null;
-    let timeoutId: NodeJS.Timeout;
     let animationFrameId: number;
 
     const animate = (timestamp: number) => {
@@ -34,7 +33,7 @@ export function CountUp({
       }
     };
 
-    timeoutId = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       animationFrameId = requestAnimationFrame(animate);
     }, delay);
 

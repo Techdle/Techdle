@@ -1,4 +1,4 @@
-import { ClientPuzzle } from '../types/game';
+import { ClientPuzzle, PuzzleMetadata } from '../types/game';
 import { getTodayDateString } from './date';
 
 // LCG PRNG for shuffling
@@ -39,8 +39,8 @@ export function getDailyPuzzleIndex(dayIndex: number, totalPuzzles: number): num
   return shuffled[pos];
 }
 
-let metadataPromise: Promise<any[]> | null = null;
-export async function fetchPuzzleMetadata(): Promise<any[]> {
+let metadataPromise: Promise<PuzzleMetadata[]> | null = null;
+export async function fetchPuzzleMetadata(): Promise<PuzzleMetadata[]> {
   if (!metadataPromise) {
     metadataPromise = fetch('/puzzles/metadata.json').then(res => {
       if (!res.ok) throw new Error('Failed to fetch metadata');
