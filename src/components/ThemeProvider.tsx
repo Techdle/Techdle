@@ -2,6 +2,7 @@
 
 import { safeGetItem, safeSetItem } from '../lib/storage';
 import { createContext, useContext, useEffect, useState, useCallback, ReactNode } from 'react';
+import { useEasterEggs } from '@/hooks/useEasterEggs';
 
 type Theme = 'dark' | 'light' | 'high-contrast' | 'nord' | 'forest';
 

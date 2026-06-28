@@ -1,13 +1,12 @@
 "use client";
 
 import Link from 'next/link';
-import { Settings, BookOpen, HelpCircle, Terminal, Menu, X } from 'lucide-react';
+import { Settings, BookOpen, Terminal, Menu, X } from 'lucide-react';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { GameMode } from '../types/game';
 import { useState } from 'react';
 
 interface HeaderProps {
-  onOpenHelp?: () => void;
   mode?: GameMode | null;
 }
 
@@ -19,7 +18,7 @@ const MODE_LABELS: Record<GameMode, string> = {
   'category': 'Category Drill',
 };
 
-export function Header({ onOpenHelp, mode }: HeaderProps) {
+export function Header({ mode }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -40,11 +39,6 @@ export function Header({ onOpenHelp, mode }: HeaderProps) {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-2">
-          {onOpenHelp && (
-            <button onClick={onOpenHelp} className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="How To Play">
-              <HelpCircle className="w-5 h-5" />
-            </button>
-          )}
           <Link href="/dictionary" className="p-2 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-full transition-all" title="Answer Dictionary">
             <BookOpen className="w-5 h-5" />
           </Link>
@@ -79,12 +73,6 @@ export function Header({ onOpenHelp, mode }: HeaderProps) {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-surface border-b border-border shadow-lg py-2 px-4 flex flex-col gap-1 z-50">
-          {onOpenHelp && (
-            <button onClick={() => { onOpenHelp(); setIsMobileMenuOpen(false); }} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all w-full text-left">
-              <HelpCircle className="w-5 h-5" />
-              <span className="font-medium">How To Play</span>
-            </button>
-          )}
           <Link href="/dictionary" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 p-3 text-text-muted hover:text-text-main hover:bg-surface-raised rounded-lg transition-all">
             <BookOpen className="w-5 h-5" />
             <span className="font-medium">Answer Dictionary</span>

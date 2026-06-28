@@ -11,7 +11,7 @@ import { clearLocalData } from '@/lib/storage';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import dynamic from 'next/dynamic';
 
-const AuthModal = dynamic(() => import('@/components/AuthModal').then(mod => mod.AuthModal), { ssr: false });
+const SignupPromptModal = dynamic(() => import('@/components/SignupPromptModal').then(mod => mod.SignupPromptModal), { ssr: false });
 
 export default function LoginPage() {
   const { user, error, loading } = useAuth();
@@ -139,7 +139,7 @@ export default function LoginPage() {
         </div>
       </main>
 
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+      <SignupPromptModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
       {/* Logout Confirmation Modal */}
       {isLogoutModalOpen && (

@@ -9,14 +9,17 @@ import { getTodayDateString } from '@/lib/date';
 import { loadArchiveResults, loadGameState } from '@/lib/storage';
 import { Puzzle, ArchiveResult, GameState } from '@/types/game';
 import { HeatmapGraph } from '@/components/HeatmapGraph';
+import { CountUp } from '@/components/CountUp';
 
 export default function ArchivePage() {
   const [puzzles, setPuzzles] = useState<Puzzle[]>([]);
   const [archiveResults, setArchiveResults] = useState<ArchiveResult[]>([]);
   const [todayState, setTodayState] = useState<GameState | null>(null);
   const [todayStr, setTodayStr] = useState('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     import('@/lib/puzzles').then(m => m.fetchPuzzleMetadata()).then(data => {
       setPuzzles(data);
     });
@@ -25,11 +28,35 @@ export default function ArchivePage() {
     setTodayStr(getTodayDateString());
   }, []);
 
-  // Wait until todayStr is initialized
-  if (!todayStr) {
+  // Wait until mounted, todayStr, and puzzles are fully loaded to show animations properly
+  if (!mounted || !todayStr || puzzles.length === 0) {
     return (
       <div className="min-h-[100dvh] bg-background text-text-main font-sans">
         <Header />
+        <main className="max-w-4xl mx-auto py-8 px-4 animate-pulse">
+          <div className="h-10 w-48 bg-surface-raised rounded mb-8"></div>
+          
+          <div className="h-48 w-full bg-surface-raised rounded-xl mb-12 border border-border"></div>
+          
+          <div className="space-y-12">
+            {[1, 2].map(i => (
+              <div key={i} className="bg-surface/50 rounded-xl p-6 border border-border">
+                <div className="flex justify-between items-end mb-6 pb-4 border-b border-border/50">
+                  <div className="h-8 w-48 bg-surface-raised rounded"></div>
+                  <div className="flex gap-4">
+                    <div className="h-8 w-16 bg-surface-raised rounded"></div>
+                    <div className="h-8 w-16 bg-surface-raised rounded"></div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-7 gap-2">
+                  {Array.from({ length: 35 }).map((_, j) => (
+                    <div key={j} className="aspect-square bg-surface-raised rounded-lg"></div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </main>
       </div>
     );
   }
@@ -60,35 +87,16 @@ export default function ArchivePage() {
   return (
     <div className="min-h-[100dvh] bg-background text-text-main font-sans">
       <Header />
-      <main className="max-w-4xl mx-auto py-8 px-4">
-        <h2 className="text-3xl font-bold mb-8">Archive</h2>
-        <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
-
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-12 mb-8 p-4 bg-surface/50 backdrop-blur-sm rounded-xl border border-border">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-success/80 ring-2 ring-success/20"></div>
-            <span className="text-sm font-medium text-text-muted">Won</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-error/80 ring-2 ring-error/20"></div>
-            <span className="text-sm font-medium text-text-muted">Lost</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded border-2 border-success/80"></div>
-            <span className="text-sm font-medium text-text-muted">Won (Overtime)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-surface-raised border border-border"></div>
-            <span className="text-sm font-medium text-text-muted">Unplayed</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded ring-2 ring-primary bg-surface-raised"></div>
-            <span className="text-sm font-medium text-text-muted">Today</span>
-          </div>
+      <main key="archive-content" className="max-w-4xl mx-auto py-8 px-4">
+        <h2 className="text-3xl font-bold mb-8 text-text-main">Archive</h2>
+        <div>
+          <HeatmapGraph archiveResults={archiveResults} todayStr={todayStr} />
         </div>
 
-        <div className="space-y-12">
-          {months.map(monthStr => {
+
+
+        <div className="space-y-12 mt-12">
+          {months.map((monthStr, index) => {
             const firstDay = parseISO(`${monthStr}-01`);
             const daysInMonth = eachDayOfInterval({
               start: startOfMonth(firstDay),
@@ -123,17 +131,24 @@ export default function ArchivePage() {
             const winRate = monthlyPlayed === 0 ? 0 : Math.round((monthlyWins / monthlyPlayed) * 100);
 
             return (
-              <div key={monthStr} className="bg-surface/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm">
+              <div 
+                key={monthStr} 
+                className="bg-surface/50 backdrop-blur-sm rounded-xl p-6 border border-border shadow-sm"
+              >
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-border/50">
                   <h3 className="text-2xl font-bold text-text-main">{format(firstDay, 'MMMM yyyy')}</h3>
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex flex-col">
                       <span className="text-text-muted text-[10px] uppercase font-bold tracking-wider">Played</span>
-                      <span className="font-bold text-text-main">{monthlyPlayed}</span>
+                      <span className="font-bold text-text-main">
+                        <CountUp end={monthlyPlayed} duration={1000} delay={0} />
+                      </span>
                     </div>
                     <div className="flex flex-col">
                       <span className="text-text-muted text-[10px] uppercase font-bold tracking-wider">Win Rate</span>
-                      <span className="font-bold text-text-main">{winRate}%</span>
+                      <span className="font-bold text-text-main">
+                        <CountUp end={winRate} duration={1000} delay={0} />%
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -219,7 +234,7 @@ export default function ArchivePage() {
                     }
 
                     const inner = (
-                      <div className={`w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg transition-colors ${bgClass}`}>
+                      <div className={`w-full h-full aspect-square flex flex-col items-center justify-center rounded-lg transition-all hover:scale-[1.15] active:scale-90 hover:z-10 hover:shadow-lg ${bgClass}`}>
                         <span className="text-lg">{date.getDate()}</span>
                       </div>
                     );

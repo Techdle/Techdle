@@ -171,7 +171,7 @@ export default function StatsPage() {
                 
                 return (
                   <div key={guessNum} className="flex items-center gap-4 animate-in slide-in-from-left-4 fade-in fill-mode-both" style={{ animationDelay: `${500 + i * 100}ms`, animationDuration: '700ms' }}>
-                    <div className="w-4 font-mono text-text-muted font-bold">{guessNum}</div>
+                    <div className="w-10 text-right font-mono text-text-muted font-bold">{guessNum}</div>
                     <div className="flex-1 bg-surface-raised/50 rounded-lg h-10 overflow-hidden relative">
                       <div 
                         className={`${barColor} shadow-lg h-full flex items-center justify-end px-3 text-sm font-bold text-background transition-all duration-[1500ms] ease-out`}
@@ -190,7 +190,7 @@ export default function StatsPage() {
               })}
               
               <div className="flex items-center gap-4 mt-6 pt-6 border-t border-border/50 animate-in slide-in-from-left-4 fade-in fill-mode-both" style={{ animationDelay: '1200ms', animationDuration: '700ms' }}>
-                <div className="w-4 font-mono text-error font-bold text-sm">Loss</div>
+                <div className="w-10 text-right font-mono text-error font-bold text-sm">Loss</div>
                 <div className="flex-1 bg-surface-raised/50 rounded-lg h-10 overflow-hidden relative">
                   <div 
                     className={`${todayState?.status === 'lost' ? 'bg-error shadow-error/20 text-background' : 'bg-error/40 text-error'} shadow-lg h-full flex items-center justify-end px-3 text-sm font-bold transition-all duration-[1500ms] ease-out`}

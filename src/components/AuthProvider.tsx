@@ -10,8 +10,6 @@ interface AuthContextType {
   loading: boolean;
   linkAccount: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
-  loginWithEmail: (e: string, p: string) => Promise<void>;
-  signUpWithEmail: (e: string, p: string) => Promise<void>;
   error: string | null;
 }
 
@@ -20,8 +18,6 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
   linkAccount: async () => {},
   loginWithGoogle: async () => {},
-  loginWithEmail: async () => {},
-  signUpWithEmail: async () => {},
   error: null,
 });
 
@@ -100,41 +96,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loginWithEmail = async (e: string, p: string) => {
-    const { auth } = await import('../lib/firebase');
-    const { signInWithEmailAndPassword } = await import('firebase/auth');
-    if (!auth) return;
-    setError(null);
-    try {
-      await signInWithEmailAndPassword(auth, e, p);
-      if (auth.currentUser) await syncLocalDataToFirestore(auth.currentUser.uid);
-    } catch (err) {
-      setError((err as AuthError).message || 'Invalid email or password.');
-    }
-  };
-
-  const signUpWithEmail = async (e: string, p: string) => {
-    const { auth } = await import('../lib/firebase');
-    const { linkWithCredential, EmailAuthProvider } = await import('firebase/auth');
-    if (!auth?.currentUser) return;
-    setError(null);
-    try {
-      const credential = EmailAuthProvider.credential(e, p);
-      await linkWithCredential(auth.currentUser, credential);
-      await syncLocalDataToFirestore(auth.currentUser.uid);
-    } catch (err) {
-      const authError = err as AuthError;
-      if (authError.code === 'auth/email-already-in-use') {
-        setError('An account with this email already exists. Please log in instead.');
-      } else {
-        setError(authError.message || 'Failed to create account.');
-      }
-    }
-  };
-
   return (
     <AuthContext.Provider value={{ 
-      user, loading, linkAccount, loginWithGoogle, loginWithEmail, signUpWithEmail, error 
+      user, loading, linkAccount, loginWithGoogle, error 
     }}>
       {children}
     </AuthContext.Provider>

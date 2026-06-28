@@ -5,9 +5,27 @@ import { ClueList } from './ClueList';
 import { GuessInput } from './GuessInput';
 import { ResolutionTicket } from './ResolutionTicket';
 import { ArrowRight, RotateCcw } from 'lucide-react';
+import { SignupPromptModal } from './SignupPromptModal';
+import { useAuth } from './AuthProvider';
+import { useEffect, useState } from 'react';
+import { safeGetItem } from '../lib/storage';
 
 export function EndlessGame() {
   const { puzzle, state, isLoaded, submitGuess, resetGame, loadNextPuzzle, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useEndlessGame();
+  const { user, loading: authLoading } = useAuth();
+  const [showSignupPrompt, setShowSignupPrompt] = useState(false);
+
+  useEffect(() => {
+    if (isLoaded && state && state.status !== 'playing' && !authLoading && (!user || user.isAnonymous)) {
+      const hasSeenPrompt = safeGetItem('hasSeenSignupPrompt');
+      if (!hasSeenPrompt) {
+        const timer = setTimeout(() => {
+          setShowSignupPrompt(true);
+        }, 1500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isLoaded, state, user, authLoading]);
   
   if (!isLoaded) {
     return <div className="flex justify-center items-center h-64 text-text-muted">Loading queue...</div>;
@@ -71,6 +89,11 @@ export function EndlessGame() {
           )}
         </div>
       )}
+
+      <SignupPromptModal 
+        isOpen={showSignupPrompt} 
+        onClose={() => setShowSignupPrompt(false)} 
+      />
     </div>
   );
 }

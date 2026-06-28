@@ -6,7 +6,10 @@ import { GuessInput } from './GuessInput';
 import { ResolutionTicket } from './ResolutionTicket';
 import { ShareButton } from './ShareButton';
 import { TryOtherModesLink } from './TryOtherModesLink';
-import { useEffect } from 'react';
+import { SignupPromptModal } from './SignupPromptModal';
+import { useAuth } from './AuthProvider';
+import { useEffect, useState } from 'react';
+import { safeGetItem } from '../lib/storage';
 
 interface DailyGameProps {
   onTutorialTrigger?: () => void;
@@ -14,12 +17,26 @@ interface DailyGameProps {
 
 export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
   const { puzzle, state, isLoaded, submitGuess, MAX_GUESSES, incorrectCount, isSubmitting, aliases } = useDailyGame();
+  const { user, loading: authLoading } = useAuth();
+  const [showSignupPrompt, setShowSignupPrompt] = useState(false);
 
   useEffect(() => {
     if (isLoaded && state && state.guesses.length === 0) {
       onTutorialTrigger?.();
     }
   }, [isLoaded, state, onTutorialTrigger]);
+
+  useEffect(() => {
+    if (isLoaded && state && state.status !== 'playing' && !authLoading && (!user || user.isAnonymous)) {
+      const hasSeenPrompt = safeGetItem('hasSeenSignupPrompt');
+      if (!hasSeenPrompt) {
+        const timer = setTimeout(() => {
+          setShowSignupPrompt(true);
+        }, 1500); // Wait a bit for the game over animations
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isLoaded, state, user, authLoading]);
 
   if (!isLoaded) {
     return <div className="flex justify-center items-center h-64 text-text-muted">Loading game data...</div>;
@@ -63,6 +80,11 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
           </div>
         </div>
       )}
+
+      <SignupPromptModal 
+        isOpen={showSignupPrompt} 
+        onClose={() => setShowSignupPrompt(false)} 
+      />
     </div>
   );
 }
