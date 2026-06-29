@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from '@/components/Header';
-import { Settings, LogOut, Trash2, ShieldCheck, AlertCircle, X, Palette, Store, Heart } from 'lucide-react';
+import { Settings, LogOut, Trash2, ShieldCheck, AlertCircle, X, Palette, Store, Heart, User as UserIcon } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
 import { clearLocalData } from '@/lib/storage';
 import { auth } from '@/lib/firebase';
@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useTheme } from '@/components/ThemeProvider';
 import { themes } from '@/lib/themes';
 import Link from 'next/link';
+import { Changelog } from '@/components/Changelog';
 
 export default function SettingsPage() {
   const { user } = useAuth();
@@ -160,9 +161,16 @@ export default function SettingsPage() {
                   type="text"
                   value={user?.email || 'Not logged in'}
                   disabled
-                  className="w-full bg-surface-raised border border-border/50 rounded-xl px-4 py-3 text-text-muted cursor-not-allowed"
+                  className="w-full bg-surface-raised border border-border/50 rounded-xl px-4 py-3 text-text-muted cursor-not-allowed mb-4"
                 />
               </div>
+              <Link
+                href="/profile"
+                className="w-full flex items-center justify-center gap-2 bg-surface-raised hover:bg-border border border-border text-text-main font-bold py-3 px-4 rounded-xl transition-all shadow-sm"
+              >
+                <UserIcon className="w-5 h-5 text-primary" />
+                Manage Profile & Stats
+              </Link>
             </div>
           </section>
 
@@ -191,6 +199,11 @@ export default function SettingsPage() {
                 Clear Local Data
               </button>
             </div>
+          </section>
+
+          {/* What's New / Changelog */}
+          <section>
+            <Changelog latestOnly={true} />
           </section>
 
         </div>

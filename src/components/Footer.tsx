@@ -12,6 +12,8 @@ export function Footer() {
         </p>
       </div>
       <div className="flex items-center justify-center gap-x-4 text-xs text-text-muted font-medium flex-wrap mx-auto px-4">
+        <Link href="/changelog" className="hover:text-text-muted transition-colors whitespace-nowrap">Release Notes</Link>
+        <span className="text-border shrink-0">&bull;</span>
         <Link href="/privacy" className="hover:text-text-muted transition-colors whitespace-nowrap">Privacy Policy</Link>
         <span className="text-border shrink-0">&bull;</span>
         <Link href="/terms" className="hover:text-text-muted transition-colors whitespace-nowrap">Terms of Service</Link>

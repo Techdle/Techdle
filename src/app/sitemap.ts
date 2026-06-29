@@ -10,14 +10,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/modes',
     '/practice',
     '/stats',
+    '/changelog',
     '/about',
     '/faq',
     '/contact',
     '/privacy',
     '/terms',
     '/cookies',
-    '/accessibility',
-    '/login'
+    '/accessibility'
   ];
 
   return routes.map((route) => ({

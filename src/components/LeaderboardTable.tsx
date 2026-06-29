@@ -17,7 +17,7 @@ export function LeaderboardTable({ entries }: { entries: LeaderboardEntry[] }) {
         </div>
         <h3 className="text-xl font-bold text-text-main mb-2">No Solves Yet</h3>
         <p className="text-text-muted text-center max-w-sm">
-          No one has solved today's puzzle yet. Be the first to claim the #1 spot!
+          No one has solved today&apos;s puzzle yet. Be the first to claim the #1 spot!
         </p>
       </div>
     );

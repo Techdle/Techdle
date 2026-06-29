@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { safeGetItem } from '../lib/storage';
 import { AdBanner } from './AdBanner';
 import { useMediaQuery } from '../hooks/useMediaQuery';
+import { WhatsNewFloatingButton } from './WhatsNewFloatingButton';
 
 interface DailyGameProps {
   onTutorialTrigger?: () => void;
@@ -105,6 +106,8 @@ export function DailyGame({ onTutorialTrigger }: DailyGameProps) {
           {isXlScreen && <AdBanner dataAdSlot="REPLACE_WITH_SLOT_ID_RIGHT" orientation="vertical" />}
         </div>
       </div>
+
+      <WhatsNewFloatingButton />
     </div>
   );
 }

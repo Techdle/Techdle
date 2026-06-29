@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Footer } from '@/components/Footer';
 import { SecurityProvider } from '@/components/SecurityProvider';
 import { PWAProvider } from '@/components/PWAProvider';
+import { WhatsNewProvider } from '@/components/WhatsNewProvider';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -92,7 +93,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script id="theme-script" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -111,10 +112,12 @@ export default function RootLayout({
           <ThemeProvider>
             <AuthProvider>
               <SecurityProvider>
-                <div className="flex-grow flex flex-col">
-                  {children}
-                </div>
-                <Footer />
+                <WhatsNewProvider>
+                  <div className="flex-grow flex flex-col">
+                    {children}
+                  </div>
+                  <Footer />
+                </WhatsNewProvider>
               </SecurityProvider>
             </AuthProvider>
           </ThemeProvider>
